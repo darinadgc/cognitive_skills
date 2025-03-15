@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   
     if (currentPage.includes("motivation")) {
-      return "https://script.google.com/macros/s/AKfycbwKY7-VHqGRwjShwJsaUrHrUq1dWEguFEfuC4o1WUnzUfxoXZRaEsBGlJQvLXEED49ZPA/exec";
+      return "https://script.google.com/macros/s/AKfycbyf5gWGlKfPz3mK4_haYQV-wVNtRhdCeD8qIFoM_jlGlTO2acpsOS45rp5lsUq9YuMhxQ/exec";
     }
   
     return null;
@@ -216,6 +216,7 @@ document.addEventListener("DOMContentLoaded", () => {
 .then(response => response.json())
 .then(data => console.log("✅ Успішно надіслано:", data))
 .catch(error => console.error("❌ Помилка надсилання:", error));
+
 
 
     }
