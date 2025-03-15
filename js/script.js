@@ -64,23 +64,24 @@ document.addEventListener("DOMContentLoaded", () => {
   
   
   window.getScriptURL = function() {
-  const currentPage = window.location.pathname; // ✅ Для GitHub Pages використовуємо pathname
+  const currentPage = window.location.href; // ✅ Перевіряємо повний URL
 
-  if (currentPage.includes("figures")) {
+  if (currentPage.includes("figures.html")) {
     return "https://script.google.com/macros/s/AKfycbyHPX-5dhnfRK-0iTnStfGJ8JIbI5bzzhJlIh6omNJGfnErFqlqtqVWbhXsrEH9dzmUIw/exec";
   }
 
-  if (currentPage.includes("matrytsya_ravena")) {
+  if (currentPage.includes("matrytsya_ravena.html")) {
     return "https://script.google.com/macros/s/AKfycbxhucGaceo5tAFqeMjuw3K_QpDKZEVFhNoczMmCll3ubpdTpxpW2IoDSnO9emYE8smGNQ/exec";
   }
 
-  if (currentPage.includes("motivation")) {
+  if (currentPage.includes("cognitive_skills/")) {
     return "https://script.google.com/macros/s/AKfycbz5ugdlVgJFLUJMDJVWyjvVHaI1V2M6j3QnyvDlvy9wmqJ-JVxv6mqoGt4BnfU1GOCBRA/exec";
   }
 
-  console.error("❌ Не вдалося визначити URL для Google Таблиці");
+  console.error("❌ Не вдалося визначити Google Apps Script URL");
   return null;
 }
+
 
 console.log("🔹 URL сторінки:", window.location.href); 
 console.log("🔹 Отриманий scriptURL:", getScriptURL());
