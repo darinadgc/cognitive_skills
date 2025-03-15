@@ -64,22 +64,23 @@ document.addEventListener("DOMContentLoaded", () => {
   
   
   window.getScriptURL = function() {
-    const currentPage = window.location.pathname;
-  
-    if (currentPage.includes("figures")) {
-      return "https://script.google.com/macros/s/AKfycbyHPX-5dhnfRK-0iTnStfGJ8JIbI5bzzhJlIh6omNJGfnErFqlqtqVWbhXsrEH9dzmUIw/exec";
-    }
-  
-    if (currentPage.includes("matrytsya_ravena")) {
-      return "https://script.google.com/macros/s/AKfycbxhucGaceo5tAFqeMjuw3K_QpDKZEVFhNoczMmCll3ubpdTpxpW2IoDSnO9emYE8smGNQ/exec";
-    }
-  
-    if (currentPage.includes("motivation")) {
-      return "https://script.google.com/macros/s/AKfycbz5ugdlVgJFLUJMDJVWyjvVHaI1V2M6j3QnyvDlvy9wmqJ-JVxv6mqoGt4BnfU1GOCBRA/exec";
-    }
-  
-    return null;
+  const currentPage = window.location.href; // ✅ Тепер працює з GitHub Pages
+
+  if (currentPage.includes("figures")) {
+    return "https://script.google.com/macros/s/AKfycbyHPX-5dhnfRK-0iTnStfGJ8JIbI5bzzhJlIh6omNJGfnErFqlqtqVWbhXsrEH9dzmUIw/exec";
   }
+
+  if (currentPage.includes("matrytsya_ravena")) {
+    return "https://script.google.com/macros/s/AKfycbxhucGaceo5tAFqeMjuw3K_QpDKZEVFhNoczMmCll3ubpdTpxpW2IoDSnO9emYE8smGNQ/exec";
+  }
+
+  if (currentPage.includes("motivation")) {
+    return "https://script.google.com/macros/s/AKfycbz5ugdlVgJFLUJMDJVWyjvVHaI1V2M6j3QnyvDlvy9wmqJ-JVxv6mqoGt4BnfU1GOCBRA/exec";
+  }
+
+  return null; // ✅ Якщо нічого не знайдено
+}
+
   
  
 
@@ -91,30 +92,24 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   
     fetch(scriptURL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        name: studentName,
-        score: finalScore,
-        level: level
-      })
-    })
-    
-    .then(() => {
-      localStorage.setItem("lastAttemptFigures", new Date().toISOString());
-  
-      const resultEl = document.getElementById("result");
-      if (resultEl) {
-        resultEl.innerHTML = `<strong>Дякуємо за проходження! Успіхів!</strong>`;
-      }
-  
-      document.getElementById("send-results-btn").style.display = "none"; // ✅ Приховуємо кнопку
-    })
-    .then(response => response.json())
-    .then(data => console.log("✅ Успішно надіслано:", data))
-    .catch(error => console.error("❌ Помилка надсилання:", error));
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+    name: studentName,
+    score: finalScore,
+    level: level
+  }),
+  mode: "no-cors" // ✅ Додаємо для вирішення проблеми CORS
+})
+.then(() => {
+  localStorage.setItem(getLastAttemptKey(), new Date().toISOString());
+  resultEl.innerHTML = `<strong>Дякуємо за проходження! Успіхів!</strong>`;
+  sendResultsBtn.style.display = "none";
+})
+.catch(error => console.error("❌ Помилка надсилання:", error));
+
   // ✅ Приховуємо кнопку після надсилання
   
   
