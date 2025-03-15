@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   
     if (currentPage.includes("motivation")) {
-      return "https://script.google.com/macros/s/AKfycbwxX2gPM-iM-_huXPlR1yhXXd1DfYgTHhRxK11Z_YC6NcgClMrespKR5CaEP8MtTSG_-Q/exec";
+      return "https://script.google.com/macros/s/AKfycbx1baCQE8hZmPcMND39s4pOATLdf-SJpqycCp6SUhqyzQs0Xy27YKQFUs-WQp1tmoq7Hg/exec";
     }
   
     return null;
@@ -203,21 +203,20 @@ document.addEventListener("DOMContentLoaded", () => {
         const time = new Date().toLocaleString();
 
         fetch(scriptURL, {
-            method: "POST",
-            body: JSON.stringify({ 
-                name: studentName,
-                score: score,
-                level: level,
-                time: time
-            }),
-            headers: { "Content-Type": "application/json" }
-        })
-        .then(() => {
-            resultSent = true;
-            localStorage.setItem("lastAttemptRaven", new Date());
-            resultEl.innerHTML = `<strong>Дякуємо за проходження! Успіхів!</strong>`;
-        })
-        .catch(error => console.error("Помилка збереження:", error));
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+    name: studentName,
+    score: finalScore,
+    level: level
+  })
+})
+.then(response => response.json())
+.then(data => console.log("✅ Успішно надіслано:", data))
+.catch(error => console.error("❌ Помилка надсилання:", error));
+
     }
 
     function calculateLevel(score) {
