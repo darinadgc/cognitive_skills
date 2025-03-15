@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   
     if (currentPage.includes("motivation")) {
-      return "https://script.google.com/macros/s/AKfycbz1cDVhStwTTo1067FB7SpT34cNd28zl5cVErG-V_bu1SrfQDf44KovAqP57fKsp8mFbQ/exec";
+      return "https://script.google.com/macros/s/AKfycbz5ugdlVgJFLUJMDJVWyjvVHaI1V2M6j3QnyvDlvy9wmqJ-JVxv6mqoGt4BnfU1GOCBRA/exec";
     }
   
     return null;
