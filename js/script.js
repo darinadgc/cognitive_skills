@@ -81,6 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
   return null; // ✅ Якщо нічого не знайдено
 }
 
+
   
  
 
@@ -101,7 +102,7 @@ document.addEventListener("DOMContentLoaded", () => {
     score: finalScore,
     level: level
   }),
-  mode: "no-cors" // ✅ Додаємо для вирішення проблеми CORS
+  mode: "no-cors" // ✅ Додаємо для уникнення CORS
 })
 .then(() => {
   localStorage.setItem(getLastAttemptKey(), new Date().toISOString());
@@ -109,6 +110,8 @@ document.addEventListener("DOMContentLoaded", () => {
   sendResultsBtn.style.display = "none";
 })
 .catch(error => console.error("❌ Помилка надсилання:", error));
+console.log(getScriptURL());
+
 
   // ✅ Приховуємо кнопку після надсилання
   
