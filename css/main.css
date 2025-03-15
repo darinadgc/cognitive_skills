@@ -1,0 +1,289 @@
+* {
+	padding: 0;
+	margin: 0;
+	/* border: 0;*/
+	}
+  
+  *, *:before, *:after {
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box; }
+  
+  :focus, :active {
+	outline: none; }
+  
+  a:focus, a:active {
+	outline: none; }
+  
+  nav, footer, header, aside {
+	display: block; }
+  
+  html, body {
+	min-height: 100%;
+	min-width: 100%;
+	font-size: 100%;
+	line-height: 1;
+	font-size: 14px;
+	-ms-text-size-adjust: 100%;
+	-moz-text-size-adjust: 100%;
+	-webkit-text-size-adjust: 100%; }
+  
+  input, button, textarea {
+	font-family: inherit;
+	font-size: inherit; }
+  
+  input::-ms-clear {
+	display: none; }
+  
+  button {
+	cursor: pointer; }
+  
+  button::-moz-focus-inner {
+	padding: 0;
+	border: 0; }
+  
+  a, a:visited {
+	text-decoration: none; }
+  
+  a:hover {
+	text-decoration: none; }
+  
+  ul li {
+	list-style-image: url(images2.png); }
+  
+  img {
+	vertical-align: top; }
+  
+  h1, h2, h3, h4, h5, h6 {
+	line-height: 1;
+	font-weight: 500;
+	text-align: center;
+	padding: 1.3%;
+  }
+  
+  /*--------------------*/
+  html {
+	  padding: 1.4%;
+	 }
+  body {
+	border: 2px solid #82FF50;
+	border-radius: 3.8px;
+	font-size: 26px;
+	line-height: 26.8px;
+	font-family: "Arial", sans-serif;
+	color: #222222;
+	letter-spacing: .7px;
+	padding: 2.6%;
+	}
+  body>* {
+	  padding: 1.28%;
+  } 
+  main,
+  header,
+  footer {
+	background-color: #DCFF50;
+	/* ,.accordion.active:hover, .accordion:hover */
+  }
+  article {background-color: #DCFF50;
+  }
+	
+  section,
+  aside {
+	background-color: #FAF0BE;
+  }
+  
+  h1 {padding: 25px 10px 20px;
+	font-size: 53px;
+   
+	line-height: normal;
+  color: #427e45;
+  font-weight: 600;
+  }
+  
+  
+  p {
+	padding: 1.8%;
+	text-indent: 25px;
+	margin: 4px;
+	}
+  
+	h2, h1 {
+  padding: 5px;
+  font-family: 'Times New Roman', serif;
+
+  }
+  h3 {
+	  font-weight: 600;
+	  color: #2f9b26;
+  }
+  ul, ol {
+  margin: 0 28px;
+  }
+	  /* .accordion {
+	 background-color: #FFFD87;
+	  cursor: pointer;
+	  
+	  padding: 9px;
+	 margin: .7%;
+	 border-radius: 4px;
+	  
+	  outline: none;
+	  
+	  
+	  
+	  color: #e07d42;
+  }
+  .accordion.active {
+	 background-color: #E4FC18;
+  }   */
+	  
+	  
+  /* .panel {
+	  margin: 0px;
+	  padding: 0px 23px;
+	  background-color: #fbf1a5;
+	  max-height: 0;
+	  overflow: hidden;
+  }	
+  .accordion, .panel {
+	transition: 3.3s;}label {
+	  margin: 0 3.97%;
+	  display: inline-block;
+  } */
+  li span,#l-pgso span{
+	  flex-wrap: nowrap;
+	  display: inline-flex;
+	  width: auto;margin: 6px;
+  }
+  .radio li span,#l-pgso span{
+	  align-items: first baseline;
+  }
+  #l-pgso span {
+	padding-right: 34px;
+	padding-left: 23px;
+  }	
+  li>span {
+    color: #3ab747;
+}
+  .f, p {
+	background-color: #CDFF87;
+  }
+  .f img {
+	max-width: 220px; 
+  }
+	  .input-edrsi {
+	  width: 194px;
+  }
+  .input-soc-ts,.input-rol-poz {
+	  min-width: 241px;
+  }input[type="range"] {
+	  min-width: 185px;
+  }li {
+	  margin: 17px 0 17px 6%;
+	 }button {
+	  border: #c2fc6c 2px solid;
+	  border-radius: 8%;
+	  background: #ffdc57;
+	  color: #bf7a11;
+	padding: 7px;
+  }
+  
+  #game-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#figure-task {
+    background: white;
+}
+#instruction {
+  font-size: 20px;
+}
+button {
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+}
+/* Матриця Равена */
+.test-container {
+    text-align: center;
+}
+/* .inline-flex {
+  display: inline-flex;
+} */
+.main-image {
+    max-width: 100%;
+    height: auto;
+}
+#figure-task, .test-container {
+  
+  
+  display: none; /* Спочатку приховуємо */
+  
+}
+
+div#task-container {
+  display: flex;
+  flex-wrap: wrap;
+  display: none; /* Спочатку приховуємо */
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+}
+.radio-options {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.radio-options li, li>span {
+    margin: 12px;
+}
+
+.answer-options {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+.next-div {
+  flex-direction: column;
+  display: flex;
+}
+img.option, li, label, #option, .radio input {
+  cursor: pointer;
+}
+/*Responsive*/
+@media (max-width: 766px) {   h1 {
+	   font-size: 41px;
+	  }
+}
+  @media (max-width: 581px) {  div#task-container {
+    flex-wrap: wrap;
+}
+}
+@media (min-width: 68px) and (max-width: 480px) {
+   h1 {
+	   font-size: 20px;
+	  }
+	h2 {
+	font-size: 29px;
+  }
+	body {
+	font-size: 25px;
+	}
+	#instruction {
+    font-size: 15px;
+}
+  }
