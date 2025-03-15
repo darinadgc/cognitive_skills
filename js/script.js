@@ -98,7 +98,7 @@ console.log(getScriptURL());
       return;
     }
   
-   const scriptURL = getScriptURL();
+   // const scriptURL = getScriptURL();
 
 if (!scriptURL) {
   console.error("❌ Не отримано URL Google Apps Script");
