@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
   
   
   window.getScriptURL = function() {
-  const currentPage = window.location.href; // ✅ Тепер працює з GitHub Pages
+  const currentPage = window.location.pathname; // ✅ Для GitHub Pages використовуємо pathname
 
   if (currentPage.includes("figures")) {
     return "https://script.google.com/macros/s/AKfycbyHPX-5dhnfRK-0iTnStfGJ8JIbI5bzzhJlIh6omNJGfnErFqlqtqVWbhXsrEH9dzmUIw/exec";
@@ -78,9 +78,14 @@ document.addEventListener("DOMContentLoaded", () => {
     return "https://script.google.com/macros/s/AKfycbz5ugdlVgJFLUJMDJVWyjvVHaI1V2M6j3QnyvDlvy9wmqJ-JVxv6mqoGt4BnfU1GOCBRA/exec";
   }
 
-  return null; // ✅ Якщо нічого не знайдено
+  console.error("❌ Не вдалося визначити URL для Google Таблиці");
+  return null;
 }
 
+console.log("🔹 URL сторінки:", window.location.href); 
+console.log("🔹 Отриманий scriptURL:", getScriptURL());
+
+console.log(getScriptURL());
 
   
  
@@ -92,7 +97,14 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
   
-    fetch(scriptURL, {
+   const scriptURL = getScriptURL();
+
+if (!scriptURL) {
+  console.error("❌ Не отримано URL Google Apps Script");
+  return;
+}
+
+fetch(scriptURL, {
   method: "POST",
   headers: {
     "Content-Type": "application/json"
@@ -102,7 +114,7 @@ document.addEventListener("DOMContentLoaded", () => {
     score: finalScore,
     level: level
   }),
-  mode: "no-cors" // ✅ Додаємо для уникнення CORS
+  mode: "no-cors" 
 })
 .then(() => {
   localStorage.setItem(getLastAttemptKey(), new Date().toISOString());
@@ -110,7 +122,7 @@ document.addEventListener("DOMContentLoaded", () => {
   sendResultsBtn.style.display = "none";
 })
 .catch(error => console.error("❌ Помилка надсилання:", error));
-console.log(getScriptURL());
+
 
 
   // ✅ Приховуємо кнопку після надсилання
