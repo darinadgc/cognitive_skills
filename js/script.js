@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   if (currentPage.includes("matrytsya_ravena.html")) {
-    return "https://script.google.com/macros/s/AKfycbxhucGaceo5tAFqeMjuw3K_QpDKZEVFhNoczMmCll3ubpdTpxpW2IoDSnO9emYE8smGNQ/exec";
+    return "https://script.google.com/macros/s/AKfycbxNZZQ8WzTq8z-zIDqPgRduscz8zc-e6vD55_jRkSUz2uKU6lEv66UPcz7HfRE7NVmQ4A/exec";
   }
 
   if (currentPage.includes("cognitive_skills/")) {
