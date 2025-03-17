@@ -115,12 +115,13 @@ fetch(scriptURL, {
     score: finalScore,
     level: level
   }),
-  mode: "no-cors" // ✅ Уникаємо CORS-помилки
+  mode: "no-cors" 
 })
 .then(response => {
   console.log("✅ Успішно надіслано:", response);
 })
 .catch(error => console.error("❌ Помилка надсилання:", error));
+
 
 
 
