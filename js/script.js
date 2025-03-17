@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   if (currentPage.includes("matrytsya_ravena.html")) {
-    return "https://script.google.com/macros/s/AKfycbxyXBlM2Cx_d3tQ2jaFN_alLny7JvTdOLNNdMsQ0oyv_keAscX3hrvQFfK8Se60YFKNIg/exec";
+    return "https://script.google.com/macros/s/AKfycbxT0r1GkCfiaJsl2Q-p967yg7W_kUUJYJY8S4p2wziV3zwxj9lO3FRdlkG-lEXS9Ucr3A/exec";
   }
 
   if (currentPage.includes("cognitive_skills/")) {
@@ -108,7 +108,7 @@ if (!scriptURL) {
 fetch(scriptURL, {
   method: "POST",
   headers: {
-    "Content-Type": "application/x-www-form-urlencoded" // ✅ Змінюємо тип контенту
+    "Content-Type": "application/json"
   },
   body: JSON.stringify({
     name: studentName,
