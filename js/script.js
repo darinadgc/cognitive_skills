@@ -115,7 +115,7 @@ fetch(scriptURL, {
     score: finalScore,
     level: level
   }),
-  mode: "no-cors" 
+  mode: "no-cors" // ✅ Додаємо для уникнення CORS
 })
 .then(() => {
   localStorage.setItem(getLastAttemptKey(), new Date().toISOString());
@@ -123,6 +123,7 @@ fetch(scriptURL, {
   sendResultsBtn.style.display = "none";
 })
 .catch(error => console.error("❌ Помилка надсилання:", error));
+
 
 
 
