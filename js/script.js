@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   if (currentPage.includes("matrytsya_ravena.html")) {
-    return "https://script.google.com/macros/s/AKfycbx7RUcT-QBEBgB-JhzjVtgl5hXtjnYLRyoG4oESfH_gxd9MYDeARIUThwSCzEPxFHam5w/exec";
+    return "https://script.google.com/macros/s/AKfycby6Z0WIGQyR_nI4ut1MLbKwkfnywXTdspPbvAPWVxScSLAb65GqQvDv-ayuVYgXtDS6Rg/exec";
   }
 
   if (currentPage.includes("cognitive_skills/")) {
@@ -115,7 +115,7 @@ fetch(scriptURL, {
     score: finalScore,
     level: level
   }),
-  mode: "no-cors" // ✅ Додаємо для уникнення CORS
+  mode: "no-cors" 
 })
 .then(() => {
   localStorage.setItem(getLastAttemptKey(), new Date().toISOString());
@@ -123,6 +123,7 @@ fetch(scriptURL, {
   sendResultsBtn.style.display = "none";
 })
 .catch(error => console.error("❌ Помилка надсилання:", error));
+
 
 
 
