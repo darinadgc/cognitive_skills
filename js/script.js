@@ -114,15 +114,12 @@ fetch(scriptURL, {
     name: studentName,
     score: finalScore,
     level: level
-  }),
-  mode: "no-cors" // ✅ Додаємо для уникнення CORS
+  })
 })
-.then(() => {
-  localStorage.setItem(getLastAttemptKey(), new Date().toISOString());
-  resultEl.innerHTML = `<strong>Дякуємо за проходження! Успіхів!</strong>`;
-  sendResultsBtn.style.display = "none";
-})
+.then(response => response.json())
+.then(data => console.log("✅ Успішно надіслано:", data))
 .catch(error => console.error("❌ Помилка надсилання:", error));
+
 
 
 
