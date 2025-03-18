@@ -5,7 +5,6 @@ if (!sendResultsBtn) {
     console.error("❌ Помилка: Кнопка `send-results-btn` не знайдена!");
     return;
   }
-  sendResultsBtn.disabled = false;
 
   sendResultsBtn.addEventListener("click", (event) => {
     event.preventDefault();
