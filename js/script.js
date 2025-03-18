@@ -77,12 +77,26 @@ console.log("✅ Виклик submitResults");
  
     // ✅ Якщо є кнопка, додаємо обробник події для надсилання результату
     if (sendResultsBtn) {
-      sendResultsBtn.addEventListener("click", () => {
-        const finalScore = calculateScore();
-        const level = calculateLevel(finalScore);
-        submitResults(finalScore, level);
-      });
-    }
+  sendResultsBtn.replaceWith(sendResultsBtn.cloneNode(true)); // Видаляє попередні обробники
+  const newSendResultsBtn = document.getElementById("send-results-btn");
+
+  newSendResultsBtn.addEventListener("click", () => {
+    const finalScore = calculateScore();
+    const level = calculateLevel(finalScore);
+    submitResults(finalScore, level);
+  });
+}
+if (sendResultsBtn) {
+  sendResultsBtn.addEventListener("click", () => {
+    if (sendResultsBtn.disabled) return; // Запобігає повторним клікам
+
+    sendResultsBtn.disabled = true; // Блокує кнопку після натискання
+    const finalScore = calculateScore();
+    const level = calculateLevel(finalScore);
+    submitResults(finalScore, level);
+  });
+}
+
     
 
 
@@ -94,8 +108,9 @@ console.log("🔹 URL сторінки:", window.location.href);
 
 
  window.submitResults = function(finalScore, level) {
+  if (window.isSubmitting) return; // Захист від дублювання запитів
+  window.isSubmitting = true;
   console.log("✅ Функція submitResults викликана!");
-  
   const studentName = prompt("Введіть ваше ім'я:");
   console.log("🔹 Введене ім'я:", studentName);
 
