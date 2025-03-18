@@ -1,21 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
   const sendResultsBtn = document.getElementById("send-results-btn");
   window.resultEl = document.getElementById("result");
-if (!sendResultsBtn) {
-    console.error("❌ Помилка: Кнопка `send-results-btn` не знайдена!");
-    return;
-  }
 
-  sendResultsBtn.addEventListener("click", (event) => {
-    event.preventDefault();
-    
-    if (window.isSubmitting) return; // Запобігає повторному виклику
-    window.isSubmitting = true;
 
-    const finalScore = calculateScore();
-    const level = calculateLevel(finalScore);
-    submitResults(finalScore, level);
-  });
+  
 
   console.log("✅ Обробник події додано до `send-results-btn`.");
 
@@ -160,7 +148,16 @@ window.submitResults = function(finalScore, level) {
 
 
 
- 
+ sendResultsBtn.addEventListener("click", (event) => {
+    event.preventDefault();
+    
+    if (window.isSubmitting) return; // Запобігає повторному виклику
+    window.isSubmitting = true;
+
+    const finalScore = calculateScore();
+    const level = calculateLevel(finalScore);
+    submitResults(finalScore, level);
+  });
  
  
 
