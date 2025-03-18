@@ -77,7 +77,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (currentPage.includes("matrytsya_ravena.html")) {
     return {
       formURL: "https://docs.google.com/forms/u/0/d/e/1FAIpQLSfyylO6_4cpbzuD6THcT95VMAW5R7Foy1qykWDloI7Rew2b1g/formResponse",
-      name: "entry.271470476",
+      name: "entry.511676966",
       score: "entry.1008291282",
       level: "entry.1332224844"
     };
