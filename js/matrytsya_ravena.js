@@ -99,11 +99,15 @@ document.addEventListener("DOMContentLoaded", () => {
     sendResultsBtn.style.display = "block";
   }
   sendResultsBtn.addEventListener("click", () => {
-  if (window.isSubmitting) return; // Захист від повторного кліку
-  window.isSubmitting = true;
-
-  submitResults(score, calculateLevel(score));
-});
-
-
+    const studentName = prompt("Введіть ваше ім'я:");
+  
+    if (!studentName || studentName.trim() === "") {
+      alert("❗ Будь ласка, введіть ім'я.");
+      return;
+    }
+  
+    const finalScore = score; 
+    const level = calculateLevel(finalScore); 
+    submitResults(finalScore, level, getScriptURL(), studentName);
+  });
 });
