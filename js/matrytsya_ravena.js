@@ -99,15 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
     sendResultsBtn.style.display = "block";
   }
   sendResultsBtn.addEventListener("click", () => {
-    const studentName = prompt("Введіть ваше ім'я:");
-  
-    if (!studentName || studentName.trim() === "") {
-      alert("❗ Будь ласка, введіть ім'я.");
-      return;
-    }
-  
-    const finalScore = score; 
-    const level = calculateLevel(finalScore); 
-    submitResults(finalScore, level, getEntryIDs(), studentName);
-  });
+  submitResults(score, calculateLevel(score)); // Викликаємо submitResults() без prompt
+});
+
 });
