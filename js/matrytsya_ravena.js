@@ -99,7 +99,11 @@ document.addEventListener("DOMContentLoaded", () => {
     sendResultsBtn.style.display = "block";
   }
   sendResultsBtn.addEventListener("click", () => {
-  submitResults(score, calculateLevel(score)); // Викликаємо submitResults() без prompt
+  if (window.isSubmitting) return; // Захист від повторного кліку
+  window.isSubmitting = true;
+
+  submitResults(score, calculateLevel(score));
 });
+
 
 });
