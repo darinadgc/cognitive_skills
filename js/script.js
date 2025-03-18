@@ -110,48 +110,54 @@ console.log("🔹 URL сторінки:", window.location.href);
  
 
 
- window.submitResults = function(finalScore, level) {
-  console.log("✅ Функція submitResults викликана!");
-  
-  const studentName = prompt("Введіть ваше ім'я:");
-  console.log("🔹 Введене ім'я:", studentName);
+window.submitResults = function(finalScore, level) {
+    if (window.isSubmitting) return;
+    window.isSubmitting = true;
 
-  if (!studentName || studentName.trim() === "") {
-    alert("❗ Будь ласка, введіть ім'я.");
-    return;
-  }
+    console.log("✅ Функція submitResults викликана!");
 
-  const entryIDs = getEntryIDs();
-  console.log("🔹 Отримані entry IDs:", entryIDs);
+    const studentName = prompt("Введіть ваше ім'я:");
+    if (!studentName || studentName.trim().length < 2) {
+        alert("❗ Будь ласка, введіть коректне ім'я.");
+        window.isSubmitting = false;
+        return;
+    }
 
-  if (!entryIDs) {
-    console.error("❌ Не вдалося знайти entry ID для цієї сторінки.");
-    return;
-  }
+    console.log("🔹 Введене ім'я:", studentName);
+    const entryIDs = getEntryIDs();
+    if (!entryIDs || !entryIDs.formURL) {
+        console.error("❌ Не вдалося знайти entry ID для цієї сторінки.");
+        alert("❌ Помилка! Не вдалося знайти entry ID.");
+        window.isSubmitting = false;
+        return;
+    }
 
-  const formData = new URLSearchParams();
-  formData.append(entryIDs.name, studentName);
-  formData.append(entryIDs.score, finalScore);
-  formData.append(entryIDs.level, level);
+    console.log("🔹 Отримані entry IDs:", entryIDs);
 
-  console.log("🔹 Надсилаємо:", Object.fromEntries(formData));
+    // ✅ Створюємо приховану форму
+    const form = document.createElement("form");
+    form.action = entryIDs.formURL;
+    form.method = "POST";
+    form.target = "_self";
+    form.style.display = "none";
 
-  fetch(entryIDs.formURL, {
-    method: "POST",
-    mode: "no-cors",
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: formData
-  })
-  .then(() => {
-    console.log("✅ Успішно надіслано!");
-    alert("✅ Дані успішно надіслані у Google Forms!");
-    document.getElementById("send-results-btn").style.display = "none";
-  })
-  .catch(error => {
-    console.error("❌ Помилка надсилання:", error);
-    alert("❌ Не вдалося надіслати результати. Будь ласка, спробуйте ще раз.");
-  });
+    // Додаємо приховані поля
+    const addHiddenField = (name, value) => {
+        const input = document.createElement("input");
+        input.type = "hidden";
+        input.name = name;
+        input.value = value;
+        form.appendChild(input);
+    };
+
+    addHiddenField(entryIDs.name, studentName);
+    addHiddenField(entryIDs.score, Number(finalScore)); // Оцінка як число
+    addHiddenField(entryIDs.level, level);
+
+    document.body.appendChild(form);
+    form.submit(); // ✅ Відправляємо форму
 };
+
 
 
 
