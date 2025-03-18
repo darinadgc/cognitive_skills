@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
       sendResultsBtn.addEventListener("click", () => {
         const finalScore = calculateScore(); 
         const level = calculateLevel(finalScore);
-        const scriptURL = getScriptURL(); 
+        const scriptURL = getEntryIDs(); 
         submitResults(finalScore, level, scriptURL);
       });
     }
@@ -99,9 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 console.log("🔹 URL сторінки:", window.location.href); 
-console.log("🔹 Отриманий scriptURL:", getScriptURL());
 
-console.log(getScriptURL());
 
   
  
