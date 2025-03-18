@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (currentPage.includes("matrytsya_ravena.html")) {
     return {
       formURL: "https://docs.google.com/forms/u/0/d/e/1FAIpQLSfyylO6_4cpbzuD6THcT95VMAW5R7Foy1qykWDloI7Rew2b1g/formResponse",
-      name: "entry.1280933263",
+      name: "entry.711181512",
       score: "entry.1008291282",
       level: "entry.1332224844"
     };
@@ -118,6 +118,11 @@ console.log("🔹 URL сторінки:", window.location.href);
     console.error("❌ Не вдалося знайти entry ID для цієї сторінки.");
     return;
   }
+console.log("🔹 Надсилаємо:", {
+  [entryIDs.name]: studentName,
+  [entryIDs.score]: finalScore,
+  [entryIDs.level]: level
+});
 
   fetch(entryIDs.formURL, {
     method: "POST",
