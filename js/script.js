@@ -77,20 +77,15 @@ console.log("✅ Виклик submitResults");
  
     // ✅ Якщо є кнопка, додаємо обробник події для надсилання результату
     if (sendResultsBtn) {
-  sendResultsBtn.replaceWith(sendResultsBtn.cloneNode(true)); // Видаляє попередні обробники
+  sendResultsBtn.replaceWith(sendResultsBtn.cloneNode(true)); // Видаляє всі попередні обробники
   const newSendResultsBtn = document.getElementById("send-results-btn");
 
-  newSendResultsBtn.addEventListener("click", () => {
-    const finalScore = calculateScore();
-    const level = calculateLevel(finalScore);
-    submitResults(finalScore, level);
-  });
-}
-if (sendResultsBtn) {
-  sendResultsBtn.addEventListener("click", () => {
-    if (sendResultsBtn.disabled) return; // Запобігає повторним клікам
+  newSendResultsBtn.addEventListener("click", (event) => {
+    event.preventDefault(); // Запобігає дублюванню дії
 
-    sendResultsBtn.disabled = true; // Блокує кнопку після натискання
+    if (newSendResultsBtn.disabled) return; // Захист від подвійного кліку
+
+    newSendResultsBtn.disabled = true; // Вимикаємо кнопку після натискання
     const finalScore = calculateScore();
     const level = calculateLevel(finalScore);
     submitResults(finalScore, level);
@@ -107,29 +102,32 @@ console.log("🔹 URL сторінки:", window.location.href);
  
 
 
- window.submitResults = function(finalScore, level) {
-  if (window.isSubmitting) return; // Захист від дублювання запитів
+window.submitResults = function(finalScore, level) {
+  if (window.isSubmitting) return; // Запобігає повторному виклику
   window.isSubmitting = true;
-  console.log("✅ Функція submitResults викликана!");
-  const studentName = prompt("Введіть ваше ім'я:");
-  console.log("🔹 Введене ім'я:", studentName);
 
+  console.log("✅ Функція submitResults викликана!");
+  
+  const studentName = prompt("Введіть ваше ім'я:");
   if (!studentName || studentName.trim() === "") {
     alert("❗ Будь ласка, введіть ім'я.");
+    window.isSubmitting = false;
     return;
   }
+  console.log("🔹 Введене ім'я:", studentName);
 
   const entryIDs = getEntryIDs();
-  console.log("🔹 Отримані entry IDs:", entryIDs);
-
-  if (!entryIDs) {
+  if (!entryIDs || !entryIDs.formURL) {
     console.error("❌ Не вдалося знайти entry ID для цієї сторінки.");
+    alert("❌ Помилка! Не вдалося знайти entry ID.");
+    window.isSubmitting = false;
     return;
   }
+  console.log("🔹 Отримані entry IDs:", entryIDs);
 
   const formData = new URLSearchParams();
   formData.append(entryIDs.name, studentName);
-  formData.append(entryIDs.score, finalScore);
+  formData.append(entryIDs.score, Number(finalScore));
   formData.append(entryIDs.level, level);
 
   console.log("🔹 Надсилаємо:", Object.fromEntries(formData));
@@ -148,8 +146,13 @@ console.log("🔹 URL сторінки:", window.location.href);
   .catch(error => {
     console.error("❌ Помилка надсилання:", error);
     alert("❌ Не вдалося надіслати результати. Будь ласка, спробуйте ще раз.");
+  })
+  .finally(() => {
+    window.isSubmitting = false;
   });
 };
+
+
 
 
 
@@ -189,6 +192,9 @@ function getLastAttemptKey() {
   // return null; Запобігає помилці
 
 }
- });
+ console.log("🔹 Отримані entry IDs:", entryIDs);
+console.log("🔹 Надсилаємо:", Object.fromEntries(formData));
+console.log("🔹 Надсилаємо:", Object.fromEntries(formData));
 
 
+});
