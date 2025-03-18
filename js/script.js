@@ -5,7 +5,6 @@ if (!sendResultsBtn) {
     console.error("❌ Помилка: Кнопка `send-results-btn` не знайдена!");
     return;
   }
-  sendResultsBtn.style.display = "block";
   sendResultsBtn.disabled = false;
 
   sendResultsBtn.addEventListener("click", (event) => {
@@ -116,12 +115,14 @@ window.submitResults = function(finalScore, level) {
 
     console.log("✅ Функція submitResults викликана!");
 
-    const studentName = prompt("Введіть ваше ім'я:");
-    if (!studentName || studentName.trim().length < 2) {
+    let studentName = prompt("Введіть ваше ім'я:").trim();
+    if (!studentName || studentName.length < 2) {
         alert("❗ Будь ласка, введіть коректне ім'я.");
         window.isSubmitting = false;
         return;
     }
+    // Видаляємо зайві символи (можна адаптувати за потребою)
+    studentName = studentName.replace(/[^a-zA-ZА-Яа-яЇїІіЄєҐґ' ]/g, "");
 
     console.log("🔹 Введене ім'я:", studentName);
     const entryIDs = getEntryIDs();
@@ -131,7 +132,6 @@ window.submitResults = function(finalScore, level) {
         window.isSubmitting = false;
         return;
     }
-
     console.log("🔹 Отримані entry IDs:", entryIDs);
 
     // ✅ Створюємо приховану форму
@@ -141,7 +141,6 @@ window.submitResults = function(finalScore, level) {
     form.target = "_self";
     form.style.display = "none";
 
-    // Додаємо приховані поля
     const addHiddenField = (name, value) => {
         const input = document.createElement("input");
         input.type = "hidden";
@@ -157,6 +156,7 @@ window.submitResults = function(finalScore, level) {
     document.body.appendChild(form);
     form.submit(); // ✅ Відправляємо форму
 };
+
 
 
 
