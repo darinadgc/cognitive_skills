@@ -130,13 +130,11 @@ window.submitResults = function(finalScore, level) {
   formData.append(entryIDs.score, Number(finalScore));
   formData.append(entryIDs.level, level);
 
-  console.log("🔹 Надсилаємо:", Object.fromEntries(formData));
- console.log("🔹 Отримані entry IDs:", entryIDs);
-console.log("🔹 Надсилаємо:", Object.fromEntries(formData));
+  
 console.log("🔹 Надсилаємо:", Object.fromEntries(formData));
   fetch(entryIDs.formURL, {
     method: "POST",
-    mode: "no-cors",
+    mode: "cors", // Використовуємо "no-cors"
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
     body: formData
   })
