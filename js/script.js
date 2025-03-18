@@ -202,8 +202,8 @@ fetch(entryIDs.formURL, {
   })
   .finally(() => {
     window.isSubmitting = false;
-  });};*/
-
+  });*/
+};
 
 
 
