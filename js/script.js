@@ -128,14 +128,12 @@ window.submitResults = function(finalScore, level) {
   const formData = new URLSearchParams();
   formData.append(entryIDs.name, studentName);
   formData.append(entryIDs.score, Number(finalScore));
-  formData.append(entryIDs.level, String(level));
+  formData.append(entryIDs.level, level);
 
   console.log("🔹 Надсилаємо:", Object.fromEntries(formData));
-console.log("🔹 Перевіряємо перед відправкою:");
-console.log("  🔹 entryIDs.name:", entryIDs.name, "| Значення:", studentName);
-console.log("  🔹 entryIDs.score:", entryIDs.score, "| Значення:", finalScore, "(Тип: " + typeof finalScore + ")");
-console.log("  🔹 entryIDs.level:", entryIDs.level, "| Значення:", level);
-
+ console.log("🔹 Отримані entry IDs:", entryIDs);
+console.log("🔹 Надсилаємо:", Object.fromEntries(formData));
+console.log("🔹 Надсилаємо:", Object.fromEntries(formData));
   fetch(entryIDs.formURL, {
     method: "POST",
     mode: "no-cors",
@@ -196,9 +194,7 @@ function getLastAttemptKey() {
   // return null; Запобігає помилці
 
 }
- console.log("🔹 Отримані entry IDs:", entryIDs);
-console.log("🔹 Надсилаємо:", Object.fromEntries(formData));
-console.log("🔹 Надсилаємо:", Object.fromEntries(formData));
+
 
 
 });
