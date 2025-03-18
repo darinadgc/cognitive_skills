@@ -2,9 +2,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const sendResultsBtn = document.getElementById("send-results-btn");
   window.resultEl = document.getElementById("result");
 
+  
+
+console.log("✅ Виклик submitResults");
 
   const lastAttemptKey = getLastAttemptKey(); // ✅ Для кожного тесту свій ключ
   const lastAttempt = localStorage.getItem(lastAttemptKey);
+  const lastAttemptDate = lastAttempt ? new Date(lastAttempt) : null;
 
   
   window.calculateScore = function() {
@@ -28,39 +32,15 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   
   
-  document.addEventListener("DOMContentLoaded", () => {
-    const sendResultsBtn = document.getElementById("send-results-btn");
-    window.resultEl = document.getElementById("result");
+    
   
-    const lastAttemptKey = getLastAttemptKey(); // ✅ Для кожного тесту свій ключ
-    const lastAttempt = localStorage.getItem(lastAttemptKey);
   
     
   
-    // ✅ Функція для підрахунку балів
-    window.calculateScore = function() {
-      const questions = document.querySelectorAll('input[type="radio"]');
-      let score = 0;
+    
   
-      questions.forEach((input) => {
-        if (input.checked && input.value === "1") {
-          score++;
-        }
-      });
-  
-      return score;
-    }
-  
-    // ✅ Якщо є кнопка, додаємо обробник події для надсилання результату
-    if (sendResultsBtn) {
-      sendResultsBtn.addEventListener("click", () => {
-        const finalScore = calculateScore(); 
-        const level = calculateLevel(finalScore);
-        const scriptURL = getEntryIDs(); 
-        submitResults(finalScore, level, scriptURL);
-      });
-    }
-  });
+
+ 
  window.getEntryIDs = function() {
   const currentPage = window.location.pathname;
   console.log("🔹 Визначаємо entry ID для сторінки:", currentPage);
@@ -77,7 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (currentPage.includes("matrytsya_ravena.html")) {
     return {
       formURL: "https://docs.google.com/forms/u/0/d/e/1FAIpQLSfyylO6_4cpbzuD6THcT95VMAW5R7Foy1qykWDloI7Rew2b1g/formResponse",
-      name: "entry.271470476",
+      name: "entry.511676966",
       score: "entry.1008291282",
       level: "entry.1332224844"
     };
@@ -95,7 +75,19 @@ document.addEventListener("DOMContentLoaded", () => {
   return null;
 };
  
-  
+      // ✅ Якщо є кнопка, додаємо обробник події для надсилання результату
+    if (sendResultsBtn) {
+      sendResultsBtn.addEventListener("click", () => {
+        const finalScore = calculateScore(); 
+        const level = calculateLevel(finalScore);
+        const scriptURL = getEntryIDs(); 
+        submitResults(finalScore, level, scriptURL);if (entryIDs) {
+          submitResults(finalScore, level);
+        } else {
+          console.error("❌ Entry IDs not found.");
+        }
+      });
+    }
   
 
 
@@ -125,47 +117,35 @@ console.log("🔹 URL сторінки:", window.location.href);
     return;
   }
 
-  console.log("🔹 Надсилаємо:", {
-    [entryIDs.name]: studentName,
-    [entryIDs.score]: finalScore,
-    [entryIDs.level]: level
-  });
+  const formData = new URLSearchParams();
+  formData.append(entryIDs.name, studentName);
+  formData.append(entryIDs.score, finalScore);
+  formData.append(entryIDs.level, level);
+
+  console.log("🔹 Надсилаємо:", Object.fromEntries(formData));
 
   fetch(entryIDs.formURL, {
     method: "POST",
     mode: "no-cors",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: new URLSearchParams({
-      [entryIDs.name]: studentName,
-      [entryIDs.score]: finalScore,
-      [entryIDs.level]: level
-    })
+    body: formData
   })
   .then(() => {
     console.log("✅ Успішно надіслано!");
     alert("✅ Дані успішно надіслані у Google Forms!");
     document.getElementById("send-results-btn").style.display = "none";
   })
-  .catch(error => console.error("❌ Помилка надсилання:", error));
+  .catch(error => {
+    console.error("❌ Помилка надсилання:", error);
+    alert("❌ Не вдалося надіслати результати. Будь ласка, спробуйте ще раз.");
+  });
 };
-);
 
-  fetch(entryIDs.formURL, {
-    method: "POST",
-    mode: "no-cors", // ❗ Обов'язково, щоб уникнути CORS-обмежень
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: new URLSearchParams({
-      [entryIDs.name]: studentName,
-      [entryIDs.score]: finalScore,
-      [entryIDs.level]: level
-    })
-  })
-  .then(() => {
-    alert("✅ Дані успішно надіслані у Google Forms!");
-    document.getElementById("send-results-btn").style.display = "none"; // ✅ Приховуємо кнопку
-  })
-  .catch(error => console.error("❌ Помилка надсилання:", error));
-};
+
+
+ 
+ 
+ 
 
   
   
@@ -190,11 +170,14 @@ console.log("🔹 URL сторінки:", window.location.href);
 // }
 
 
-  function getLastAttemptKey() {
-    const currentPage = window.location.pathname;
-    if (currentPage.includes("motivation")) return "lastAttemptMotivation";
-    if (currentPage.includes("matrytsya_ravena")) return "lastAttemptRaven";
-    if (currentPage.includes("figures")) return "lastAttemptFigures";
-  }
-});
-console.log("✅ Виклик submitResults")
+function getLastAttemptKey() {
+  const currentPage = window.location.pathname;
+  if (currentPage.includes("motivation")) return "lastAttemptMotivation";
+  if (currentPage.includes("matrytsya_ravena")) return "lastAttemptRaven";
+  if (currentPage.includes("figures")) return "lastAttemptFigures";
+  return "lastAttemptDefault"; // Fallback to prevent undefined
+}
+
+ });
+
+
