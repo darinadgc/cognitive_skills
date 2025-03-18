@@ -61,26 +61,41 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
   });
-  
-  
-  window.getScriptURL = function() {
-  const currentPage = window.location.href; // ✅ Перевіряємо повний URL
+ window.getEntryIDs = function() {
+  const currentPage = window.location.pathname;
 
-  if (currentPage.includes("figures.html")) {
-    return "https://script.google.com/macros/s/AKfycbyHPX-5dhnfRK-0iTnStfGJ8JIbI5bzzhJlIh6omNJGfnErFqlqtqVWbhXsrEH9dzmUIw/exec";
+  if (currentPage.includes("upiznay_fihury.html")) {
+    return {
+      formURL: "https://docs.google.com/forms/d/e/ВАШ_ФОРМУЛЯР_FIGURES/formResponse",
+      name: "entry.1111111111",
+      score: "entry.2222222222",
+      level: "entry.3333333333"
+    };
   }
 
   if (currentPage.includes("matrytsya_ravena.html")) {
-    return "https://script.google.com/macros/s/AKfycbwdNFA9le_8igCOV-X9q5WPBwGOfDPEcz9Wy0hNKxivq175X2qQpJS2LCeIJuRPr3GRdQ/exec";
+    return {
+      formURL: "https://docs.google.com/forms/u/0/d/e/1FAIpQLSfyylO6_4cpbzuD6THcT95VMAW5R7Foy1qykWDloI7Rew2b1g/formResponse",
+      name: "entry.1008291282_sentinel",
+      score: "entry.5555555555",
+      level: "entry.6666666666"
+    };
   }
 
   if (currentPage.includes("cognitive_skills/")) {
-    return "https://script.google.com/macros/s/AKfycbz5ugdlVgJFLUJMDJVWyjvVHaI1V2M6j3QnyvDlvy9wmqJ-JVxv6mqoGt4BnfU1GOCBRA/exec";
+    return {
+      formURL: "https://docs.google.com/forms/d/e/ВАШ_ФОРМУЛЯР_MOTIVATION/formResponse",
+      name: "entry.7777777777",
+      score: "entry.8888888888",
+      level: "entry.9999999999"
+    };
   }
 
-  console.error("❌ Не вдалося визначити Google Apps Script URL");
   return null;
-}
+};
+ 
+  
+  
 
 
 console.log("🔹 URL сторінки:", window.location.href); 
@@ -92,51 +107,37 @@ console.log(getScriptURL());
  
 
 
-  window.submitResults = function(finalScore, level, scriptURL, studentName) {
-    if (!studentName || studentName.trim() === "") {
-      alert("❗ Будь ласка, введіть ім'я.");
-      return;
-    }
+  window.submitResults = function(finalScore, level) {
+  const studentName = prompt("Введіть ваше ім'я:");
   
-   // const scriptURL = getScriptURL();
-
-if (!scriptURL) {
-  console.error("❌ Не отримано URL Google Apps Script");
-  return;
-}
-
-fetch(scriptURL, {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json"
-  },
-  body: JSON.stringify({
-    name: studentName,
-    score: finalScore,
-    level: level
-  })
-})
-.then(response => response.json()) // ✅ Очікуємо JSON-відповідь
-.then(data => console.log("✅ Успішно надіслано:", data))
-.catch(error => console.error("❌ Помилка надсилання:", error));
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // ✅ Приховуємо кнопку після надсилання
-  
-  
+  if (!studentName || studentName.trim() === "") {
+    alert("❗ Будь ласка, введіть ім'я.");
+    return;
   }
+
+  const entryIDs = getEntryIDs();
+  if (!entryIDs) {
+    console.error("❌ Не вдалося знайти entry ID для цієї сторінки.");
+    return;
+  }
+
+  fetch(entryIDs.formURL, {
+    method: "POST",
+    mode: "no-cors", // ❗ Обов'язково, щоб уникнути CORS-обмежень
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: new URLSearchParams({
+      [entryIDs.name]: studentName,
+      [entryIDs.score]: finalScore,
+      [entryIDs.level]: level
+    })
+  })
+  .then(() => {
+    alert("✅ Дані успішно надіслані у Google Forms!");
+    document.getElementById("send-results-btn").style.display = "none"; // ✅ Приховуємо кнопку
+  })
+  .catch(error => console.error("❌ Помилка надсилання:", error));
+};
+
   
   
   function isAllowedToRetry(lastAttemptDate) {
