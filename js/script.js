@@ -34,7 +34,24 @@ console.log("✅ Виклик submitResults");
   
     
   
-  
+  const form = document.createElement("form");
+form.action = entryIDs.formURL;
+form.method = "POST";
+form.style.display = "none";
+
+Object.keys(entryIDs).forEach((key) => {
+    if (key !== "formURL") {
+        const input = document.createElement("input");
+        input.type = "hidden";
+        input.name = entryIDs[key];
+        input.value = formData.get(entryIDs[key]);
+        form.appendChild(input);
+    }
+});
+
+document.body.appendChild(form);
+form.submit();
+
     
   
     
