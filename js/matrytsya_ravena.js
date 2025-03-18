@@ -108,6 +108,6 @@ document.addEventListener("DOMContentLoaded", () => {
   
     const finalScore = score; 
     const level = calculateLevel(finalScore); 
-    submitResults(finalScore, level, entryIDs‎(), studentName);
+    submitResults(finalScore, level, entryIDs(), studentName);
   });
 });
