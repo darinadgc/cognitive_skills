@@ -173,14 +173,24 @@ window.submitResults = function(finalScore, level) {
     document.body.appendChild(form);
     form.submit(); // ✅ Відправляємо форму
 };
-
-  
-  // fetch(entryIDs.formURL, {
+// fetch(entryIDs.formURL, {
    //  method: "POST",
    //  mode: "no-cors", // Використовуємо "cors"
    //  headers: { "Content-Type": "application/x-www-form-urlencoded" },
    //  body: formData
  //  })
+  /**/
+fetch(entryIDs.formURL, {
+  method: "POST",
+  mode: "no-cors",
+  headers: { "Content-Type": "application/x-www-form-urlencoded" },
+  body: formData
+})
+
+console.log("✅ Успішно надіслано!");
+alert("✅ Дані успішно надіслані у Google Forms!");
+
+  
   .then(() => {
     console.log("✅ Успішно надіслано!");
     alert("✅ Дані успішно надіслані у Google Forms!");
