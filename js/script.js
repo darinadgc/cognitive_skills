@@ -75,20 +75,15 @@ console.log("✅ Виклик submitResults");
   return null;
 };
  
-      // ✅ Якщо є кнопка, додаємо обробник події для надсилання результату
+    // ✅ Якщо є кнопка, додаємо обробник події для надсилання результату
     if (sendResultsBtn) {
       sendResultsBtn.addEventListener("click", () => {
-        const finalScore = calculateScore(); 
+        const finalScore = calculateScore();
         const level = calculateLevel(finalScore);
-        const scriptURL = getEntryIDs(); 
-        submitResults(finalScore, level, scriptURL);if (entryIDs) {
-          submitResults(finalScore, level);
-        } else {
-          console.error("❌ Entry IDs not found.");
-        }
+        submitResults(finalScore, level);
       });
     }
-  
+    
 
 
 console.log("🔹 URL сторінки:", window.location.href); 
@@ -176,8 +171,9 @@ function getLastAttemptKey() {
   if (currentPage.includes("matrytsya_ravena")) return "lastAttemptRaven";
   if (currentPage.includes("figures")) return "lastAttemptFigures";
   return "lastAttemptDefault"; // Fallback to prevent undefined
-}
+  // return null; Запобігає помилці
 
+}
  });
 
 
