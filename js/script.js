@@ -63,6 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
  window.getEntryIDs = function() {
   const currentPage = window.location.pathname;
+  console.log("🔹 Визначаємо entry ID для сторінки:", currentPage);
 
   if (currentPage.includes("upiznay_fihury.html")) {
     return {
@@ -76,7 +77,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (currentPage.includes("matrytsya_ravena.html")) {
     return {
       formURL: "https://docs.google.com/forms/u/0/d/e/1FAIpQLSfyylO6_4cpbzuD6THcT95VMAW5R7Foy1qykWDloI7Rew2b1g/formResponse",
-      name: "entry.711181512",
+      name: "entry.271470476",
       score: "entry.1008291282",
       level: "entry.1332224844"
     };
@@ -105,24 +106,49 @@ console.log("🔹 URL сторінки:", window.location.href);
  
 
 
-  window.submitResults = function(finalScore, level) {
-  const studentName = prompt("Введіть ваше ім'я:");
+ window.submitResults = function(finalScore, level) {
+  console.log("✅ Функція submitResults викликана!");
   
+  const studentName = prompt("Введіть ваше ім'я:");
+  console.log("🔹 Введене ім'я:", studentName);
+
   if (!studentName || studentName.trim() === "") {
     alert("❗ Будь ласка, введіть ім'я.");
     return;
   }
 
   const entryIDs = getEntryIDs();
+  console.log("🔹 Отримані entry IDs:", entryIDs);
+
   if (!entryIDs) {
     console.error("❌ Не вдалося знайти entry ID для цієї сторінки.");
     return;
   }
-console.log("🔹 Надсилаємо:", {
-  [entryIDs.name]: studentName,
-  [entryIDs.score]: finalScore,
-  [entryIDs.level]: level
-});
+
+  console.log("🔹 Надсилаємо:", {
+    [entryIDs.name]: studentName,
+    [entryIDs.score]: finalScore,
+    [entryIDs.level]: level
+  });
+
+  fetch(entryIDs.formURL, {
+    method: "POST",
+    mode: "no-cors",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: new URLSearchParams({
+      [entryIDs.name]: studentName,
+      [entryIDs.score]: finalScore,
+      [entryIDs.level]: level
+    })
+  })
+  .then(() => {
+    console.log("✅ Успішно надіслано!");
+    alert("✅ Дані успішно надіслані у Google Forms!");
+    document.getElementById("send-results-btn").style.display = "none";
+  })
+  .catch(error => console.error("❌ Помилка надсилання:", error));
+};
+);
 
   fetch(entryIDs.formURL, {
     method: "POST",
@@ -171,4 +197,4 @@ console.log("🔹 Надсилаємо:", {
     if (currentPage.includes("figures")) return "lastAttemptFigures";
   }
 });
-
+console.log("✅ Виклик submitResults")
