@@ -128,61 +128,52 @@ console.log("🔹 URL сторінки:", window.location.href);
 
 
 window.submitResults = function(finalScore, level) {
-  if (window.isSubmitting) return; // Запобігає повторному виклику
-  window.isSubmitting = true;
+    if (window.isSubmitting) return;
+    window.isSubmitting = true;
 
-  console.log("✅ Функція submitResults викликана!");
-  
-  const studentName = prompt("Введіть ваше ім'я:");
-  if (!studentName || studentName.trim() === "") {
-    alert("❗ Будь ласка, введіть ім'я.");
-    window.isSubmitting = false;
-    return;
-  }
-  console.log("🔹 Введене ім'я:", studentName);
+    console.log("✅ Функція submitResults викликана!");
 
-  const entryIDs = getEntryIDs();
-  if (!entryIDs || !entryIDs.formURL) {
-    console.error("❌ Не вдалося знайти entry ID для цієї сторінки.");
-    alert("❌ Помилка! Не вдалося знайти entry ID.");
-    window.isSubmitting = false;
-    return;
-  }
-  console.log("🔹 Отримані entry IDs:", entryIDs);
+    const studentName = prompt("Введіть ваше ім'я:");
+    if (!studentName || studentName.trim().length < 2) {
+        alert("❗ Будь ласка, введіть коректне ім'я.");
+        window.isSubmitting = false;
+        return;
+    }
 
-  const formData = new URLSearchParams();
-  formData.append(entryIDs.name, studentName);
-  formData.append(entryIDs.score, Number(finalScore));
-  formData.append(entryIDs.level, level);
-console.log("🔹 Надсилаємо:", Object.fromEntries(formData));
-// ✅ Створюємо приховану форму
+    console.log("🔹 Введене ім'я:", studentName);
+    const entryIDs = getEntryIDs();
+    if (!entryIDs || !entryIDs.formURL) {
+        console.error("❌ Не вдалося знайти entry ID для цієї сторінки.");
+        alert("❌ Помилка! Не вдалося знайти entry ID.");
+        window.isSubmitting = false;
+        return;
+    }
+    console.log("🔹 Отримані entry IDs:", entryIDs);
+
+    // ✅ Створюємо приховану форму
     const form = document.createElement("form");
     form.action = entryIDs.formURL;
     form.method = "POST";
+    form.target = "_self"; // Відкриває форму в поточному вікні
     form.style.display = "none";
 
-    // Додаємо приховані поля для імені, оцінки та рівня
-    const nameInput = document.createElement("input");
-    nameInput.type = "hidden";
-    nameInput.name = entryIDs.name;
-    nameInput.value = studentName;
-    form.appendChild(nameInput);
+    // Додаємо приховані поля
+    const addHiddenField = (name, value) => {
+        const input = document.createElement("input");
+        input.type = "hidden";
+        input.name = name;
+        input.value = value;
+        form.appendChild(input);
+    };
 
-    const scoreInput = document.createElement("input");
-    scoreInput.type = "hidden";
-    scoreInput.name = entryIDs.score;
-    scoreInput.value = finalScore;
-    form.appendChild(scoreInput);
-
-    const levelInput = document.createElement("input");
-    levelInput.type = "hidden";
-    levelInput.name = entryIDs.level;
-    levelInput.value = level;
-    form.appendChild(levelInput);
+    addHiddenField(entryIDs.name, studentName);
+    addHiddenField(entryIDs.score, Number(finalScore)); // Оцінка як число
+    addHiddenField(entryIDs.level, level);
 
     document.body.appendChild(form);
     form.submit(); // ✅ Відправляємо форму
 };
+
   
   // fetch(entryIDs.formURL, {
    //  method: "POST",
