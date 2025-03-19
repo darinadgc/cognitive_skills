@@ -221,7 +221,7 @@ window.submitResults = function(finalScore, level) {
 //     return;
 // }
 finalScore = calculateScore(); // Використовуємо підрахунок для тесту "Мотивація"
-        level = getLevel(finalScore); // Визначаємо рівень мотивації
+        // level = getLevel(finalScore); Визначаємо рівень мотивації
     } else {
         console.error("❌ Невідома сторінка! Результати не відправлено.");
         return;
