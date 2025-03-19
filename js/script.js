@@ -107,7 +107,8 @@ window.submitResults = function(finalScore, level) {
         window.isSubmitting = false;
         return;
     }
-    studentName = studentName.replace(/[^a-zA-ZА-Яа-яЇїІіЄєҐґ' ]/g, "");
+    studentName = studentName.replace(/[^a-zA-ZА-Яа-яЇїІіЄєҐґ0-9' ]/g, "");
+
 
     console.log("🔹 Введене ім'я:", studentName);
     const entryIDs = getEntryIDs();
