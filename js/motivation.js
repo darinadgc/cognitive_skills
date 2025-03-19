@@ -34,14 +34,15 @@ function calculateScoreMotivation() {
 // ✅ Встановлюємо `calculateScore` для цього тесту
 window.calculateScore = calculateScoreMotivation;
 
-
-  function getLevel(score) {
+function getLevel(score) {
     if (score >= 14) return "Високий";
     if (score >= 7) return "Середній";
     return "Низький";
 }
+  
+
     const finalScore = calculateScoreMotivation(); 
-        const level = getLevel(finalScore);
+        window.level = getLevel(finalScore);
 
     // const studentName = prompt("Введіть ваше ім'я:");
     // if (!studentName || studentName.trim() === "") {
