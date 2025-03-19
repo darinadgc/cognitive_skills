@@ -26,7 +26,7 @@ console.log("✅ Виклик submitResults");
   
     return score;
   }
-  window.calculateLevel = function(score) {
+  calculateLevel = function(score) {
     if (score === 10) return "Дуже високий";
     if (score >= 8) return "Високий";
     if (score >= 4) return "Середній";
