@@ -20,17 +20,20 @@ document.addEventListener("DOMContentLoaded", () => {
       return; 
     }
 function calculateScoreMotivation() {
-const questions = document.querySelectorAll('input[type="radio"]:checked');
+    const questions = document.querySelectorAll('input[type="radio"]:checked');
     let score = 0;
 
     questions.forEach((input) => {
         if (input.value === "високий рівень") score += 2;
         else if (input.value === "середній рівень") score += 1;
-        else if (input.value === "низький рівень") score += 0; // Можна не писати, бо за замовчуванням +0
     });
 
     return score;
 }
+
+// ✅ Встановлюємо `calculateScore` для цього тесту
+window.calculateScore = calculateScoreMotivation;
+
 
   function getLevel(score) {
     if (score >= 14) return "Високий";
