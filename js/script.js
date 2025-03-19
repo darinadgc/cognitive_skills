@@ -136,8 +136,8 @@ window.submitResults = function(finalScore, level) {
     };
 
     addHiddenField(entryIDs.name, studentName);
-    addHiddenField(entryIDs.score, String(Number(finalScore))); // Перетворення `score` у число
-    addHiddenField(entryIDs.level, level);
+    addHiddenField(entryIDs.score, Number(finalScore)); // Перетворення `score` у число
+    addHiddenField(entryIDs.level, String(level));
 
     document.body.appendChild(form);
     form.submit(); // ✅ Відправляємо форму
