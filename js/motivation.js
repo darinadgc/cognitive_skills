@@ -18,6 +18,18 @@ document.addEventListener("DOMContentLoaded", () => {
       alert("❗ Будь ласка, відповідайте на всі запитання перед завершенням!");
       return; 
     }
+function calculateScoreMotivation() {
+    const questions = document.querySelectorAll('input[type="radio"]:checked');
+    let score = 0;
+
+    questions.forEach((input) => {
+        if (input.value === "високий рівень") score += 2;
+        else if (input.value === "середній рівень") score += 1;
+        else if (input.value === "низький рівень") score += 0; // Можна не писати, бо за замовчуванням +0
+    });
+
+    return score;
+}
 
     const finalScore = calculateScore(); // ✅ Підтягуємо score з script.js
     const level = getLevel(finalScore);
@@ -32,9 +44,10 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   function getLevel(score) {
-    if (score <= 6) return "Низький";
-    if (score > 6 && score <= 13) return "Середній";
-    return "Високий";
-  }
+    if (score >= 14) return "Високий";
+    if (score >= 7) return "Середній";
+    return "Низький";
+}
+
 
 });
