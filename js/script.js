@@ -112,8 +112,8 @@ window.submitResults = function(finalScore, level) {
 
     const formData = new URLSearchParams();
     formData.append(entryIDs.name, studentName);
-    formData.append(entryIDs.score, String(Number(finalScore))); // Перетворення `score` у число
-    formData.append(entryIDs.level, level);
+    formData.append(entryIDs.score, Number(finalScore)); // Перетворення `score` у число
+    formData.append(entryIDs.level, String(level));
 
     console.log("🔹 Надсилаємо:", Object.fromEntries(formData));
 console.log("🔹 Данні перед відправкою:");
@@ -216,13 +216,16 @@ console.log("🔹 formURL:", entryIDs.formURL);
         finalScore = window.finalScoreFigures; // Використовуємо значення з тесту "Упізнай фігури"
         level = window.finalLevelFigures;
     } else if (currentPage.includes("cognitive_skills/")) { 
-        finalScore = calculateScoreMotivation(); // Використовуємо підрахунок для тесту "Мотивація"
+        if (typeof calculateScoreMotivation !== "function") {
+    console.error("❌ Функція calculateScoreMotivation не завантажена!");
+    return;
+}
+finalScore = calculateScoreMotivation(); // Використовуємо підрахунок для тесту "Мотивація"
         level = getLevel(finalScore); // Визначаємо рівень мотивації
     } else {
         console.error("❌ Невідома сторінка! Результати не відправлено.");
         return;
     }
-
     console.log("🔹 Надсилаємо:", { name: studentName, score: finalScore, level });
 
     submitResults(finalScore, level, getEntryIDs(), studentName);
