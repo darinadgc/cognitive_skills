@@ -139,7 +139,42 @@ console.log("🔹 URL сторінки:", window.location.href);
 //         window.isSubmitting = false;
 //     });
 // };
+ sendResultsBtn.addEventListener("click", () => {
+    window.studentName = prompt("Введіть ваше ім'я:").trim();
+    if (!studentName || studentName.length < 2) {
+        alert("❗ Будь ласка, введіть коректне ім'я.");
+        window.isSubmitting = false;
+        return;
+    }
+    studentName = studentName.replace(/[^a-zA-ZА-Яа-яЇїІіЄєҐґ0-9' ]/g, "");
+    let finalScore, level;
 
+    // Визначаємо, який тест запущено
+    const currentPage = window.location.pathname;
+
+    if (currentPage.includes("matrytsya_ravena.html")) {
+        finalScore = calculateScore(); // Використовуємо стандартний підрахунок
+        level = calculateLevelRaven(finalScore); // Використовуємо рівень для "Матриця Равена"
+    } else if (currentPage.includes("upiznay_fihury.html")) {
+        finalScore = window.finalScoreFigures; // Використовуємо значення з тесту "Упізнай фігури"
+        level = window.finalLevelFigures;
+    } else if (currentPage.includes("cognitive_skills/")) { 
+//         if (typeof calculateScoreMotivation !== "function") {
+//     console.error("❌ Функція calculateScoreMotivation не завантажена!");
+//     return;
+// }
+finalScore = calculateScore(); // Використовуємо підрахунок для тесту "Мотивація"
+        // level = getLevel(finalScore); Визначаємо рівень мотивації
+    } else {
+        console.error("❌ Невідома сторінка! Результати не відправлено.");
+        return;
+    }
+    console.log("🔹 Надсилаємо:", { name: studentName, score: finalScore, level });
+
+    submitResults(finalScore, level, getEntryIDs(), studentName);
+
+
+});
 
 window.submitResults = function(finalScore, level) {
     if (window.isSubmitting) return;
@@ -191,42 +226,7 @@ window.submitResults = function(finalScore, level) {
 
 
  
- sendResultsBtn.addEventListener("click", () => {
-    window.studentName = prompt("Введіть ваше ім'я:").trim();
-    if (!studentName || studentName.length < 2) {
-        alert("❗ Будь ласка, введіть коректне ім'я.");
-        window.isSubmitting = false;
-        return;
-    }
-    studentName = studentName.replace(/[^a-zA-ZА-Яа-яЇїІіЄєҐґ0-9' ]/g, "");
-    let finalScore, level;
 
-    // Визначаємо, який тест запущено
-    const currentPage = window.location.pathname;
-
-    if (currentPage.includes("matrytsya_ravena.html")) {
-        finalScore = calculateScore(); // Використовуємо стандартний підрахунок
-        level = calculateLevelRaven(finalScore); // Використовуємо рівень для "Матриця Равена"
-    } else if (currentPage.includes("upiznay_fihury.html")) {
-        finalScore = window.finalScoreFigures; // Використовуємо значення з тесту "Упізнай фігури"
-        level = window.finalLevelFigures;
-    } else if (currentPage.includes("cognitive_skills/")) { 
-//         if (typeof calculateScoreMotivation !== "function") {
-//     console.error("❌ Функція calculateScoreMotivation не завантажена!");
-//     return;
-// }
-finalScore = calculateScore(); // Використовуємо підрахунок для тесту "Мотивація"
-        // level = getLevel(finalScore); Визначаємо рівень мотивації
-    } else {
-        console.error("❌ Невідома сторінка! Результати не відправлено.");
-        return;
-    }
-    console.log("🔹 Надсилаємо:", { name: studentName, score: finalScore, level });
-
-    submitResults(finalScore, level, getEntryIDs(), studentName);
-
-
-});
 
  
 
