@@ -44,8 +44,8 @@ console.log("✅ Виклик submitResults");
 
   if (currentPage.includes("upiznay_fihury.html")) {
     return {
-      formURL: "https://docs.google.com/forms/d/e/ВАШ_ФОРМУЛЯР_FIGURES/formResponse",
-      name: "entry.1111111111",
+      formURL: "https://docs.google.com/forms/d/e/1FAIpQLSfSJTHeQHKjxr-_Nfwr0qC1-5Rinq1xGevQ4i8yFKegE9Wfyw/formResponse",
+      name: "entry.511676966",
       score: "entry.2222222222",
       level: "entry.3333333333"
     };
