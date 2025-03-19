@@ -84,63 +84,6 @@ console.log("🔹 URL сторінки:", window.location.href);
   
  
 
-window.submitResults = function(finalScore, level) {
-    if (window.isSubmitting) return;
-    window.isSubmitting = true;
-
-    console.log("✅ Функція submitResults викликана!");
-
-    let studentName = prompt("Введіть ваше ім'я:").trim();
-    if (!studentName || studentName.length < 2) {
-        alert("❗ Будь ласка, введіть коректне ім'я.");
-        window.isSubmitting = false;
-        return;
-    }
-    studentName = studentName.replace(/[^a-zA-ZА-Яа-яЇїІіЄєҐґ0-9' ]/g, "");
-
-
-    console.log("🔹 Введене ім'я:", studentName);
-    const entryIDs = getEntryIDs();
-    if (!entryIDs || !entryIDs.formURL) {
-        console.error("❌ Не вдалося знайти entry ID для цієї сторінки.");
-        alert("❌ Помилка! Не вдалося знайти entry ID.");
-        window.isSubmitting = false;
-        return;
-    }
-
-    console.log("🔹 Отримані entry IDs:", entryIDs);
-
-    const formData = new URLSearchParams();
-    formData.append(entryIDs.name, studentName);
-    formData.append(entryIDs.score, Number(finalScore)); // Перетворення `score` у число
-    formData.append(entryIDs.level, String(level));
-
-    console.log("🔹 Надсилаємо:", Object.fromEntries(formData));
-console.log("🔹 Данні перед відправкою:");
-console.log("🔹 formURL:", entryIDs.formURL);
-
-
-    fetch(entryIDs.formURL, {
-        method: "POST",
-        mode: "no-cors", // Заборона CORS-блокування
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: formData
-    })
-    .then(() => {
-        console.log("✅ Успішно надіслано!");
-        alert("✅ Дані успішно надіслані у Google Forms!");
-        document.getElementById("send-results-btn").style.display = "none";
-    })
-    .catch(error => {
-        console.error("❌ Помилка надсилання:", error);
-        alert("❌ Не вдалося надіслати результати. Будь ласка, спробуйте ще раз.");
-    })
-    .finally(() => {
-        window.isSubmitting = false;
-    });
-};
-
-
 // window.submitResults = function(finalScore, level) {
 //     if (window.isSubmitting) return;
 //     window.isSubmitting = true;
@@ -153,7 +96,8 @@ console.log("🔹 formURL:", entryIDs.formURL);
 //         window.isSubmitting = false;
 //         return;
 //     }
-//     studentName = studentName.replace(/[^a-zA-ZА-Яа-яЇїІіЄєҐґ' ]/g, "");
+//     studentName = studentName.replace(/[^a-zA-ZА-Яа-яЇїІіЄєҐґ0-9' ]/g, "");
+
 
 //     console.log("🔹 Введене ім'я:", studentName);
 //     const entryIDs = getEntryIDs();
@@ -163,18 +107,22 @@ console.log("🔹 formURL:", entryIDs.formURL);
 //         window.isSubmitting = false;
 //         return;
 //     }
+
 //     console.log("🔹 Отримані entry IDs:", entryIDs);
 
 //     const formData = new URLSearchParams();
 //     formData.append(entryIDs.name, studentName);
-//     formData.append(entryIDs.score, Number(finalScore));
-//     formData.append(entryIDs.level, level);
+//     formData.append(entryIDs.score, Number(finalScore)); // Перетворення `score` у число
+//     formData.append(entryIDs.level, String(level));
 
 //     console.log("🔹 Надсилаємо:", Object.fromEntries(formData));
+// console.log("🔹 Данні перед відправкою:");
+// console.log("🔹 formURL:", entryIDs.formURL);
+
 
 //     fetch(entryIDs.formURL, {
 //         method: "POST",
-//         mode: "no-cors", // Запобігає CORS-блокуванню
+//         mode: "no-cors", // Заборона CORS-блокування
 //         headers: { "Content-Type": "application/x-www-form-urlencoded" },
 //         body: formData
 //     })
@@ -191,6 +139,58 @@ console.log("🔹 formURL:", entryIDs.formURL);
 //         window.isSubmitting = false;
 //     });
 // };
+
+
+window.submitResults = function(finalScore, level) {
+    if (window.isSubmitting) return;
+    window.isSubmitting = true;
+
+    console.log("✅ Функція submitResults викликана!");
+
+    let studentName = prompt("Введіть ваше ім'я:").trim();
+    if (!studentName || studentName.length < 2) {
+        alert("❗ Будь ласка, введіть коректне ім'я.");
+        window.isSubmitting = false;
+        return;
+    }
+    studentName = studentName.replace(/[^a-zA-ZА-Яа-яЇїІіЄєҐґ0-9' ]/g, "");
+
+    console.log("🔹 Введене ім'я:", studentName);
+    const entryIDs = getEntryIDs();
+    if (!entryIDs || !entryIDs.formURL) {
+        console.error("❌ Не вдалося знайти entry ID для цієї сторінки.");
+        alert("❌ Помилка! Не вдалося знайти entry ID.");
+        window.isSubmitting = false;
+        return;
+    }
+    console.log("🔹 Отримані entry IDs:", entryIDs);
+
+    const formData = new URLSearchParams();
+    formData.append(entryIDs.name, studentName);
+    formData.append(entryIDs.score, Number(finalScore));
+    formData.append(entryIDs.level, String(level));
+
+    console.log("🔹 Надсилаємо:", Object.fromEntries(formData));
+
+    fetch(entryIDs.formURL, {
+        method: "POST",
+        mode: "no-cors", // Запобігає CORS-блокуванню
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: formData
+    })
+    .then(() => {
+        console.log("✅ Успішно надіслано!");
+        alert("✅ Дані успішно надіслані у Google Forms!");
+        document.getElementById("send-results-btn").style.display = "none";
+    })
+    .catch(error => {
+        console.error("❌ Помилка надсилання:", error);
+        alert("❌ Не вдалося надіслати результати. Будь ласка, спробуйте ще раз.");
+    })
+    .finally(() => {
+        window.isSubmitting = false;
+    });
+};
 
 
 
