@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const sendResultsBtn = document.getElementById("send-results-btn");
 
   const questions = document.querySelectorAll('input[type="radio"]');
       const totalQuestions = new Set();
@@ -37,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // ✅ Викликаємо `submitResults` тільки після всіх перевірок
       submitResults(finalScore, level, getEntryIDs(), studentName);
       
-  if (totalQuestions.size == answeredQuestions.size) {
+  if (totalQuestions.size === answeredQuestions.size) {
 sendResultsBtn.addEventListener("click", () => {
       // ✅ Перевіряємо, чи відповіли на всі запитання (ЗУПИНЯЄМО КОД, якщо ні)
       // ✅ Після перевірки запитуємо ім'я
