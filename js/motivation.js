@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    submitResults(finalScore, level, getScriptURL(), studentName);
+    submitResults(finalScore, level, getEntryIDs(), studentName);
   });
 
   function getLevel(score) {
