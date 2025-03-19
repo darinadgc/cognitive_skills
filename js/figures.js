@@ -92,16 +92,34 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     setTimeout(generateTask, 1);
   }
+window.calculateScoreFigures = function(timeTaken) {
+    if (timeTaken < 45) return 10;
+    if (timeTaken <= 47) return 9;
+    if (timeTaken <= 49) return 8;
+    if (timeTaken <= 52) return 7;
+    if (timeTaken <= 59) return 6;
+    if (timeTaken <= 62) return 5;
+    if (timeTaken <= 69) return 4;
+    if (timeTaken <= 72) return 3;
+    if (timeTaken <= 79) return 2;
+    if (timeTaken <= 82) return 1;
+    return 0;
+};
+window.calculateLevelFigures = function(score) {
+    if (score === 10) return "Дуже високий";
+    if (score >= 8) return "Високий";
+    if (score >= 4) return "Середній";
+    if (score >= 2) return "Низький";
+    return "Дуже низький";
+};
 
   function finishTest() {
     clearInterval(timerInterval);
-const totalTime = 90 - parseInt(timerEl.textContent.split(" ")[1].split(":")[1]); // Отримуємо затрачений час
-    const finalScore = calculateScoreFigures(totalTime); 
-    const level = calculateLevelFigures(finalScore);
     resultEl.innerHTML = "🛑 Тест завершено! Натисніть 'Надіслати результат'.";
     figureTaskEl.innerHTML = "";
     sendResultsBtn.style.display = "block";
   }
+
   // function handleSendResults() {
   //   const studentName = prompt("Введіть ваше ім'я:");
   
@@ -127,8 +145,8 @@ const totalTime = 90 - parseInt(timerEl.textContent.split(" ")[1].split(":")[1])
     }
   
     const finalScore = score; 
-    const level = calculateLevel(finalScore); 
-    submitResults(finalScore, level, getScriptURL(), studentName);
+    const level = calculateLevelFigures(finalScore); 
+    submitResults(finalScore, level, getEntryIDs(), studentName);
   });
   
 });
