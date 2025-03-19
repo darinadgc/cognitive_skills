@@ -105,9 +105,16 @@ document.addEventListener("DOMContentLoaded", () => {
       alert("❗ Будь ласка, введіть ім'я.");
       return;
     }
-  
-    const finalScore = score; 
-    const level = calculateLevel(finalScore); 
+  const finalScore = score;
+    window.calculateLevelRaven = function(score) {
+    if (score === 10) return "Дуже високий";
+    if (score >= 8) return "Високий";
+    if (score >= 4) return "Середній";
+    if (score >= 2) return "Низький";
+    return "Дуже низький";
+};
+ 
+    const level = calculateLevelRaven(finalScore); 
     submitResults(finalScore, level, getEntryIDs(), studentName);
   });
 });
