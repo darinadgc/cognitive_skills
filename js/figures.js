@@ -95,11 +95,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function finishTest() {
     clearInterval(timerInterval);
+const totalTime = 90 - parseInt(timerEl.textContent.split(" ")[1].split(":")[1]); // Отримуємо затрачений час
+    const finalScore = calculateScoreFigures(totalTime); 
+    const level = calculateLevelFigures(finalScore);
     resultEl.innerHTML = "🛑 Тест завершено! Натисніть 'Надіслати результат'.";
     figureTaskEl.innerHTML = "";
     sendResultsBtn.style.display = "block";
   }
-
   // function handleSendResults() {
   //   const studentName = prompt("Введіть ваше ім'я:");
   
