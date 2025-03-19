@@ -64,8 +64,8 @@ console.log("✅ Виклик submitResults");
     return {
       formURL: "https://docs.google.com/forms/d/e/1FAIpQLSeco-wWwULNG0-L1Qwnxn4tYBtQxinBXjVg4jTB1C2HzZ2KNw/formResponse",
       name: "entry.511676966",
-      score: "entry.1332224844",
-      level: "entry.1008291282"
+      score: "entry.1008291282",
+      level: "entry.1332224844"
     };
   }
 
