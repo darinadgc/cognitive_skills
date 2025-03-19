@@ -228,9 +228,9 @@ console.log("🔹 formURL:", entryIDs.formURL);
 
     submitResults(finalScore, level, getEntryIDs(), studentName);
 
-}
-});
 
+});
+}
  
 
   
