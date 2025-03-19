@@ -46,7 +46,7 @@ console.log("✅ Виклик submitResults");
     return {
       formURL: "https://docs.google.com/forms/d/e/1FAIpQLSfSJTHeQHKjxr-_Nfwr0qC1-5Rinq1xGevQ4i8yFKegE9Wfyw/formResponse",
       name: "entry.511676966",
-      score: "entry.2222222222",
+      score: "entry.1008291282",
       level: "entry.3333333333"
     };
   }
