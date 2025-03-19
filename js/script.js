@@ -192,7 +192,7 @@ window.submitResults = function(finalScore, level) {
 
  
  sendResultsBtn.addEventListener("click", () => {
-    let studentName = prompt("Введіть ваше ім'я:").trim();
+    window.studentName = prompt("Введіть ваше ім'я:").trim();
     if (!studentName || studentName.length < 2) {
         alert("❗ Будь ласка, введіть коректне ім'я.");
         window.isSubmitting = false;
