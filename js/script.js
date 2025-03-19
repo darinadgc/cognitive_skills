@@ -147,15 +147,8 @@ window.submitResults = function(finalScore, level) {
 
     console.log("✅ Функція submitResults викликана!");
 
-    let studentName = prompt("Введіть ваше ім'я:").trim();
-    if (!studentName || studentName.length < 2) {
-        alert("❗ Будь ласка, введіть коректне ім'я.");
-        window.isSubmitting = false;
-        return;
-    }
-    studentName = studentName.replace(/[^a-zA-ZА-Яа-яЇїІіЄєҐґ0-9' ]/g, "");
+    
 
-    console.log("🔹 Введене ім'я:", studentName);
     const entryIDs = getEntryIDs();
     if (!entryIDs || !entryIDs.formURL) {
         console.error("❌ Не вдалося знайти entry ID для цієї сторінки.");
@@ -171,6 +164,7 @@ window.submitResults = function(finalScore, level) {
     formData.append(entryIDs.level, String(level));
 
     console.log("🔹 Надсилаємо:", Object.fromEntries(formData));
+    console.log("🔹 Надсилаємо:", studentName,finalScore,level);
 
     fetch(entryIDs.formURL, {
         method: "POST",
@@ -198,12 +192,13 @@ window.submitResults = function(finalScore, level) {
 
  
  sendResultsBtn.addEventListener("click", () => {
-    const studentName = prompt("Введіть ваше ім'я:");
-
-    if (!studentName || studentName.trim() === "") {
-        alert("❗ Будь ласка, введіть ім'я.");
+    let studentName = prompt("Введіть ваше ім'я:").trim();
+    if (!studentName || studentName.length < 2) {
+        alert("❗ Будь ласка, введіть коректне ім'я.");
+        window.isSubmitting = false;
         return;
     }
+    studentName = studentName.replace(/[^a-zA-ZА-Яа-яЇїІіЄєҐґ0-9' ]/g, "");
     let finalScore, level;
 
     // Визначаємо, який тест запущено
