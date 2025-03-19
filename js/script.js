@@ -216,11 +216,11 @@ window.submitResults = function(finalScore, level) {
         finalScore = window.finalScoreFigures; // Використовуємо значення з тесту "Упізнай фігури"
         level = window.finalLevelFigures;
     } else if (currentPage.includes("cognitive_skills/")) { 
-        if (typeof calculateScoreMotivation !== "function") {
-    console.error("❌ Функція calculateScoreMotivation не завантажена!");
-    return;
-}
-finalScore = calculateScoreMotivation(); // Використовуємо підрахунок для тесту "Мотивація"
+//         if (typeof calculateScoreMotivation !== "function") {
+//     console.error("❌ Функція calculateScoreMotivation не завантажена!");
+//     return;
+// }
+finalScore = calculateScore(); // Використовуємо підрахунок для тесту "Мотивація"
         level = getLevel(finalScore); // Визначаємо рівень мотивації
     } else {
         console.error("❌ Невідома сторінка! Результати не відправлено.");
