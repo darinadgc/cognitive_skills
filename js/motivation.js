@@ -32,7 +32,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
 
-  console.log("🔹 Надсилаємо:", { name: studentName, score: finalScore, level });
 // ✅ Викликаємо `submitResults` тільки після всіх перевірок
       submitResults(finalScore, level, getEntryIDs(), studentName);
       
