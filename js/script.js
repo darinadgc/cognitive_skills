@@ -72,14 +72,9 @@ console.log("✅ Виклик submitResults");
   return null;
 };
  
-    // ✅ Якщо є кнопка, додаємо обробник події для надсилання результату
-    if (sendResultsBtn) {
-      sendResultsBtn.addEventListener("click", () => {
-        const finalScore = calculateScore();
-        const level = calculateLevel(finalScore);
-        submitResults(finalScore, level);
-      });
-    }
+   
+      
+   
     
 
 
@@ -123,9 +118,7 @@ window.submitResults = function(finalScore, level) {
     console.log("🔹 Надсилаємо:", Object.fromEntries(formData));
 console.log("🔹 Данні перед відправкою:");
 console.log("🔹 formURL:", entryIDs.formURL);
-console.log("🔹 Ім'я:", studentName);
-console.log("🔹 Оцінка:", finalScore);
-console.log("🔹 Рівень:", level);
+
 
     fetch(entryIDs.formURL, {
         method: "POST",
@@ -203,7 +196,8 @@ console.log("🔹 Рівень:", level);
 
 
 
-
+ // ✅ Якщо є кнопка, додаємо обробник події для надсилання результату
+    if (sendResultsBtn) { 
  sendResultsBtn.addEventListener("click", () => {
     const studentName = prompt("Введіть ваше ім'я:");
 
@@ -211,7 +205,7 @@ console.log("🔹 Рівень:", level);
         alert("❗ Будь ласка, введіть ім'я.");
         return;
     }
-
+}
     let finalScore, level;
 
     // Визначаємо, який тест запущено
@@ -233,7 +227,7 @@ console.log("🔹 Рівень:", level);
 
     console.log("🔹 Надсилаємо:", { name: studentName, score: finalScore, level });
 
-    submitResults(finalScore, level, getScriptURL(), studentName);
+    submitResults(finalScore, level, getEntryIDs(), studentName);
 });
 
 
