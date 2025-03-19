@@ -196,8 +196,7 @@ console.log("🔹 formURL:", entryIDs.formURL);
 
 
 
- // ✅ Якщо є кнопка, додаємо обробник події для надсилання результату
-    if (sendResultsBtn) { 
+ 
  sendResultsBtn.addEventListener("click", () => {
     const studentName = prompt("Введіть ваше ім'я:");
 
@@ -230,7 +229,7 @@ console.log("🔹 formURL:", entryIDs.formURL);
 
 
 });
-}
+
  
 
   
