@@ -5,7 +5,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const questions = document.querySelectorAll('input[type="radio"]');
     const totalQuestions = new Set();
     let answeredQuestions = new Set();
-
+// ✅ Додаємо всі унікальні групи питань у `totalQuestions`
+        questions.forEach((input) => totalQuestions.add(input.name));
     questions.forEach((input) => {
       totalQuestions.add(input.name); 
       if (input.checked) {
@@ -19,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
       return; 
     }
 function calculateScoreMotivation() {
-    const questions = document.querySelectorAll('input[type="radio"]:checked');
+const questions = document.querySelectorAll('input[type="radio"]:checked');
     let score = 0;
 
     questions.forEach((input) => {
@@ -31,23 +32,24 @@ function calculateScoreMotivation() {
     return score;
 }
 
-    const finalScore = calculateScore(); // ✅ Підтягуємо score з script.js
-    const level = getLevel(finalScore);
-
-    const studentName = prompt("Введіть ваше ім'я:");
-    if (!studentName || studentName.trim() === "") {
-      alert("❗ Будь ласка, введіть ім'я.");
-      return;
-    }
-
-    submitResults(finalScore, level, getEntryIDs(), studentName);
-  });
-
   function getLevel(score) {
     if (score >= 14) return "Високий";
     if (score >= 7) return "Середній";
     return "Низький";
 }
+    const finalScore = calculateScoreMotivation(); 
+        const level = getLevel(finalScore);
+
+    // const studentName = prompt("Введіть ваше ім'я:");
+    // if (!studentName || studentName.trim() === "") {
+    //   alert("❗ Будь ласка, введіть ім'я.");
+    //   return;
+    // }
+        console.log("🔹 Надсилаємо:", { score: finalScore, level });
+
+    submitResults(finalScore, level, getEntryIDs(), studentName);
+  });
+
 
 
 });
