@@ -26,13 +26,7 @@ console.log("✅ Виклик submitResults");
   
     return score;
   }
-  calculateLevel = function(score) {
-    if (score === 10) return "Дуже високий";
-    if (score >= 8) return "Високий";
-    if (score >= 4) return "Середній";
-    if (score >= 2) return "Низький";
-    return "Дуже низький";
-  }
+  
   
   
     
@@ -210,17 +204,39 @@ console.log("🔹 Рівень:", level);
 
 
 
- sendResultsBtn.addEventListener("click", (event) => {
-    event.preventDefault();
-    
-    if (window.isSubmitting) return; // Запобігає повторному виклику
-    window.isSubmitting = true;
+ sendResultsBtn.addEventListener("click", () => {
+    const studentName = prompt("Введіть ваше ім'я:");
 
-    const finalScore = calculateScore();
-    const level = calculateLevel(finalScore);
-    submitResults(finalScore, level);
-  });
- 
+    if (!studentName || studentName.trim() === "") {
+        alert("❗ Будь ласка, введіть ім'я.");
+        return;
+    }
+
+    let finalScore, level;
+
+    // Визначаємо, який тест запущено
+    const currentPage = window.location.pathname;
+
+    if (currentPage.includes("matrytsya_ravena.html")) {
+        finalScore = calculateScore(); // Використовуємо стандартний підрахунок
+        level = calculateLevelRaven(finalScore); // Використовуємо рівень для "Матриця Равена"
+    } else if (currentPage.includes("upiznay_fihury.html")) {
+        finalScore = window.finalScoreFigures; // Використовуємо значення з тесту "Упізнай фігури"
+        level = window.finalLevelFigures;
+    } else if (currentPage.includes("cognitive_skills/")) { 
+        finalScore = calculateScoreMotivation(); // Використовуємо підрахунок для тесту "Мотивація"
+        level = getLevel(finalScore); // Визначаємо рівень мотивації
+    } else {
+        console.error("❌ Невідома сторінка! Результати не відправлено.");
+        return;
+    }
+
+    console.log("🔹 Надсилаємо:", { name: studentName, score: finalScore, level });
+
+    submitResults(finalScore, level, getScriptURL(), studentName);
+});
+
+
  
 
   
