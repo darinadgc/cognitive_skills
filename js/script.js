@@ -205,7 +205,6 @@ console.log("🔹 formURL:", entryIDs.formURL);
         alert("❗ Будь ласка, введіть ім'я.");
         return;
     }
-}
     let finalScore, level;
 
     // Визначаємо, який тест запущено
@@ -228,8 +227,9 @@ console.log("🔹 formURL:", entryIDs.formURL);
     console.log("🔹 Надсилаємо:", { name: studentName, score: finalScore, level });
 
     submitResults(finalScore, level, getEntryIDs(), studentName);
-});
 
+}
+});
 
  
 
