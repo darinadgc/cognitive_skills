@@ -118,8 +118,6 @@ console.log("🔹 URL сторінки:", window.location.href);
 //     console.log("🔹 Надсилаємо:", Object.fromEntries(formData));
 // console.log("🔹 Данні перед відправкою:");
 // console.log("🔹 formURL:", entryIDs.formURL);
-
-
 //     fetch(entryIDs.formURL, {
 //         method: "POST",
 //         mode: "no-cors", // Заборона CORS-блокування
@@ -139,6 +137,8 @@ console.log("🔹 URL сторінки:", window.location.href);
 //         window.isSubmitting = false;
 //     });
 // };
+
+
  sendResultsBtn.addEventListener("click", () => {
     window.studentName = prompt("Введіть ваше ім'я:").trim();
     if (!studentName || studentName.length < 2) {
@@ -172,6 +172,7 @@ finalScore = calculateScore(); // Використовуємо підрахун�
     console.log("🔹 Надсилаємо:", { name: studentName, score: finalScore, level });
 
     submitResults(finalScore, level, getEntryIDs(), studentName);
+  console.log("🔹 Надсилаємо:", { name: studentName, score: finalScore, level });
 
 
 });
