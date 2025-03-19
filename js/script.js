@@ -126,6 +126,11 @@ window.submitResults = function(finalScore, level) {
     formData.append(entryIDs.level, level);
 
     console.log("🔹 Надсилаємо:", Object.fromEntries(formData));
+console.log("🔹 Данні перед відправкою:");
+console.log("🔹 formURL:", entryIDs.formURL);
+console.log("🔹 Ім'я:", studentName);
+console.log("🔹 Оцінка:", finalScore);
+console.log("🔹 Рівень:", level);
 
     fetch(entryIDs.formURL, {
         method: "POST",
