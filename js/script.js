@@ -68,8 +68,8 @@ console.log("✅ Виклик submitResults");
 
   if (currentPage.includes("cognitive_skills/")) {
     return {
-      formURL: "https://docs.google.com/forms/d/e/ВАШ_ФОРМУЛЯР_MOTIVATION/formResponse",
-      name: "entry.7777777777",
+      formURL: "https://docs.google.com/forms/d/e/1FAIpQLSeco-wWwULNG0-L1Qwnxn4tYBtQxinBXjVg4jTB1C2HzZ2KNw/formResponse",
+      name: "entry.511676966",
       score: "entry.8888888888",
       level: "entry.9999999999"
     };
