@@ -1,10 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
   const sendResultsBtn = document.getElementById("send-results-btn");
   window.resultEl = document.getElementById("result");
-
+window.submitResults = function(finalScore, level) {
 console.log("✅ Обробник події додано до `send-results-btn`.");
     console.log("✅ Виклик submitResults");
-    window.submitResults = function(finalScore, level) {
+    
     sendResultsBtn.addEventListener("click", () => {
         const currentPage = window.location.pathname;
         let totalQuestions, answeredQuestions;
