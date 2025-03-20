@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 // ✅ Викликаємо `submitResults` тільки після всіх перевірок
-      submitResults(finalScore, level, getEntryIDs(), studentName);
+      // submitResults(finalScore, level, getEntryIDs(), studentName);
       
   if (totalQuestions.size === answeredQuestions.size) {
 sendResultsBtn.addEventListener("click", () => {
