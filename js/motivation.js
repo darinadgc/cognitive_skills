@@ -37,20 +37,21 @@ function getLevel(score) {
     return "Низький";
 }
 
-// ✅ Тепер `finalScore` обчислюється тільки після натискання кнопки
+// ✅ Виконуємо обчислення ТІЛЬКИ після натискання кнопки
 document.addEventListener("DOMContentLoaded", () => {
     const sendResultsBtn = document.getElementById("send-results-btn");
 
     sendResultsBtn.addEventListener("click", () => {
         console.log("✅ Натискання кнопки: Перевіряємо відповіді...");
-        
+
+        // Виконуємо перевірку заповнених відповідей
         const checkResults = checkAllAnsweredMotivation();
         if (!checkResults || checkResults.totalQuestions.size !== checkResults.answeredQuestions.size) {
             alert("❗ Будь ласка, відповідайте на всі запитання перед завершенням!");
             return;
         }
 
-        // Тільки тепер підраховуємо результат
+        // ✅ Тільки тепер підраховуємо бали
         const finalScore = calculateScoreMotivation();
         const level = getLevel(finalScore);
 
