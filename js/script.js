@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 console.log("✅ Обробник події додано до `send-results-btn`.");
     console.log("✅ Виклик submitResults");
-
+    window.submitResults = function(finalScore, level) {
     sendResultsBtn.addEventListener("click", () => {
         const currentPage = window.location.pathname;
         let totalQuestions, answeredQuestions;
@@ -67,8 +67,8 @@ console.log("✅ Обробник події додано до `send-results-btn
 
         // ✅ Відправка результатів
         submitResults(finalScore, level, getEntryIDs(), cleanedStudentName);
-    });
-
+    });// sendResultsBtn click
+}
     // ✅ Функція перевірки заповнених питань для Фігур та Матриці Равена
     function checkAllAnsweredGeneral() {
         const questions = document.querySelectorAll('input[type="radio"]');
