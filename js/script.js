@@ -142,28 +142,13 @@ sendResultsBtn.addEventListener("click", () => {
     }
 
     // Деструктуризація після перевірки
-    if (!checkResults || !checkResults.totalQuestions || !checkResults.answeredQuestions) {
-        console.error("❌ Помилка: `checkResults` повернув `undefined` або `null`.");
-        return;
-    }
-    
     ({ totalQuestions, answeredQuestions } = checkResults);
-    
-
-
-
 
     // ✅ Якщо не відповіли на всі запитання - зупиняємо процес
-    if (totalQuestions.size === answeredQuestions.size) {
-        
- 
-
-
-
-    
-
-
-
+    if (totalQuestions.size !== answeredQuestions.size) {
+        alert("❗ Будь ласка, відповідайте на всі запитання перед завершенням!");
+        return;
+    }
 
     // 🏫🧒📛 Після перевірки запитуємо ім'я  
     const studentName = prompt("Введіть ваше ім'я:").trim();
@@ -196,20 +181,9 @@ sendResultsBtn.addEventListener("click", () => {
 
     // ✅ Відправка результатів
     submitResults(finalScore, level, getEntryIDs(), cleanedStudentName);
-   }//if totalQuestions
+});//sendResultsBtn click
 
-// ✅ Якщо не відповіли на всі запитання - зупиняємо процес
-else {
-    alert("❗ Будь ласка, відповідайте на всі запитання перед завершенням!");
-    return;
-}
-
-
-
-
-
-   });//sendResultsBtn click
-// ✅ Функції обмеження повторного проходження тесту (не виконується при завантаженні)
+   // ✅ Функції обмеження повторного проходження тесту (не виконується при завантаженні)
    function getLastAttemptKey() {
     const currentPage = window.location.pathname;
     if (currentPage.includes("cognitive_skills/")) return "lastAttemptMotivation";
