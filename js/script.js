@@ -169,7 +169,7 @@ sendResultsBtn.addEventListener("click", () => {
     } else if (currentPage.includes("upiznay_fihury.html")) {
         finalScore = window.finalScoreFigures;
         level = window.finalLevelFigures;
-    } else if (currentPage.includes("cognitive_skills/")) {
+    } else if (currentPage.includes("cognitive_skills/")) {console.log("🔹 Викликаємо calculateScoreMotivation...");
         finalScore = calculateScoreMotivation();
         level = getLevel(finalScore);
     } else {
