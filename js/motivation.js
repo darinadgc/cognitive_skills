@@ -44,8 +44,8 @@ const level = getLevel(finalScore);
 console.log("🔹 Визначений рівень:", level);
     
 // ✅ Виконуємо перевірку перед підрахунком результатів
-const checkResults = checkAllAnsweredMotivation();
-if (checkResults !== null) {
-    console.log("✅ Надсилаємо:", { score: finalScore, level });
-    submitResults(finalScore, level, getEntryIDs());
-}
+// const checkResults = checkAllAnsweredMotivation();
+// if (checkResults !== null) {
+//     console.log("✅ Надсилаємо:", { score: finalScore, level });
+//     submitResults(finalScore, level, getEntryIDs());
+// }
