@@ -6,7 +6,19 @@ document.addEventListener("DOMContentLoaded", () => {
 sendResultsBtn.addEventListener("click", () => {
         const currentPage = window.location.pathname;
         let totalQuestions, answeredQuestions;
+    // ✅ Функція перевірки заповнених питань для Фігур та Матриці Равена
+    function checkAllAnsweredGeneral() {
+        const questions = document.querySelectorAll('input[type="radio"]');
+        const totalQuestions = new Set();
+        let answeredQuestions = new Set();
 
+        questions.forEach((input) => totalQuestions.add(input.name));
+        questions.forEach((input) => {
+            if (input.checked) answeredQuestions.add(input.name);
+        });
+
+        return { totalQuestions, answeredQuestions };
+    }
         // ✅ Перевірка тесту та заповнених питань після натискання кнопки
         let checkResults;
         if (currentPage.includes("cognitive_skills/")) {
@@ -69,19 +81,7 @@ sendResultsBtn.addEventListener("click", () => {
         // ✅ Відправка результатів
         submitResults(finalScore, level, getEntryIDs(), cleanedStudentName);
 }// submitResults
-    // ✅ Функція перевірки заповнених питань для Фігур та Матриці Равена
-    function checkAllAnsweredGeneral() {
-        const questions = document.querySelectorAll('input[type="radio"]');
-        const totalQuestions = new Set();
-        let answeredQuestions = new Set();
 
-        questions.forEach((input) => totalQuestions.add(input.name));
-        questions.forEach((input) => {
-            if (input.checked) answeredQuestions.add(input.name);
-        });
-
-        return { totalQuestions, answeredQuestions };
-    }
 
   function getLastAttemptKey() {
       if (currentPage.includes("cognitive_skills/")) return "lastAttemptMotivation";
