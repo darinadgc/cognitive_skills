@@ -14,7 +14,8 @@ function checkAllAnsweredMotivation() {
         alert("❗ Будь ласка, відповідайте на всі запитання перед завершенням!");
         return;
     }
-
+return { totalQuestions, answeredQuestions };
+}
     // ✅ Якщо всі відповіді є, визначаємо оцінку
     function calculateScoreMotivation() {
         let score = 0;
