@@ -1,11 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
   const sendResultsBtn = document.getElementById("send-results-btn");
   window.resultEl = document.getElementById("result");
+     sendResultsBtn.addEventListener("click", () => {
+
 window.submitResults = function(finalScore, level) {
-console.log("✅ Обробник події додано до `send-results-btn`.");
+   console.log("✅ Обробник події додано до `send-results-btn`.");
     console.log("✅ Виклик submitResults");
-    
-    sendResultsBtn.addEventListener("click", () => {
         const currentPage = window.location.pathname;
         let totalQuestions, answeredQuestions;
 
@@ -67,8 +67,8 @@ console.log("✅ Обробник події додано до `send-results-btn
 
         // ✅ Відправка результатів
         submitResults(finalScore, level, getEntryIDs(), cleanedStudentName);
+}// submitResults
     });// sendResultsBtn click
-}
     // ✅ Функція перевірки заповнених питань для Фігур та Матриці Равена
     function checkAllAnsweredGeneral() {
         const questions = document.querySelectorAll('input[type="radio"]');
