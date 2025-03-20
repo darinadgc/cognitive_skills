@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Виконуємо перевірку заповнених відповідей
         const checkResults = checkAllAnsweredMotivation();
-        if (checkResults || checkResults.totalQuestions.size === checkResults.answeredQuestions.size) {
+        if (checkResults.totalQuestions.size === checkResults.answeredQuestions.size) {
 
 // ✅ Тільки тепер підраховуємо бали
         const finalScore = calculateScoreMotivation();
