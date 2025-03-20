@@ -19,7 +19,10 @@ function checkAllAnsweredMotivation() {
 return true;
     //return { totalQuestions, answeredQuestions };
 }
-
+// Перевіряємо, чи функція викликається
+console.log("🔹 Викликаємо calculateScoreMotivation...");
+const finalScore = calculateScoreMotivation();
+console.log("🔹 Отриманий бал:", finalScore);
 // ✅ Якщо всі відповіді є, визначаємо оцінку
 function calculateScoreMotivation() {
     let score = 0;
@@ -32,10 +35,7 @@ checkedAnswers.forEach((input) => {
     console.log("🔹 Обчислений бал:", score); // ✅ Додай це для перевірки
     return score;
 }
-// Перевіряємо, чи функція викликається
-console.log("🔹 Викликаємо calculateScoreMotivation...");
-const finalScore = calculateScoreMotivation();
-console.log("🔹 Отриманий бал:", finalScore);
+
 
 function getLevel(score) {
     if (score >= 14) return "Високий";
