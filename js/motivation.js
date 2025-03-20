@@ -9,7 +9,6 @@ function checkAllAnsweredMotivation() {
             answeredQuestions.add(input.name);
         }
     });
-
     if (totalQuestions.size !== answeredQuestions.size) {
         alert("❗ Будь ласка, відповідайте на всі запитання перед завершенням!");
         return false;
@@ -17,6 +16,8 @@ function checkAllAnsweredMotivation() {
     console.log("🔹 Загальна кількість питань:", totalQuestions.size);
     console.log("🔹 Відповіді:", answeredQuestions.size);
 return true;
+    console.log("✅ Надсилаємо:", { score: finalScore, level });
+
     //return { totalQuestions, answeredQuestions };
 }
 // Перевіряємо, чи функція викликається
