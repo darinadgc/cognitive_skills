@@ -46,12 +46,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Виконуємо перевірку заповнених відповідей
         const checkResults = checkAllAnsweredMotivation();
-        if (!checkResults || checkResults.totalQuestions.size !== checkResults.answeredQuestions.size) {
-            alert("❗ Будь ласка, відповідайте на всі запитання перед завершенням!");
-            return;
-        }
+        if (checkResults || checkResults.totalQuestions.size === checkResults.answeredQuestions.size) {
 
-        // ✅ Тільки тепер підраховуємо бали
+// ✅ Тільки тепер підраховуємо бали
         const finalScore = calculateScoreMotivation();
         const level = getLevel(finalScore);
 
@@ -59,5 +56,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Викликаємо submitResults з правильними значеннями
         submitResults(finalScore, level, getEntryIDs());
+        }
+        else  {
+            alert("❗ Будь ласка, відповідайте на всі запитання перед завершенням!");
+            return;
+        }
     });
 });
