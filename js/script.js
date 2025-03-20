@@ -1,7 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
     const sendResultsBtn = document.getElementById("send-results-btn");
     window.resultEl = document.getElementById("result");
+    const lastAttemptKey = getLastAttemptKey(); // ✅ Отримуємо ключ для LocalStorage
+    const lastAttempt = localStorage.getItem(lastAttemptKey); // ✅ Оголошуємо lastAttempt
+    const lastAttemptDate = lastAttempt ? new Date(lastAttempt) : null;
 
+    console.log("🔹 Остання спроба:", lastAttemptDate);
     console.log("✅ Обробник події додано до `send-results-btn`.");
     
     // ✅ Функція перевірки заповнених питань для Фігур та Матриці Равена
@@ -159,11 +163,12 @@ function daysUntilRetry(lastAttemptDate) {
 
 
 
-// ✅ Перевіряємо, чи можна пройти тест через 3-4 тижні
-if (lastAttempt && !isAllowedToRetry(new Date(lastAttempt))) {
-    resultEl.innerHTML = "❌ Ви вже проходили тест. Можна повторити через ${daysUntilRetry(new Date(lastAttempt))} днів.";
-    sendResultsBtn.disabled = true;
-    return;
-  }
+
+
+    if (lastAttempt && !isAllowedToRetry(new Date(lastAttempt))) {
+        resultEl.innerHTML = `❌ Ви вже проходили тест. Можна повторити через ${daysUntilRetry(new Date(lastAttempt))} днів.`;
+        sendResultsBtn.disabled = true;
+        return;
+    }
 
 });
