@@ -1,3 +1,4 @@
+
 function checkAllAnsweredMotivation() {
     const questions = document.querySelectorAll('input[type="radio"]');
     const totalQuestions = new Set();
@@ -9,15 +10,15 @@ function checkAllAnsweredMotivation() {
             answeredQuestions.add(input.name);
         }
     });
-    
+    /* if (totalQuestions.size !== answeredQuestions.size) {
+        alert("❗ Будь ласка, відповідайте на всі запитання перед завершенням!");
+        return false;
+    } */
     console.log("🔹 Загальна кількість питань:", totalQuestions.size);
     console.log("🔹 Відповіді:", answeredQuestions.size);
-return true;
-    console.log("✅ Надсилаємо:", { score: finalScore, level });
-
-    //return { totalQuestions, answeredQuestions };
-}
-// Перевіряємо, чи функція викликається
+return { totalQuestions, answeredQuestions };
+    //return true;
+}//checkAllAnsweredMotivation 
 console.log("🔹 Викликаємо calculateScoreMotivation...");
 const finalScore = calculateScoreMotivation();
 console.log("🔹 Отриманий бал:", finalScore);
@@ -33,6 +34,7 @@ checkedAnswers.forEach((input) => {
     console.log("🔹 Обчислений бал:", score); // ✅ Додай це для перевірки
     return score;
 }
+// Перевіряємо, чи функція викликається
 
 
 function getLevel(score) {
@@ -44,17 +46,8 @@ const level = getLevel(finalScore);
 console.log("🔹 Визначений рівень:", level);
     
 // ✅ Виконуємо перевірку перед підрахунком результатів
-// const checkResults = checkAllAnsweredMotivation();
-// if (checkResults !== null) {
-//     console.log("✅ Надсилаємо:", { score: finalScore, level });
-//     submitResults(finalScore, level, getEntryIDs());
-// }
-console.log("🔹 Викликаємо calculateScoreMotivation...");
-const finalScore = calculateScoreMotivation();
-console.log("🔹 Отриманий бал:", finalScore);
-
-// ✅ Переконайтеся, що `finalScore` не `undefined`
-if (isNaN(finalScore)) {
-    console.error("❌ Помилка: `finalScore` має некоректне значення!");
-    return;
-}
+/* const checkResults = checkAllAnsweredMotivation();
+if (checkResults !== null) {
+    console.log("✅ Надсилаємо:", { score: finalScore, level });
+    submitResults(finalScore, level, getEntryIDs());
+} */
