@@ -1,5 +1,5 @@
 
-function checkAllAnsweredMotivation() {
+ window.checkAllAnsweredMotivation=function() {
     const questions = document.querySelectorAll('input[type="radio"]');
     const totalQuestions = new Set();
     let answeredQuestions = new Set();
