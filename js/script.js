@@ -161,7 +161,7 @@ sendResultsBtn.addEventListener("click", () => {
     const cleanedStudentName = studentName.replace(/[^a-zA-ZА-Яа-яЇїІіЄєҐґ0-9' ]/g, "");
 
     // 🕸📄 Визначаємо, який тест запущено
-     window.finalScore, level;
+     let finalScore, level;
 
     if (currentPage.includes("matrytsya_ravena.html")) {
         finalScore = calculateScore();
