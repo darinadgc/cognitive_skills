@@ -137,8 +137,8 @@ sendResultsBtn.addEventListener("click", () => {
     }
 
     // ❗ Запобігаємо помилці, якщо функція повернула null або undefined
-    if (!checkResults) {
-        return;
+    if (!checkResults || !checkResults.totalQuestions || !checkResults.answeredQuestions) {
+        console.error("❌ Помилка: `checkResults` повернув `undefined` або `null`.");return;
     }
 
     // Деструктуризація після перевірки
