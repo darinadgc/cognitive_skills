@@ -3,6 +3,44 @@ document.addEventListener("DOMContentLoaded", () => {
   window.resultEl = document.getElementById("result");
      
 
+
+        window.submitResults = function(finalScore, level) {
+            console.log("✅ Обробник події додано до `send-results-btn`.");
+             console.log("✅ Виклик submitResults");
+        // 🏫🧒📛 Після перевірки запитуємо ім'я 
+        const studentName = prompt("Введіть ваше ім'я:").trim();
+        if (!studentName || studentName.length < 2) {
+            alert("❗ Будь ласка, введіть коректне ім'я.");
+            return;
+        }
+
+        // ✅ Фільтр символів у імені
+        const cleanedStudentName = studentName.replace(/[^a-zA-ZА-Яа-яЇїІіЄєҐґ0-9' ]/g, "");
+
+        // 🕸📄 Визначаємо, який тест запущено
+        // let finalScore, level;
+
+        if (currentPage.includes("matrytsya_ravena.html")) {
+            finalScore = calculateScore();
+            level = calculateLevelRaven(finalScore);
+        } else if (currentPage.includes("upiznay_fihury.html")) {
+            finalScore = window.finalScoreFigures;
+            level = window.finalLevelFigures;
+        } else if (currentPage.includes("cognitive_skills/")) {
+            finalScore = calculateScoreMotivation();
+            level = getLevel(finalScore);
+        } else {
+            console.error("❌ Невідома сторінка! Результати не відправлено.");
+            return;
+        }
+
+        console.log("🔹 Надсилаємо:", { name: cleanedStudentName, score: finalScore, level });
+
+        // ✅ Відправка результатів
+        submitResults(finalScore, level, getEntryIDs(), cleanedStudentName);
+}// submitResults
+
+
 sendResultsBtn.addEventListener("click", () => {
         const currentPage = window.location.pathname;
         let totalQuestions, answeredQuestions;
@@ -45,44 +83,6 @@ sendResultsBtn.addEventListener("click", () => {
             return;
         }
     });// sendResultsBtn click
-
-        window.submitResults = function(finalScore, level) {
-            console.log("✅ Обробник події додано до `send-results-btn`.");
-             console.log("✅ Виклик submitResults");
-        // 🏫🧒📛 Після перевірки запитуємо ім'я 
-        const studentName = prompt("Введіть ваше ім'я:").trim();
-        if (!studentName || studentName.length < 2) {
-            alert("❗ Будь ласка, введіть коректне ім'я.");
-            return;
-        }
-
-        // ✅ Фільтр символів у імені
-        const cleanedStudentName = studentName.replace(/[^a-zA-ZА-Яа-яЇїІіЄєҐґ0-9' ]/g, "");
-
-        // 🕸📄 Визначаємо, який тест запущено
-        // let finalScore, level;
-
-        if (currentPage.includes("matrytsya_ravena.html")) {
-            finalScore = calculateScore();
-            level = calculateLevelRaven(finalScore);
-        } else if (currentPage.includes("upiznay_fihury.html")) {
-            finalScore = window.finalScoreFigures;
-            level = window.finalLevelFigures;
-        } else if (currentPage.includes("cognitive_skills/")) {
-            finalScore = calculateScoreMotivation();
-            level = getLevel(finalScore);
-        } else {
-            console.error("❌ Невідома сторінка! Результати не відправлено.");
-            return;
-        }
-
-        console.log("🔹 Надсилаємо:", { name: cleanedStudentName, score: finalScore, level });
-
-        // ✅ Відправка результатів
-        submitResults(finalScore, level, getEntryIDs(), cleanedStudentName);
-}// submitResults
-
-
   function getLastAttemptKey() {
       if (currentPage.includes("cognitive_skills/")) return "lastAttemptMotivation";
       if (currentPage.includes("matrytsya_ravena.html")) return "lastAttemptRaven";
