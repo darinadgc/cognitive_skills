@@ -2,86 +2,86 @@ document.addEventListener("DOMContentLoaded", () => {
   const sendResultsBtn = document.getElementById("send-results-btn");
   window.resultEl = document.getElementById("result");
 
-/*   console.log("✅ Обробник події додано до `send-results-btn`.");
-  console.log("✅ Виклик submitResults"); */
+console.log("✅ Обробник події додано до `send-results-btn`.");
+    console.log("✅ Виклик submitResults");
 
-  sendResultsBtn.addEventListener("click", () => {
-    const currentPage = window.location.pathname;
-    let totalQuestions, answeredQuestions;
+    sendResultsBtn.addEventListener("click", () => {
+        const currentPage = window.location.pathname;
+        let totalQuestions, answeredQuestions;
 
-    // ✅ Перевірка тесту та заповнених питань
-    let checkResults;
-    if (currentPage.includes("cognitive_skills/")) {
-        if (typeof checkAllAnsweredMotivation === "function") {
-            checkResults = checkAllAnsweredMotivation();
+        // ✅ Перевірка тесту та заповнених питань після натискання кнопки
+        let checkResults;
+        if (currentPage.includes("cognitive_skills/")) {
+            if (typeof checkAllAnsweredMotivation === "function") {
+                checkResults = checkAllAnsweredMotivation();
+            } else {
+                console.error("❌ Функція checkAllAnsweredMotivation не знайдена!");
+                return;
+            }
         } else {
-            console.error("❌ Функція checkAllAnsweredMotivation не знайдена!");
+            checkResults = checkAllAnsweredGeneral();
+        }
+
+        // ❗ Запобігаємо помилці, якщо функція повернула null або undefined
+        if (!checkResults) {
             return;
         }
-    } else {
-        checkResults = checkAllAnsweredGeneral();
-    }
 
-    // ❗ Запобігаємо помилці, якщо `null`
-    if (!checkResults) {
-        return;
-    }
+        // Деструктуризація після перевірки
+        ({ totalQuestions, answeredQuestions } = checkResults);
 
-    // Деструктуризація лише якщо є дані
-    ({ totalQuestions, answeredQuestions } = checkResults);
+        // ✅ Якщо не відповіли на всі запитання - зупиняємо процес
+        if (totalQuestions.size !== answeredQuestions.size) {
+            alert("❗ Будь ласка, відповідайте на всі запитання перед завершенням!");
+            return;
+        }
 
-    // ✅ Якщо не відповіли на всі запитання - зупиняємо процес
-    if (totalQuestions.size !== answeredQuestions.size) {
-        alert("❗ Будь ласка, відповідайте на всі запитання перед завершенням!");
-        return;
-    }
+        // 🏫🧒📛 Після перевірки запитуємо ім'я 
+        const studentName = prompt("Введіть ваше ім'я:").trim();
+        if (!studentName || studentName.length < 2) {
+            alert("❗ Будь ласка, введіть коректне ім'я.");
+            return;
+        }
 
-    // 🏫🧒📛 Після перевірки запитуємо ім'я 
-    const studentName = prompt("Введіть ваше ім'я:").trim();
-    if (!studentName || studentName.length < 2) {
-        alert("❗ Будь ласка, введіть коректне ім'я.");
-        return;
-    }
+        // ✅ Фільтр символів у імені
+        const cleanedStudentName = studentName.replace(/[^a-zA-ZА-Яа-яЇїІіЄєҐґ0-9' ]/g, "");
 
-    // ✅ Фільтр символів у імені
-    const cleanedStudentName = studentName.replace(/[^a-zA-ZА-Яа-яЇїІіЄєҐґ0-9' ]/g, "");
+        // 🕸📄 Визначаємо, який тест запущено
+        let finalScore, level;
 
-    // 🕸📄 Визначаємо, який тест запущено
-    let finalScore, level;
+        if (currentPage.includes("matrytsya_ravena.html")) {
+            finalScore = calculateScore();
+            level = calculateLevelRaven(finalScore);
+        } else if (currentPage.includes("upiznay_fihury.html")) {
+            finalScore = window.finalScoreFigures;
+            level = window.finalLevelFigures;
+        } else if (currentPage.includes("cognitive_skills/")) {
+            finalScore = calculateScoreMotivation();
+            level = getLevel(finalScore);
+        } else {
+            console.error("❌ Невідома сторінка! Результати не відправлено.");
+            return;
+        }
 
-    if (currentPage.includes("matrytsya_ravena.html")) {
-        finalScore = calculateScore();
-        level = calculateLevelRaven(finalScore);
-    } else if (currentPage.includes("upiznay_fihury.html")) {
-        finalScore = window.finalScoreFigures;
-        level = window.finalLevelFigures;
-    } else if (currentPage.includes("cognitive_skills/")) {
-        finalScore = calculateScoreMotivation();
-        level = getLevel(finalScore);
-    } else {
-        console.error("❌ Невідома сторінка! Результати не відправлено.");
-        return;
-    }
+        console.log("🔹 Надсилаємо:", { name: cleanedStudentName, score: finalScore, level });
 
-    console.log("🔹 Надсилаємо:", { name: cleanedStudentName, score: finalScore, level });
-
-    // ✅ Відправка результатів
-    submitResults(finalScore, level, getEntryIDs(), cleanedStudentName);
-});//sendResultsBtn click
-
-// ✅ Функція перевірки заповнених питань для Фігур та Матриці Равена
-function checkAllAnsweredGeneral() {
-    const questions = document.querySelectorAll('input[type="radio"]');
-    const totalQuestions = new Set();
-    let answeredQuestions = new Set();
-
-    questions.forEach((input) => totalQuestions.add(input.name));
-    questions.forEach((input) => {
-        if (input.checked) answeredQuestions.add(input.name);
+        // ✅ Відправка результатів
+        submitResults(finalScore, level, getEntryIDs(), cleanedStudentName);
     });
 
-    return { totalQuestions, answeredQuestions };
-}
+    // ✅ Функція перевірки заповнених питань для Фігур та Матриці Равена
+    function checkAllAnsweredGeneral() {
+        const questions = document.querySelectorAll('input[type="radio"]');
+        const totalQuestions = new Set();
+        let answeredQuestions = new Set();
+
+        questions.forEach((input) => totalQuestions.add(input.name));
+        questions.forEach((input) => {
+            if (input.checked) answeredQuestions.add(input.name);
+        });
+
+        return { totalQuestions, answeredQuestions };
+    }
 
   function getLastAttemptKey() {
       if (currentPage.includes("cognitive_skills/")) return "lastAttemptMotivation";
