@@ -26,6 +26,7 @@ function calculateScoreMotivation() {
         if (input.value === "високий рівень") score += 2;
         else if (input.value === "середній рівень") score += 1;
     });
+    console.log("🔹 Обчислений бал:", score); // ✅ Додай це для перевірки
     return score;
 }
 
