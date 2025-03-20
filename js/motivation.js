@@ -23,7 +23,8 @@ function checkAllAnsweredMotivation() {
 function calculateScoreMotivation() {
     let score = 0;
     const checkedAnswers = document.querySelectorAll('input[type="radio"]:checked');
-    checkedAnswers.forEach((input) => {
+      console.log("🔹 Знайдено позначені відповіді:", checkedAnswers.length); // ✅ Чи є відповіді?
+checkedAnswers.forEach((input) => {  
         if (input.value === "високий рівень") score += 2;
         else if (input.value === "середній рівень") score += 1;
     });
