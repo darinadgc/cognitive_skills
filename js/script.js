@@ -21,7 +21,15 @@ document.addEventListener("DOMContentLoaded", () => {
     // ✅ Перевірка для інших тестів (фігури, матриця Равена)
     checkAllAnsweredGeneral();
 } 
-  
+  });//sendResultsBtn click
+
+      const { totalQuestions, answeredQuestions } = checkAllAnswered();
+
+      // ✅ Перевіряємо, чи відповіли на всі запитання
+      if (totalQuestions.size !== answeredQuestions.size) {
+          alert("❗ Будь ласка, відповідайте на всі запитання перед завершенням!");
+          return;
+      } 
  // ✅ Перевірка заповнених питань для "Фігури" та "Матриця Равена"
 function checkAllAnsweredGeneral() {
   const questions = document.querySelectorAll('input[type="radio"]');
@@ -39,14 +47,6 @@ function checkAllAnsweredGeneral() {
 
   
 
-
-      const { totalQuestions, answeredQuestions } = checkAllAnswered();
-
-      // ✅ Перевіряємо, чи відповіли на всі запитання
-      if (totalQuestions.size !== answeredQuestions.size) {
-          alert("❗ Будь ласка, відповідайте на всі запитання перед завершенням!");
-          return;
-      }
 
       // 🏫🧒📛 Після перевірки запитуємо ім'я 
       const studentName = prompt("Введіть ваше ім'я:").trim();
@@ -79,7 +79,7 @@ function checkAllAnsweredGeneral() {
 
       // ✅ Відправка результатів
       submitResults(finalScore, level, getEntryIDs(), cleanedStudentName);
-  });//sendResultsBtn click
+ 
 
   function getLastAttemptKey() {
       if (currentPage.includes("cognitive_skills/")) return "lastAttemptMotivation";
