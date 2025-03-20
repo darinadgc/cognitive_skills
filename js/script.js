@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
           finalScore = window.finalScoreFigures;
           level = window.finalLevelFigures;
       } else if (currentPage.includes("cognitive_skills/")) {
-          finalScore = calculateScore();
+          finalScore = calculateScoreMotivation();
           level = getLevel(finalScore);
       } else {
           console.error("❌ Невідома сторінка! Результати не відправлено.");
@@ -69,4 +69,51 @@ document.addEventListener("DOMContentLoaded", () => {
       if (currentPage.includes("upiznay_fihury.html")) return "lastAttemptFigures";
       return "lastAttemptDefault";
   }
+
+
+
+
+
+
+
+
+function getLastAttemptKey() {
+      const currentPage = window.location.pathname;
+      if (currentPage.includes("cognitive_skills/")) return "lastAttemptMotivation";
+      if (currentPage.includes("matrytsya_ravena.html")) return "lastAttemptRaven";
+      if (currentPage.includes("upiznay_fihury.html")) return "lastAttemptFigures";
+      return "lastAttemptDefault";
+  }
+   function isAllowedToRetry(lastAttemptDate) {
+      const now = new Date();
+      const daysPassed = (now - lastAttemptDate) / (1000 * 60 * 60 * 24);
+      return daysPassed >= 21; // Через 3 тижні
+    }
+
+    function daysUntilRetry(lastAttemptDate) {
+      const now = new Date();
+      const daysPassed = (now - lastAttemptDate) / (1000 * 60 * 60 * 24);
+      return Math.ceil(21 - daysPassed);
+    }
+  // ✅ Перевіряємо, чи можна пройти тест через 3-4 тижні
+  // if (lastAttempt && !isAllowedToRetry(new Date(lastAttempt))) {
+  //   resultEl.innerHTML = ❌ Ви вже проходили тест. Можна повторити через ${daysUntilRetry(new Date(lastAttempt))} днів.;
+  //   sendResultsBtn.disabled = true;
+  //   return;
+  // }
+  function getLastAttemptKey() {
+    const currentPage = window.location.pathname;
+    if (currentPage.includes("cognitive_skills/")) return "lastAttemptMotivation";
+    if (currentPage.includes("matrytsya_ravena.html")) return "lastAttemptRaven";
+    if (currentPage.includes("upiznay_fihury.html")) return "lastAttemptFigures";
+    return "lastAttemptDefault"; // Fallback to prevent undefined
+    // return null; Запобігає помилці
+  }
+
+
+
+
+
+
+  
 });
