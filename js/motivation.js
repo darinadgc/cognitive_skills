@@ -38,7 +38,7 @@ function getLevel(score) {
 // ✅ Виконуємо перевірку перед підрахунком результатів
 const checkResults = checkAllAnsweredMotivation();
 if (checkResults !== null) {
-     
+    
 
     console.log("✅ Надсилаємо:", { score: finalScore, level });
     submitResults(finalScore, level, getEntryIDs());
