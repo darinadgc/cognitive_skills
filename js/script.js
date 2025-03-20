@@ -5,21 +5,41 @@ document.addEventListener("DOMContentLoaded", () => {
   console.log("✅ Обробник події додано до `send-results-btn`.");
   console.log("✅ Виклик submitResults");
 
-  // ✅ Функція для перевірки заповнених питань
-  function checkAllAnswered() {
-      const questions = document.querySelectorAll('input[type="radio"]');
-      const totalQuestions = new Set();
-      let answeredQuestions = new Set();
+  sendResultsBtn.addEventListener("click", () => {  
 
+    const currentPage = window.location.pathname;
+ 
+  
+    if (currentPage.includes("cognitive_skills/")) {
+      if (typeof checkAllAnsweredMotivation === "function") {
+        checkAllAnsweredMotivation();
+    } else {
+        console.error("❌ Функція checkAllAnsweredMotivation не знайдена!");
+    }
+  }  // if currentPage 
+  else {
+    // ✅ Перевірка для інших тестів (фігури, матриця Равена)
+    checkAllAnsweredGeneral();
+} 
+  
+ // ✅ Перевірка заповнених питань для "Фігури" та "Матриця Равена"
+function checkAllAnsweredGeneral() {
+  const questions = document.querySelectorAll('input[type="radio"]');
+  const totalQuestions = new Set();
+  let answeredQuestions = new Set(); 
       questions.forEach((input) => totalQuestions.add(input.name));
       questions.forEach((input) => {
           if (input.checked) answeredQuestions.add(input.name);
-      });
+      });  
+  } // Перевірка заповнених питань для "Фігури" та "Матриця Равена"
 
-      return { totalQuestions, answeredQuestions };
-  }
+  
 
-  sendResultsBtn.addEventListener("click", () => {
+
+
+  
+
+
       const { totalQuestions, answeredQuestions } = checkAllAnswered();
 
       // ✅ Перевіряємо, чи відповіли на всі запитання
@@ -28,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
           return;
       }
 
-      // ✅ Запит імені після перевірки заповнених відповідей
+      // 🏫🧒📛 Після перевірки запитуємо ім'я 
       const studentName = prompt("Введіть ваше ім'я:").trim();
       if (!studentName || studentName.length < 2) {
           alert("❗ Будь ласка, введіть коректне ім'я.");
@@ -39,7 +59,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const cleanedStudentName = studentName.replace(/[^a-zA-ZА-Яа-яЇїІіЄєҐґ0-9' ]/g, "");
 
       // 🕸📄 Визначаємо, який тест запущено
-      const currentPage = window.location.pathname;
       let finalScore, level;
 
       if (currentPage.includes("matrytsya_ravena.html")) {
@@ -60,25 +79,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // ✅ Відправка результатів
       submitResults(finalScore, level, getEntryIDs(), cleanedStudentName);
-  });
+  });//sendResultsBtn click
 
   function getLastAttemptKey() {
-      const currentPage = window.location.pathname;
-      if (currentPage.includes("cognitive_skills/")) return "lastAttemptMotivation";
-      if (currentPage.includes("matrytsya_ravena.html")) return "lastAttemptRaven";
-      if (currentPage.includes("upiznay_fihury.html")) return "lastAttemptFigures";
-      return "lastAttemptDefault";
-  }
-
-
-
-
-
-
-
-
-function getLastAttemptKey() {
-      const currentPage = window.location.pathname;
       if (currentPage.includes("cognitive_skills/")) return "lastAttemptMotivation";
       if (currentPage.includes("matrytsya_ravena.html")) return "lastAttemptRaven";
       if (currentPage.includes("upiznay_fihury.html")) return "lastAttemptFigures";
@@ -109,11 +112,4 @@ function getLastAttemptKey() {
     return "lastAttemptDefault"; // Fallback to prevent undefined
     // return null; Запобігає помилці
   }
-
-
-
-
-
-
-  
 });
