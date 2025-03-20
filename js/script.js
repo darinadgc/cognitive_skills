@@ -132,7 +132,7 @@ sendResultsBtn.addEventListener("click", () => {
             console.error("❌ Функція checkAllAnsweredMotivation не знайдена!");
             return;
         }
-    } else {
+    } else {console.log ("checkAllAnsweredGeneral()");
         checkResults = checkAllAnsweredGeneral();
     }
 
