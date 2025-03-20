@@ -38,28 +38,10 @@ function getLevel(score) {
 }
 
 // ✅ Виконуємо обчислення ТІЛЬКИ після натискання кнопки
-document.addEventListener("DOMContentLoaded", () => {
-    const sendResultsBtn = document.getElementById("send-results-btn");
+// document.addEventListener("DOMContentLoaded", () => {
+//     const sendResultsBtn = document.getElementById("send-results-btn");});
 
-    sendResultsBtn.addEventListener("click", () => {
-        console.log("✅ Натискання кнопки: Перевіряємо відповіді...");
-
-        // Виконуємо перевірку заповнених відповідей
-        const checkResults = checkAllAnsweredMotivation();
-        if (checkResults.totalQuestions.size === checkResults.answeredQuestions.size) {
-
-// ✅ Тільки тепер підраховуємо бали
-        const finalScore = calculateScoreMotivation();
-        const level = getLevel(finalScore);
-
-        console.log("✅ Надсилаємо:", { score: finalScore, level });
-
-        // Викликаємо submitResults з правильними значеннями
-        submitResults(finalScore, level, getEntryIDs());
-        }
-        else  {
-            alert("❗ Будь ласка, відповідайте на всі запитання перед завершенням!");
-            return;
-        }
-    });
-});
+    //sendResultsBtn.addEventListener("click", () => {});
+  
+    //sendResultsBtn click
+//DOMContentLoaded

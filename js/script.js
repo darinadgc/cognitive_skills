@@ -170,6 +170,35 @@ sendResultsBtn.addEventListener("click", () => {
         finalScore = window.finalScoreFigures;
         level = window.finalLevelFigures;
     } else if (currentPage.includes("cognitive_skills/")) {
+
+
+
+        console.log("✅ Натискання кнопки: Перевіряємо відповіді...");
+        // Виконуємо перевірку заповнених відповідей
+                const checkResults = checkAllAnsweredMotivation();
+                
+                if (checkResults.totalQuestions.size === checkResults.answeredQuestions.size) {
+        
+        // ✅ Тільки тепер підраховуємо бали
+                const finalScore = calculateScoreMotivation();
+                const level = getLevel(finalScore);
+        
+                console.log("✅ Надсилаємо:", { score: finalScore, level });
+        
+                // Викликаємо submitResults з правильними значеннями
+                submitResults(finalScore, level, getEntryIDs());
+                }
+                else  {
+                    alert("❗ Будь ласка, відповідайте на всі запитання перед завершенням!");
+                    return;
+                }
+
+
+
+
+
+
+
         finalScore = calculateScoreMotivation();
         level = getLevel(finalScore);
     } else {
