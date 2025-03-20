@@ -3,9 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   window.resultEl = document.getElementById("result");
      sendResultsBtn.addEventListener("click", () => {
 
-window.submitResults = function(finalScore, level) {
-   console.log("✅ Обробник події додано до `send-results-btn`.");
-    console.log("✅ Виклик submitResults");
+
         const currentPage = window.location.pathname;
         let totalQuestions, answeredQuestions;
 
@@ -35,7 +33,9 @@ window.submitResults = function(finalScore, level) {
             alert("❗ Будь ласка, відповідайте на всі запитання перед завершенням!");
             return;
         }
-
+        window.submitResults = function(finalScore, level) {
+            console.log("✅ Обробник події додано до `send-results-btn`.");
+             console.log("✅ Виклик submitResults");
         // 🏫🧒📛 Після перевірки запитуємо ім'я 
         const studentName = prompt("Введіть ваше ім'я:").trim();
         if (!studentName || studentName.length < 2) {
