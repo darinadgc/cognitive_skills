@@ -5,6 +5,52 @@ document.addEventListener("DOMContentLoaded", () => {
     const lastAttempt = localStorage.getItem(lastAttemptKey); // ✅ Оголошуємо lastAttempt
     const lastAttemptDate = lastAttempt ? new Date(lastAttempt) : null;
 
+
+   
+
+
+
+
+
+    window.getEntryIDs = function() {
+        const currentPage = window.location.pathname;
+        console.log("🔹 Визначаємо entry ID для сторінки:", currentPage);
+      
+        if (currentPage.includes("upiznay_fihury.html")) {
+          return {
+            formURL: "https://docs.google.com/forms/d/e/1FAIpQLSfSJTHeQHKjxr-_Nfwr0qC1-5Rinq1xGevQ4i8yFKegE9Wfyw/formResponse",
+            name: "entry.511676966",
+            score: "entry.1332224844",
+            level: "entry.1008291282"
+          };
+        }
+      
+        if (currentPage.includes("matrytsya_ravena.html")) {
+          return {
+            formURL: "https://docs.google.com/forms/u/0/d/e/1FAIpQLSfyylO6_4cpbzuD6THcT95VMAW5R7Foy1qykWDloI7Rew2b1g/formResponse",
+            name: "entry.511676966",
+            score: "entry.1008291282",
+            level: "entry.1332224844"
+          };
+        }
+      
+        if (currentPage.includes("cognitive_skills/")) {
+          return {
+            formURL: "https://docs.google.com/forms/d/e/1FAIpQLSeco-wWwULNG0-L1Qwnxn4tYBtQxinBXjVg4jTB1C2HzZ2KNw/formResponse",
+            name: "entry.511676966",
+            score: "entry.1008291282",
+            level: "entry.1332224844"
+          };
+        }
+      
+        return null;
+      };
+       
+         
+
+
+
+
     console.log("🔹 Остання спроба:", lastAttemptDate);
     console.log("✅ Обробник події додано до `send-results-btn`.");
     
