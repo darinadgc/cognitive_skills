@@ -142,7 +142,13 @@ sendResultsBtn.addEventListener("click", () => {
     }
 
     // Деструктуризація після перевірки
+    if (!checkResults || !checkResults.totalQuestions || !checkResults.answeredQuestions) {
+        console.error("❌ Помилка: `checkResults` повернув `undefined` або `null`.");
+        return;
+    }
+    
     ({ totalQuestions, answeredQuestions } = checkResults);
+    
 
     // ✅ Якщо не відповіли на всі запитання - зупиняємо процес
     if (totalQuestions.size !== answeredQuestions.size) {
@@ -161,7 +167,7 @@ sendResultsBtn.addEventListener("click", () => {
     const cleanedStudentName = studentName.replace(/[^a-zA-ZА-Яа-яЇїІіЄєҐґ0-9' ]/g, "");
 
     // 🕸📄 Визначаємо, який тест запущено
-     let finalScore, level;
+    let finalScore, level;
 
     if (currentPage.includes("matrytsya_ravena.html")) {
         finalScore = calculateScore();
@@ -169,7 +175,7 @@ sendResultsBtn.addEventListener("click", () => {
     } else if (currentPage.includes("upiznay_fihury.html")) {
         finalScore = window.finalScoreFigures;
         level = window.finalLevelFigures;
-    } else if (currentPage.includes("cognitive_skills/")) {console.log("🔹 Викликаємо calculateScoreMotivation...");
+    } else if (currentPage.includes("cognitive_skills/")) {
         finalScore = calculateScoreMotivation();
         level = getLevel(finalScore);
     } else {
