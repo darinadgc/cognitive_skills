@@ -12,10 +12,11 @@ function checkAllAnsweredMotivation() {
 
     if (totalQuestions.size !== answeredQuestions.size) {
         alert("❗ Будь ласка, відповідайте на всі запитання перед завершенням!");
-        return null; // ❗ Повертаємо `null`, щоб уникнути помилок
+        return false;
     }
+    return true;
 
-    return { totalQuestions, answeredQuestions };
+    //return { totalQuestions, answeredQuestions };
 }
 
 // ✅ Якщо всі відповіді є, визначаємо оцінку
