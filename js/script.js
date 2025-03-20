@@ -174,11 +174,11 @@ sendResultsBtn.addEventListener("click", () => {
 
 
         console.log("✅ Натискання кнопки: Перевіряємо відповіді...");
-        // Виконуємо перевірку заповнених відповідей
-                const checkResults = checkAllAnsweredMotivation();
+        
                 
                 if (checkResults.totalQuestions.size === checkResults.answeredQuestions.size) {
-        
+        // Виконуємо перевірку заповнених відповідей
+                const checkResults = checkAllAnsweredMotivation();
         // ✅ Тільки тепер підраховуємо бали
                 const finalScore = calculateScoreMotivation();
                 const level = getLevel(finalScore);
