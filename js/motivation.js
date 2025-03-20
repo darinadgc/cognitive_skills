@@ -49,3 +49,12 @@ console.log("🔹 Визначений рівень:", level);
 //     console.log("✅ Надсилаємо:", { score: finalScore, level });
 //     submitResults(finalScore, level, getEntryIDs());
 // }
+console.log("🔹 Викликаємо calculateScoreMotivation...");
+const finalScore = calculateScoreMotivation();
+console.log("🔹 Отриманий бал:", finalScore);
+
+// ✅ Переконайтеся, що `finalScore` не `undefined`
+if (isNaN(finalScore)) {
+    console.error("❌ Помилка: `finalScore` має некоректне значення!");
+    return;
+}
