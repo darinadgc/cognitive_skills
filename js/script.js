@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // ✅ Відправка результатів
         submitResults(finalScore, level, getEntryIDs(), cleanedStudentName);
     });
-});
+
 
 // ✅ Функція перевірки заповнених питань для Фігур та Матриці Равена
 function checkAllAnsweredGeneral() {
