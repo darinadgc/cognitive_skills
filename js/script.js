@@ -1,11 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const sendResultsBtn = document.getElementById("send-results-btn");
-  window.resultEl = document.getElementById("result");
+    const sendResultsBtn = document.getElementById("send-results-btn");
+    window.resultEl = document.getElementById("result");
 
-  console.log("✅ Обробник події додано до `send-results-btn`.");
-  console.log("✅ Виклик submitResults");
+    console.log("✅ Обробник події додано до `send-results-btn`.");
+    console.log("✅ Виклик submitResults");
 
-  sendResultsBtn.addEventListener("click", () => {  
+    sendResultsBtn.addEventListener("click", () => {  
         const currentPage = window.location.pathname;
         let totalQuestions, answeredQuestions;
 
@@ -38,6 +38,16 @@ document.addEventListener("DOMContentLoaded", () => {
         // ✅ Фільтр символів у імені
         const cleanedStudentName = studentName.replace(/[^a-zA-ZА-Яа-яЇїІіЄєҐґ0-9' ]/g, "");
 
+        // ✅ Перевірка можливості повторного проходження тесту
+        const lastAttemptKey = getLastAttemptKey();
+        const lastAttempt = localStorage.getItem(lastAttemptKey);
+        const lastAttemptDate = lastAttempt ? new Date(lastAttempt) : null;
+
+        if (lastAttemptDate && !isAllowedToRetry(lastAttemptDate)) {
+            alert(`❌ Ви вже проходили тест. Можна повторити через ${daysUntilRetry(lastAttemptDate)} днів.`);
+            return;
+        }
+
         // 🕸📄 Визначаємо, який тест запущено
         let finalScore, level;
 
@@ -59,55 +69,49 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // ✅ Відправка результатів
         submitResults(finalScore, level, getEntryIDs(), cleanedStudentName);
+
+        // ✅ Зберігаємо дату останньої спроби
+        localStorage.setItem(lastAttemptKey, new Date().toISOString());
     });
 
+    // ✅ Функція перевірки заповнених питань для Фігур та Матриці Равена
+    function checkAllAnsweredGeneral() {
+        const questions = document.querySelectorAll('input[type="radio"]');
+        const totalQuestions = new Set();
+        let answeredQuestions = new Set(); 
 
-// ✅ Функція перевірки заповнених питань для Фігур та Матриці Равена
-function checkAllAnsweredGeneral() {
-    const questions = document.querySelectorAll('input[type="radio"]');
-    const totalQuestions = new Set();
-    let answeredQuestions = new Set(); 
+        questions.forEach((input) => totalQuestions.add(input.name));
+        questions.forEach((input) => {
+            if (input.checked) answeredQuestions.add(input.name);
+        });
 
-    questions.forEach((input) => totalQuestions.add(input.name));
-    questions.forEach((input) => {
-        if (input.checked) answeredQuestions.add(input.name);
-    });
-
-    return { totalQuestions, answeredQuestions };
-}
-
-    
- 
-
-  function getLastAttemptKey() {
-      if (currentPage.includes("cognitive_skills/")) return "lastAttemptMotivation";
-      if (currentPage.includes("matrytsya_ravena.html")) return "lastAttemptRaven";
-      if (currentPage.includes("upiznay_fihury.html")) return "lastAttemptFigures";
-      return "lastAttemptDefault";
-  }
-   function isAllowedToRetry(lastAttemptDate) {
-      const now = new Date();
-      const daysPassed = (now - lastAttemptDate) / (1000 * 60 * 60 * 24);
-      return daysPassed >= 21; // Через 3 тижні
+        return { totalQuestions, answeredQuestions };
     }
 
-    function daysUntilRetry(lastAttemptDate) {
-      const now = new Date();
-      const daysPassed = (now - lastAttemptDate) / (1000 * 60 * 60 * 24);
-      return Math.ceil(21 - daysPassed);
+    // ✅ Функція для отримання ключа останньої спроби
+    function getLastAttemptKey() {
+        const currentPage = window.location.pathname;
+        if (currentPage.includes("cognitive_skills/")) return "lastAttemptMotivation";
+        if (currentPage.includes("matrytsya_ravena.html")) return "lastAttemptRaven";
+        if (currentPage.includes("upiznay_fihury.html")) return "lastAttemptFigures";
+        return "lastAttemptDefault"; // Fallback для запобігання помилок
     }
-  // ✅ Перевіряємо, чи можна пройти тест через 3-4 тижні
+
+    // ✅ Функція перевірки, чи можна повторно проходити тест
+    function isAllowedToRetry(lastAttemptDate) {
+        const now = new Date();
+        const daysPassed = (now - lastAttemptDate) / (1000 * 60 * 60 * 24);
+        return daysPassed >= 21; // Можна пройти знову через 3 тижні
+    }
+// ✅ Перевіряємо, чи можна пройти тест через 3-4 тижні
   // if (lastAttempt && !isAllowedToRetry(new Date(lastAttempt))) {
-  //   resultEl.innerHTML = ❌ Ви вже проходили тест. Можна повторити через ${daysUntilRetry(new Date(lastAttempt))} днів.;
-  //   sendResultsBtn.disabled = true;
-  //   return;
+  // resultEl.innerHTML = ❌ Ви вже проходили тест. Можна повторити через ${daysUntilRetry(new Date(lastAttempt))} днів.;
+  // sendResultsBtn.disabled = true;// return;
   // }
-  function getLastAttemptKey() {
-    const currentPage = window.location.pathname;
-    if (currentPage.includes("cognitive_skills/")) return "lastAttemptMotivation";
-    if (currentPage.includes("matrytsya_ravena.html")) return "lastAttemptRaven";
-    if (currentPage.includes("upiznay_fihury.html")) return "lastAttemptFigures";
-    return "lastAttemptDefault"; // Fallback to prevent undefined
-    // return null; Запобігає помилці
-  }
+    // ✅ Функція підрахунку, скільки днів залишилося до повторного проходження
+    function daysUntilRetry(lastAttemptDate) {
+        const now = new Date();
+        const daysPassed = (now - lastAttemptDate) / (1000 * 60 * 60 * 24);
+        return Math.ceil(21 - daysPassed);
+    }
 });
