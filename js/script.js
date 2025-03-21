@@ -110,16 +110,9 @@ sendResultsBtn.addEventListener("click", () => {
     const currentPage = window.location.pathname;
     let totalQuestions, answeredQuestions, finalScore, level;
     
-
-   
-    // ✅ Якщо не відповіли на всі запитання - зупиняємо процес
-    if (totalQuestions.size !== answeredQuestions.size) {
-        alert("❗ Будь ласка, відповідайте на всі запитання перед завершенням!");
-        return;
-    }
-    console.log("🔹 Загальна кількість питань:", checkResults.totalQuestions.size);
-    console.log("🔹 Відповіді:", checkResults.answeredQuestions.size);
-    // 🏫🧒📛 Після перевірки запитуємо ім'я  
+//  🏫🧒📛  Функція для запиту імені студента
+window.askStudentName = function () {
+ 
     const studentName = prompt("Введіть ваше ім'я:").trim();
     if (!studentName || studentName.length < 2) {
         alert("❗ Будь ласка, введіть коректне ім'я.");
@@ -129,20 +122,43 @@ sendResultsBtn.addEventListener("click", () => {
     // ✅ Фільтр символів у імені
     const cleanedStudentName = studentName.replace(/[^a-zA-ZА-Яа-яЇїІіЄєҐґ0-9' ]/g, "");
 
+}
     // 🕸📄 Визначаємо, який тест запущено
-
     if (currentPage.includes("matrytsya_ravena.html")) {
-        finalScore = calculateScore();
+        // ✅ Запитуємо ім'я перед підрахунком балів
+        let studentName = askStudentName();
+        if (!studentName) return; // ❌ Якщо ім'я некоректне — зупиняємо виконання
+
+        console.log("✅ Ім'я студента:", studentName);
+ finalScore = calculateScore();
         level = calculateLevelRaven(finalScore);
     } 
 else if (currentPage.includes("upiznay_fihury.html")) {
+ // ✅ Запитуємо ім'я перед підрахунком балів
+ let studentName = askStudentName();
+ if (!studentName) return; // ❌ Якщо ім'я некоректне — зупиняємо виконання
+
+ console.log("✅ Ім'я студента:", studentName);
+
         finalScore = window.finalScoreFigures;
         level = window.finalLevelFigures;
     } 
 else if (currentPage.includes("cognitive_skills/")) {
         console.log("✅ Натискання кнопки: Перевіряємо відповіді...");
-                if (checkResults.totalQuestions.size === checkResults.answeredQuestions.size) {
-        // Виконуємо перевірку заповнених відповідей
+                    // ✅ Якщо не відповіли на всі запитання - зупиняємо процес
+    /* if (totalQuestions.size !== answeredQuestions.size) {
+        alert("❗ Будь ласка, відповідайте на всі запитання перед завершенням!");
+        return;
+    } */
+if (checkResults.totalQuestions.size === checkResults.answeredQuestions.size) {
+    console.log("🔹 Загальна кількість питань:", checkResults.totalQuestions.size);
+    console.log("🔹 Відповіді:", checkResults.answeredQuestions.size);        // Виконуємо перевірку заповнених відповідей
+ // ✅ Запитуємо ім'я перед підрахунком балів
+ let studentName = askStudentName();
+ if (!studentName) return; // ❌ Якщо ім'я некоректне — зупиняємо виконання
+
+ console.log("✅ Ім'я студента:", studentName);
+
                 const checkResults = checkAllAnsweredMotivation();
         // ✅ Тільки тепер підраховуємо бали
                 const finalScore = calculateScoreMotivation();
@@ -156,7 +172,6 @@ else if (currentPage.includes("cognitive_skills/")) {
     }
     // Деструктуризація після перевірки
     ({ totalQuestions, answeredQuestions } = checkResults);
-
                 console.log("✅ Надсилаємо:", { score: finalScore, level });
 
         
