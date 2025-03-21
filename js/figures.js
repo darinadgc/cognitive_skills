@@ -2,10 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const figureTaskEl = document.getElementById("figure-task");
   const startBtn = document.getElementById("start-btn");
   const timerEl = document.getElementById("timer");
-  const sendResultsBtn = document.getElementById("send-results-btn");
-  const resultEl = document.getElementById("result");
 
-  const scriptURL = "https://script.google.com/macros/s/AKfycbx3DpCTxIebDudI6lqbYn5RORggDtBne7R-p2kjeOvndfb7eT7cvCSbrWHgiWE0p8_wew/exec";
 
   const tasks = [
     { id: 1, image: "img/upiznay_fihury/upiznay_fihury1.png", correct: 2 },
@@ -27,7 +24,6 @@ document.addEventListener("DOMContentLoaded", () => {
   let timerInterval;
 
   startBtn.addEventListener("click", startTest);
-  sendResultsBtn.addEventListener("click", submitResults);
 
   function startTest() {
     unansweredTasks = [...tasks];
@@ -112,13 +108,13 @@ window.calculateLevelFigures = function(score) {
     if (score >= 2) return "Низький";
     return "Дуже низький";
 };
-
+//🏁finishTest
   function finishTest() {
     clearInterval(timerInterval);
     resultEl.innerHTML = "🛑 Тест завершено! Натисніть 'Надіслати результат'.";
     figureTaskEl.innerHTML = "";
     sendResultsBtn.style.display = "block";
-  }
+  }//🏁finishTest
 
   // function handleSendResults() {
   //   const studentName = prompt("Введіть ваше ім'я:");
@@ -136,17 +132,6 @@ window.calculateLevelFigures = function(score) {
   //   // ✅ Приховуємо кнопку після надсилання
   //   sendResultsBtn.style.display = "none";
   // }
-  sendResultsBtn.addEventListener("click", () => {
-    const studentName = prompt("Введіть ваше ім'я:");
   
-    if (!studentName || studentName.trim() === "") {
-      alert("❗ Будь ласка, введіть ім'я.");
-      return;
-    }
   
-    const finalScore = score; 
-    const level = calculateLevelFigures(finalScore); 
-    submitResults(finalScore, level, getEntryIDs(), studentName);
-  });
-  
-});
+});//DOMContentLoaded

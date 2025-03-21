@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   const taskContainer = document.getElementById("task-container");
   const startBtn = document.getElementById("start-btn");
-  const sendResultsBtn = document.getElementById("send-results-btn");
   const timerEl = document.getElementById("timer");
 
   let currentTaskIndex = 0;
@@ -71,7 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.getElementById("next-btn").addEventListener("click", checkAnswer);
   }
-
+//✅ checkAnswer
   function checkAnswer() {
     const selectedOption = document.querySelector('input[name="task"]:checked');
     if (!selectedOption) {
@@ -90,31 +89,13 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
       finishTest();
     }
-  }
-
+  }//✅ checkAnswer
+//🏁finishTest
   function finishTest() {
     clearInterval(timerInterval);
     window.resultEl.innerHTML = "🛑 Тест завершено! Натисніть 'Надіслати результат'.";
     taskContainer.innerHTML = "";
     sendResultsBtn.style.display = "block";
-  }
-  sendResultsBtn.addEventListener("click", () => {
-    const studentName = prompt("Введіть ваше ім'я:");
+  }//🏁finishTest
   
-    if (!studentName || studentName.trim() === "") {
-      alert("❗ Будь ласка, введіть ім'я.");
-      return;
-    }
-  const finalScore = score;
-    window.calculateLevelRaven = function(score) {
-    if (score === 10) return "Дуже високий";
-    if (score >= 8) return "Високий";
-    if (score >= 4) return "Середній";
-    if (score >= 2) return "Низький";
-    return "Дуже низький";
-};
- 
-    const level = calculateLevelRaven(finalScore); 
-    submitResults(finalScore, level, getEntryIDs(), studentName);
-  });
 });
