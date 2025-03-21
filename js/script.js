@@ -78,12 +78,6 @@ window.submitResults = function(finalScore, level, entryIDs, cleanedStudentName)
     }
 
     console.log("🔹 Отримані entry IDs:", entryIDs);
-console.log("🔹 Перевірка перед відправкою:");
-    
-console.log("🔹 Ім'я:", cleanedStudentName);
-console.log("🔹 Бал:", finalScore);
-console.log("🔹 Рівень:", level);
-console.log("🔹 Entry IDs:", entryIDs);
 
     const formData = new URLSearchParams();
     formData.append(entryIDs.name, cleanedStudentName);
@@ -93,14 +87,18 @@ console.log("🔹 Entry IDs:", entryIDs);
     console.log("🔹 Надсилаємо:", Object.fromEntries(formData));
 
     fetch(entryIDs.formURL, {
-    method: "POST",
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: formData
-
-.then(response => response.text()) // Отримуємо відповідь
-.then(text => console.log("🔹 Відповідь Google Forms:", text)) // Друкуємо відповідь
-.catch(error => console.error("❌ Помилка надсилання:", error));
-
+        method: "POST",
+        mode: "no-cors", // Запобігає CORS-блокуванню
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: formData
+    })
+    .then(() => {
+        console.log("✅ Успішно надіслано!");
+        alert("✅ Дані успішно надіслані у Google Forms!");
+        document.getElementById("send-results-btn").style.display = "none";
+    })
+    .catch(error => {
+        console.error("❌ Помилка надсилання:", error);
         alert("❌ Не вдалося надіслати результати. Будь ласка, спробуйте ще раз.");
     })
     .finally(() => {
