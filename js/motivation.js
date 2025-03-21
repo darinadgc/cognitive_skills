@@ -2,12 +2,12 @@ window.checkAllAnsweredMotivation = function() {
     const questions = document.querySelectorAll('input[type="radio"]');
     window.totalQuestions = new Set();
     window.answeredQuestions = new Set();
-
     questions.forEach((input) => totalQuestions.add(input.value));
     questions.forEach((input) => {
         if (input.checked) {
             answeredQuestions.add(input.value);
         }
+console.log("🔹 Обчислений бал:", finalScore); // Додано для перевірки
     });
 
     console.log("🔹 Загальна кількість питань:", totalQuestions.size);
