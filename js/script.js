@@ -62,7 +62,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-console.log("🔹 Перед відправкою:", { finalScore, level });
 
 
 window.submitResults = function(finalScore, level, entryIDs, cleanedStudentName) {
@@ -115,7 +114,8 @@ fetch(entryIDs.formURL, {
     //     window.isSubmitting = false;
     // });
 };//✅ Виклик submitResults
-sendResultsBtn.addEventListener("click", () => {
+sendResultsBtn.addEventListener("click", () => {console.log("🔹 Перед відправкою:", { finalScore, level });
+
     console.log("Виклик submitResults");
     const currentPage = window.location.pathname;
     let finalScore, level;
