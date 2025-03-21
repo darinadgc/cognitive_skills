@@ -138,27 +138,26 @@ window.askStudentName = function () {
 
     // 🕸📄 Визначаємо, який тест запущено
     if (currentPage.includes("matrytsya_ravena.html")) {
-console.log("🔹 Викликаємо askStudentName()...");
-let sendStudentName = askStudentName();
+
+
+         // ✅ Запитуємо ім'я перед підрахунком балів
+  let sendStudentName = askStudentName();
 if (!sendStudentName) {
     console.error("❌ askStudentName() повернула `null`. Виконання зупинено.");
     return;
 }
 console.log("✅ Ім'я студента:", studentName);
-
-         // ✅ Запитуємо ім'я перед підрахунком балів
-        let sendStudentName = askStudentName();
-        if (!sendStudentName) return; // ❌ Якщо ім'я некоректне — зупиняємо виконання
-       console.log("✅ Ім'я студента:", sendStudentName);
  finalScore = calculateScore();
         level = calculateLevelRaven(finalScore);
     } 
 else if (currentPage.includes("upiznay_fihury.html")) {
  // ✅ Запитуємо ім'я перед підрахунком балів
  let sendStudentName = askStudentName();
- if (!sendStudentName) return; // ❌ Якщо ім'я некоректне — зупиняємо виконання
-
- console.log("✅ Ім'я студента:", sendStudentName);
+if (!sendStudentName) {
+    console.error("❌ askStudentName() повернула `null`. Виконання зупинено.");
+    return;
+}
+console.log("✅ Ім'я студента:", studentName);
 
         finalScore = window.finalScoreFigures;
         level = window.finalLevelFigures;
@@ -176,10 +175,12 @@ if (checkResults.totalQuestions.size === checkResults.answeredQuestions.size) {
     console.log("🔹 Загальна кількість питань:", checkResults.totalQuestions.size);
     console.log("🔹 Відповіді:", checkResults.answeredQuestions.size);        // Виконуємо перевірку заповнених відповідей
  // ✅ Запитуємо ім'я перед підрахунком балів
- let studentName = askStudentName();
- if (!studentName) return; // ❌ Якщо ім'я некоректне — зупиняємо виконання
-
- console.log("✅ Ім'я студента:", studentName);
+let sendStudentName = askStudentName();
+if (!sendStudentName) {
+    console.error("❌ askStudentName() повернула `null`. Виконання зупинено.");
+    return;
+}
+console.log("✅ Ім'я студента:", studentName);
 
         // ✅ Тільки тепер підраховуємо бали
                 const finalScore = calculateScoreMotivation();console.log("🔹 Обчислений бал:", finalScore); // Додано для перевірки
