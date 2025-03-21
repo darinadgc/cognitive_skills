@@ -93,18 +93,14 @@ console.log("🔹 Entry IDs:", entryIDs);
     console.log("🔹 Надсилаємо:", Object.fromEntries(formData));
 
     fetch(entryIDs.formURL, {
-        method: "POST",
-        mode: "no-cors", // Запобігає CORS-блокуванню
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: formData
-    })
-    .then(() => {
-        console.log("✅ Успішно надіслано!");
-        alert("✅ Дані успішно надіслані у Google Forms!");
-        document.getElementById("send-results-btn").style.display = "none";
-    })
-    .catch(error => {
-        console.error("❌ Помилка надсилання:", error);
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: formData
+})
+.then(response => response.text()) // Отримуємо відповідь
+.then(text => console.log("🔹 Відповідь Google Forms:", text)) // Друкуємо відповідь
+.catch(error => console.error("❌ Помилка надсилання:", error));
+
         alert("❌ Не вдалося надіслати результати. Будь ласка, спробуйте ще раз.");
     })
     .finally(() => {
