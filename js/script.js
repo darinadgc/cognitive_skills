@@ -106,50 +106,88 @@ window.submitResults = function(finalScore, level, entryIDs, cleanedStudentName)
     });
 };//✅ Виклик submitResults
 sendResultsBtn.addEventListener("click", () => {
-    console.log("✅ Натискання кнопки: Перевіряємо відповіді...");
-
+    console.log("Виклик submitResults");
     const currentPage = window.location.pathname;
-    let finalScore, level;
+    let totalQuestions, answeredQuestions, finalScore, level;
+    
 
+    // ✅ Перевірка тесту та заповнених питань після натискання кнопки
+    let checkResults;
     if (currentPage.includes("cognitive_skills/")) {
-        // ✅ Перевірка заповнених питань тільки для тесту "Мотивація"
         if (typeof checkAllAnsweredMotivation === "function") {
-            let checkResults = checkAllAnsweredMotivation();
-            if (!checkResults || checkResults.totalQuestions.size !== checkResults.answeredQuestions.size) {
-                alert("❗ Будь ласка, відповідайте на всі запитання перед завершенням!");
-                return;
-            }
+            checkResults = checkAllAnsweredMotivation();
         } else {
             console.error("❌ Функція checkAllAnsweredMotivation не знайдена!");
             return;
         }
-
-        finalScore = calculateScoreMotivation();
+finalScore = calculateScoreMotivation();
         level = getLevel(finalScore);
-    } else if (currentPage.includes("matrytsya_ravena.html")) {
-        finalScore = calculateScore();
-        level = calculateLevelRaven(finalScore);
-    } else if (currentPage.includes("upiznay_fihury.html")) {
-        finalScore = window.finalScoreFigures;
-        level = window.finalLevelFigures;
-    } else {
-        console.error("❌ Невідома сторінка! Результати не відправлено.");
+    } 
+    // ❗ Запобігаємо помилці, якщо функція повернула null або undefined
+    if (!checkResults || !checkResults.totalQuestions || !checkResults.answeredQuestions) {
+        console.error("❌ Помилка: `checkResults` повернув `undefined` або `null`.");return;
+    }
+
+    // Деструктуризація після перевірки
+    ({ totalQuestions, answeredQuestions } = checkResults);
+
+    // ✅ Якщо не відповіли на всі запитання - зупиняємо процес
+    if (totalQuestions.size !== answeredQuestions.size) {
+        alert("❗ Будь ласка, відповідайте на всі запитання перед завершенням!");
         return;
     }
 
-    // 🏫🧒📛 Запитуємо ім'я тільки після перевірки відповідей
+    // 🏫🧒📛 Після перевірки запитуємо ім'я  
     const studentName = prompt("Введіть ваше ім'я:").trim();
     if (!studentName || studentName.length < 2) {
         alert("❗ Будь ласка, введіть коректне ім'я.");
         return;
     }
+
+    // ✅ Фільтр символів у імені
     const cleanedStudentName = studentName.replace(/[^a-zA-ZА-Яа-яЇїІіЄєҐґ0-9' ]/g, "");
+
+    // 🕸📄 Визначаємо, який тест запущено
+
+    if (currentPage.includes("matrytsya_ravena.html")) {
+        finalScore = calculateScore();
+        level = calculateLevelRaven(finalScore);
+    } 
+else if (currentPage.includes("upiznay_fihury.html")) {
+        finalScore = window.finalScoreFigures;
+        level = window.finalLevelFigures;
+    } 
+else if (currentPage.includes("cognitive_skills/")) {
+
+        console.log("✅ Натискання кнопки: Перевіряємо відповіді...");
+                if (checkResults.totalQuestions.size === checkResults.answeredQuestions.size) {
+        // Виконуємо перевірку заповнених відповідей
+                const checkResults = checkAllAnsweredMotivation();
+        // ✅ Тільки тепер підраховуємо бали
+                const finalScore = calculateScoreMotivation();
+                const level = getLevel(finalScore);
+        
+                console.log("✅ Надсилаємо:", { score: finalScore, level });
+        
+                // Викликаємо submitResults з правильними значеннями
+                submitResults(finalScore, level, getEntryIDs());
+                }
+                else  {
+                    alert("❗ Будь ласка, відповідайте на всі запитання перед завершенням!");
+                    return;
+                }        
+        finalScore = calculateScoreMotivation();
+        level = getLevel(finalScore);
+    } else {
+        console.error("❌ Невідома сторінка! Результати не відправлено.");
+        return;
+    }
 
     console.log("🔹 Надсилаємо:", { name: cleanedStudentName, score: finalScore, level });
 
+    // ✅ Відправка результатів
     submitResults(finalScore, level, getEntryIDs(), cleanedStudentName);
-});//sendResultsBtn click 
-               
+});//sendResultsBtn click                
 
 
 
