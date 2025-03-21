@@ -182,8 +182,9 @@ if (checkResults.totalQuestions.size === checkResults.answeredQuestions.size) {
     if (!checkResults || !checkResults.totalQuestions || !checkResults.answeredQuestions) {
         console.error("❌ Помилка: `checkResults` повернув `undefined` або `null`.");return;
     }
-    // Деструктуризація після перевірки
-    ({ totalQuestions, answeredQuestions } = checkResults);
+    // Деструктуризація після перевірки({ totalQuestions, answeredQuestions } = checkResults);
+    const { totalQuestions, answeredQuestions, score } = checkAllAnsweredMotivation();
+
                 console.log("✅ Надсилаємо:", { score: finalScore, level });
 
         
@@ -207,6 +208,7 @@ if (checkResults.totalQuestions.size === checkResults.answeredQuestions.size) {
         console.error("❌ Невідома сторінка! Результати не відправлено.");
         return;
     }
+const level = getLevel(score);
 
     console.log("🔹 Надсилаємо:", { name: cleanedStudentName, score: finalScore, level });
 
