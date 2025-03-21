@@ -120,14 +120,15 @@ sendResultsBtn.addEventListener("click", () => {
             console.error("❌ Функція checkAllAnsweredMotivation не знайдена!");
             return;
         }
-finalScore = calculateScoreMotivation();
-        level = getLevel(finalScore);
-    } 
+     finalScore = calculateScoreMotivation();
+     level = getLevel(finalScore);
+     console.log("✅ Обчислений бал:", finalScore);
+     console.log("✅ Визначений рівень:", level);
+} 
     // ❗ Запобігаємо помилці, якщо функція повернула null або undefined
     if (!checkResults || !checkResults.totalQuestions || !checkResults.answeredQuestions) {
         console.error("❌ Помилка: `checkResults` повернув `undefined` або `null`.");return;
     }
-
     // Деструктуризація після перевірки
     ({ totalQuestions, answeredQuestions } = checkResults);
 
@@ -136,7 +137,8 @@ finalScore = calculateScoreMotivation();
         alert("❗ Будь ласка, відповідайте на всі запитання перед завершенням!");
         return;
     }
-
+    console.log("🔹 Загальна кількість питань:", checkResults.totalQuestions.size);
+    console.log("🔹 Відповіді:", checkResults.answeredQuestions.size);
     // 🏫🧒📛 Після перевірки запитуємо ім'я  
     const studentName = prompt("Введіть ваше ім'я:").trim();
     if (!studentName || studentName.length < 2) {
