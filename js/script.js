@@ -96,7 +96,7 @@ console.log("🔹 Entry IDs:", entryIDs);
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
     body: formData
-})
+
 .then(response => response.text()) // Отримуємо відповідь
 .then(text => console.log("🔹 Відповідь Google Forms:", text)) // Друкуємо відповідь
 .catch(error => console.error("❌ Помилка надсилання:", error));
