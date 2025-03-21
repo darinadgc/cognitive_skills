@@ -27,10 +27,9 @@ window.checkAllAnsweredMotivation = function() {
             score+=(parseInt(checkedAnswers[i].value));
          }
          return score; 
-        }
-    console.log("🔹 Обчислений бал:", score);
-    return score;
-}
+           console.log("🔹 Обчислений бал:", score);
+ }
+   
 
 function getLevel(score) {
     if (score > 13) return "Високий";
