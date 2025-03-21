@@ -157,7 +157,7 @@ if (!sendStudentName) {
     console.error("❌ askStudentName() повернула `null`. Виконання зупинено.");
     return;
 }
-console.log("✅ Ім'я студента:", studentName);
+console.log("✅ Ім'я студента:", sendStudentName);
 
         finalScore = window.finalScoreFigures;
         level = window.finalLevelFigures;
