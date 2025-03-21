@@ -33,18 +33,11 @@ window.checkAllAnsweredMotivation = function() {
 }
 
 function getLevel(score) {
-    score = parseInt(score); // Переконуємось, що це число
-
-    if (score <= 7) {
-        return "Низький";
-    } 
-    else if (score > 7 && score <= 13) {
-        return "Середній";
-    } 
-    else {
-        return "Високий";
-    }
+    if (score > 13) return "Високий";
+    if (score > 7) return "Середній";
+    return "Низький";
 }
+
 
 
 // ✅ Виконуємо обчислення ТІЛЬКИ після натискання кнопки
