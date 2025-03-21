@@ -118,7 +118,7 @@ sendResultsBtn.addEventListener("click", () => {
 
     console.log("Виклик submitResults");
     const currentPage = window.location.pathname;
-    let finalScore, level;
+    let finalScore;
     
 //  🏫🧒📛  Функція для запиту імені студента
 window.askStudentName = function () {
