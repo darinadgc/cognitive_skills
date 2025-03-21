@@ -84,7 +84,6 @@ console.log("🔹 Ім'я:", cleanedStudentName);
 console.log("🔹 Бал:", finalScore);
 console.log("🔹 Рівень:", level);
 console.log("🔹 Entry IDs:", entryIDs);
-console.log("🔹 Надсилаємо:", Object.fromEntries(formData));
 
     const formData = new URLSearchParams();
     formData.append(entryIDs.name, cleanedStudentName);
