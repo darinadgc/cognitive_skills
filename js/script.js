@@ -183,7 +183,7 @@ if (!sendStudentName) {
 console.log("✅ Ім'я студента:", sendStudentName);
 
         // ✅ Тільки тепер підраховуємо бали
-                const finalScore = calculateScoreMotivation();console.log("🔹 Обчислений бал:", finalScore); // Додано для перевірки
+                const finalScore = getLevel();console.log("🔹 Обчислений бал:", finalScore); // Додано для перевірки
 
                 const level = getLevel(finalScore);
          // ✅ Перевірка тесту та заповнених питань після натискання кнопки
