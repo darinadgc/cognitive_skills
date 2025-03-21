@@ -111,17 +111,7 @@ sendResultsBtn.addEventListener("click", () => {
     let totalQuestions, answeredQuestions, finalScore, level;
     
 
-    // ✅ Перевірка тесту та заповнених питань після натискання кнопки
-    let checkResults;
-
-    // if (currentPage.includes("cognitive_skills/")) {} 
-    // ❗ Запобігаємо помилці, якщо функція повернула null або undefined
-    if (!checkResults || !checkResults.totalQuestions || !checkResults.answeredQuestions) {
-        console.error("❌ Помилка: `checkResults` повернув `undefined` або `null`.");return;
-    }
-    // Деструктуризація після перевірки
-    ({ totalQuestions, answeredQuestions } = checkResults);
-
+   
     // ✅ Якщо не відповіли на всі запитання - зупиняємо процес
     if (totalQuestions.size !== answeredQuestions.size) {
         alert("❗ Будь ласка, відповідайте на всі запитання перед завершенням!");
@@ -157,7 +147,16 @@ else if (currentPage.includes("cognitive_skills/")) {
         // ✅ Тільки тепер підраховуємо бали
                 const finalScore = calculateScoreMotivation();
                 const level = getLevel(finalScore);
-        
+         // ✅ Перевірка тесту та заповнених питань після натискання кнопки
+
+    // if (currentPage.includes("cognitive_skills/")) {} 
+    // ❗ Запобігаємо помилці, якщо функція повернула null або undefined
+    if (!checkResults || !checkResults.totalQuestions || !checkResults.answeredQuestions) {
+        console.error("❌ Помилка: `checkResults` повернув `undefined` або `null`.");return;
+    }
+    // Деструктуризація після перевірки
+    ({ totalQuestions, answeredQuestions } = checkResults);
+
                 console.log("✅ Надсилаємо:", { score: finalScore, level });
 
         
