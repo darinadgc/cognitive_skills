@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const sendResultsBtn = document.getElementById("send-results-btn");
+    window.sendResultsBtn = document.getElementById("send-results-btn");
     window.resultEl = document.getElementById("result");
     const lastAttemptKey = getLastAttemptKey(); // ✅ Отримуємо ключ для LocalStorage
     const lastAttempt = localStorage.getItem(lastAttemptKey); // ✅ Оголошуємо lastAttempt
