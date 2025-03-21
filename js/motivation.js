@@ -32,10 +32,19 @@ function calculateScoreMotivation() {
 }
 
 function getLevel(score) {
-    if (score >= 14) return "Високий";
-    if (score >= 7) return "Середній";
-    return "Низький";
+    score = parseInt(score); // Переконуємось, що це число
+
+    if (score <= 7) {
+        return "Низький";
+    } 
+    else if (score > 7 && score <= 13) {
+        return "Середній";
+    } 
+    else {
+        return "Високий";
+    }
 }
+
 
 // ✅ Виконуємо обчислення ТІЛЬКИ після натискання кнопки
 // document.addEventListener("DOMContentLoaded", () => {
