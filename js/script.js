@@ -148,7 +148,7 @@ if (!sendStudentName) {
 }
 console.log("✅ Ім'я студента:", studentName);
  finalScore = calculateScore();
-        level = calculateLevelRaven(finalScore);
+        const level = calculateLevelRaven(finalScore);
     } 
 else if (currentPage.includes("upiznay_fihury.html")) {
  // ✅ Запитуємо ім'я перед підрахунком балів
@@ -160,7 +160,7 @@ if (!sendStudentName) {
 console.log("✅ Ім'я студента:", sendStudentName);
 
         finalScore = window.finalScoreFigures;
-        level = window.finalLevelFigures;
+        const level = window.finalLevelFigures;
     } 
 else if (currentPage.includes("cognitive_skills/")) {
                         const checkResults = checkAllAnsweredMotivation();
