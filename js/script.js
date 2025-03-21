@@ -113,18 +113,8 @@ sendResultsBtn.addEventListener("click", () => {
 
     // ✅ Перевірка тесту та заповнених питань після натискання кнопки
     let checkResults;
-    if (currentPage.includes("cognitive_skills/")) {
-        if (typeof checkAllAnsweredMotivation === "function") {
-            checkResults = checkAllAnsweredMotivation();
-        } else {
-            console.error("❌ Функція checkAllAnsweredMotivation не знайдена!");
-            return;
-        }
-     finalScore = calculateScoreMotivation();
-     level = getLevel(finalScore);
-     console.log("✅ Обчислений бал:", finalScore);
-     console.log("✅ Визначений рівень:", level);
-} 
+
+    // if (currentPage.includes("cognitive_skills/")) {} 
     // ❗ Запобігаємо помилці, якщо функція повернула null або undefined
     if (!checkResults || !checkResults.totalQuestions || !checkResults.answeredQuestions) {
         console.error("❌ Помилка: `checkResults` повернув `undefined` або `null`.");return;
@@ -160,7 +150,6 @@ else if (currentPage.includes("upiznay_fihury.html")) {
         level = window.finalLevelFigures;
     } 
 else if (currentPage.includes("cognitive_skills/")) {
-
         console.log("✅ Натискання кнопки: Перевіряємо відповіді...");
                 if (checkResults.totalQuestions.size === checkResults.answeredQuestions.size) {
         // Виконуємо перевірку заповнених відповідей
@@ -170,7 +159,16 @@ else if (currentPage.includes("cognitive_skills/")) {
                 const level = getLevel(finalScore);
         
                 console.log("✅ Надсилаємо:", { score: finalScore, level });
+
         
+                if (typeof checkAllAnsweredMotivation === "function") {
+                    checkResults = checkAllAnsweredMotivation();
+                } else {
+                    console.error("❌ Функція checkAllAnsweredMotivation не знайдена!");
+                    return;
+                }
+             console.log("✅ Обчислений бал:", finalScore);
+             console.log("✅ Визначений рівень:", level);
                 // Викликаємо submitResults з правильними значеннями
                 submitResults(finalScore, level, getEntryIDs());
                 }
@@ -178,8 +176,7 @@ else if (currentPage.includes("cognitive_skills/")) {
                     alert("❗ Будь ласка, відповідайте на всі запитання перед завершенням!");
                     return;
                 }        
-        finalScore = calculateScoreMotivation();
-        level = getLevel(finalScore);
+       
     } else {
         console.error("❌ Невідома сторінка! Результати не відправлено.");
         return;
