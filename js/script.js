@@ -62,6 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
+console.log("🔹 Перед відправкою:", { finalScore, level });
 
 
 window.submitResults = function(finalScore, level, entryIDs, cleanedStudentName) {
