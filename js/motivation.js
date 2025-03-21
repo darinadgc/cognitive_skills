@@ -3,10 +3,10 @@ window.checkAllAnsweredMotivation = function() {
     window.totalQuestions = new Set();
     window.answeredQuestions = new Set();
 
-    questions.forEach((input) => totalQuestions.add(input.name));
+    questions.forEach((input) => totalQuestions.add(input.value));
     questions.forEach((input) => {
         if (input.checked) {
-            answeredQuestions.add(input.name);
+            answeredQuestions.add(input.value);
         }
     });
 
