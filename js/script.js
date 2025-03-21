@@ -185,6 +185,8 @@ if (checkResults.totalQuestions.size === checkResults.answeredQuestions.size) {
     }
     // Деструктуризація після перевірки({ totalQuestions, answeredQuestions } = checkResults);
     const { totalQuestions, answeredQuestions, score } = checkAllAnsweredMotivation();
+console.log("🔹 Перевірка totalQuestions та answeredQuestions", totalQuestions, answeredQuestions);
+console.log("✅ Код доходить сюди! Продовжуємо...");
 
                 console.log("✅ Надсилаємо:", { score: finalScore, level });
 
@@ -203,7 +205,17 @@ if (checkResults.totalQuestions.size === checkResults.answeredQuestions.size) {
     return;
 }
 console.log("✅ cleanedStudentName існує:", cleanedStudentName);
-        
+     console.log("🚀 Готуємось викликати submitResults...");
+console.log("📝 Данні перед відправкою:", {
+    finalScore,
+    level,
+    studentName: cleanedStudentName
+});
+   if (typeof finalScore === "undefined" || typeof level === "undefined") {
+    console.error("❌ finalScore або level не визначено!");
+    return;
+}
+
  submitResults(finalScore, level, getEntryIDs());
                 }
                 else  {
