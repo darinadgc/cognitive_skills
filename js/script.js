@@ -121,19 +121,21 @@ sendResultsBtn.addEventListener("click", () => {
     const currentPage = window.location.pathname;
     let finalScore;
     
-//  🏫🧒📛  Функція для запиту імені студента
+// 🏫🧒📛 Функція для запиту імені студента
 window.askStudentName = function () {
- 
-    const studentName = prompt("Введіть ваше ім'я:").trim();
+    let studentName = prompt("Введіть ваше ім'я:").trim();
+
     if (!studentName || studentName.length < 2) {
         alert("❗ Будь ласка, введіть коректне ім'я.");
-        return;
+        return null;  // ❌ Якщо ім'я некоректне, повертаємо null
     }
 
     // ✅ Фільтр символів у імені
-    const cleanedStudentName = studentName.replace(/[^a-zA-ZА-Яа-яЇїІіЄєҐґ0-9' ]/g, "");
+    let cleanedStudentName = studentName.replace(/[^a-zA-ZА-Яа-яЇїІіЄєҐґ0-9' ]/g, "");
 
-}
+    return cleanedStudentName;  // ✅ Повертаємо очищене ім'я
+};
+
     // 🕸📄 Визначаємо, який тест запущено
     if (currentPage.includes("matrytsya_ravena.html")) {
 console.log("🔹 Викликаємо askStudentName()...");
