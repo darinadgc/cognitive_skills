@@ -1,152 +1,237 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const figureTaskEl = document.getElementById("figure-task");
-  const startBtn = document.getElementById("start-btn");
-  const timerEl = document.getElementById("timer");
-  const sendResultsBtn = document.getElementById("send-results-btn");
-  const resultEl = document.getElementById("result");
+    const sendResultsBtn = document.getElementById("send-results-btn");
+    window.resultEl = document.getElementById("result");
+    const lastAttemptKey = getLastAttemptKey(); // ✅ Отримуємо ключ для LocalStorage
+    const lastAttempt = localStorage.getItem(lastAttemptKey); // ✅ Оголошуємо lastAttempt
+    const lastAttemptDate = lastAttempt ? new Date(lastAttempt) : null;
 
-  const scriptURL = "https://script.google.com/macros/s/AKfycbx3DpCTxIebDudI6lqbYn5RORggDtBne7R-p2kjeOvndfb7eT7cvCSbrWHgiWE0p8_wew/exec";
 
-  const tasks = [
-    { id: 1, image: "img/upiznay_fihury/upiznay_fihury1.png", correct: 2 },
-    { id: 2, image: "img/upiznay_fihury/upiznay_fihury2.png", correct: 3 },
-    { id: 3, image: "img/upiznay_fihury/upiznay_fihury3.png", correct: 1 },
-    { id: 4, image: "img/upiznay_fihury/upiznay_fihury4.png", correct: 2 },
-    { id: 5, image: "img/upiznay_fihury/upiznay_fihury5.png", correct: 4 },
-    { id: 6, image: "img/upiznay_fihury/upiznay_fihury6.png", correct: 3 },
-    { id: 7, image: "img/upiznay_fihury/upiznay_fihury7.png", correct: 1 },
-    { id: 8, image: "img/upiznay_fihury/upiznay_fihury8.png", correct: 4 },
-    { id: 9, image: "img/upiznay_fihury/upiznay_fihury9.png", correct: 3 },
-    { id: 10, image: "img/upiznay_fihury/upiznay_fihury10.png", correct: 2 }
-  ];
+   
 
-  let unansweredTasks = [...tasks]; 
-  let incorrectAnswers = []; 
-  let currentTask = null;
-  let score = 0;
-  let timerInterval;
 
-  startBtn.addEventListener("click", startTest);
-  sendResultsBtn.addEventListener("click", submitResults);
 
-  function startTest() {
-    unansweredTasks = [...tasks];
-    incorrectAnswers = [];
-    score = 0;
-    startBtn.style.display = "none";
-    sendResultsBtn.style.display = "none";
-    document.getElementById("figure-task").style.display = "block";
 
-    startTimer(90);
-    generateTask();
-  }
 
-  function startTimer(duration) {
-    let timeLeft = duration;
+    window.getEntryIDs = function() {
+        const currentPage = window.location.pathname;
+        console.log("🔹 Визначаємо entry ID для сторінки:", currentPage);
+      
+        if (currentPage.includes("upiznay_fihury.html")) {
+          return {
+            formURL: "https://docs.google.com/forms/d/e/1FAIpQLSfSJTHeQHKjxr-_Nfwr0qC1-5Rinq1xGevQ4i8yFKegE9Wfyw/formResponse",
+            name: "entry.511676966",
+            score: "entry.1332224844",
+            level: "entry.1008291282"
+          };
+        }
+      
+        if (currentPage.includes("matrytsya_ravena.html")) {
+          return {
+            formURL: "https://docs.google.com/forms/u/0/d/e/1FAIpQLSfyylO6_4cpbzuD6THcT95VMAW5R7Foy1qykWDloI7Rew2b1g/formResponse",
+            name: "entry.511676966",
+            score: "entry.1008291282",
+            level: "entry.1332224844"
+          };
+        }
+      
+        if (currentPage.includes("cognitive_skills/")) {
+          return {
+            formURL: "https://docs.google.com/forms/d/e/1FAIpQLSeco-wWwULNG0-L1Qwnxn4tYBtQxinBXjVg4jTB1C2HzZ2KNw/formResponse",
+            name: "entry.511676966",
+            score: "entry.1008291282",
+            level: "entry.1332224844"
+          };
+        }
+      
+        return null;
+      };
+       
+         
 
-    timerInterval = setInterval(() => {
-      const minutes = Math.floor(timeLeft / 60);
-      const seconds = timeLeft % 60;
-      timerEl.textContent = `⏳ ${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
-      timeLeft--;
 
-      if (timeLeft < 0) {
-        clearInterval(timerInterval);
-        finishTest();
-      }
-    }, 1000);
-  }
 
-  function generateTask() {
-    if (score === 10 && incorrectAnswers.length === 0) {
-      finishTest();
-      return;
+
+    console.log("🔹 Остання спроба:", lastAttemptDate);
+    console.log("✅ Обробник події додано до `send-results-btn`.");
+    
+
+
+
+
+
+
+
+
+
+
+window.submitResults = function(finalScore, level, entryIDs, cleanedStudentName) {
+    if (window.isSubmitting) return;
+    window.isSubmitting = true;
+
+    console.log("✅ Функція submitResults викликана!");
+    
+    if (!entryIDs || !entryIDs.formURL) {
+        console.error("❌ Не вдалося знайти entry ID для цієї сторінки.");
+        alert("❌ Помилка! Не вдалося знайти entry ID.");
+        window.isSubmitting = false;
+        return;
     }
 
-    currentTask = unansweredTasks.length > 0
-      ? unansweredTasks.shift()
-      : incorrectAnswers.shift(); 
+    console.log("🔹 Отримані entry IDs:", entryIDs);
 
-    figureTaskEl.innerHTML = `
-      <img src="${currentTask.image}" class="main-image">
-      <div class="options">
-        ${[1, 2, 3, 4].map(num => `
-          <img class="option" src="img/upiznay_fihury/upiznay_fihury${currentTask.id}_${num}.png" data-index="${num}">
-        `).join("")}
-      </div>
-    `;
+    const formData = new URLSearchParams();
+    formData.append(entryIDs.name, cleanedStudentName);
+    formData.append(entryIDs.score, Number(finalScore));
+    formData.append(entryIDs.level, String(level));
 
-    document.querySelectorAll(".option").forEach(option => {
-      option.addEventListener("click", () => checkAnswer(Number(option.dataset.index)));
+    console.log("🔹 Надсилаємо:", Object.fromEntries(formData));
+
+    fetch(entryIDs.formURL, {
+        method: "POST",
+        mode: "no-cors", // Запобігає CORS-блокуванню
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: formData
+    })
+    .then(() => {
+        console.log("✅ Успішно надіслано!");
+        alert("✅ Дані успішно надіслані у Google Forms!");
+        document.getElementById("send-results-btn").style.display = "none";
+    })
+    .catch(error => {
+        console.error("❌ Помилка надсилання:", error);
+        alert("❌ Не вдалося надіслати результати. Будь ласка, спробуйте ще раз.");
+    })
+    .finally(() => {
+        window.isSubmitting = false;
     });
-  }
+};//✅ Виклик submitResults
+sendResultsBtn.addEventListener("click", () => {
+    console.log("Виклик submitResults");
+    const currentPage = window.location.pathname;
+    let totalQuestions, answeredQuestions, finalScore, level;
+    
 
-  function checkAnswer(selectedIndex) {
-    if (selectedIndex === currentTask.correct) {
-      score++;
-      incorrectAnswers = incorrectAnswers.filter(task => task.id !== currentTask.id);
+    // ✅ Перевірка тесту та заповнених питань після натискання кнопки
+    let checkResults;
+    if (currentPage.includes("cognitive_skills/")) {
+        if (typeof checkAllAnsweredMotivation === "function") {
+            checkResults = checkAllAnsweredMotivation();
+        } else {
+            console.error("❌ Функція checkAllAnsweredMotivation не знайдена!");
+            return;
+        }
+     finalScore = calculateScoreMotivation();
+     level = getLevel(finalScore);
+     console.log("✅ Обчислений бал:", finalScore);
+     console.log("✅ Визначений рівень:", level);
+} 
+    // ❗ Запобігаємо помилці, якщо функція повернула null або undefined
+    if (!checkResults || !checkResults.totalQuestions || !checkResults.answeredQuestions) {
+        console.error("❌ Помилка: `checkResults` повернув `undefined` або `null`.");return;
+    }
+    // Деструктуризація після перевірки
+    ({ totalQuestions, answeredQuestions } = checkResults);
+
+    // ✅ Якщо не відповіли на всі запитання - зупиняємо процес
+    if (totalQuestions.size !== answeredQuestions.size) {
+        alert("❗ Будь ласка, відповідайте на всі запитання перед завершенням!");
+        return;
+    }
+    console.log("🔹 Загальна кількість питань:", checkResults.totalQuestions.size);
+    console.log("🔹 Відповіді:", checkResults.answeredQuestions.size);
+    // 🏫🧒📛 Після перевірки запитуємо ім'я  
+    const studentName = prompt("Введіть ваше ім'я:").trim();
+    if (!studentName || studentName.length < 2) {
+        alert("❗ Будь ласка, введіть коректне ім'я.");
+        return;
+    }
+
+    // ✅ Фільтр символів у імені
+    const cleanedStudentName = studentName.replace(/[^a-zA-ZА-Яа-яЇїІіЄєҐґ0-9' ]/g, "");
+
+    // 🕸📄 Визначаємо, який тест запущено
+
+    if (currentPage.includes("matrytsya_ravena.html")) {
+        finalScore = calculateScore();
+        level = calculateLevelRaven(finalScore);
+    } 
+else if (currentPage.includes("upiznay_fihury.html")) {
+        finalScore = window.finalScoreFigures;
+        level = window.finalLevelFigures;
+    } 
+else if (currentPage.includes("cognitive_skills/")) {
+
+        console.log("✅ Натискання кнопки: Перевіряємо відповіді...");
+                if (checkResults.totalQuestions.size === checkResults.answeredQuestions.size) {
+        // Виконуємо перевірку заповнених відповідей
+                const checkResults = checkAllAnsweredMotivation();
+        // ✅ Тільки тепер підраховуємо бали
+                const finalScore = calculateScoreMotivation();
+                const level = getLevel(finalScore);
+        
+                console.log("✅ Надсилаємо:", { score: finalScore, level });
+        
+                // Викликаємо submitResults з правильними значеннями
+                submitResults(finalScore, level, getEntryIDs());
+                }
+                else  {
+                    alert("❗ Будь ласка, відповідайте на всі запитання перед завершенням!");
+                    return;
+                }        
+        finalScore = calculateScoreMotivation();
+        level = getLevel(finalScore);
     } else {
-      if (!incorrectAnswers.some(task => task.id === currentTask.id)) {
-        incorrectAnswers.push(currentTask);
-      }
+        console.error("❌ Невідома сторінка! Результати не відправлено.");
+        return;
     }
-    setTimeout(generateTask, 1);
-  }
-window.calculateScoreFigures = function(timeTaken) {
-    if (timeTaken < 45) return 10;
-    if (timeTaken <= 47) return 9;
-    if (timeTaken <= 49) return 8;
-    if (timeTaken <= 52) return 7;
-    if (timeTaken <= 59) return 6;
-    if (timeTaken <= 62) return 5;
-    if (timeTaken <= 69) return 4;
-    if (timeTaken <= 72) return 3;
-    if (timeTaken <= 79) return 2;
-    if (timeTaken <= 82) return 1;
-    return 0;
-};
-window.calculateLevelFigures = function(score) {
-    if (score === 10) return "Дуже високий";
-    if (score >= 8) return "Високий";
-    if (score >= 4) return "Середній";
-    if (score >= 2) return "Низький";
-    return "Дуже низький";
-};
 
-  function finishTest() {
-    clearInterval(timerInterval);
-    resultEl.innerHTML = "🛑 Тест завершено! Натисніть 'Надіслати результат'.";
-    figureTaskEl.innerHTML = "";
-    sendResultsBtn.style.display = "block";
-  }
+    console.log("🔹 Надсилаємо:", { name: cleanedStudentName, score: finalScore, level });
 
-  // function handleSendResults() {
-  //   const studentName = prompt("Введіть ваше ім'я:");
-  
-  //   if (!studentName || studentName.trim() === "") {
-  //     alert("❗ Будь ласка, введіть ім'я.");
-  //     return;
-  //   }
-  
-  //   const finalScore = score; 
-  //   const level = calculateLevel(finalScore); 
-  
-  //   submitResults(finalScore, level, scriptURL, studentName);
-  
-  //   // ✅ Приховуємо кнопку після надсилання
-  //   sendResultsBtn.style.display = "none";
-  // }
-  sendResultsBtn.addEventListener("click", () => {
-    const studentName = prompt("Введіть ваше ім'я:");
-  
-    if (!studentName || studentName.trim() === "") {
-      alert("❗ Будь ласка, введіть ім'я.");
-      return;
+    // ✅ Відправка результатів
+    submitResults(finalScore, level, getEntryIDs(), cleanedStudentName);
+});//sendResultsBtn click                
+
+
+
+
+
+
+
+
+
+
+   // ✅ Функції обмеження повторного проходження тесту (не виконується при завантаженні)
+   function getLastAttemptKey() {
+    const currentPage = window.location.pathname;
+    if (currentPage.includes("cognitive_skills/")) return "lastAttemptMotivation";
+    if (currentPage.includes("matrytsya_ravena.html")) return "lastAttemptRaven";
+    if (currentPage.includes("upiznay_fihury.html")) return "lastAttemptFigures";
+    return "lastAttemptDefault";
+}
+
+function isAllowedToRetry(lastAttemptDate) {
+    const now = new Date();
+    const daysPassed = (now - lastAttemptDate) / (1000 * 60 * 60 * 24);
+    return daysPassed >= 21; // Через 3 тижні
+}
+
+function daysUntilRetry(lastAttemptDate) {
+    const now = new Date();
+    const daysPassed = (now - lastAttemptDate) / (1000 * 60 * 60 * 24);
+    return Math.ceil(21 - daysPassed);
+}
+
+
+
+
+
+
+
+
+    if (lastAttempt && !isAllowedToRetry(new Date(lastAttempt))) {
+        resultEl.innerHTML = `❌ Ви вже проходили тест. Можна повторити через ${daysUntilRetry(new Date(lastAttempt))} днів.`;
+        sendResultsBtn.disabled = true;
+        return;
     }
-  
-    const finalScore = score; 
-    const level = calculateLevelFigures(finalScore); 
-    submitResults(finalScore, level, getEntryIDs(), studentName);
-  });
-  
+
 });
