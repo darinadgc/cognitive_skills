@@ -1,29 +1,25 @@
 window.checkAllAnsweredMotivation = function() {
     const questions = document.querySelectorAll('input[type="radio"]');
-    window.totalQuestions = new Set();
-    window.answeredQuestions = new Set();
-    questions.forEach((input) => totalQuestions.add(input.value));
+    const totalQuestions = new Set();
+    const answeredQuestions = new Set();
+
+    let score = 0; // Загальний бал
+
+    questions.forEach((input) => totalQuestions.add(input.name));
+
     questions.forEach((input) => {
         if (input.checked) {
-            answeredQuestions.add(input.value);
+            answeredQuestions.add(input.name);
+            score += parseInt(input.value) || 0; // Додаємо бал, перетворюючи value в число
         }
-
     });
 
     console.log("🔹 Загальна кількість питань:", totalQuestions.size);
     console.log("🔹 Відповіді:", answeredQuestions.size);
+    console.log("🔹 Обчислений бал:", score);
 
-    return { totalQuestions, answeredQuestions };
+    return { totalQuestions, answeredQuestions, score };
 };
-
-function calculateScoreMotivation() {
-    let score = 0;
-    const checkedAnswers = document.querySelectorAll('input[type="radio"]:checked');
-    
-    console.log("🔹 Знайдено відповідей:", checkedAnswers.length);
-    
-    // checkedAnswers.forEach((input) => {
-    //     if (input.value === "високий рівень") score += 2;
     //     else if (input.value === "середній рівень") score += 1;
     // });
     score = (checkedAnswers) =>{
