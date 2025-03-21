@@ -114,7 +114,7 @@ fetch(entryIDs.formURL, {
     //     window.isSubmitting = false;
     // });
 };//✅ Виклик submitResults
-sendResultsBtn.addEventListener("click", () => {console.log("🔹 Перед відправкою:", { finalScore, level });
+sendResultsBtn.addEventListener("click", () => {
 
     console.log("Виклик submitResults");
     const currentPage = window.location.pathname;
@@ -210,7 +210,7 @@ if (checkResults.totalQuestions.size === checkResults.answeredQuestions.size) {
     console.log("🔹 Надсилаємо:", { name: cleanedStudentName, score: finalScore, level });
 
     // ✅ Відправка результатів
-    submitResults(finalScore, level, getEntryIDs(), cleanedStudentName);
+    submitResults(finalScore, level, getEntryIDs(), cleanedStudentName);console.log("🔹 Перед відправкою:", { finalScore, level });
 });//sendResultsBtn click                
 
 
