@@ -7,7 +7,7 @@ window.checkAllAnsweredMotivation = function() {
         if (input.checked) {
             answeredQuestions.add(input.value);
         }
-console.log("🔹 Обчислений бал:", finalScore); // Додано для перевірки
+
     });
 
     console.log("🔹 Загальна кількість питань:", totalQuestions.size);
@@ -22,11 +22,16 @@ function calculateScoreMotivation() {
     
     console.log("🔹 Знайдено відповідей:", checkedAnswers.length);
     
-    checkedAnswers.forEach((input) => {
-        if (input.value === "високий рівень") score += 2;
-        else if (input.value === "середній рівень") score += 1;
-    });
-
+    // checkedAnswers.forEach((input) => {
+    //     if (input.value === "високий рівень") score += 2;
+    //     else if (input.value === "середній рівень") score += 1;
+    // });
+    score = (checkedAnswers) =>{
+        for (let i = 0; i<checkedAnswers.length; i++) {
+            score+=(parseInt(checkedAnswers[i].value));
+         }
+         return score; 
+        }
     console.log("🔹 Обчислений бал:", score);
     return score;
 }
