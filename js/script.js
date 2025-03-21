@@ -180,7 +180,7 @@ if (!sendStudentName) {
     console.error("❌ askStudentName() повернула `null`. Виконання зупинено.");
     return;
 }
-console.log("✅ Ім'я студента:", studentName);
+console.log("✅ Ім'я студента:", sendStudentName);
 
         // ✅ Тільки тепер підраховуємо бали
                 const finalScore = calculateScoreMotivation();console.log("🔹 Обчислений бал:", finalScore); // Додано для перевірки
