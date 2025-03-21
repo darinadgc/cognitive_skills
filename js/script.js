@@ -79,7 +79,6 @@ window.submitResults = function(finalScore, level, entryIDs, cleanedStudentName)
 
     console.log("🔹 Отримані entry IDs:", entryIDs);
 console.log("🔹 Перевірка перед відправкою:");
-console.log("🔹 Ім'я:", studentName);
     
 console.log("🔹 Ім'я:", cleanedStudentName);
 console.log("🔹 Бал:", finalScore);
