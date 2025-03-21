@@ -172,7 +172,8 @@ if (checkResults.totalQuestions.size === checkResults.answeredQuestions.size) {
  console.log("✅ Ім'я студента:", studentName);
 
         // ✅ Тільки тепер підраховуємо бали
-                const finalScore = calculateScoreMotivation();
+                const finalScore = calculateScoreMotivation();console.log("🔹 Обчислений бал:", finalScore); // Додано для перевірки
+
                 const level = getLevel(finalScore);
          // ✅ Перевірка тесту та заповнених питань після натискання кнопки
 
