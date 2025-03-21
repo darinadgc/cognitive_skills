@@ -64,7 +64,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-window.submitResults = function(finalScore, level, entryIDs, cleanedStudentName) {
+window.submitResults = function(finalScore, level, entryIDs, cleanedStudentName) {console.log("📨 submitResults() запущено!");
+
     if (window.isSubmitting) return;
     window.isSubmitting = true;
 
@@ -197,13 +198,18 @@ if (checkResults.totalQuestions.size === checkResults.answeredQuestions.size) {
              console.log("✅ Обчислений бал:", finalScore);
              console.log("✅ Визначений рівень:", level);
                 // Викликаємо submitResults з правильними значеннями
-                submitResults(finalScore, level, getEntryIDs());
+              if (!cleanedStudentName) {
+    console.error("❌ cleanedStudentName не визначено!");
+    return;
+}
+console.log("✅ cleanedStudentName існує:", cleanedStudentName);
+        
+ submitResults(finalScore, level, getEntryIDs());
                 }
                 else  {
                     alert("❗ Будь ласка, відповідайте на всі запитання перед завершенням!");
                     return;
                 }        
-       
     } else {
         console.error("❌ Невідома сторінка! Результати не відправлено.");
         return;
