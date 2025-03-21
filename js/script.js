@@ -80,7 +80,7 @@ window.submitResults = function(finalScore, level, entryIDs, cleanedStudentName)
     console.log("🔹 Отримані entry IDs:", entryIDs);
 
     const formData = new URLSearchParams();
-    formData.append(entryIDs.name, studentName);
+    formData.append(entryIDs.name, cleanedStudentName);
     formData.append(entryIDs.score, Number(finalScore));
     formData.append(entryIDs.level, String(level));
 
