@@ -88,7 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-window.submitResults = function(finalScore, level, entryIDs, studentName) {
+window.submitResults = function(finalScore, level, entryIDs, cleanedStudentName ) {
     if (window.isSubmitting) return;
     window.isSubmitting = true;
 
