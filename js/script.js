@@ -108,7 +108,7 @@ window.submitResults = function(finalScore, level, entryIDs, cleanedStudentName)
 sendResultsBtn.addEventListener("click", () => {
     console.log("Виклик submitResults");
     const currentPage = window.location.pathname;
-    let totalQuestions, answeredQuestions, finalScore, level;
+    let finalScore, level;
     
 //  🏫🧒📛  Функція для запиту імені студента
 window.askStudentName = function () {
@@ -144,12 +144,14 @@ else if (currentPage.includes("upiznay_fihury.html")) {
         level = window.finalLevelFigures;
     } 
 else if (currentPage.includes("cognitive_skills/")) {
-        console.log("✅ Натискання кнопки: Перевіряємо відповіді...");
+                        const checkResults = checkAllAnsweredMotivation();
+console.log("✅ Натискання кнопки: Перевіряємо відповіді...");
                     // ✅ Якщо не відповіли на всі запитання - зупиняємо процес
     /* if (totalQuestions.size !== answeredQuestions.size) {
         alert("❗ Будь ласка, відповідайте на всі запитання перед завершенням!");
         return;
     } */
+//    let totalQuestions, answeredQuestions;
 if (checkResults.totalQuestions.size === checkResults.answeredQuestions.size) {
     console.log("🔹 Загальна кількість питань:", checkResults.totalQuestions.size);
     console.log("🔹 Відповіді:", checkResults.answeredQuestions.size);        // Виконуємо перевірку заповнених відповідей
@@ -159,7 +161,6 @@ if (checkResults.totalQuestions.size === checkResults.answeredQuestions.size) {
 
  console.log("✅ Ім'я студента:", studentName);
 
-                const checkResults = checkAllAnsweredMotivation();
         // ✅ Тільки тепер підраховуємо бали
                 const finalScore = calculateScoreMotivation();
                 const level = getLevel(finalScore);
