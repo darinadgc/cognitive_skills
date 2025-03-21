@@ -210,12 +210,16 @@ if (checkResults.totalQuestions.size === checkResults.answeredQuestions.size) {
     }
 const level = getLevel(score);
 
-    console.log("🔹 Надсилаємо:", { name: cleanedStudentName, score: finalScore, level });
+    console.log("🔹 Надсилаємо:", { score, level });
 
     // ✅ Відправка результатів
-    submitResults(finalScore, level, getEntryIDs(), cleanedStudentName);console.log("🔹 Перед відправкою:", { finalScore, level });
+    submitResults(finalScore, level, getEntryIDs(), cleanedStudentName);
+console.log("🔹 Перед відправкою:", {
+    studentName: cleanedStudentName,
+    score: score, // Перевіряємо, чи тут є число
+    level: level, // Переконуємося, що є рівень
+});//console.log
 });//sendResultsBtn click                
-
 
 
 
