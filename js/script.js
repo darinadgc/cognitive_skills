@@ -139,26 +139,26 @@ window.askStudentName = function () {
     // 🕸📄 Визначаємо, який тест запущено
     if (currentPage.includes("matrytsya_ravena.html")) {
 console.log("🔹 Викликаємо askStudentName()...");
-let studentName = askStudentName();
-if (!studentName) {
+let sendStudentName = askStudentName();
+if (!sendStudentName) {
     console.error("❌ askStudentName() повернула `null`. Виконання зупинено.");
     return;
 }
 console.log("✅ Ім'я студента:", studentName);
 
          // ✅ Запитуємо ім'я перед підрахунком балів
-        let studentName = askStudentName();
-        if (!studentName) return; // ❌ Якщо ім'я некоректне — зупиняємо виконання
-       console.log("✅ Ім'я студента:", studentName);
+        let sendStudentName = askStudentName();
+        if (!sendStudentName) return; // ❌ Якщо ім'я некоректне — зупиняємо виконання
+       console.log("✅ Ім'я студента:", sendStudentName);
  finalScore = calculateScore();
         level = calculateLevelRaven(finalScore);
     } 
 else if (currentPage.includes("upiznay_fihury.html")) {
  // ✅ Запитуємо ім'я перед підрахунком балів
- let studentName = askStudentName();
- if (!studentName) return; // ❌ Якщо ім'я некоректне — зупиняємо виконання
+ let sendStudentName = askStudentName();
+ if (!sendStudentName) return; // ❌ Якщо ім'я некоректне — зупиняємо виконання
 
- console.log("✅ Ім'я студента:", studentName);
+ console.log("✅ Ім'я студента:", sendStudentName);
 
         finalScore = window.finalScoreFigures;
         level = window.finalLevelFigures;
