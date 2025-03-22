@@ -150,8 +150,8 @@ if (!sendStudentName) {
 }
 console.log("✅ Ім'я студента:", sendStudentName);
  console.log("🔍 Перевірка calculateLevelRaven:", typeof calculateLevelRaven);
-finalScore = window.calculateLevelRaven();
-        level = calculateLevelRaven(finalScore);
+let finalScore = window.calculateLevelRaven();
+        let level = calculateLevelRaven(finalScore);
     } 
 else if (currentPage.includes("upiznay_fihury.html")) {
  // ✅ Запитуємо ім'я перед підрахунком балів
@@ -168,7 +168,7 @@ if (typeof window.calculateLevelFigures === "function") {
     console.error("❌ Функція calculateLevelFigures не знайдена!");
 }
 
-        finalScore = window.finalScoreFigures;
+        let finalScore = window.finalScoreFigures;
         let level = window.calculateLevelFigures(finalScore);
     console.log("✅ Підрахований рівень:", level);
 
@@ -196,7 +196,7 @@ console.log("✅ ПЕРЕВІРКА: level =", level);
 
 
         // const finalScore = window.calculateScore();console.log("🔍 Перевірка calculateScore:", typeof calculateScore);✅ Тільки тепер підраховуємо бали
-                    finalScore = calculateScoreMotivation();
+                    let finalScore = calculateScoreMotivation();
 
 console.log("🔹 Обчислений бал:", finalScore); // Додано для перевірки
                let  level = getLevel(finalScore);
