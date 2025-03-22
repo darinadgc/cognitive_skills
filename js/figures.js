@@ -101,13 +101,7 @@ window.calculateScoreFigures = function(timeTaken) {
     if (timeTaken <= 82) return 1;
     return 0;
 };
-window.calculateLevelFigures = function(score) {
-    if (score === 10) return "Дуже високий";
-    if (score >= 8) return "Високий";
-    if (score >= 4) return "Середній";
-    if (score >= 2) return "Низький";
-    return "Дуже низький";
-};
+
 //🏁finishTest
   function finishTest() {
     clearInterval(timerInterval);
