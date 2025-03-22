@@ -163,7 +163,7 @@ console.log("✅ Ім'я студента:", sendStudentName);
         const level = window.finalLevelFigures;
     } 
 else if (currentPage.includes("cognitive_skills/")) {
-                        const checkResults = checkAllAnsweredMotivation();
+                        let checkResults = checkAllAnsweredMotivation();
 console.log("✅ Натискання кнопки: Перевіряємо відповіді...");
                     // ✅ Якщо не відповіли на всі запитання - зупиняємо процес
     /* if (totalQuestions.size !== answeredQuestions.size) {
