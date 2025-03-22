@@ -90,7 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
       finishTest();
     }
   }//✅ checkAnswer
-window.calculateScore = function () {
+window.calculateLevelRaven = function () {
     let score = 0;
     const answers = document.querySelectorAll('input[type="radio"]:checked');
 
