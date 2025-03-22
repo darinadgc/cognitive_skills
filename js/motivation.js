@@ -4,12 +4,13 @@ window.checkAllAnsweredMotivation = function() {
     const answeredQuestions = new Set();
     let score = 0; // Загальний бал
 
-    questions.forEach((input) => totalQuestions.add(input.value));
+    // ✅ Додаємо питання за `name`, а не за `value`
+    questions.forEach((input) => totalQuestions.add(input.name));
 
     questions.forEach((input) => {
         if (input.checked) {
-            answeredQuestions.add(input.value);
-            score += parseInt(input.value) || 0; // Додаємо бал, перетворюючи value в число
+            answeredQuestions.add(input.name);
+            score += parseInt(input.value) || 0; // Додаємо бал
         }
     });
 
@@ -19,6 +20,7 @@ window.checkAllAnsweredMotivation = function() {
 
     return { totalQuestions, answeredQuestions, score };
 };
+
     //     else if (input.value === "середній рівень") score += 1;
     // });
     score = (checkedAnswers) =>{
