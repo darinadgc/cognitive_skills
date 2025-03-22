@@ -238,7 +238,7 @@ console.log("📝 Данні перед відправкою:", {
     }
 // const level = getLevel(score);
 
-    console.log("🔹 Надсилаємо:", { score, level });
+    // console.log("🔹 Надсилаємо:", { score, level });
 
     // ✅ Відправка результатів
     submitResults(finalScore, level, getEntryIDs(), cleanedStudentName);
