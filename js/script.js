@@ -129,7 +129,6 @@ window.askStudentName = function () {
 
     return cleanedStudentName;  // ✅ Повертаємо очищене ім'я
 };// 🏫🧒📛 Функція для запиту імені студента
-console.log("✅ Ім'я студента:", sendStudentName);
 
 sendResultsBtn.addEventListener("click", () => {
     console.log("Виклик submitResults");
