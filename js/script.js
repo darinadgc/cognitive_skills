@@ -191,8 +191,7 @@ if (!sendStudentName) {
     console.error("❌ askStudentName() повернула `null`. Виконання зупинено.");
     return;
 }
-console.log("✅ Ім'я студента:", sendStudentName);
-console.log("✅ ПЕРЕВІРКА: level =", level);
+
 
 
         // const finalScore = window.calculateScore();console.log("🔍 Перевірка calculateScore:", typeof calculateScore);✅ Тільки тепер підраховуємо бали
@@ -201,7 +200,8 @@ console.log("✅ ПЕРЕВІРКА: level =", level);
 console.log("🔹 Обчислений бал:", finalScore); // Додано для перевірки
                let  level = getLevel(finalScore);
          // ✅ Перевірка тесту та заповнених питань після натискання кнопки
-
+console.log("✅ Ім'я студента:", sendStudentName);
+console.log("✅ ПЕРЕВІРКА: level =", level);
     // if (currentPage.includes("cognitive_skills/")) {} 
     // ❗ Запобігаємо помилці, якщо функція повернула null або undefined
     if (!checkResults || !checkResults.totalQuestions || !checkResults.answeredQuestions) {
