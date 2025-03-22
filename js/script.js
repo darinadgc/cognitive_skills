@@ -151,7 +151,7 @@ if (!sendStudentName) {
 console.log("✅ Ім'я студента:", sendStudentName);
  console.log("🔍 Перевірка calculateLevelRaven:", typeof calculateLevelRaven);
 finalScore = window.calculateLevelRaven();
-        const level = calculateLevelRaven(finalScore);
+        level = calculateLevelRaven(finalScore);
     } 
 else if (currentPage.includes("upiznay_fihury.html")) {
  // ✅ Запитуємо ім'я перед підрахунком балів
@@ -169,7 +169,7 @@ if (typeof window.calculateLevelFigures === "function") {
 }
 
         finalScore = window.finalScoreFigures;
-        const level = window.calculateLevelFigures(finalScore);
+        level = window.calculateLevelFigures(finalScore);
     console.log("✅ Підрахований рівень:", level);
 
     } // upiznay_fihury
@@ -196,10 +196,10 @@ console.log("✅ ПЕРЕВІРКА: level =", level);
 
 
         // const finalScore = window.calculateScore();console.log("🔍 Перевірка calculateScore:", typeof calculateScore);✅ Тільки тепер підраховуємо бали
-                    const finalScore = calculateScoreMotivation();
+                    finalScore = calculateScoreMotivation();
 
 console.log("🔹 Обчислений бал:", finalScore); // Додано для перевірки
-                const level = getLevel(finalScore);
+                level = getLevel(finalScore);
          // ✅ Перевірка тесту та заповнених питань після натискання кнопки
 
     // if (currentPage.includes("cognitive_skills/")) {} 
