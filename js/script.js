@@ -161,12 +161,12 @@ if (!sendStudentName) {
     return;
 }console.log(window.finalScore);
 console.log("✅ Ім'я студента:", sendStudentName);
-console.log("🔍 Перевірка calculateLevelFigures:", typeof window.calculateLevelFigures);
-if (typeof window.calculateLevelFigures === "function") {
-    let level = window.calculateLevelFigures(finalScore);
-} else {
-    console.error("❌ Функція calculateLevelFigures не знайдена!");
-}
+// console.log("🔍 Перевірка calculateLevelFigures:", typeof window.calculateLevelFigures);
+// if (typeof window.calculateLevelFigures === "function") {
+//     let level = window.calculateLevelFigures(finalScore);
+// } else {
+//     console.error("❌ Функція calculateLevelFigures не знайдена!");
+// }
 
         let finalScore = window.finalScoreFigures;
         let level = window.calculateLevelFigures(finalScore);
