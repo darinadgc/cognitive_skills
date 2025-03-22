@@ -115,12 +115,6 @@ console.log("🔹 Надсилаємо:", Object.fromEntries(formData));
         window.isSubmitting = false;
     });
 };//✅ Виклик submitResults
-sendResultsBtn.addEventListener("click", () => {
-
-    console.log("Виклик submitResults");
-    const currentPage = window.location.pathname;
-    let finalScore;
-    
 // 🏫🧒📛 Функція для запиту імені студента
 window.askStudentName = function () {
     let studentName = prompt("Введіть ваше ім'я:").trim();
@@ -134,8 +128,14 @@ window.askStudentName = function () {
     let cleanedStudentName = studentName.replace(/[^a-zA-ZА-Яа-яЇїІіЄєҐґ0-9' ]/g, "");
 
     return cleanedStudentName;  // ✅ Повертаємо очищене ім'я
-};
+};// 🏫🧒📛 Функція для запиту імені студента
 console.log("✅ Ім'я студента:", sendStudentName);
+
+sendResultsBtn.addEventListener("click", () => {
+    console.log("Виклик submitResults");
+    const currentPage = window.location.pathname;
+    let finalScore;
+    
 
     // 🕸📄 Визначаємо, який тест запущено
     if (currentPage.includes("matrytsya_ravena.html")) {
