@@ -2,6 +2,7 @@ window.checkAllAnsweredMotivation = function() {
     const questions = document.querySelectorAll('input[type="radio"]');
     const totalQuestions = new Set();
     const answeredQuestions = new Set();
+    let score = 0; // Загальний бал
 
     // ✅ Додаємо питання за `name`, а не за `value`
     questions.forEach((input) => totalQuestions.add(input.name));
@@ -33,8 +34,8 @@ window.checkAllAnsweredMotivation = function() {
 
 window.calculateScoreMotivation = function() {
     let checkedAnswers = document.querySelectorAll('input[type="radio"]:checked'); // ✅ Отримуємо відповіді
-
     let score = 0; // Загальний бал
+
         checkedAnswers.forEach((input) => {
         score += parseInt(input.value) || 0; // ✅ Додаємо бали
     });
