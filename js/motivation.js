@@ -4,11 +4,11 @@ window.checkAllAnsweredMotivation = function() {
     let answeredQuestions = new Set();
     let score = 0; // Загальний бал
 
-    questions.forEach((input) => totalQuestions.add(input.name));
+    questions.forEach((input) => totalQuestions.add(input.value));
 
     questions.forEach((input) => {
         if (input.checked) {
-            answeredQuestions.add(input.name);
+            answeredQuestions.add(input.value);
             score += parseInt(input.value) || 0; // Додаємо бал, перетворюючи value в число
         }
     });
