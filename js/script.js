@@ -4,9 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const lastAttemptKey = getLastAttemptKey(); // ✅ Отримуємо ключ для LocalStorage
     const lastAttempt = localStorage.getItem(lastAttemptKey); // ✅ Оголошуємо lastAttempt
     const lastAttemptDate = lastAttempt ? new Date(lastAttempt) : null;
-let finalScore;
-let level;  // 🔹 Тепер `level` доступний глобально у функції!
-let sendStudentName; // 🔹 Щоб не оголошувати всередині `if`
+
 
    
 
@@ -135,7 +133,9 @@ window.askStudentName = function () {
 sendResultsBtn.addEventListener("click", () => {
     console.log("Виклик submitResults");
     const currentPage = window.location.pathname;
-    let finalScore;
+   let finalScore;
+let level;  // 🔹 Тепер `level` доступний глобально у функції!
+let sendStudentName; // 🔹 Щоб не оголошувати всередині `if`
     
 
     // 🕸📄 Визначаємо, який тест запущено
