@@ -135,6 +135,7 @@ window.askStudentName = function () {
 
     return cleanedStudentName;  // ✅ Повертаємо очищене ім'я
 };
+console.log("✅ Ім'я студента:", studentName);
 
     // 🕸📄 Визначаємо, який тест запущено
     if (currentPage.includes("matrytsya_ravena.html")) {
