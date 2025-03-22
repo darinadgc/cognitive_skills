@@ -34,7 +34,7 @@ window.checkAllAnsweredMotivation = function() {
 
 
 function calculateScoreMotivation() {
-        for (let i = 0; i<answeredQuestions .length; i++) {
+        for (let i = 0; i<answeredQuestions.length; i++) {
             score+=(parseInt(answeredQuestions [i].value));
          }
          return score; 
