@@ -160,7 +160,9 @@ if (!sendStudentName) {
 console.log("✅ Ім'я студента:", sendStudentName);
 
         finalScore = window.finalScoreFigures;
-        const level = window.calculateLevelFigures;
+        const level = window.calculateLevelFigures(finalScore);
+    console.log("✅ Підрахований рівень:", level);
+
     } // upiznay_fihury
 else if (currentPage.includes("cognitive_skills/")) {
                         let checkResults = checkAllAnsweredMotivation();
