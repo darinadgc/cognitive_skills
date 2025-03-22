@@ -160,7 +160,7 @@ if (!sendStudentName) {
 console.log("✅ Ім'я студента:", sendStudentName);
 
         finalScore = window.finalScoreFigures;
-        const level = window.finalLevelFigures;
+        const level = window.calculateLevelFigures;
     } 
 else if (currentPage.includes("cognitive_skills/")) {
                         let checkResults = checkAllAnsweredMotivation();
