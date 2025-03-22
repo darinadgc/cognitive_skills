@@ -158,7 +158,7 @@ console.log("✅ Ім'я студента:", sendStudentName);
  console.log("🔍 Перевірка calculateLevel:", typeof calculateLevel);
 // let finalScore = calculateLevelRaven(score);
 //         let level = calculateLevelRaven(finalScore);
-        finalScore = calculateScore();
+        finalScore = calculateLevelRaven (score);
         level = calculateLevel(finalScore);
     } 
 else if (currentPage.includes("upiznay_fihury.html")) {
