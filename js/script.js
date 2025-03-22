@@ -159,17 +159,17 @@ else if (currentPage.includes("upiznay_fihury.html")) {
 if (!sendStudentName) {
     console.error("❌ askStudentName() повернула `null`. Виконання зупинено.");
     return;
-}
+}console.log(window.finalScore);
 console.log("✅ Ім'я студента:", sendStudentName);
 console.log("🔍 Перевірка calculateLevelFigures:", typeof window.calculateLevelFigures);
 if (typeof window.calculateLevelFigures === "function") {
-    level = window.calculateLevelFigures(finalScore);
+    let level = window.calculateLevelFigures(finalScore);
 } else {
     console.error("❌ Функція calculateLevelFigures не знайдена!");
 }
 
         finalScore = window.finalScoreFigures;
-        level = window.calculateLevelFigures(finalScore);
+        let level = window.calculateLevelFigures(finalScore);
     console.log("✅ Підрахований рівень:", level);
 
     } // upiznay_fihury
@@ -199,7 +199,7 @@ console.log("✅ ПЕРЕВІРКА: level =", level);
                     finalScore = calculateScoreMotivation();
 
 console.log("🔹 Обчислений бал:", finalScore); // Додано для перевірки
-                level = getLevel(finalScore);
+               let  level = getLevel(finalScore);
          // ✅ Перевірка тесту та заповнених питань після натискання кнопки
 
     // if (currentPage.includes("cognitive_skills/")) {} 
