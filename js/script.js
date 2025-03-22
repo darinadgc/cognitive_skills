@@ -4,6 +4,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const lastAttemptKey = getLastAttemptKey(); // ✅ Отримуємо ключ для LocalStorage
     const lastAttempt = localStorage.getItem(lastAttemptKey); // ✅ Оголошуємо lastAttempt
     const lastAttemptDate = lastAttempt ? new Date(lastAttempt) : null;
+let finalScore;
+let level;  // 🔹 Тепер `level` доступний глобально у функції!
 
 
    
@@ -244,6 +246,7 @@ else {
     }
 // const level = getLevel(score);
     // console.log("🔹 Надсилаємо:", { score, level });
+console.log("✅ ПЕРЕВІРКА: level =", level);
 
     // ✅ Відправка результатів
     submitResults(finalScore, level, getEntryIDs(), sendStudentName);
