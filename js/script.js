@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const lastAttemptDate = lastAttempt ? new Date(lastAttempt) : null;
 let finalScore;
 let level;  // 🔹 Тепер `level` доступний глобально у функції!
-
+let sendStudentName; // 🔹 Щоб не оголошувати всередині `if`
 
    
 
@@ -161,6 +161,12 @@ if (!sendStudentName) {
     return;
 }
 console.log("✅ Ім'я студента:", sendStudentName);
+console.log("🔍 Перевірка calculateLevelFigures:", typeof window.calculateLevelFigures);
+if (typeof window.calculateLevelFigures === "function") {
+    level = window.calculateLevelFigures(finalScore);
+} else {
+    console.error("❌ Функція calculateLevelFigures не знайдена!");
+}
 
         finalScore = window.finalScoreFigures;
         const level = window.calculateLevelFigures(finalScore);
@@ -186,6 +192,7 @@ if (!sendStudentName) {
     return;
 }
 console.log("✅ Ім'я студента:", sendStudentName);
+console.log("✅ ПЕРЕВІРКА: level =", level);
 
 
         // const finalScore = window.calculateScore();console.log("🔍 Перевірка calculateScore:", typeof calculateScore);✅ Тільки тепер підраховуємо бали
@@ -247,6 +254,10 @@ else {
 // const level = getLevel(score);
     // console.log("🔹 Надсилаємо:", { score, level });
 console.log("✅ ПЕРЕВІРКА: level =", level);
+if (typeof finalScore === "undefined" || typeof level === "undefined") {
+    console.error("❌ finalScore або level не визначено!");
+    return;
+}
 
     // ✅ Відправка результатів
     submitResults(finalScore, level, getEntryIDs(), sendStudentName);
