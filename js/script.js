@@ -168,7 +168,7 @@ console.log("✅ Ім'я студента:", sendStudentName);
 //     console.error("❌ Функція calculateLevelFigures не знайдена!");
 // }
 
-        let finalScore = finalScoreFigures;
+        let finalScore = finalScoreFigures();
         let level = calculateLevelFigures(finalScore);
     console.log("✅ Підрахований рівень:", level);
 
