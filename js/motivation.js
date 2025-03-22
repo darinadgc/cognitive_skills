@@ -2,7 +2,6 @@ window.checkAllAnsweredMotivation = function() {
     const questions = document.querySelectorAll('input[type="radio"]');
     const totalQuestions = new Set();
     const answeredQuestions = new Set();
-    let score = 0; // Загальний бал
 
     // ✅ Додаємо питання за `name`, а не за `value`
     questions.forEach((input) => totalQuestions.add(input.name));
@@ -32,13 +31,16 @@ window.checkAllAnsweredMotivation = function() {
  // }
    
 
-
 window.calculateScoreMotivation = function() {
-        for (let i = 0; i<answeredQuestions.length; i++) {
-            score+=(parseInt(answeredQuestions [i].value));
-         }
-         return score; 
-           console.log("🔹 Обчислений бал:", score);
+    let checkedAnswers = document.querySelectorAll('input[type="radio"]:checked'); // ✅ Отримуємо відповіді
+
+    let score = 0; // Загальний бал
+        checkedAnswers.forEach((input) => {
+        score += parseInt(input.value) || 0; // ✅ Додаємо бали
+    });
+
+    console.log("🔹 Обчислений бал:", score); // ✅ Переносимо до return
+    return score;
 }
 
 
