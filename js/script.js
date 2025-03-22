@@ -147,7 +147,8 @@ if (!sendStudentName) {
     return;
 }
 console.log("✅ Ім'я студента:", sendStudentName);
- finalScore = calculateScore();
+ console.log("🔍 Перевірка calculateScore:", typeof calculateScore);
+finalScore = window.calculateScore();
         const level = calculateLevelRaven(finalScore);
     } 
 else if (currentPage.includes("upiznay_fihury.html")) {
@@ -183,9 +184,10 @@ if (!sendStudentName) {
     return;
 }
 console.log("✅ Ім'я студента:", sendStudentName);
-        // ✅ Тільки тепер підраховуємо бали
+console.log("🔍 Перевірка calculateScore:", typeof calculateScore);
 
-                const finalScore = calculateScore();
+        // ✅ Тільки тепер підраховуємо бали
+                const finalScore = window.calculateScore();
 console.log("🔹 Обчислений бал:", finalScore); // Додано для перевірки
                 const level = getLevel(finalScore);
          // ✅ Перевірка тесту та заповнених питань після натискання кнопки
