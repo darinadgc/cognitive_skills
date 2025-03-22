@@ -147,8 +147,8 @@ if (!sendStudentName) {
     return;
 }
 console.log("✅ Ім'я студента:", sendStudentName);
- console.log("🔍 Перевірка calculateScore:", typeof calculateScore);
-finalScore = window.calculateScore();
+ console.log("🔍 Перевірка calculateLevelRaven:", typeof calculateLevelRaven);
+finalScore = window.calculateLevelRaven();
         const level = calculateLevelRaven(finalScore);
     } 
 else if (currentPage.includes("upiznay_fihury.html")) {
