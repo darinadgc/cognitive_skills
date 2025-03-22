@@ -90,12 +90,23 @@ document.addEventListener("DOMContentLoaded", () => {
       finishTest();
     }
   }//✅ checkAnswer
-//🏁finishTest
+window.calculateScore = function () {
+    let score = 0;
+    const answers = document.querySelectorAll('input[type="radio"]:checked');
+
+    answers.forEach((input) => {
+        if (input.value === "1") score++; // Припустимо, що правильні відповіді мають value="1"
+    });
+
+    console.log("✅ Підрахований бал:", score);
+    return score;
+};
+
+ //🏁finishTest
   function finishTest() {
     clearInterval(timerInterval);
     window.resultEl.innerHTML = "🛑 Тест завершено! Натисніть 'Надіслати результат'.";
     taskContainer.innerHTML = "";
     sendResultsBtn.style.display = "block";
-  }//🏁finishTest
-  
+  }//🏁finishTest 
 });
