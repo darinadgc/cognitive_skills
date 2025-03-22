@@ -171,7 +171,7 @@ console.log("✅ Натискання кнопки: Перевіряємо ві�
         return;
     } */
  let totalQuestions, answeredQuestions;
-if (checkResults.totalQuestions.size === checkResults.answeredQuestions.size) {
+if (checkResults.answeredQuestions.size === 10) {
     console.log("🔹 Загальна кількість питань:", checkResults.totalQuestions.size);
     console.log("🔹 Відповіді:", checkResults.answeredQuestions.size);        // Виконуємо перевірку заповнених відповідей
  // ✅ Запитуємо ім'я перед підрахунком балів
@@ -228,7 +228,7 @@ console.log("📝 Данні перед відправкою:", {
 
  submitResults(finalScore, level, getEntryIDs());
                 }
-                else  {
+                else  if (checkResults.answeredQuestions.size < 10){
                     alert("❗ Будь ласка, відповідайте на всі запитання перед завершенням!");
                     return;
                 }        
