@@ -174,7 +174,7 @@ console.log("✅ Натискання кнопки: Перевіряємо ві�
         return;
     } */
  let totalQuestions, answeredQuestions;
-if (checkResults.answeredQuestions.size === 10) {
+if (checkResults.answeredQuestions.size == 10) {
     console.log("🔹 Загальна кількість питань:", checkResults.totalQuestions.size);
     console.log("🔹 Відповіді:", checkResults.answeredQuestions.size);        // Виконуємо перевірку заповнених відповідей
  // ✅ Запитуємо ім'я перед підрахунком балів
@@ -184,10 +184,11 @@ if (!sendStudentName) {
     return;
 }
 console.log("✅ Ім'я студента:", sendStudentName);
-console.log("🔍 Перевірка calculateScore:", typeof calculateScore);
 
-        // ✅ Тільки тепер підраховуємо бали
-                const finalScore = window.calculateScore();
+
+        // const finalScore = window.calculateScore();console.log("🔍 Перевірка calculateScore:", typeof calculateScore);✅ Тільки тепер підраховуємо бали
+                    const finalScore = calculateScoreMotivation();
+
 console.log("🔹 Обчислений бал:", finalScore); // Додано для перевірки
                 const level = getLevel(finalScore);
          // ✅ Перевірка тесту та заповнених питань після натискання кнопки
@@ -202,7 +203,7 @@ console.log("🔹 Обчислений бал:", finalScore); // Додано д
 console.log("🔹 Перевірка totalQuestions та answeredQuestions", totalQuestions, answeredQuestions);
 console.log("✅ Код доходить сюди! Продовжуємо...");
 
-                console.log("✅ Надсилаємо:", { score: finalScore, level });
+                console.log("✅ Надсилаємо:", { name: sendStudentName, score: finalScore, level });
 
         
                 if (typeof checkAllAnsweredMotivation === "function") {
@@ -230,7 +231,7 @@ console.log("📝 Данні перед відправкою:", {
     return;
 }
 
- submitResults(finalScore, level, getEntryIDs());
+ submitResults(finalScore, level, getEntryIDs(), sendStudentName);
                 }
                 else  if (checkResults.answeredQuestions.size < 10){
                     alert("❗ Будь ласка, відповідайте на всі запитання перед завершенням!");
