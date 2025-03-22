@@ -1,5 +1,5 @@
 window.checkAllAnsweredMotivation = function() {
-    const questions = document.querySelectorAll('input[type="radio"]');
+    let questions = document.querySelectorAll('input[type="radio"]');
     let totalQuestions = new Set();
     let answeredQuestions = new Set();
     let score = 0; // Загальний бал
