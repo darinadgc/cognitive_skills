@@ -162,7 +162,7 @@
 	padding-right: 34px;
 	padding-left: 23px;
   }	
-  li>span {
+  li>span, .source-link {
     color: #3ab747;
 }
   .f, p {
