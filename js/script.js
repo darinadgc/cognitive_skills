@@ -236,7 +236,7 @@ console.log("📝 Данні перед відправкою:", {
         console.error("❌ Невідома сторінка! Результати не відправлено.");
         return;
     }
-const level = getLevel(score);
+// const level = getLevel(score);
 
     console.log("🔹 Надсилаємо:", { score, level });
 
