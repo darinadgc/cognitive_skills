@@ -160,6 +160,13 @@ console.log("✅ Ім'я студента:", sendStudentName);
 //         let level = calculateLevelRaven(finalScore);
         finalScore = calculateLevelRaven (score);
         level = calculateLevel(finalScore);
+    // ✅ Відправка результатів
+    submitResults(finalScore, level, getEntryIDs(), sendStudentName);
+console.log("🔹 Перед відправкою:", {
+    studentName: sendStudentName,
+    score: score, // Перевіряємо, чи тут є число
+    level: level, // Переконуємося, що є рівень
+});//console.log
     } 
 else if (currentPage.includes("upiznay_fihury.html")) {
  // ✅ Запитуємо ім'я перед підрахунком балів
@@ -180,6 +187,13 @@ console.log("✅ Ім'я студента:", sendStudentName);
         let level = calculateLevel(finalScore);
     console.log("✅ Підрахований рівень:", level);
 
+    // ✅ Відправка результатів
+    submitResults(finalScore, level, getEntryIDs(), sendStudentName);
+console.log("🔹 Перед відправкою:", {
+    studentName: sendStudentName,
+    score: score, // Перевіряємо, чи тут є число
+    level: level, // Переконуємося, що є рівень
+});//console.log
     } // upiznay_fihury
 else if (currentPage.includes("cognitive_skills/")) {
                         let checkResults = checkAllAnsweredMotivation();
@@ -249,7 +263,7 @@ console.log("📝 Данні перед відправкою:", {
 }
 
  submitResults(finalScore, level, getEntryIDs(), sendStudentName);
-                }
+                }// if checkResults.answeredQuestions.size == 10
                 else  if (checkResults.answeredQuestions.size < 10){
                     alert("❗ Будь ласка, відповідайте на всі запитання перед завершенням!");
                     return;
@@ -267,13 +281,6 @@ if (typeof finalScore === "undefined" || typeof level === "undefined") {
     return;
 }
 
-    // ✅ Відправка результатів
-    submitResults(finalScore, level, getEntryIDs(), sendStudentName);
-console.log("🔹 Перед відправкою:", {
-    studentName: sendStudentName,
-    score: score, // Перевіряємо, чи тут є число
-    level: level, // Переконуємося, що є рівень
-});//console.log
 });//sendResultsBtn click                
 
 
