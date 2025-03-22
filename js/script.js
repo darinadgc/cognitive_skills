@@ -210,7 +210,7 @@ console.log("✅ Код доходить сюди! Продовжуємо...");
              console.log("✅ Обчислений бал:", finalScore);
              console.log("✅ Визначений рівень:", level);
                 // Викликаємо submitResults з правильними значеннями
-              if (!cleanedStudentName) {
+              if (!sendStudentName) {
     console.error("❌ cleanedStudentName не визначено!");
     return;
 }
