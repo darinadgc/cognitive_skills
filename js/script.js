@@ -136,7 +136,13 @@ sendResultsBtn.addEventListener("click", () => {
    let finalScore;
 let level;  // 🔹 Тепер `level` доступний глобально у функції!
 let sendStudentName; // 🔹 Щоб не оголошувати всередині `if`
-    
+    window.calculateLevel = function(score) {
+    if (score === 10) return "Дуже високий";
+    if (score >= 8) return "Високий";
+    if (score >= 4) return "Середній";
+    if (score >= 2) return "Низький";
+    return "Дуже низький";
+};
 
     // 🕸📄 Визначаємо, який тест запущено
     if (currentPage.includes("matrytsya_ravena.html")) {
@@ -149,11 +155,11 @@ if (!sendStudentName) {
     return;
 }
 console.log("✅ Ім'я студента:", sendStudentName);
- console.log("🔍 Перевірка calculateLevelRaven:", typeof calculateLevelRaven);
+ console.log("🔍 Перевірка calculateLevel:", typeof calculateLevel);
 // let finalScore = calculateLevelRaven(score);
 //         let level = calculateLevelRaven(finalScore);
         finalScore = calculateScore();
-        level = calculateLevelRaven(finalScore);
+        level = calculateLevel(finalScore);
     } 
 else if (currentPage.includes("upiznay_fihury.html")) {
  // ✅ Запитуємо ім'я перед підрахунком балів
@@ -171,7 +177,7 @@ console.log("✅ Ім'я студента:", sendStudentName);
 // }
 
         let finalScore = calculateScoreFigures();
-        let level = calculateLevelFigures(finalScore);
+        let level = calculateLevel(finalScore);
     console.log("✅ Підрахований рівень:", level);
 
     } // upiznay_fihury
