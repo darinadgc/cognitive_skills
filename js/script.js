@@ -147,7 +147,7 @@ if (!sendStudentName) {
     console.error("❌ askStudentName() повернула `null`. Виконання зупинено.");
     return;
 }
-console.log("✅ Ім'я студента:", studentName);
+console.log("✅ Ім'я студента:", sendStudentName);
  finalScore = calculateScore();
         const level = calculateLevelRaven(finalScore);
     } 
