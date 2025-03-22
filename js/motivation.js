@@ -23,23 +23,30 @@ window.checkAllAnsweredMotivation = function() {
 
     //     else if (input.value === "середній рівень") score += 1;
     // });
-    score = (checkedAnswers) =>{
+ //    score = (checkedAnswers) =>{
+ //        for (let i = 0; i<checkedAnswers.length; i++) {
+ //            score+=(parseInt(checkedAnswers[i].value));
+ //         }
+ //         return score; 
+ //           console.log("🔹 Обчислений бал:", score);
+ // }
+   
+
+
+function calculateScoreMotivation() {
         for (let i = 0; i<checkedAnswers.length; i++) {
             score+=(parseInt(checkedAnswers[i].value));
          }
          return score; 
            console.log("🔹 Обчислений бал:", score);
- }
-   
+}
+
 
 function getLevel(score) {
     if (score > 13) return "Високий";
     if (score > 7) return "Середній";
     return "Низький";
 }
-
-
-
 // ✅ Виконуємо обчислення ТІЛЬКИ після натискання кнопки
 // document.addEventListener("DOMContentLoaded", () => {
 //     const sendResultsBtn = document.getElementById("send-results-btn");});
