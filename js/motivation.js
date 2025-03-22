@@ -45,11 +45,11 @@ window.calculateScoreMotivation = function() {
 }
 
 
-function getLevel(score) {
+window.getLevel = function(score) {
     if (score > 13) return "Високий";
     if (score > 7) return "Середній";
     return "Низький";
-}
+};
 // ✅ Виконуємо обчислення ТІЛЬКИ після натискання кнопки
 // document.addEventListener("DOMContentLoaded", () => {
 //     const sendResultsBtn = document.getElementById("send-results-btn");});
