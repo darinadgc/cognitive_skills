@@ -171,7 +171,7 @@ console.log("✅ Натискання кнопки: Перевіряємо ві�
         alert("❗ Будь ласка, відповідайте на всі запитання перед завершенням!");
         return;
     } */
-//    let totalQuestions, answeredQuestions;
+ let totalQuestions, answeredQuestions;
 if (checkResults.totalQuestions.size === checkResults.answeredQuestions.size) {
     console.log("🔹 Загальна кількість питань:", checkResults.totalQuestions.size);
     console.log("🔹 Відповіді:", checkResults.answeredQuestions.size);        // Виконуємо перевірку заповнених відповідей
