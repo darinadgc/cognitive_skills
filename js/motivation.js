@@ -1,7 +1,7 @@
 window.checkAllAnsweredMotivation = function() {
-    let questions = document.querySelectorAll('input[type="radio"]');
-    let totalQuestions = new Set();
-    let answeredQuestions = new Set();
+    const questions = document.querySelectorAll('input[type="radio"]');
+    window.totalQuestions = new Set();
+    window.answeredQuestions = new Set();
     let score = 0; // Загальний бал
 
     questions.forEach((input) => totalQuestions.add(input.value));
