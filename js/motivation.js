@@ -34,8 +34,8 @@ window.checkAllAnsweredMotivation = function() {
 
 
 function calculateScoreMotivation() {
-        for (let i = 0; i<checkedAnswers.length; i++) {
-            score+=(parseInt(checkedAnswers[i].value));
+        for (let i = 0; i<answeredQuestions .length; i++) {
+            score+=(parseInt(answeredQuestions [i].value));
          }
          return score; 
            console.log("🔹 Обчислений бал:", score);
