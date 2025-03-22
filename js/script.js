@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-window.submitResults = function(finalScore, level, entryIDs, cleanedStudentName) {console.log("📨 submitResults() запущено!");
+window.submitResults = function(finalScore, level, entryIDs, sendStudentName) {console.log("📨 submitResults() запущено!");
 
     if (window.isSubmitting) return;
     window.isSubmitting = true;
@@ -81,7 +81,7 @@ window.submitResults = function(finalScore, level, entryIDs, cleanedStudentName)
     console.log("🔹 Отримані entry IDs:", entryIDs);
 
     const formData = new URLSearchParams();
-    formData.append(entryIDs.name, cleanedStudentName);
+    formData.append(entryIDs.name, sendStudentName);
     formData.append(entryIDs.score, Number(finalScore));
     formData.append(entryIDs.level, String(level));
 console.log("🔹 Надсилаємо:", Object.fromEntries(formData));
@@ -161,7 +161,7 @@ console.log("✅ Ім'я студента:", sendStudentName);
 
         finalScore = window.finalScoreFigures;
         const level = window.calculateLevelFigures;
-    } 
+    } // upiznay_fihury
 else if (currentPage.includes("cognitive_skills/")) {
                         let checkResults = checkAllAnsweredMotivation();
 console.log("✅ Натискання кнопки: Перевіряємо відповіді...");
@@ -211,15 +211,15 @@ console.log("✅ Код доходить сюди! Продовжуємо...");
              console.log("✅ Визначений рівень:", level);
                 // Викликаємо submitResults з правильними значеннями
               if (!sendStudentName) {
-    console.error("❌ cleanedStudentName не визначено!");
+    console.error("❌ sendStudentName не визначено!");
     return;
 }
-console.log("✅ cleanedStudentName існує:", cleanedStudentName);
+console.log("✅ sendStudentName існує:", sendStudentName);
      console.log("🚀 Готуємось викликати submitResults...");
 console.log("📝 Данні перед відправкою:", {
     finalScore,
     level,
-    studentName: cleanedStudentName
+    studentName: sendStudentName
 });
    if (typeof finalScore === "undefined" || typeof level === "undefined") {
     console.error("❌ finalScore або level не визначено!");
@@ -232,18 +232,18 @@ console.log("📝 Данні перед відправкою:", {
                     alert("❗ Будь ласка, відповідайте на всі запитання перед завершенням!");
                     return;
                 }        
-    } else {
+    } // cognitive_skills
+else {
         console.error("❌ Невідома сторінка! Результати не відправлено.");
         return;
     }
 // const level = getLevel(score);
-
     // console.log("🔹 Надсилаємо:", { score, level });
 
     // ✅ Відправка результатів
-    submitResults(finalScore, level, getEntryIDs(), cleanedStudentName);
+    submitResults(finalScore, level, getEntryIDs(), sendStudentName);
 console.log("🔹 Перед відправкою:", {
-    studentName: cleanedStudentName,
+    studentName: sendStudentName,
     score: score, // Перевіряємо, чи тут є число
     level: level, // Переконуємося, що є рівень
 });//console.log
