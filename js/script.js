@@ -372,30 +372,29 @@ function submitTestResults(testType) {
         level = calculateLevelRaven(finalScore);
     } else if (testType === "Motivation") {
         let checkResults = checkAllAnsweredMotivation();
+         if (checkResults.answeredQuestions.size === 10) {
+            
         
         if (!checkResults || !checkResults.totalQuestions || !checkResults.answeredQuestions) {
             console.error("❌ Помилка: `checkResults` повернув `undefined` або `null`.");
             return;
         }
 
-        if (checkResults.answeredQuestions.size < 10) {
+       
+        console.log("🔹 Загальна кількість питань:", checkResults.totalQuestions.size);
+        console.log("🔹 Відповіді:", checkResults.answeredQuestions.size);
+        finalScore = calculateScoreMotivation();
+        level = getLevel(finalScore);
+   }
+
+  if (checkResults.answeredQuestions.size < 10) {
             alert("❗ Будь ласка, відповідайте на всі запитання перед завершенням!");
             return;
         }
 
-        console.log("🔹 Загальна кількість питань:", checkResults.totalQuestions.size);
-        console.log("🔹 Відповіді:", checkResults.answeredQuestions.size);
-
-        finalScore = calculateScoreMotivation();
-        level = getLevel(finalScore);
-    } else {
-        console.error("❌ Невідомий тест! Результати не відправлено.");
-        return;
-    }
-
     console.log("✅ Обчислений бал:", finalScore);
     console.log("✅ Визначений рівень:", level);
-
+} 
     if (typeof finalScore === "undefined" || typeof level === "undefined") {
         console.error("❌ finalScore або level не визначено!");
         return;
