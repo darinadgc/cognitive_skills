@@ -116,8 +116,8 @@ window.getLevelMotivation = function(score) {
       timeLeft--;
 
       if (timeLeft < 0) {
-        clearInterval(timerInterval);
-        finishTest();
+        clearIntervalRaven(timerIntervalRaven);
+        finishTestRaven();
       }
     }, 1000);
   }
@@ -126,7 +126,7 @@ window.getLevelMotivation = function(score) {
 let currentTaskIndex = 0;
     const taskRaven = tasksRaven[currentTaskIndex];
 
-    taskContainer.innerHTML = `
+    taskContainerRaven.innerHTML = `
       <img src="${task.image}" class="main-image">
       <div class="next-div">
         <button id="next-btn">Далі</button>
@@ -283,7 +283,7 @@ window.calculateScoreFigures = function(timeTaken) {
 
 //🏁finishTest
   function finishTestFigures() {
-    clearInterval(timerInterval);
+    clearInterval(timerIntervalFigures);
     resultElFigures.innerHTML = "🛑 Тест завершено! Натисніть 'Надіслати результат'.";
     figureTaskEl.innerHTML = "";
     sendResultsBtnFigures.style.display = "block";
