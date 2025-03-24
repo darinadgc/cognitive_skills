@@ -11,7 +11,7 @@ const sendResultsBtns = document.querySelectorAll(".send-results-btn");
 const sendResultsBtnFigures = document.getElementById("send-results-figures-btn");
 const sendResultsBtnRaven = document.getElementById("send-results-raven-btn");
 const sendResultsBtnMotivation = document.getElementById("send-results-motivation-btn");
-sendResultsBtnMotivation.addEventListener("click", () => submitTestResults("motivation"));
+
     sendResultsBtnFigures.addEventListener("click", () => submitTestResults("figures"));
     sendResultsBtnRaven.addEventListener("click", () => submitTestResults("raven"));
  let timerIntervalFigures;
@@ -94,10 +94,10 @@ if (!testType) {
         }
     };
 	//✅✅✅✅✅✅✅✅✅✅✅submitResults
-    window.submitResults = function(finalScore, level, entryIDs, sendStudentName) {console.log("📨 submitResults() запущено!");
+    window.submitResults = function(finalScore, level, entryIDs, sendStudentName) {
+console.log("📨 submitResults() запущено!");
 if (window.isSubmitting) return;
     window.isSubmitting = true;
-
     console.log("✅ Функція submitResults викликана!");
     
     if (!entryIDs || !entryIDs.formURL) {
@@ -405,19 +405,20 @@ function submitTestResults(testType) {
     } else if (testType === "Motivation") {
         console.log("🔹 Загальна кількість питань:", checkResults.totalQuestions.size);
         console.log("🔹 Відповіді:", checkResults.answeredQuestions.size);
-         if (checkResults.answeredQuestions.size === 10) {
                let checkResults = checkAllAnsweredMotivation();
-
+         if (checkResults.answeredQuestions.size === 10) {
         finalScore = calculateScoreMotivation();
-        level = getLevel(finalScore);            
-        
+        level = getLevel(finalScore);
+//❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗
+	sendResultsBtnMotivation.addEventListener("click", () => submitTestResults("motivation"));            
+           }
         if (!checkResults || !checkResults.totalQuestions || !checkResults.answeredQuestions) {
             console.error("❌ Помилка: `checkResults` повернув `undefined` або `null`.");
             return;
         }
 
 
-   }
+
 
   else if (checkResults.answeredQuestions.size < 10) {
             alert("❗ Будь ласка, відповідайте на всі запитання перед завершенням!");
