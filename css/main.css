@@ -136,8 +136,6 @@
   .accordion.active {
 	 background-color: #E4FC18;
   }   
-	  
-	  
   /**/ .panel {
 	  margin: 0px;
 	  padding: 0px 23px;
@@ -146,7 +144,9 @@
 	  overflow: hidden;
   }	
   .accordion, .panel {
-	transition: 3.3s;}label {
+	transition: 3.3s;}	  
+	  
+label {
 	  margin: 0 3.97%;
 	  display: inline-block;
   }
