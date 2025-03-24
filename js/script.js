@@ -6,9 +6,17 @@ document.addEventListener("DOMContentLoaded", () => {
     // const lastAttempt = localStorage.getItem(lastAttemptKey); // ✅ Оголошуємо lastAttempt
     // const lastAttemptDate = lastAttempt ? new Date(lastAttempt) : null;
 const sendResultsBtns = document.querySelectorAll(".send-results-btn");
+sendResultsBtnMotivation.addEventListener("click", () => submitTestResults("motivation"));
+    sendResultsBtnFigures.addEventListener("click", () => submitTestResults("figures"));
+    sendResultsBtnRaven.addEventListener("click", () => submitTestResults("raven"));
+  const startBtnFigures = document.getElementById("start-btn-figures");
+  const startBtnRaven = document.getElementById("start-btn-raven");
+ let timerIntervalFigures;
+  let score;
+  let timerIntervalRaven;
+
 // ACCORDION
 let acc = document.getElementsByClassName("accordion");
-	
 let i; 
 	for (i = 0; i < acc.length; i++) {
 	  acc[i].addEventListener("click", function() {
@@ -20,7 +28,15 @@ let i;
 	      panel.style.maxHeight = panel.scrollHeight + "1px";
 	    }; 
 	  });
-	};   
+	}; 	
+  // let sendStudentName; 🔹 Щоб не оголошувати всередині `if`
+    window.calculateLevel = function(score) {
+    if (score === 10) return "Дуже високий";
+    if (score >= 8) return "Високий";
+    if (score >= 4) return "Середній";
+    if (score >= 2) return "Низький";
+    return "Дуже низький";
+};
     sendResultsBtns.forEach((btn) => {
         btn.addEventListener("click", (event) => {
             const testType = event.target.dataset.testType; // Отримуємо тип тесту з data-атрибуту
@@ -96,40 +112,10 @@ console.log("🔹 Надсилаємо:", Object.fromEntries(formData));
     console.log("📩 Формат перед відправкою:", formData.toString());
 
 
-const sendResultsBtnFigures = document.getElementById("send-results-figures-btn");
-const sendResultsBtnRaven = document.getElementById("send-results-raven-btn");
-const sendResultsBtnMotivation = document.getElementById("send-results-motivation-btn");	
-sendResultsBtnMotivation.addEventListener("click", () => submitTestResults("motivation"));
-    sendResultsBtnFigures.addEventListener("click", () => submitTestResults("figures"));
-    sendResultsBtnRaven.addEventListener("click", () => submitTestResults("raven"));
-  const startBtnFigures = document.getElementById("start-btn-figures");
-  const startBtnRaven = document.getElementById("start-btn-raven");
- let timerIntervalFigures;
-  let score;
-  let timerIntervalRaven;
+// const sendResultsBtnFigures = document.getElementById("send-results-figures-btn");
+// const sendResultsBtnRaven = document.getElementById("send-results-raven-btn");
+// const sendResultsBtnMotivation = document.getElementById("send-results-motivation-btn");	
 
-// ACCORDION
-let acc = document.getElementsByClassName("accordion");
-let i; 
-	for (i = 0; i < acc.length; i++) {
-	  acc[i].addEventListener("click", function() {
-	    this.classList.toggle("active");
-	    let panel = this.nextElementSibling;
-	    if (panel.style.maxHeight){
-	      panel.style.maxHeight = null;
-	    } else {
-	      panel.style.maxHeight = panel.scrollHeight + "1px";
-	    }; 
-	  });
-	}; 	
-  // let sendStudentName; 🔹 Щоб не оголошувати всередині `if`
-    window.calculateLevel = function(score) {
-    if (score === 10) return "Дуже високий";
-    if (score >= 8) return "Високий";
-    if (score >= 4) return "Середній";
-    if (score >= 2) return "Низький";
-    return "Дуже низький";
-};
 //💗💗💗💗💗💗💗💗
 window.checkAllAnsweredMotivation = function() {
     const questions = document.querySelectorAll('input[type="radio"]');
@@ -433,7 +419,7 @@ function submitTestResults(testType) {
 
    }
 
-  if (checkResults.answeredQuestions.size < 10) {
+  else if (checkResults.answeredQuestions.size < 10) {
             alert("❗ Будь ласка, відповідайте на всі запитання перед завершенням!");
             return;
         }
