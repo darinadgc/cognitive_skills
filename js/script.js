@@ -160,8 +160,11 @@ console.log("✅ Ім'я студента:", sendStudentName);
 //         let level = calculateLevelRaven(finalScore);
         finalScore = calculateLevelRaven ();// функція calculateLevelRaven сама обчислює score всередині себе
         level = calculateLevel(finalScore);
-    // ✅ Відправка результатів
-    submitResults(finalScore, level, getEntryIDs(), sendStudentName);
+if (typeof finalScore === "undefined" || typeof level === "undefined") {
+    console.error("❌ finalScore або level не визначено!");
+    return;
+}    
+    submitResults(finalScore, level, getEntryIDs(), sendStudentName);// ✅ Відправка результатів
 console.log("🔹 Перед відправкою:", {
     studentName: sendStudentName,
     score: score, // Перевіряємо, чи тут є число
@@ -182,11 +185,20 @@ console.log("✅ Ім'я студента:", sendStudentName);
 // } else {
 //     console.error("❌ Функція calculateLevelFigures не знайдена!");
 // }
-
         let finalScore = calculateScoreFigures();
+
+
+if (typeof finalScore === "undefined") {
+    console.error("❌ finalScore не визначено!");
+    return;
+}
+
         let level = calculateLevel(finalScore);
     console.log("✅ Підрахований рівень:", level);
-
+if (typeof finalScore === "undefined" || typeof level === "undefined") {
+    console.error("❌ finalScore або level не визначено!");
+    return;
+}
     // ✅ Відправка результатів
     submitResults(finalScore, level, getEntryIDs(), sendStudentName);
 console.log("🔹 Перед відправкою:", {
