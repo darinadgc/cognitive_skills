@@ -10,7 +10,9 @@ document.getElementById("send-results-motivation-btn").addEventListener("click",
     document.getElementById("send-results-raven-btn").addEventListener("click", () => submitTestResults("raven"));
   const startBtnFigures = document.getElementById("start-btn-figures");
   const startBtnRaven = document.getElementById("start-btn-raven");
-
+ let timerIntervalFigures;
+  let score;
+  let timerIntervalRaven;
 
 // ACCORDION
 let acc = document.getElementsByClassName("accordion");
@@ -70,9 +72,7 @@ window.getLevelMotivation = function(score) {
  
  const taskContainerRaven = document.getElementById("task-container-raven");
   const timerElRaven = document.getElementById("timer-raven");
-  let currentTaskIndex = 0;
-  let score = 0;
-  let timerInterval;
+  
 
   const tasks = [
     { image: "img/matrytsya_ravena/matrytsya_ravena1.jpg", correct: 7 },
@@ -118,6 +118,7 @@ window.getLevelMotivation = function(score) {
   }
 
   function loadTaskRaven() {
+let currentTaskIndex = 0;
     const task = tasks[currentTaskIndex];
 
     taskContainer.innerHTML = `
@@ -195,9 +196,7 @@ window.calculateLevelRaven = function () {
   let unansweredTasks = [...tasksFigures]; 
   let incorrectAnswers = []; 
   let currentTask = null;
-  let score = 0;
-  let timerInterval;
-
+ 
   startBtnFigures.addEventListener("click", startTestFigures);
 
   function startTestFigures() {
@@ -215,7 +214,7 @@ window.calculateLevelRaven = function () {
   function startTimerFigures(duration) {
     let timeLeft = duration;
 
-    timerInterval = setInterval(() => {
+    timerIntervalFigures = setInterval(() => {
       const minutes = Math.floor(timeLeft / 60);
       const seconds = timeLeft % 60;
       timerEl.textContent = `⏳ ${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
