@@ -309,10 +309,17 @@ window.getEntryIDs = function (testType) {
         }
     };
 
-    return entryIDs[testType] || null;
+    return entryIDsMap[testType] || null;
 };
 function submitTestResults(testType) {
     console.log(`✅ Виклик submitResults для ${testType}`);
+let entryIDs = getEntryIDs(testType);
+    if (!entryIDs) {
+        console.error("❌ Не вдалося знайти entry ID для тесту:", testType);
+        return;
+    }
+
+    let finalScore, level;
 
     
     let sendStudentName = askStudentName();
@@ -390,7 +397,7 @@ console.log("📝 Данні перед відправкою:", {
                     alert("❗ Будь ласка, відповідайте на всі запитання перед завершенням!");
                     return;
                 }        
-    } // cognitive_skills
+    } // мотивація
 else {
         console.error("❌ Невідома сторінка! Результати не відправлено.");
         return;
@@ -713,7 +720,7 @@ window.askStudentName = function () {
    // ✅ Функції обмеження повторного проходження тесту (не виконується при завантаженні)
 
 // ✅ Функція перевірки обмежень для конкретного тесту
-// function checkTestRetry(testType, resultElement) {
+// function checkTestRetry(testType, retryElement) {
 //     const lastAttemptKey = `lastAttempt${testType}`;
 //     const lastAttempt = localStorage.getItem(lastAttemptKey);
 //     const lastAttemptDate = lastAttempt ? new Date(lastAttempt) : null;
@@ -721,26 +728,25 @@ window.askStudentName = function () {
 //     if (lastAttemptDate && !isAllowedToRetry(lastAttemptDate)) {
 	
 
-//         resultElement.innerHTML = `❌ Ви вже проходили тест. Можна повторити через ${daysUntilRetry(lastAttemptDate)} днів.`;
+//         retryElement.innerHTML = `❌ Ви вже проходили тест. Можна повторити через ${daysUntilRetry(lastAttemptDate)} днів.`;
 //         return false;
 //     }
 
-//     resultElement.innerHTML = "✅ Ви можете пройти тест!";
 //     return true;
 // }
 
 // ✅ Додаємо обробники подій на заголовки тестів
 // document.addEventListener("DOMContentLoaded", () => {
 //     document.getElementById("figures-title").addEventListener("click", () => {
-//         checkTestRetry("Figures", document.getElementById("resultElFigures"));
+//         checkTestRetry("Figures", document.getElementById("figures-panel"));
 //     });
 
 //     document.getElementById("raven-title").addEventListener("click", () => {
-//         checkTestRetry("Raven", document.getElementById("resultElRaven"));
+//         checkTestRetry("Raven", document.getElementById("raven-panel"));
 //     });
 
 //     document.getElementById("motivation-title").addEventListener("click", () => {
-//         checkTestRetry("Motivation", document.getElementById("resultElMotivation"));
+//         checkTestRetry("Motivation", document.getElementById("motivation-panel"));
 //     });
 // });
 
