@@ -174,9 +174,6 @@ window.getLevelMotivation = function(score) {
     { image: "img/matrytsya_ravena/matrytsya_ravena10.jpg", correct: 5 }
   ];
 
-  // ✅ Додаємо обробник події ПІСЛЯ оголошення функції
-  startBtnRaven.addEventListener("click", startTestRaven);
-
   function startTestRaven() {
     console.log("🔹 startTest() запущено!");
     currentTaskIndex = 0;
@@ -187,6 +184,9 @@ window.getLevelMotivation = function(score) {
     startTimerRaven(600);
     loadTaskRaven();
   }
+
+  // ✅ Додаємо обробник події ПІСЛЯ оголошення функції
+  startBtnRaven.addEventListener("click", startTestRaven);
 
   function startTimerRaven(duration) {
     let timeLeft = duration;
@@ -283,8 +283,6 @@ window.calculateLevelRaven = function () {
   let unansweredTasks = [...tasksFigures]; 
   let incorrectAnswers = []; 
   let currentTask = null;
- 
-  startBtnFigures.addEventListener("click", startTestFigures);
 
   function startTestFigures() {
     unansweredTasksFigures = [...tasksFigures];
@@ -298,6 +296,8 @@ window.calculateLevelRaven = function () {
     generateTask();
   }
 
+ 
+  startBtnFigures.addEventListener("click", startTestFigures);
   function startTimerFigures(duration) {
     let timeLeft = duration;
 
