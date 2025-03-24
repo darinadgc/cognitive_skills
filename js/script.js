@@ -237,7 +237,7 @@ let currentTaskIndex = 0;
     }
 
     const userAnswerRaven = parseInt(selectedOption.value);
-    if (userAnswerRaven === tasks[currentTaskIndexRaven].correct) {
+    if (userAnswerRaven === tasksRaven[currentTaskIndexRaven].correct) {
       score++;
     }
 
@@ -311,24 +311,24 @@ window.calculateLevelRaven = function () {
       timeLeft--;
 
       if (timeLeft < 0) {
-        clearInterval(timerInterval);
+        clearInterval(timerIntervalFigures);
         finishTest();
       }
     }, 1000);
   }
 
-  function generateTask() {
+  function generateTaskFigures() {
     if (score === 10 && incorrectAnswers.length === 0) {
       finishTestFigures();
       return;
     }
 
-    currentTask = unansweredTasks.length > 0
+    currentTaskFigures = unansweredTasks.length > 0
       ? unansweredTasks.shift()
       : incorrectAnswers.shift(); 
 
     figureTaskEl.innerHTML = `
-      <img src="${currentTask.image}" class="main-image">
+      <img src="${currentTaskFigures.image}" class="main-image">
       <div class="options">
         ${[1, 2, 3, 4].map(num => `
           <img class="option" src="img/upiznay_fihury/upiznay_fihury${currentTask.id}_${num}.png" data-index="${num}">
@@ -439,7 +439,7 @@ function submitTestResults(testType) {
         console.log("🔹 Відповіді:", checkResults.answeredQuestions.size);
          if (checkResults.answeredQuestions.size === 10) {
         finalScore = calculateScoreMotivation();
-        level = getLevel(finalScore);
+        level = getLevelMotivation(finalScore);
 //❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗
             submitTestResults("Motivation"); // ✅ Викликати `submitTestResults`, якщо всі відповіді є 
 
