@@ -373,18 +373,18 @@ function submitTestResults(testType) {
     } else if (testType === "Motivation") {
         let checkResults = checkAllAnsweredMotivation();
          if (checkResults.answeredQuestions.size === 10) {
-            
+       
+        console.log("🔹 Загальна кількість питань:", checkResults.totalQuestions.size);
+        console.log("🔹 Відповіді:", checkResults.answeredQuestions.size);
+        finalScore = calculateScoreMotivation();
+        level = getLevel(finalScore);            
         
         if (!checkResults || !checkResults.totalQuestions || !checkResults.answeredQuestions) {
             console.error("❌ Помилка: `checkResults` повернув `undefined` або `null`.");
             return;
         }
 
-       
-        console.log("🔹 Загальна кількість питань:", checkResults.totalQuestions.size);
-        console.log("🔹 Відповіді:", checkResults.answeredQuestions.size);
-        finalScore = calculateScoreMotivation();
-        level = getLevel(finalScore);
+
    }
 
   if (checkResults.answeredQuestions.size < 10) {
