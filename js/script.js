@@ -74,7 +74,7 @@ window.getLevelMotivation = function(score) {
   const timerElRaven = document.getElementById("timer-raven");
   
 
-  const tasks = [
+  const tasksRaven = [
     { image: "img/matrytsya_ravena/matrytsya_ravena1.jpg", correct: 7 },
     { image: "img/matrytsya_ravena/matrytsya_ravena2.jpg", correct: 6 },
     { image: "img/matrytsya_ravena/matrytsya_ravena3.jpg", correct: 6 },
@@ -88,7 +88,7 @@ window.getLevelMotivation = function(score) {
   ];
 
   // ✅ Додаємо обробник події ПІСЛЯ оголошення функції
-  startBtnRaven.addEventListener("click", startTest);
+  startBtnRaven.addEventListener("click", startTestRaven);
 
   function startTestRaven() {
     console.log("🔹 startTest() запущено!");
@@ -119,7 +119,7 @@ window.getLevelMotivation = function(score) {
 
   function loadTaskRaven() {
 let currentTaskIndex = 0;
-    const task = tasks[currentTaskIndex];
+    const taskRaven = tasksRaven[currentTaskIndex];
 
     taskContainer.innerHTML = `
       <img src="${task.image}" class="main-image">
