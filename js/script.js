@@ -21,7 +21,7 @@ const sendResultsBtnMotivation = document.getElementById("send-results-motivatio
     if (startBtnFigures) {
         startBtnFigures.addEventListener("click", () => {
             console.log("✅ Початок тесту: Упізнай фігури");
-            startFiguresTest();
+            startTestFigures();
         });
     } else {
         console.error("❌ start-btn-figures не знайдено!");
@@ -30,7 +30,7 @@ const sendResultsBtnMotivation = document.getElementById("send-results-motivatio
     if (startBtnRaven) {
         startBtnRaven.addEventListener("click", () => {
             console.log("✅ Початок тесту: Матриця Равена");
-            startRavenTest();
+            startTestRaven();
         });
     } else {
         console.error("❌ start-btn-raven не знайдено!");
@@ -437,20 +437,20 @@ function submitTestResults(testType) {
         finalScore = calculateScoreMotivation();
         level = getLevel(finalScore);
 //❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗
+            submitTestResults("Motivation"); // ✅ Викликати `submitTestResults`, якщо всі відповіді є 
+
            }
-        if (!checkResults || !checkResults.totalQuestions || !checkResults.answeredQuestions) {
+   if (!checkResults || !checkResults.totalQuestions || !checkResults.answeredQuestions) {
             console.error("❌ Помилка: `checkResults` повернув `undefined` або `null`.");
             return;
         }
-
-
 
 
   if (checkResults.answeredQuestions.size < 10) {
             alert("❗ Будь ласка, відповідайте на всі запитання перед завершенням!");
             return;
         }
-        submitTestResults("Motivation"); // ✅ Викликати `submitTestResults`, якщо всі відповіді є
+
 
 } 
     if (typeof finalScore === "undefined" || typeof level === "undefined") {
