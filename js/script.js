@@ -413,8 +413,8 @@ else {
     //     return;
     // }
 
-    console.log("🔹 Обчислений бал:", finalScore);
-    console.log("🔹 Визначений рівень:", level);
+    // console.log("🔹 Обчислений бал:", finalScore);
+    // console.log("🔹 Визначений рівень:", level);
 
     // Отримуємо правильні entryIDs
     let entryIDs = getEntryIDs(testType);
@@ -719,6 +719,8 @@ window.askStudentName = function () {
 //     const lastAttemptDate = lastAttempt ? new Date(lastAttempt) : null;
 
 //     if (lastAttemptDate && !isAllowedToRetry(lastAttemptDate)) {
+	
+
 //         resultElement.innerHTML = `❌ Ви вже проходили тест. Можна повторити через ${daysUntilRetry(lastAttemptDate)} днів.`;
 //         return false;
 //     }
