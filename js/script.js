@@ -425,7 +425,7 @@ else {
 
     // Викликаємо `submitResults()`
     submitResults(finalScore, level, entryIDs, sendStudentName);
-}//  `submitResults()`
+// } `submitResults()`
        // ✅ Переписуємо submitResults() та його виклик
  window.submitResults = function(finalScore, level, entryIDs, sendStudentName) {
     console.log("📨 submitResults() запущено!");
