@@ -314,7 +314,7 @@ window.getEntryIDs = function (testType) {
 function submitTestResults(testType) {
     console.log(`✅ Виклик submitResults для ${testType}`);
 
-    let finalScore, level;
+    
     let sendStudentName = askStudentName();
     if (!sendStudentName) {
         console.error("❌ askStudentName() повернула `null`. Виконання зупинено.");
@@ -323,14 +323,14 @@ function submitTestResults(testType) {
     console.log("✅ Ім'я студента:", sendStudentName);
 
     if (testType === "figures") {
-        finalScore = calculateScoreFigures();
-        level = calculateLevelFigures(finalScore);
+        let finalScore = calculateScoreFigures();
+        let level = calculateLevelFigures(finalScore);
     } else if (testType === "raven") {
-        finalScore = calculateScoreRaven();
-        level = calculateLevelRaven(finalScore);
+        let finalScore = calculateScoreRaven();
+        let level = calculateLevelRaven(finalScore);
     } else  if (testType === "motivation") {
-        finalScore = calculateScoreMotivation();
-        level = getLevel(finalScore);
+        let finalScore = calculateScoreMotivation();
+        let level = getLevel(finalScore);
 
 
 
