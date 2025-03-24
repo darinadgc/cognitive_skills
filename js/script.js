@@ -314,7 +314,7 @@ window.getEntryIDs = function (testType) {
         }
     };
 
-    return entryIDsMap[testType] || null;
+    return entryIDs[testType] || null;
 };
 function submitTestResults(testType) {
     console.log(`✅ Виклик submitResults для ${testType}`);
@@ -334,13 +334,16 @@ let entryIDs = getEntryIDs(testType);
     }
     console.log("✅ Ім'я студента:", sendStudentName);
 
-    if (testType === "figures") {
+    if (testType === "Figures") {    
+ //let testType = ""; ✅ Явно визначаємо testType
         let finalScore = calculateScoreFigures();
         let level = calculateLevelFigures(finalScore);
-    } else if (testType === "raven") {
-        let finalScore = calculateScoreRaven();
+    } else if (testType === "Raven") {
+             // let testType = "";✅ Явно визначаємо testType
+let finalScore = calculateScoreRaven();
         let level = calculateLevelRaven(finalScore);
-    } else  if (testType === "motivation") {
+    } else  if (testType === "Motivation") {
+            // let testType = "Motivation"; ✅ Явно визначаємо testType
         let finalScore = calculateScoreMotivation();
         let level = getLevel(finalScore);
 
