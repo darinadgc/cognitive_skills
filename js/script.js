@@ -430,6 +430,10 @@ function submitTestResults(testType) {
 	    console.log("✅ Ім'я студента:", sendStudentName);
     submitResults(finalScore, level, entryIDs, sendStudentName);
     } else if (testType === "Motivation") {
+    if (typeof checkAllAnsweredMotivation !== "function") {
+        console.error("❌ Функція checkAllAnsweredMotivation не знайдена!");
+        return;
+    }
                let checkResults = checkAllAnsweredMotivation();
         console.log("🔹 Загальна кількість питань:", checkResults.totalQuestions.size);
         console.log("🔹 Відповіді:", checkResults.answeredQuestions.size);
