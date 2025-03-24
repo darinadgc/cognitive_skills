@@ -203,7 +203,7 @@ window.calculateLevelRaven = function () {
     unansweredTasksFigures = [...tasksFigures];
     incorrectAnswers = [];
     score = 0;
-    startBtn.style.display = "none";
+    startBtnFigures.style.display = "none";
     sendResultsBtnFigures.style.display = "none";
     document.getElementById("figure-task").style.display = "block";
 
