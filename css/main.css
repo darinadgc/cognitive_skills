@@ -265,6 +265,15 @@ img.option, li, label, #option, .radio input {
   cursor: pointer;
 }
 /*Responsive*/
+@media (min-width: 800px) {   
+  
+  .next-div {
+   
+ flex-wrap: wrap;
+
+  } 
+}
+
 @media (max-width: 766px) {   h1 {
 	   font-size: 41px;
 	  }
