@@ -118,7 +118,7 @@ if (window.isSubmitting) return;
     formData.append(entryIDs.level, String(level));
 console.log("🔹 Надсилаємо:", Object.fromEntries(formData));
     console.log("📩 Формат перед відправкою:", formData.toString());
-
+};
 //💗💗💗💗💗💗💗💗
 window.checkAllAnsweredMotivation = function() {
     const questions = document.querySelectorAll('input[type="radio"]');
@@ -402,7 +402,7 @@ window.calculateScoreFigures = function(timeTaken) {
     }
 
     return selectedEntryIDs;
-};
+//❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕
 
 function submitTestResults(testType) {
     console.log(`✅ Виклик submitResults для ${testType}`);
