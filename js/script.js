@@ -158,7 +158,7 @@ console.log("✅ Ім'я студента:", sendStudentName);
  console.log("🔍 Перевірка calculateLevel:", typeof calculateLevel);
 // let finalScore = calculateLevelRaven(score);
 //         let level = calculateLevelRaven(finalScore);
-        finalScore = calculateLevelRaven (score);
+        finalScore = calculateLevelRaven ();// функція calculateLevelRaven сама обчислює score всередині себе
         level = calculateLevel(finalScore);
     // ✅ Відправка результатів
     submitResults(finalScore, level, getEntryIDs(), sendStudentName);
@@ -275,11 +275,11 @@ else {
     }
 // const level = getLevel(score);
     // console.log("🔹 Надсилаємо:", { score, level });
-console.log("✅ ПЕРЕВІРКА: level =", level);
-if (typeof finalScore === "undefined" || typeof level === "undefined") {
-    console.error("❌ finalScore або level не визначено!");
-    return;
-}
+// console.log("✅ ПЕРЕВІРКА: level =", level);
+// if (typeof finalScore === "undefined" || typeof level === "undefined") {
+    // console.error("❌ finalScore або level не визначено!");
+    // return;
+// }
 
 });//sendResultsBtn click                
 
