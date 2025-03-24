@@ -101,7 +101,7 @@ window.getLevelMotivation = function(score) {
     score = 0;
     taskContainerRaven.style.display = "flex";
     startBtnRaven.style.display = "none";
-    sendResultsRavenBtn.style.display = "none";
+    sendResultsBtnRaven.style.display = "none";
     startTimer(600);
     loadTask();
   }
@@ -212,7 +212,7 @@ window.calculateLevelRaven = function () {
     sendResultsBtnFigures.style.display = "none";
     document.getElementById("figure-task").style.display = "block";
 
-    startTimer(90);
+    startTimerFigures(90);
     generateTask();
   }
 
