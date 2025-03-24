@@ -6,11 +6,11 @@ document.addEventListener("DOMContentLoaded", () => {
     // const lastAttempt = localStorage.getItem(lastAttemptKey); // ✅ Оголошуємо lastAttempt
     // const lastAttemptDate = lastAttempt ? new Date(lastAttempt) : null;
 const sendResultsBtns = document.querySelectorAll(".send-results-btn");
+  const startBtnFigures = document.getElementById("start-btn-figures");
+  const startBtnRaven = document.getElementById("start-btn-raven");
 sendResultsBtnMotivation.addEventListener("click", () => submitTestResults("motivation"));
     sendResultsBtnFigures.addEventListener("click", () => submitTestResults("figures"));
     sendResultsBtnRaven.addEventListener("click", () => submitTestResults("raven"));
-  const startBtnFigures = document.getElementById("start-btn-figures");
-  const startBtnRaven = document.getElementById("start-btn-raven");
  let timerIntervalFigures;
   let score;
   let timerIntervalRaven;
