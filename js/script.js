@@ -17,6 +17,24 @@ const sendResultsBtnMotivation = document.getElementById("send-results-motivatio
  let timerIntervalFigures;
   let score;
   let timerIntervalRaven;
+   // 🔹 Додаємо обробники подій до кнопок "Почати тест"
+    if (startBtnFigures) {
+        startBtnFigures.addEventListener("click", () => {
+            console.log("✅ Початок тесту: Упізнай фігури");
+            startFiguresTest();
+        });
+    } else {
+        console.error("❌ start-btn-figures не знайдено!");
+    }
+
+    if (startBtnRaven) {
+        startBtnRaven.addEventListener("click", () => {
+            console.log("✅ Початок тесту: Матриця Равена");
+            startRavenTest();
+        });
+    } else {
+        console.error("❌ start-btn-raven не знайдено!");
+    }
 
 	
 
@@ -91,8 +109,12 @@ if (!testType) {
             score: "entry.1008291282",
             level: "entry.1332224844"
         }
-        }
+        };
+
+        return entryIDs[testType] || null;
     };
+
+    console.log("✅ Успішно додані обробники подій!");
 	//✅✅✅✅✅✅✅✅✅✅✅submitResults
     window.submitResults = function(finalScore, level, entryIDs, sendStudentName) {
 console.log("📨 submitResults() запущено!");
@@ -392,25 +414,29 @@ function submitTestResults(testType) {
     }
 
     let finalScore, level;
+//❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗
+    const sendResultsBtnMotivation = document.getElementById("send-results-motivation-btn");
 
- 
 
     // ✅ Визначаємо оцінку в залежності від тесту
     if (testType === "Figures") {    
         finalScore = calculateScoreFigures();
         level = calculateLevelFigures(finalScore);
+	        console.log("✅ Ім'я студента:", sendStudentName);
+    submitResults(finalScore, level, entryIDs, sendStudentName);
     } else if (testType === "Raven") {
         finalScore = calculateScoreRaven();
-        level = calculateLevelRaven(finalScore);
+        level = calculateLevelRaven(finalScore); 
+	    console.log("✅ Ім'я студента:", sendStudentName);
+    submitResults(finalScore, level, entryIDs, sendStudentName);
     } else if (testType === "Motivation") {
+               let checkResults = checkAllAnsweredMotivation();
         console.log("🔹 Загальна кількість питань:", checkResults.totalQuestions.size);
         console.log("🔹 Відповіді:", checkResults.answeredQuestions.size);
-               let checkResults = checkAllAnsweredMotivation();
          if (checkResults.answeredQuestions.size === 10) {
         finalScore = calculateScoreMotivation();
         level = getLevel(finalScore);
 //❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗
-	sendResultsBtnMotivation.addEventListener("click", () => submitTestResults("motivation"));            
            }
         if (!checkResults || !checkResults.totalQuestions || !checkResults.answeredQuestions) {
             console.error("❌ Помилка: `checkResults` повернув `undefined` або `null`.");
@@ -420,10 +446,11 @@ function submitTestResults(testType) {
 
 
 
-  else if (checkResults.answeredQuestions.size < 10) {
+  if (checkResults.answeredQuestions.size < 10) {
             alert("❗ Будь ласка, відповідайте на всі запитання перед завершенням!");
             return;
         }
+        submitTestResults("Motivation"); // ✅ Викликати `submitTestResults`, якщо всі відповіді є
 
 } 
     if (typeof finalScore === "undefined" || typeof level === "undefined") {
@@ -445,8 +472,7 @@ function submitTestResults(testType) {
         console.error("❌ askStudentName() повернула `null`. Виконання зупинено.");
         return;
     }
-    console.log("✅ Ім'я студента:", sendStudentName);
-    submitResults(finalScore, level, entryIDs, sendStudentName);
+
 }//✅ Виклик submitResults
 
 // sendResultsBtn.addEventListener("click", () => {
