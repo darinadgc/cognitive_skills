@@ -5,11 +5,85 @@ document.addEventListener("DOMContentLoaded", () => {
     // const lastAttemptKey = getLastAttemptKey(); // ✅ Отримуємо ключ для LocalStorage
     // const lastAttempt = localStorage.getItem(lastAttemptKey); // ✅ Оголошуємо lastAttempt
     // const lastAttemptDate = lastAttempt ? new Date(lastAttempt) : null;
+const sendResultsBtns = document.querySelectorAll(".send-results-btn");
+
+    sendResultsBtns.forEach((btn) => {
+        btn.addEventListener("click", (event) => {
+            const testType = event.target.dataset.testType; // Отримуємо тип тесту з data-атрибуту
+            submitTestResults(testType);
+        });
+    });
+// 🏫🧒📛 Функція для запиту імені студента
+window.askStudentName = function () {
+    let studentName = prompt("Введіть ваші ім'я та першу літеру прізвища:").trim();
+
+    if (!studentName || studentName.length < 2) {
+        alert("❗ Будь ласка, введіть ім'я, більше за 1 символ.");
+        return null;  // ❌ Якщо ім'я некоректне, повертаємо null
+    }
+
+    // ✅ Фільтр символів у імені
+    let cleanedStudentName = studentName.replace(/[^a-zA-ZА-Яа-яЇїІіЄєҐґ0-9' ]/g, "");
+
+    return cleanedStudentName;  // ✅ Повертаємо очищене ім'я
+};// 🏫🧒📛 Функція для запиту імені студента
+
+  
+window.getEntryIDs = function (testType) {
+    console.log("🔹 Визначаємо entry ID для тесту:", testType);
+if (!testType) {
+        console.error("❌ testType не визначено!");
+        return null;
+    }// Перетворюємо першу літеру в велику, решту — в малі
+    testType = testType.charAt(0).toUpperCase() + testType.slice(1).toLowerCase();
+    console.log("🔹 Визначаємо entry ID для тесту:", testType);
+    const entryIDs = {
+        "Motivation": {
+            formURL: "https://docs.google.com/forms/d/e/1FAIpQLSeco-wWwULNG0-L1Qwnxn4tYBtQxinBXjVg4jTB1C2HzZ2KNw/formResponse",
+            name: "entry.511676966",
+            score: "entry.1008291282",
+            level: "entry.1332224844"
+        },
+        "Figures": {
+            formURL: "https://docs.google.com/forms/d/e/1FAIpQLSfSJTHeQHKjxr-_Nfwr0qC1-5Rinq1xGevQ4i8yFKegE9Wfyw/formResponse",
+            name: "entry.511676966",
+            score: "entry.1332224844",
+            level: "entry.1008291282"
+        },
+        "Raven": {
+            formURL: "https://docs.google.com/forms/u/0/d/e/1FAIpQLSfyylO6_4cpbzuD6THcT95VMAW5R7Foy1qykWDloI7Rew2b1g/formResponse",
+            name: "entry.511676966",
+            score: "entry.1008291282",
+            level: "entry.1332224844"
+        }
+    };
+	//✅✅✅✅✅✅✅✅✅✅✅submitResults
+    window.submitResults = function(finalScore, level, entryIDs, sendStudentName) {console.log("📨 submitResults() запущено!");
+if (window.isSubmitting) return;
+    window.isSubmitting = true;
+
+    console.log("✅ Функція submitResults викликана!");
+    
+    if (!entryIDs || !entryIDs.formURL) {
+        console.error("❌ Не вдалося знайти entry ID для цієї сторінки.");
+        alert("❌ Помилка! Не вдалося знайти entry ID.");
+        window.isSubmitting = false;
+        return;
+    }
+
+    console.log("🔹 Отримані entry IDs:", entryIDs);
+
+    const formData = new URLSearchParams();
+    formData.append(entryIDs.name, sendStudentName);
+    formData.append(entryIDs.score, Number(finalScore));
+    formData.append(entryIDs.level, String(level));
+console.log("🔹 Надсилаємо:", Object.fromEntries(formData));
+    console.log("📩 Формат перед відправкою:", formData.toString());
+
+
 const sendResultsBtnFigures = document.getElementById("send-results-figures-btn");
 const sendResultsBtnRaven = document.getElementById("send-results-raven-btn");
-const sendResultsBtnMotivation = document.getElementById("send-results-motivation-btn");
-
-	
+const sendResultsBtnMotivation = document.getElementById("send-results-motivation-btn");	
 sendResultsBtnMotivation.addEventListener("click", () => submitTestResults("motivation"));
     sendResultsBtnFigures.addEventListener("click", () => submitTestResults("figures"));
     sendResultsBtnRaven.addEventListener("click", () => submitTestResults("raven"));
@@ -21,7 +95,6 @@ sendResultsBtnMotivation.addEventListener("click", () => submitTestResults("moti
 
 // ACCORDION
 let acc = document.getElementsByClassName("accordion");
-	
 let i; 
 	for (i = 0; i < acc.length; i++) {
 	  acc[i].addEventListener("click", function() {
@@ -33,7 +106,15 @@ let i;
 	      panel.style.maxHeight = panel.scrollHeight + "1px";
 	    }; 
 	  });
-	};   
+	}; 	
+  let sendStudentName; // 🔹 Щоб не оголошувати всередині `if`
+    window.calculateLevel = function(score) {
+    if (score === 10) return "Дуже високий";
+    if (score >= 8) return "Високий";
+    if (score >= 4) return "Середній";
+    if (score >= 2) return "Низький";
+    return "Дуже низький";
+};
 //💗💗💗💗💗💗💗💗
 window.checkAllAnsweredMotivation = function() {
     const questions = document.querySelectorAll('input[type="radio"]');
@@ -289,50 +370,6 @@ window.calculateScoreFigures = function(timeTaken) {
     sendResultsBtnFigures.style.display = "block";
   }//🏁finishTest
 
-// 🏫🧒📛 Функція для запиту імені студента
-window.askStudentName = function () {
-    let studentName = prompt("Введіть ваше ім'я:").trim();
-
-    if (!studentName || studentName.length < 2) {
-        alert("❗ Будь ласка, введіть коректне ім'я.");
-        return null;  // ❌ Якщо ім'я некоректне, повертаємо null
-    }
-
-    // ✅ Фільтр символів у імені
-    let cleanedStudentName = studentName.replace(/[^a-zA-ZА-Яа-яЇїІіЄєҐґ0-9' ]/g, "");
-
-    return cleanedStudentName;  // ✅ Повертаємо очищене ім'я
-};// 🏫🧒📛 Функція для запиту імені студента
-
-  
-window.getEntryIDs = function (testType) {
-    console.log("🔹 Визначаємо entry ID для тесту:", testType);
-if (!testType) {
-        console.error("❌ testType не визначено!");
-        return null;
-    }// Перетворюємо першу літеру в велику, решту — в малі
-    testType = testType.charAt(0).toUpperCase() + testType.slice(1).toLowerCase();
-    console.log("🔹 Визначаємо entry ID для тесту:", testType);
-    const entryIDs = {
-        "Motivation": {
-            formURL: "https://docs.google.com/forms/d/e/1FAIpQLSeco-wWwULNG0-L1Qwnxn4tYBtQxinBXjVg4jTB1C2HzZ2KNw/formResponse",
-            name: "entry.511676966",
-            score: "entry.1008291282",
-            level: "entry.1332224844"
-        },
-        "Figures": {
-            formURL: "https://docs.google.com/forms/d/e/1FAIpQLSfSJTHeQHKjxr-_Nfwr0qC1-5Rinq1xGevQ4i8yFKegE9Wfyw/formResponse",
-            name: "entry.511676966",
-            score: "entry.1332224844",
-            level: "entry.1008291282"
-        },
-        "Raven": {
-            formURL: "https://docs.google.com/forms/u/0/d/e/1FAIpQLSfyylO6_4cpbzuD6THcT95VMAW5R7Foy1qykWDloI7Rew2b1g/formResponse",
-            name: "entry.511676966",
-            score: "entry.1008291282",
-            level: "entry.1332224844"
-        }
-    };
 
     let selectedEntryIDs = entryIDs[testType];
 
