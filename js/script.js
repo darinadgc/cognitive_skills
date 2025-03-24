@@ -5,9 +5,14 @@ document.addEventListener("DOMContentLoaded", () => {
     // const lastAttemptKey = getLastAttemptKey(); // ✅ Отримуємо ключ для LocalStorage
     // const lastAttempt = localStorage.getItem(lastAttemptKey); // ✅ Оголошуємо lastAttempt
     // const lastAttemptDate = lastAttempt ? new Date(lastAttempt) : null;
-document.getElementById("send-results-motivation-btn").addEventListener("click", () => submitTestResults("motivation"));
-    document.getElementById("send-results-figures-btn").addEventListener("click", () => submitTestResults("figures"));
-    document.getElementById("send-results-raven-btn").addEventListener("click", () => submitTestResults("raven"));
+const sendResultsBtnFigures = document.getElementById("send-results-figures-btn");
+const sendResultsBtnRaven = document.getElementById("send-results-raven-btn");
+const sendResultsBtnMotivation = document.getElementById("send-results-motivation-btn");
+
+	
+sendResultsBtnMotivation.addEventListener("click", () => submitTestResults("motivation"));
+    sendResultsBtnFigures.addEventListener("click", () => submitTestResults("figures"));
+    sendResultsBtnRaven.addEventListener("click", () => submitTestResults("raven"));
   const startBtnFigures = document.getElementById("start-btn-figures");
   const startBtnRaven = document.getElementById("start-btn-raven");
  let timerIntervalFigures;
