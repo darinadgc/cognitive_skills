@@ -294,19 +294,19 @@ window.getEntryIDs = function (testType) {
     console.log("🔹 Визначаємо entry ID для тесту:", testType);
 
     const entryIDs = {
-        "motivation": {
+        "Motivation": {
             formURL: "https://docs.google.com/forms/d/e/1FAIpQLSeco-wWwULNG0-L1Qwnxn4tYBtQxinBXjVg4jTB1C2HzZ2KNw/formResponse",
             name: "entry.511676966",
             score: "entry.1008291282",
             level: "entry.1332224844"
         },
-        "figures": {
+        "Figures": {
             formURL: "https://docs.google.com/forms/d/e/1FAIpQLSfSJTHeQHKjxr-_Nfwr0qC1-5Rinq1xGevQ4i8yFKegE9Wfyw/formResponse",
             name: "entry.511676966",
             score: "entry.1332224844",
             level: "entry.1008291282"
         },
-        "raven": {
+        "Raven": {
             formURL: "https://docs.google.com/forms/u/0/d/e/1FAIpQLSfyylO6_4cpbzuD6THcT95VMAW5R7Foy1qykWDloI7Rew2b1g/formResponse",
             name: "entry.511676966",
             score: "entry.1008291282",
