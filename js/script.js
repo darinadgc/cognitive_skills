@@ -103,7 +103,7 @@ window.getLevelMotivation = function(score) {
     startBtnRaven.style.display = "none";
     sendResultsBtnRaven.style.display = "none";
     startTimerRaven(600);
-    loadTask();
+    loadTaskRaven();
   }
 
   function startTimerRaven(duration) {
@@ -112,7 +112,7 @@ window.getLevelMotivation = function(score) {
     timerIntervalRaven = setInterval(() => {
       const minutes = Math.floor(timeLeft / 60);
       const seconds = timeLeft % 60;
-      timerEl.textContent = `⏳ ${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+      timerElRaven.textContent = `⏳ ${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
       timeLeft--;
 
       if (timeLeft < 0) {
@@ -234,7 +234,7 @@ window.calculateLevelRaven = function () {
 
   function generateTask() {
     if (score === 10 && incorrectAnswers.length === 0) {
-      finishTest();
+      finishTestFigures();
       return;
     }
 
@@ -307,7 +307,12 @@ window.askStudentName = function () {
   
 window.getEntryIDs = function (testType) {
     console.log("🔹 Визначаємо entry ID для тесту:", testType);
-
+if (!testType) {
+        console.error("❌ testType не визначено!");
+        return null;
+    }// Перетворюємо першу літеру в велику, решту — в малі
+    testType = testType.charAt(0).toUpperCase() + testType.slice(1).toLowerCase();
+    console.log("🔹 Визначаємо entry ID для тесту:", testType);
     const entryIDs = {
         "Motivation": {
             formURL: "https://docs.google.com/forms/d/e/1FAIpQLSeco-wWwULNG0-L1Qwnxn4tYBtQxinBXjVg4jTB1C2HzZ2KNw/formResponse",
@@ -329,7 +334,14 @@ window.getEntryIDs = function (testType) {
         }
     };
 
-    return entryIDs[testType] || null;
+    let selectedEntryIDs = entryIDs[testType];
+
+    if (!selectedEntryIDs) {
+        console.error(`❌ Не вдалося знайти entry ID для тесту: ${testType}`);
+        return null;
+    }
+
+    return selectedEntryIDs;
 };
 
 function submitTestResults(testType) {
