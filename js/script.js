@@ -102,7 +102,7 @@ window.getLevelMotivation = function(score) {
     taskContainerRaven.style.display = "flex";
     startBtnRaven.style.display = "none";
     sendResultsBtnRaven.style.display = "none";
-    startTimer(600);
+    startTimerRaven(600);
     loadTask();
   }
 
@@ -222,7 +222,7 @@ window.calculateLevelRaven = function () {
     timerIntervalFigures = setInterval(() => {
       const minutes = Math.floor(timeLeft / 60);
       const seconds = timeLeft % 60;
-      timerEl.textContent = `⏳ ${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+      timerElFigures.textContent = `⏳ ${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
       timeLeft--;
 
       if (timeLeft < 0) {
@@ -252,7 +252,7 @@ window.calculateLevelRaven = function () {
     `;
 
     document.querySelectorAll(".option").forEach(option => {
-      option.addEventListener("click", () => checkAnswer(Number(option.dataset.index)));
+      option.addEventListener("click", () => checkAnswerFigures(Number(option.dataset.index)));
     });
   }
 
