@@ -96,7 +96,7 @@ window.getLevelMotivation = function(score) {
     score = 0;
     taskContainerRaven.style.display = "flex";
     startBtnRaven.style.display = "none";
-    sendResultsBtnRaven.style.display = "none";
+    sendResultsRavenBtn.style.display = "none";
     startTimer(600);
     loadTask();
   }
