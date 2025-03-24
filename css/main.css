@@ -119,7 +119,7 @@
   ul, ol {
   margin: 0 28px;
   }
-	  /* .accordion {
+	  .accordion {
 	 background-color: #FFFD87;
 	  cursor: pointer;
 	  
@@ -135,10 +135,10 @@
   }
   .accordion.active {
 	 background-color: #E4FC18;
-  }   */
+  }   
 	  
 	  
-  /* .panel {
+  /**/ .panel {
 	  margin: 0px;
 	  padding: 0px 23px;
 	  background-color: #fbf1a5;
@@ -149,7 +149,7 @@
 	transition: 3.3s;}label {
 	  margin: 0 3.97%;
 	  display: inline-block;
-  } */
+  }
   li span,#l-pgso span{
 	  flex-wrap: nowrap;
 	  display: inline-flex;
@@ -208,7 +208,7 @@ button {
     cursor: pointer;
 }
 /* Матриця Равена */
-.test-container {
+.test-container-raven {
     text-align: center;
 }
 /* .inline-flex {
@@ -218,7 +218,7 @@ button {
     max-width: 100%;
     height: auto;
 }
-#figure-task, .test-container {
+#figure-task, .test-container-raven {
   
   
   display: none; /* Спочатку приховуємо */
@@ -269,7 +269,7 @@ img.option, li, label, #option, .radio input {
 	   font-size: 41px;
 	  }
 }
-  @media (max-width: 581px) {  div#task-container {
+  @media (max-width: 581px) {  div#task-container-raven {
     flex-wrap: wrap;
 }
 }
