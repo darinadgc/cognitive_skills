@@ -334,9 +334,9 @@ function submitTestResults(testType) {
 
 
 
-else if (currentPage.includes("cognitive_skills/")) {
+// else if (currentPage.includes("cognitive_skills/")) {
                         
-console.log("✅ Натискання кнопки: Перевіряємо відповіді...");
+// console.log("✅ Натискання кнопки: Перевіряємо відповіді...");
                     // ✅ Якщо не відповіли на всі запитання - зупиняємо процес
     /* if (totalQuestions.size !== answeredQuestions.size) {
         alert("❗ Будь ласка, відповідайте на всі запитання перед завершенням!");
