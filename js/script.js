@@ -127,7 +127,7 @@ let currentTaskIndex = 0;
     const taskRaven = tasksRaven[currentTaskIndex];
 
     taskContainerRaven.innerHTML = `
-      <img src="${task.image}" class="main-image">
+      <img src="${taskRaven.image}" class="main-image">
       <div class="next-div">
         <button id="next-btn">Далі</button>
         <ol class="radio-options">
@@ -355,13 +355,7 @@ function submitTestResults(testType) {
 
     let finalScore, level;
 
-    // ✅ Запитуємо ім'я перед підрахунком балів
-    let sendStudentName = askStudentName();
-    if (!sendStudentName) {
-        console.error("❌ askStudentName() повернула `null`. Виконання зупинено.");
-        return;
-    }
-    console.log("✅ Ім'я студента:", sendStudentName);
+ 
 
     // ✅ Визначаємо оцінку в залежності від тесту
     if (testType === "Figures") {    
@@ -392,21 +386,27 @@ function submitTestResults(testType) {
             return;
         }
 
-    console.log("✅ Обчислений бал:", finalScore);
-    console.log("✅ Визначений рівень:", level);
 } 
     if (typeof finalScore === "undefined" || typeof level === "undefined") {
         console.error("❌ finalScore або level не визначено!");
         return;
     }
 
+    console.log("✅ Обчислений бал:", finalScore);
+    console.log("✅ Визначений рівень:", level);
     console.log("🚀 Готуємось викликати submitResults...");
     console.log("📝 Данні перед відправкою:", {
         finalScore,
         level,
         studentName: sendStudentName
     });
-
+   // ✅ Запитуємо ім'я 
+    let sendStudentName = askStudentName();
+    if (!sendStudentName) {
+        console.error("❌ askStudentName() повернула `null`. Виконання зупинено.");
+        return;
+    }
+    console.log("✅ Ім'я студента:", sendStudentName);
     submitResults(finalScore, level, entryIDs, sendStudentName);
 }//✅ Виклик submitResults
 
