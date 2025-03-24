@@ -56,6 +56,7 @@ if (!testType) {
             score: "entry.1008291282",
             level: "entry.1332224844"
         }
+        }
     };
 	//✅✅✅✅✅✅✅✅✅✅✅submitResults
     window.submitResults = function(finalScore, level, entryIDs, sendStudentName) {console.log("📨 submitResults() запущено!");
