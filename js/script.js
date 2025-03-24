@@ -15,6 +15,11 @@ sendResultsBtnMotivation.addEventListener("click", () => submitTestResults("moti
   let score;
   let timerIntervalRaven;
 
+
+const sendResultsBtnFigures = document.getElementById("send-results-figures-btn");
+const sendResultsBtnRaven = document.getElementById("send-results-raven-btn");
+const sendResultsBtnMotivation = document.getElementById("send-results-motivation-btn");	
+
 // ACCORDION
 let acc = document.getElementsByClassName("accordion");
 let i; 
@@ -110,11 +115,6 @@ if (window.isSubmitting) return;
     formData.append(entryIDs.level, String(level));
 console.log("🔹 Надсилаємо:", Object.fromEntries(formData));
     console.log("📩 Формат перед відправкою:", formData.toString());
-
-
-// const sendResultsBtnFigures = document.getElementById("send-results-figures-btn");
-// const sendResultsBtnRaven = document.getElementById("send-results-raven-btn");
-// const sendResultsBtnMotivation = document.getElementById("send-results-motivation-btn");	
 
 //💗💗💗💗💗💗💗💗
 window.checkAllAnsweredMotivation = function() {
