@@ -107,7 +107,7 @@ let i;
 	    }; 
 	  });
 	}; 	
-  let sendStudentName; // 🔹 Щоб не оголошувати всередині `if`
+  // let sendStudentName; 🔹 Щоб не оголошувати всередині `if`
     window.calculateLevel = function(score) {
     if (score === 10) return "Дуже високий";
     if (score >= 8) return "Високий";
