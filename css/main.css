@@ -80,9 +80,9 @@
   } 
   main,
   header,
-  footer {
+  footer, .accordion.active:hover, .accordion:hover {
 	background-color: #DCFF50;
-	/* ,.accordion.active:hover, .accordion:hover */
+	/* */
   }
   article {background-color: #DCFF50;
   }
