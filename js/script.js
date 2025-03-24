@@ -403,11 +403,11 @@ function submitTestResults(testType) {
         finalScore = calculateScoreRaven();
         level = calculateLevelRaven(finalScore);
     } else if (testType === "Motivation") {
-        let checkResults = checkAllAnsweredMotivation();
-         if (checkResults.answeredQuestions.size === 10) {
-       
         console.log("🔹 Загальна кількість питань:", checkResults.totalQuestions.size);
         console.log("🔹 Відповіді:", checkResults.answeredQuestions.size);
+         if (checkResults.answeredQuestions.size === 10) {
+               let checkResults = checkAllAnsweredMotivation();
+
         finalScore = calculateScoreMotivation();
         level = getLevel(finalScore);            
         
