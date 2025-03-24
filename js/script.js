@@ -289,6 +289,21 @@ window.calculateScoreFigures = function(timeTaken) {
     sendResultsBtnFigures.style.display = "block";
   }//🏁finishTest
 
+// 🏫🧒📛 Функція для запиту імені студента
+window.askStudentName = function () {
+    let studentName = prompt("Введіть ваше ім'я:").trim();
+
+    if (!studentName || studentName.length < 2) {
+        alert("❗ Будь ласка, введіть коректне ім'я.");
+        return null;  // ❌ Якщо ім'я некоректне, повертаємо null
+    }
+
+    // ✅ Фільтр символів у імені
+    let cleanedStudentName = studentName.replace(/[^a-zA-ZА-Яа-яЇїІіЄєҐґ0-9' ]/g, "");
+
+    return cleanedStudentName;  // ✅ Повертаємо очищене ім'я
+};// 🏫🧒📛 Функція для запиту імені студента
+
   
 window.getEntryIDs = function (testType) {
     console.log("🔹 Визначаємо entry ID для тесту:", testType);
@@ -316,9 +331,11 @@ window.getEntryIDs = function (testType) {
 
     return entryIDs[testType] || null;
 };
+
 function submitTestResults(testType) {
     console.log(`✅ Виклик submitResults для ${testType}`);
-let entryIDs = getEntryIDs(testType);
+
+    let entryIDs = getEntryIDs(testType);
     if (!entryIDs) {
         console.error("❌ Не вдалося знайти entry ID для тесту:", testType);
         return;
@@ -326,7 +343,7 @@ let entryIDs = getEntryIDs(testType);
 
     let finalScore, level;
 
-    
+    // ✅ Запитуємо ім'я перед підрахунком балів
     let sendStudentName = askStudentName();
     if (!sendStudentName) {
         console.error("❌ askStudentName() повернула `null`. Виконання зупинено.");
@@ -334,231 +351,53 @@ let entryIDs = getEntryIDs(testType);
     }
     console.log("✅ Ім'я студента:", sendStudentName);
 
+    // ✅ Визначаємо оцінку в залежності від тесту
     if (testType === "Figures") {    
- //let testType = ""; ✅ Явно визначаємо testType
-        let finalScore = calculateScoreFigures();
-        let level = calculateLevelFigures(finalScore);
+        finalScore = calculateScoreFigures();
+        level = calculateLevelFigures(finalScore);
     } else if (testType === "Raven") {
-             // let testType = "";✅ Явно визначаємо testType
-let finalScore = calculateScoreRaven();
-        let level = calculateLevelRaven(finalScore);
-    } else  if (testType === "Motivation") {
-            // let testType = "Motivation"; ✅ Явно визначаємо testType
-        let finalScore = calculateScoreMotivation();
-        let level = getLevel(finalScore);
-
-
-
-// else if (currentPage.includes("cognitive_skills/")) {
-                        
-// console.log("✅ Натискання кнопки: Перевіряємо відповіді...");
-                    // ✅ Якщо не відповіли на всі запитання - зупиняємо процес
-    /* if (totalQuestions.size !== answeredQuestions.size) {
-        alert("❗ Будь ласка, відповідайте на всі запитання перед завершенням!");
-        return;
-    } */let checkResults = checkAllAnsweredMotivation();
- let totalQuestions, answeredQuestions;
-if (checkResults.answeredQuestions.size == 10) {
-    console.log("🔹 Загальна кількість питань:", checkResults.totalQuestions.size);
-    console.log("🔹 Відповіді:", checkResults.answeredQuestions.size);        // Виконуємо перевірку заповнених відповідей
- // ✅ Запитуємо ім'я перед підрахунком балів
-let sendStudentName = askStudentName();
-if (!sendStudentName) {
-    console.error("❌ askStudentName() повернула `null`. Виконання зупинено.");
-    return;
-}
-
-
- if (!checkResults || !checkResults.totalQuestions || !checkResults.answeredQuestions) {
-        console.error("❌ Помилка: `checkResults` повернув `undefined` або `null`.");return;
-    }
-    // Деструктуризація після перевірки({ totalQuestions, answeredQuestions } = checkResults);
-    const { totalQuestions, answeredQuestions, score } = checkAllAnsweredMotivation();
-if (typeof checkAllAnsweredMotivation === "function") {
-                    checkResults = checkAllAnsweredMotivation();
-                } else {
-                    console.error("❌ Функція checkAllAnsweredMotivation не знайдена!");
-                    return;
-                }
-             console.log("✅ Обчислений бал:", finalScore);
-             console.log("✅ Визначений рівень:", level);
-                // Викликаємо submitResults з правильними значеннями
-              if (!sendStudentName) {
-    console.error("❌ sendStudentName не визначено!");
-    return;
-}
-console.log("✅ sendStudentName існує:", sendStudentName);
-     console.log("🚀 Готуємось викликати submitResults...");
-console.log("📝 Данні перед відправкою:", {
-    finalScore,
-    level,
-    studentName: sendStudentName
-});
-   if (typeof finalScore === "undefined" || typeof level === "undefined") {
-    console.error("❌ finalScore або level не визначено!");
-    return;
-}
-
- submitResults(finalScore, level, getEntryIDs(), sendStudentName);
-                }// if checkResults.answeredQuestions.size == 10
-                else  if (checkResults.answeredQuestions.size < 10){
-                    alert("❗ Будь ласка, відповідайте на всі запитання перед завершенням!");
-                    return;
-                }        
-    } // мотивація
-else {
-        console.error("❌ Невідома сторінка! Результати не відправлено.");
-        return;
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-     }    
-    // else{
-    //     console.error("❌ Невідомий тест! Результати не відправлено.");
-    //     return;
-    // }
-
-    // console.log("🔹 Обчислений бал:", finalScore);
-    // console.log("🔹 Визначений рівень:", level);
-
-    // Отримуємо правильні entryIDs
-    let entryIDs = getEntryIDs(testType);
-    if (!entryIDs) {
-        console.error("❌ Не вдалося знайти entry ID для тесту:", testType);
-        return;
-    }
-
-    // Викликаємо `submitResults()`
-    submitResults(finalScore, level, entryIDs, sendStudentName);
-// } `submitResults()`
-       // ✅ Переписуємо submitResults() та його виклик
- window.submitResults = function(finalScore, level, entryIDs, sendStudentName) {
-    console.log("📨 submitResults() запущено!");
-
-    if (!entryIDs || !entryIDs.formURL) {
-        console.error("❌ Не вдалося знайти entry ID для цієї сторінки.");
-        alert("❌ Помилка! Не вдалося знайти entry ID.");
-        return;
-    }
-
-    console.log("🔹 Отримані entry IDs:", entryIDs);
-
-    const formData = new URLSearchParams();
-    formData.append(entryIDs.name, sendStudentName);
-    formData.append(entryIDs.score, Number(finalScore));
-    formData.append(entryIDs.level, String(level));
-
-    console.log("🔹 Надсилаємо:", Object.fromEntries(formData));
-    console.log("📩 Формат перед відправкою:", formData.toString());
-
-    fetch(entryIDs.formURL, {
-        method: "POST",
-        mode: "no-cors",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: formData
-    })
-    .then(() => {
-        console.log("✅ Успішно надіслано!");
-        alert("✅ Дані успішно надіслані у Google Forms!");
-    })
-    .catch(error => {
-        console.error("❌ Помилка надсилання:", error);
-        alert("❌ Не вдалося надіслати результати. Будь ласка, спробуйте ще раз.");
-    });
-};
+        finalScore = calculateScoreRaven();
+        level = calculateLevelRaven(finalScore);
+    } else if (testType === "Motivation") {
+        let checkResults = checkAllAnsweredMotivation();
         
+        if (!checkResults || !checkResults.totalQuestions || !checkResults.answeredQuestions) {
+            console.error("❌ Помилка: `checkResults` повернув `undefined` або `null`.");
+            return;
+        }
 
+        if (checkResults.answeredQuestions.size < 10) {
+            alert("❗ Будь ласка, відповідайте на всі запитання перед завершенням!");
+            return;
+        }
 
+        console.log("🔹 Загальна кількість питань:", checkResults.totalQuestions.size);
+        console.log("🔹 Відповіді:", checkResults.answeredQuestions.size);
 
-
-    console.log("🔹 Остання спроба:", lastAttemptDate);
-    console.log("✅ Обробник події додано до `send-results-btn`.");
-    
-
-
-
-
-
-
-
-
-
-
-// window.submitResults = function(finalScore, level, entryIDs, sendStudentName) {console.log("📨 submitResults() запущено!");
-
-//     if (window.isSubmitting) return;
-//     window.isSubmitting = true;
-
-//     console.log("✅ Функція submitResults викликана!");
-    
-//     if (!entryIDs || !entryIDs.formURL) {
-//         console.error("❌ Не вдалося знайти entry ID для цієї сторінки.");
-//         alert("❌ Помилка! Не вдалося знайти entry ID.");
-//         window.isSubmitting = false;
-//         return;
-//     }
-
-//     console.log("🔹 Отримані entry IDs:", entryIDs);
-
-//     const formData = new URLSearchParams();
-//     formData.append(entryIDs.name, sendStudentName);
-//     formData.append(entryIDs.score, Number(finalScore));
-//     formData.append(entryIDs.level, String(level));
-// console.log("🔹 Надсилаємо:", Object.fromEntries(formData));
-//     console.log("📩 Формат перед відправкою:", formData.toString());
-
-// fetch(entryIDs.formURL, {
-//     method: "POST",
-//     headers: { "Content-Type": "application/x-www-form-urlencoded" },
-//     body: formData
-// })
-// .then(response => response.text()) // ✅ Отримати відповідь Google Forms
-// .then(text => console.log("🔹 Відповідь Google Forms:", text)) // 🔎 Друкуємо відповідь
-// .catch(error => console.error("❌ Помилка надсилання:", error));
-
-//     fetch(entryIDs.formURL, {
-//         method: "POST",
-//         mode: "no-cors", // Запобігає CORS-блокуванню
-//         headers: { "Content-Type": "application/x-www-form-urlencoded" },
-//         body: formData
-//     })
-//     .then(() => {
-//         console.log("✅ Успішно надіслано!");
-//         alert("✅ Дані успішно надіслані у Google Forms!");
-//         document.getElementById("send-results-btn").style.display = "none";
-//     })
-//     .catch(error => {
-//         console.error("❌ Помилка надсилання:", error);
-//         alert("❌ Не вдалося надіслати результати. Будь ласка, спробуйте ще раз.");
-//     })
-//     .finally(() => {
-//         window.isSubmitting = false;
-//     });
-// };//✅ Виклик submitResults
-// 🏫🧒📛 Функція для запиту імені студента
-window.askStudentName = function () {
-    let studentName = prompt("Введіть ваше ім'я:").trim();
-
-    if (!studentName || studentName.length < 2) {
-        alert("❗ Будь ласка, введіть коректне ім'я.");
-        return null;  // ❌ Якщо ім'я некоректне, повертаємо null
+        finalScore = calculateScoreMotivation();
+        level = getLevel(finalScore);
+    } else {
+        console.error("❌ Невідомий тест! Результати не відправлено.");
+        return;
     }
 
-    // ✅ Фільтр символів у імені
-    let cleanedStudentName = studentName.replace(/[^a-zA-ZА-Яа-яЇїІіЄєҐґ0-9' ]/g, "");
+    console.log("✅ Обчислений бал:", finalScore);
+    console.log("✅ Визначений рівень:", level);
 
-    return cleanedStudentName;  // ✅ Повертаємо очищене ім'я
-};// 🏫🧒📛 Функція для запиту імені студента
+    if (typeof finalScore === "undefined" || typeof level === "undefined") {
+        console.error("❌ finalScore або level не визначено!");
+        return;
+    }
+
+    console.log("🚀 Готуємось викликати submitResults...");
+    console.log("📝 Данні перед відправкою:", {
+        finalScore,
+        level,
+        studentName: sendStudentName
+    });
+
+    submitResults(finalScore, level, entryIDs, sendStudentName);
+}//✅ Виклик submitResults
 
 // sendResultsBtn.addEventListener("click", () => {
 //     console.log("Виклик submitResults");
