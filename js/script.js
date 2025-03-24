@@ -17,26 +17,7 @@ const sendResultsBtnMotivation = document.getElementById("send-results-motivatio
  let timerIntervalFigures;
   let score;
   let timerIntervalRaven;
-   // 🔹 Додаємо обробники подій до кнопок "Почати тест"
-    if (startBtnFigures) {
-        startBtnFigures.addEventListener("click", () => {
-            console.log("✅ Початок тесту: Упізнай фігури");
-            startTestFigures();
-        });
-    } else {
-        console.error("❌ start-btn-figures не знайдено!");
-    }
 
-    if (startBtnRaven) {
-        startBtnRaven.addEventListener("click", () => {
-            console.log("✅ Початок тесту: Матриця Равена");
-            startTestRaven();
-        });
-    } else {
-        console.error("❌ start-btn-raven не знайдено!");
-    }
-
-	
 
 // ACCORDION
 let acc = document.getElementsByClassName("accordion");
@@ -392,7 +373,26 @@ window.calculateScoreFigures = function(timeTaken) {
     figureTaskEl.innerHTML = "";
     sendResultsBtnFigures.style.display = "block";
   }//🏁finishTest
+   // 🔹 Додаємо обробники подій до кнопок "Почати тест"
+    if (startBtnFigures) {
+        startBtnFigures.addEventListener("click", () => {
+            console.log("✅ Початок тесту: Упізнай фігури");
+            startTestFigures();
+        });
+    } else {
+        console.error("❌ start-btn-figures не знайдено!");
+    }
 
+    if (startBtnRaven) {
+        startBtnRaven.addEventListener("click", () => {
+            console.log("✅ Початок тесту: Матриця Равена");
+            startTestRaven();
+        });
+    } else {
+        console.error("❌ start-btn-raven не знайдено!");
+    }
+
+	
 
     let selectedEntryIDs = entryIDs[testType];
 
