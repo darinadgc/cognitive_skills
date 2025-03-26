@@ -444,7 +444,7 @@ function submitTestResults(testType) {
         finalScore = calculateScoreMotivation();
         level = getLevelMotivation(finalScore);
 //❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗
-            submitTestResults("Motivation"); // ✅ Викликати `submitTestResults`, якщо всі відповіді є 
+            submitResults(); // ✅ Викликати `submitTestResults`, якщо всі відповіді є 
 
            }
    if (!checkResults || !checkResults.totalQuestions || !checkResults.answeredQuestions) {
