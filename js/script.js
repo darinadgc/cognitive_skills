@@ -477,7 +477,7 @@ function submitTestResults(testType) {
     }
     console.log("✅ Ім'я студента:", sendStudentName);  
         finalScore = calculateScoreFigures();
-        level = calculateLevelFigures(finalScoreFigures);
+        level = calculateLevel(finalScore);
     } else if (testType === "Raven") {
     let finalScore, level;
     let sendStudentName = askStudentName();
@@ -488,7 +488,7 @@ function submitTestResults(testType) {
     console.log("✅ Ім'я студента:", sendStudentName);
  
         finalScore = calculateScoreRaven();
-        level = calculateLevelRaven(finalScoreRaven);
+        level = calculateLevel(finalScore);
     } else if (testType === "Motivation") {
         if (typeof checkAllAnsweredMotivation !== "function") {
             console.error("❌ Функція checkAllAnsweredMotivation не знайдена!");
