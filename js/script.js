@@ -209,7 +209,7 @@ window.getLevelMotivation = function(score) {
 
   function loadTaskRaven() {
 let currentTaskIndex = 0;
-    const taskRaven = tasksRaven[currentTaskIndex];
+    const taskRaven = tasksRaven[currentTaskIndexRaven];
 
     taskContainerRaven.innerHTML = `
       <img src="${taskRaven.image}" class="main-image">
@@ -296,7 +296,7 @@ window.calculateLevelRaven = function () {
     document.getElementById("figure-task").style.display = "block";
 
     startTimerFigures(90);
-    generateTask();
+    generateTaskFigures();
   }
 
  
