@@ -436,13 +436,13 @@ window.calculateScoreFigures = function(timeTaken) {
     } else {
         console.error("❌ start-btn-raven не знайдено!");
     }
-// let selectedEntryIDs = getEntryIDs(testType);
+let selectedEntryIDs = getEntryIDs(testType);
 
 
 
 	
 
-    let selectedEntryIDs = entryIDs[testType];
+    // let selectedEntryIDs = entryIDs[testType];
 
     if (!selectedEntryIDs) {
         console.error(`❌ Не вдалося знайти entry ID для тесту: ${testType}`);
@@ -486,7 +486,7 @@ function submitTestResults(testType) {
     }
     console.log("✅ Ім'я студента:", sendStudentName);
  
-        finalScore = calculateScoreRaven();
+        finalScore = calculateLevelRaven(score);
         level = calculateLevel(finalScore);
     } else if (testType === "Motivation") {
         if (typeof checkAllAnsweredMotivation !== "function") {
