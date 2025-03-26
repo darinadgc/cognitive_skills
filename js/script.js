@@ -354,11 +354,17 @@ window.calculateLevelRaven = function () {
       finishTestFigures();
       return;
     }
-
+// Переконуємося, що є ще завдання
+    if (unansweredTasks.length === 0 && incorrectAnswers.length === 0) {
+        console.warn("⚠️ Немає більше завдань для відображення!");
+        finishTestFigures();
+        return;
+    }
     currentTaskFigures = unansweredTasks.length > 0
       ? unansweredTasks.shift()
       : incorrectAnswers.shift(); 
 
+    // Оновлюємо контент на сторінці
     figureTaskEl.innerHTML = `
       <img src="${currentTaskFigures.image}" class="main-image">
       <div class="options">
