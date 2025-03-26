@@ -319,14 +319,14 @@ window.calculateLevelRaven = function () {
 // let unansweredTasksFigures = []; // Додайте глобально
 
   let unansweredTasksFigures = [...tasksFigures]; 
-  let incorrectAnswers = []; 
-  let currentTask = null;
+  let incorrectAnswersFigures = []; 
+  let currentTaskFigures = null;
 console.log("📌 Завдання перед стартом:", tasksFigures);
 console.log("📌 Копія завдань у unansweredTasksFigures:", unansweredTasksFigures);
 
   function startTestFigures() {
     unansweredTasksFigures = [...tasksFigures];
-    incorrectAnswers = [];
+    incorrectAnswersFigures = [];
     score = 0;
     startBtnFigures.style.display = "none";
     sendResultsBtnFigures.style.display = "none";
