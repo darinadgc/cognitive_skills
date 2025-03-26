@@ -179,7 +179,7 @@ window.getLevelMotivation = function(score) {
 
   function startTestRaven() {
     console.log("🔹 startTest() запущено!");
-    currentTaskIndex = 0;
+    currentTaskIndexRaven = 0;
     score = 0;
     taskContainerRaven.style.display = "flex";
     startBtnRaven.style.display = "none";
@@ -342,7 +342,7 @@ window.calculateLevelRaven = function () {
   }
 
   function checkAnswerFigures(selectedIndex) {
-    if (selectedIndex === currentTask.correct) {
+    if (selectedIndex === currentTaskFigures.correct) {
       score++;
       incorrectAnswers = incorrectAnswers.filter(task => task.id !== currentTask.id);
     } else {
