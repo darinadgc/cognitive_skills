@@ -66,7 +66,7 @@ window.askStudentName = function () {
 window.getEntryIDs = function (testType) {
     console.log("🔹 Визначаємо entry ID для тесту:", testType);
 if (!testType) {
-        console.error("❌ testType не визначено!");
+        console.error("❌testType не визначено або має некоректне значення!");
         return null;
     }// Перетворюємо першу літеру в велику, решту — в малі
     testType = testType.charAt(0).toUpperCase() + testType.slice(1).toLowerCase();
@@ -91,25 +91,48 @@ if (!testType) {
             level: "entry.1332224844"
         }
         };
+ // return entryIDs[testType] || null;
+        if (!entryIDs[testType]) {
+        console.error(`❌ entryIDs не знайдено для тесту: ${testType}`);
+        return null;
+      }
+        return entryIDs[testType];
 
-        return entryIDs[testType] || null;
-    };
-
+  };
     console.log("✅ Успішно додані обробники подій!");
 	//✅✅✅✅✅✅✅✅✅✅✅submitResults
     window.submitResults = function(finalScore, level, entryIDs, sendStudentName) {
 console.log("📨 submitResults() запущено!");
-if (window.isSubmitting) return;
+    console.log(`✅ Виклик submitResults для ${testType}`);
+if (!testType) {
+        console.error("❌ testType не визначено!");
+        return;
+    }
+
+    let entryIDs = getEntryIDs(testType);
+    if (!entryIDs) {
+        console.error(`❌ Не вдалося знайти entry ID для тесту: ${testType}`);
+        return;
+    }
+     if (window.isSubmitting) return;
     window.isSubmitting = true;
-    console.log("✅ Функція submitResults викликана!");
-    
+    console.log("✅ Функція submitResults викликана!");   
     if (!entryIDs || !entryIDs.formURL) {
         console.error("❌ Не вдалося знайти entry ID для цієї сторінки.");
         alert("❌ Помилка! Не вдалося знайти entry ID.");
         window.isSubmitting = false;
         return;
     }
+//  ❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗
+    // let finalScore, level;
+    // let sendStudentName = askStudentName();
+    // if (!sendStudentName) {
+    //     console.error("❌ askStudentName() повернула `null`. Виконання зупинено.");
+    //     return;
+    // }
 
+    // console.log("✅ Ім'я студента:", sendStudentName);
+   
     console.log("🔹 Отримані entry IDs:", entryIDs);
 
     const formData = new URLSearchParams();
