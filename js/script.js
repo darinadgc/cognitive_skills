@@ -461,15 +461,15 @@ function submitTestResults(testType) {
         console.error("❌ testType не визначено!");
         return;
     }
-
     let entryIDs = getEntryIDs(testType);
     if (!entryIDs) {
         console.error(`❌ Не вдалося знайти entry ID для тесту: ${testType}`);
         return;
     }
+    let finalScore = 0; // ✅ Оголошуємо змінні перед `if`
+    let level = "";
     // ✅ Визначаємо оцінку в залежності від тесту
     if (testType === "Figures") {  
-    let finalScore, level;
     let sendStudentName = askStudentName();
     if (!sendStudentName) {
         console.error("❌ askStudentName() повернула `null`. Виконання зупинено.");
@@ -479,7 +479,6 @@ function submitTestResults(testType) {
         finalScore = calculateScoreFigures();
         level = calculateLevel(finalScore);
     } else if (testType === "Raven") {
-    let finalScore, level;
     let sendStudentName = askStudentName();
     if (!sendStudentName) {
         console.error("❌ askStudentName() повернула `null`. Виконання зупинено.");
@@ -487,7 +486,7 @@ function submitTestResults(testType) {
     }
     console.log("✅ Ім'я студента:", sendStudentName);
  
-        finalScore = calculateLevelRaven();
+        finalScore = calculateScoreRaven();
         level = calculateLevel(finalScore);
     } else if (testType === "Motivation") {
         if (typeof checkAllAnsweredMotivation !== "function") {
