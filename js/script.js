@@ -297,7 +297,7 @@ window.calculateLevelRaven = function () {
   function finishTestRaven() {
     clearInterval(timerIntervalRaven);
     window.resultElRaven.innerHTML = "🛑 Тест завершено! Натисніть 'Надіслати результат'.";
-    taskContainer.innerHTML = "";
+    taskContainerRaven.innerHTML = "";
     sendResultsBtnRaven.style.display = "block";
   }//🏁finishTest 
 
