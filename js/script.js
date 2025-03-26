@@ -448,7 +448,10 @@ function submitTestResults(testType) {
         console.error(`❌ Не вдалося знайти entry ID для тесту: ${testType}`);
         return;
     }
-
+    // ✅ Визначаємо оцінку в залежності від тесту
+    if (testType === "Figures") {    
+        finalScore = calculateScoreFigures();
+        level = calculateLevelFigures(finalScore);
     let finalScore, level;
     let sendStudentName = askStudentName();
     if (!sendStudentName) {
@@ -456,14 +459,17 @@ function submitTestResults(testType) {
         return;
     }
     console.log("✅ Ім'я студента:", sendStudentName);
-
-    // ✅ Визначаємо оцінку в залежності від тесту
-    if (testType === "Figures") {    
-        finalScore = calculateScoreFigures();
-        level = calculateLevelFigures(finalScore);
     } else if (testType === "Raven") {
         finalScore = calculateScoreRaven();
-        level = calculateLevelRaven(finalScore); 
+        level = calculateLevelRaven(finalScore);
+    let finalScore, level;
+    let sendStudentName = askStudentName();
+    if (!sendStudentName) {
+        console.error("❌ askStudentName() повернула `null`. Виконання зупинено.");
+        return;
+    }
+    console.log("✅ Ім'я студента:", sendStudentName);
+ 
     } else if (testType === "Motivation") {
         if (typeof checkAllAnsweredMotivation !== "function") {
             console.error("❌ Функція checkAllAnsweredMotivation не знайдена!");
@@ -473,11 +479,17 @@ function submitTestResults(testType) {
         let checkResults = checkAllAnsweredMotivation();
         console.log("🔹 Загальна кількість питань:", checkResults.totalQuestions.size);
         console.log("🔹 Відповіді:", checkResults.answeredQuestions.size);
-
-        
          if (checkResults.answeredQuestions.size === 10) {
         finalScore = calculateScoreMotivation();
         level = getLevelMotivation(finalScore);
+    let finalScore, level;
+    let sendStudentName = askStudentName();
+    if (!sendStudentName) {
+        console.error("❌ askStudentName() повернула `null`. Виконання зупинено.");
+        return;
+    }
+    console.log("✅ Ім'я студента:", sendStudentName);        
+
 //❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗
           //   submitResults(); ✅ Викликати `submitTestResults`, якщо всі відповіді є 
 
@@ -515,7 +527,7 @@ function submitTestResults(testType) {
     //     return;
     // }
 
-}//✅ Виклик submitResults
+}//✅ Виклик submitTestResults
 
 // sendResultsBtn.addEventListener("click", () => {
 //     console.log("Виклик submitResults");
