@@ -124,12 +124,12 @@ if (!testType) {
         return;
     }
 //  ❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗
-    // let finalScore, level;
-    // let sendStudentName = askStudentName();
-    // if (!sendStudentName) {
-    //     console.error("❌ askStudentName() повернула `null`. Виконання зупинено.");
-    //     return;
-    // }
+    let finalScore, level;
+    let sendStudentName = askStudentName();
+    if (!sendStudentName) {
+        console.error("❌ askStudentName() повернула `null`. Виконання зупинено.");
+        return;
+    }
 
     // console.log("✅ Ім'я студента:", sendStudentName);
    
@@ -497,11 +497,11 @@ function submitTestResults(testType) {
     //     studentName: sendStudentName
     //     });
    // ✅ Запитуємо ім'я 
-    let sendStudentName = askStudentName();
-    if (!sendStudentName) {
-        console.error("❌ askStudentName() повернула `null`. Виконання зупинено.");
-        return;
-    }
+    // let sendStudentName = askStudentName();
+    // if (!sendStudentName) {
+    //     console.error("❌ askStudentName() повернула `null`. Виконання зупинено.");
+    //     return;
+    // }
 
 }//✅ Виклик submitResults
 
