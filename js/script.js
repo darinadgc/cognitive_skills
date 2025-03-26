@@ -355,21 +355,21 @@ console.log("📌 Копія завдань у unansweredTasksFigures:", unanswe
   }
   function generateTaskFigures() {
 console.log("📌 unansweredTasksFigures перед вибором завдання:", unansweredTasksFigures);
-console.log("📌 incorrectAnswers перед вибором:", incorrectAnswers);
+console.log("📌 incorrectAnswers перед вибором:", incorrectAnswersFigures);
 
-    if (score === 10 && incorrectAnswers.length === 0) {
+    if (score === 10 && incorrectAnswersFigures.length === 0) {
       finishTestFigures();
       return;
     }
 // Переконуємося, що є ще завдання
-    if (unansweredTasks.length === 0 && incorrectAnswers.length === 0) {
+    if (unansweredTasksFigures.length === 0 && incorrectAnswersFigures.length === 0) {
         console.warn("⚠️ Немає більше завдань для відображення!");
         finishTestFigures();
         return;
     }
-    currentTaskFigures = unansweredTasks.length > 0
-      ? unansweredTasks.shift()
-      : incorrectAnswers.shift(); 
+    currentTaskFigures = unansweredTasksFigures.length > 0
+      ? unansweredTasksFigures.shift()
+      : incorrectAnswersFigures.shift(); 
 
     // Оновлюємо контент на сторінці
     figureTaskEl.innerHTML = `
