@@ -265,10 +265,10 @@ let currentTaskIndexRaven = 0;
     }
 
     currentTaskIndexRaven++;
-    if (currentTaskIndexRaven < tasks.length) {
+    if (currentTaskIndexRaven < tasksRaven.length) {
       loadTask();
     } else {
-      finishTest();
+      finishTestRaven();
     }
   }//✅ checkAnswer
 window.calculateLevelRaven = function () {
@@ -335,7 +335,7 @@ window.calculateLevelRaven = function () {
 
       if (timeLeft < 0) {
         clearInterval(timerIntervalFigures);
-        finishTest();
+        finishTestFigures();
       }
     }, 1000);
   }
@@ -367,10 +367,10 @@ window.calculateLevelRaven = function () {
   function checkAnswerFigures(selectedIndex) {
     if (selectedIndex === currentTaskFigures.correct) {
       score++;
-      incorrectAnswers = incorrectAnswers.filter(task => task.id !== currentTask.id);
+      incorrectAnswers = incorrectAnswers.filter(task => task.id !== currentTaskFigures.id);
     } else {
-      if (!incorrectAnswers.some(task => task.id === currentTask.id)) {
-        incorrectAnswers.push(currentTask);
+      if (!incorrectAnswers.some(task => task.id === currentTaskFigures.id)) {
+        incorrectAnswers.push(currentTaskFigures);
       }
     }
     setTimeout(generateTask, 1);
