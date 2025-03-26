@@ -270,7 +270,7 @@ let currentTaskIndexRaven = 0;
 
     currentTaskIndexRaven++;
     if (currentTaskIndexRaven < tasksRaven.length) {
-      loadTask();
+      loadTaskRaven();
     } else {
       finishTestRaven();
     }
@@ -377,7 +377,7 @@ window.calculateLevelRaven = function () {
         incorrectAnswers.push(currentTaskFigures);
       }
     }
-    setTimeout(generateTask, 1);
+    setTimeout(generateTaskFigures, 1);
   }
 window.calculateScoreFigures = function(timeTaken) {
     if (timeTaken < 45) return 10;
