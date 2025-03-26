@@ -107,7 +107,6 @@ if (!testType) {
 // ✅ Головна функція для надсилання результатів у Google Forms
 window.submitResults = function(finalScore, level, entryIDs, sendStudentName) {
     console.log("📨 submitResults() запущено!");
-      let finalScore;
 
     if (window.isSubmitting) return;
     window.isSubmitting = true;
