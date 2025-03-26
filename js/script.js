@@ -45,12 +45,14 @@ sendResultsBtns.forEach((btn) => {
 
 
 sendResultsBtns.forEach((btn) => {
+    console.log("🔹 Додаємо обробник до кнопки:", btn);
     btn.addEventListener("click", (event) => {
-        const testType = event.target.dataset.testType; // ✅ Отримуємо testType з кнопки
+        const testType = event.target.dataset.testType;
         console.log("📌 Натиснута кнопка для тесту:", testType);
         submitTestResults(testType);
     });
 });
+
 
 // 🏫🧒📛 Функція для запиту імені студента
 window.askStudentName = function () {
