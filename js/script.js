@@ -465,13 +465,13 @@ function submitTestResults(testType) {
         return;
     }
 
-    console.log("✅ Обчислений бал:", finalScore);
-    console.log("✅ Визначений рівень:", level);
-    console.log("🚀 Готуємось викликати submitResults...");
-    console.log("📝 Данні перед відправкою:", {
-        finalScore,
-        level,
-        studentName: sendStudentName
+    // console.log("✅ Обчислений бал:", finalScore);
+    // console.log("✅ Визначений рівень:", level);
+    // console.log("🚀 Готуємось викликати submitResults...");
+    // console.log("📝 Данні перед відправкою:", {
+    //     finalScore,
+    //     level,
+    //     studentName: sendStudentName
     });
    // ✅ Запитуємо ім'я 
     let sendStudentName = askStudentName();
