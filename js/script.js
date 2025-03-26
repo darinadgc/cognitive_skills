@@ -241,8 +241,9 @@ window.getLevelMotivation = function(score) {
     }, 1000);
   }
 
+let currentTaskIndexRaven = 0;// ✅ Оголошуємо глобально
+
   function loadTaskRaven() {
-let currentTaskIndexRaven = 0;
     const taskRaven = tasksRaven[currentTaskIndexRaven];
 
     taskContainerRaven.innerHTML = `
