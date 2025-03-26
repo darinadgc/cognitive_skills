@@ -487,7 +487,7 @@ function submitTestResults(testType) {
     }
     console.log("✅ Ім'я студента:", sendStudentName);
  
-        finalScore = calculateScoreRaven();
+        finalScore = calculateLevelRaven();
         level = calculateLevel(finalScore);
     } else if (testType === "Motivation") {
         if (typeof checkAllAnsweredMotivation !== "function") {
