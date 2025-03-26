@@ -208,7 +208,7 @@ window.getLevelMotivation = function(score) {
   }
 
   function loadTaskRaven() {
-let currentTaskIndex = 0;
+let currentTaskIndexRaven = 0;
     const taskRaven = tasksRaven[currentTaskIndexRaven];
 
     taskContainerRaven.innerHTML = `
@@ -331,7 +331,7 @@ window.calculateLevelRaven = function () {
       <img src="${currentTaskFigures.image}" class="main-image">
       <div class="options">
         ${[1, 2, 3, 4].map(num => `
-          <img class="option" src="img/upiznay_fihury/upiznay_fihury${currentTask.id}_${num}.png" data-index="${num}">
+          <img class="option" src="img/upiznay_fihury/upiznay_fihury${currentTaskFigures.id}_${num}.png" data-index="${num}">
         `).join("")}
       </div>
     `;
