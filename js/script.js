@@ -388,7 +388,7 @@ console.log("📌 Копія завдань у unansweredTasksFigures:", unanswe
   function checkAnswerFigures(selectedIndex) {
     if (selectedIndex === currentTaskFigures.correct) {
       score++;
-      incorrectAnswers = incorrectAnswers.filter(task => task.id !== currentTaskFigures.id);
+      incorrectAnswersFigures = incorrectAnswersFigures.filter(task => task.id !== currentTaskFigures.id);
     } else {
       if (!incorrectAnswers.some(task => task.id === currentTaskFigures.id)) {
         incorrectAnswers.push(currentTaskFigures);
