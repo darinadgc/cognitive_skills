@@ -17,8 +17,6 @@ const sendResultsBtnMotivation = document.getElementById("send-results-motivatio
  let timerIntervalFigures;
   let score;
   let timerIntervalRaven;
-
-
 // ACCORDION
 let acc = document.getElementsByClassName("accordion");
 let i; 
@@ -41,6 +39,11 @@ let i;
     if (score >= 2) return "Низький";
     return "Дуже низький";
 };
+sendResultsBtns.forEach((btn) => {
+    console.log("🔹 Кнопка знайдена:", btn, "| data-test-type:", btn.dataset.testType);
+});
+
+
     sendResultsBtns.forEach((btn) => {
         btn.addEventListener("click", (event) => {
             const testType = event.target.dataset.testType; // Отримуємо тип тесту з data-атрибуту
@@ -104,7 +107,8 @@ if (!testType) {
 // ✅ Головна функція для надсилання результатів у Google Forms
 window.submitResults = function(finalScore, level, entryIDs, sendStudentName) {
     console.log("📨 submitResults() запущено!");
-    
+      let finalScore;
+
     if (window.isSubmitting) return;
     window.isSubmitting = true;
 
@@ -288,7 +292,7 @@ window.calculateLevelRaven = function () {
 
  //🏁finishTest
   function finishTestRaven() {
-    clearInterval(timerInterval);
+    clearIntervalRaven(timerIntervalRaven);
     window.resultElRaven.innerHTML = "🛑 Тест завершено! Натисніть 'Надіслати результат'.";
     taskContainer.innerHTML = "";
     sendResultsBtnRaven.style.display = "block";
