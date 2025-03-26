@@ -316,10 +316,13 @@ window.calculateLevelRaven = function () {
     { id: 9, image: "img/upiznay_fihury/upiznay_fihury9.png", correct: 3 },
     { id: 10, image: "img/upiznay_fihury/upiznay_fihury10.png", correct: 2 }
   ];
+// let unansweredTasksFigures = []; // Додайте глобально
 
-  let unansweredTasks = [...tasksFigures]; 
+  let unansweredTasksFigures = [...tasksFigures]; 
   let incorrectAnswers = []; 
   let currentTask = null;
+console.log("📌 Завдання перед стартом:", tasksFigures);
+console.log("📌 Копія завдань у unansweredTasksFigures:", unansweredTasksFigures);
 
   function startTestFigures() {
     unansweredTasksFigures = [...tasksFigures];
@@ -350,8 +353,10 @@ window.calculateLevelRaven = function () {
       }
     }, 1000);
   }
-
   function generateTaskFigures() {
+console.log("📌 unansweredTasksFigures перед вибором завдання:", unansweredTasksFigures);
+console.log("📌 incorrectAnswers перед вибором:", incorrectAnswers);
+
     if (score === 10 && incorrectAnswers.length === 0) {
       finishTestFigures();
       return;
