@@ -472,7 +472,7 @@ function submitTestResults(testType) {
     //     finalScore,
     //     level,
     //     studentName: sendStudentName
-    });
+    //     });
    // ✅ Запитуємо ім'я 
     let sendStudentName = askStudentName();
     if (!sendStudentName) {
