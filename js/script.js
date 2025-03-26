@@ -390,8 +390,8 @@ console.log("📌 Копія завдань у unansweredTasksFigures:", unanswe
       score++;
       incorrectAnswersFigures = incorrectAnswersFigures.filter(task => task.id !== currentTaskFigures.id);
     } else {
-      if (!incorrectAnswers.some(task => task.id === currentTaskFigures.id)) {
-        incorrectAnswers.push(currentTaskFigures);
+      if (!incorrectAnswersFigures.some(task => task.id === currentTaskFigures.id)) {
+        incorrectAnswersFigures.push(currentTaskFigures);
       }
     }
     setTimeout(generateTaskFigures, 1);
