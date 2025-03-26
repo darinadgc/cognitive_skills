@@ -233,7 +233,7 @@ window.getLevelMotivation = function(score) {
       timeLeft--;
 
       if (timeLeft < 0) {
-        clearIntervalRaven(timerIntervalRaven);
+        clearInterval(timerIntervalRaven);
         finishTestRaven();
       }
     }, 1000);
@@ -293,7 +293,7 @@ window.calculateLevelRaven = function () {
 
  //🏁finishTest
   function finishTestRaven() {
-    clearIntervalRaven(timerIntervalRaven);
+    clearInterval(timerIntervalRaven);
     window.resultElRaven.innerHTML = "🛑 Тест завершено! Натисніть 'Надіслати результат'.";
     taskContainer.innerHTML = "";
     sendResultsBtnRaven.style.display = "block";
