@@ -45,13 +45,13 @@ sendResultsBtns.forEach((btn) => {
 
 
 sendResultsBtns.forEach((btn) => {
-    console.log("🔹 Додаємо обробник до кнопки:", btn);
     btn.addEventListener("click", (event) => {
-        const testType = event.target.dataset.testType;
+        const testType = event.target.dataset.testType; // ✅ Отримуємо testType з кнопки
         console.log("📌 Натиснута кнопка для тесту:", testType);
-        submitTestResults(testType);
+        submitTestResults(testType); // Передаємо testType у функцію
     });
 });
+
 
 
 // 🏫🧒📛 Функція для запиту імені студента
@@ -354,8 +354,7 @@ console.log("📌 Копія завдань у unansweredTasksFigures:", unanswe
     }, 1000);
   }
   function generateTaskFigures() {
-console.log("📌 unansweredTasksFigures перед вибором завдання:", unansweredTasksFigures);
-console.log("📌 incorrectAnswers перед вибором:", incorrectAnswersFigures);
+
 
     if (score === 10 && incorrectAnswersFigures.length === 0) {
       finishTestFigures();
@@ -468,19 +467,17 @@ function submitTestResults(testType) {
         return;
     }
     // ✅ Визначаємо оцінку в залежності від тесту
-    if (testType === "Figures") {    
-        finalScore = calculateScoreFigures();
-        level = calculateLevelFigures(finalScore);
+    if (testType === "Figures") {  
     let finalScore, level;
     let sendStudentName = askStudentName();
     if (!sendStudentName) {
         console.error("❌ askStudentName() повернула `null`. Виконання зупинено.");
         return;
     }
-    console.log("✅ Ім'я студента:", sendStudentName);
+    console.log("✅ Ім'я студента:", sendStudentName);  
+        finalScore = calculateScoreFigures();
+        level = calculateLevelFigures(finalScore);
     } else if (testType === "Raven") {
-        finalScore = calculateScoreRaven();
-        level = calculateLevelRaven(finalScore);
     let finalScore, level;
     let sendStudentName = askStudentName();
     if (!sendStudentName) {
@@ -489,6 +486,8 @@ function submitTestResults(testType) {
     }
     console.log("✅ Ім'я студента:", sendStudentName);
  
+        finalScore = calculateScoreRaven();
+        level = calculateLevelRaven(finalScore);
     } else if (testType === "Motivation") {
         if (typeof checkAllAnsweredMotivation !== "function") {
             console.error("❌ Функція checkAllAnsweredMotivation не знайдена!");
@@ -499,8 +498,6 @@ function submitTestResults(testType) {
         console.log("🔹 Загальна кількість питань:", checkResults.totalQuestions.size);
         console.log("🔹 Відповіді:", checkResults.answeredQuestions.size);
          if (checkResults.answeredQuestions.size === 10) {
-        finalScore = calculateScoreMotivation();
-        level = getLevelMotivation(finalScore);
     let finalScore, level;
     let sendStudentName = askStudentName();
     if (!sendStudentName) {
@@ -509,6 +506,8 @@ function submitTestResults(testType) {
     }
     console.log("✅ Ім'я студента:", sendStudentName);        
 
+        finalScore = calculateScoreMotivation();
+        level = getLevelMotivation(finalScore);
 //❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗
           //   submitResults(); ✅ Викликати `submitTestResults`, якщо всі відповіді є 
 
