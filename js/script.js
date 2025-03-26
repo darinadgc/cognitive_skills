@@ -44,12 +44,14 @@ sendResultsBtns.forEach((btn) => {
 });
 
 
-    sendResultsBtns.forEach((btn) => {
-        btn.addEventListener("click", (event) => {
-            const testType = event.target.dataset.testType; // Отримуємо тип тесту з data-атрибуту
-            submitTestResults(testType);
-        });
+sendResultsBtns.forEach((btn) => {
+    btn.addEventListener("click", (event) => {
+        const testType = event.target.dataset.testType; // ✅ Отримуємо testType з кнопки
+        console.log("📌 Натиснута кнопка для тесту:", testType);
+        submitTestResults(testType);
     });
+});
+
 // 🏫🧒📛 Функція для запиту імені студента
 window.askStudentName = function () {
     let studentName = prompt("Введіть ваші ім'я та першу літеру прізвища:").trim();
@@ -439,7 +441,8 @@ let selectedEntryIDs = getEntryIDs(testType);
 
 // ✅ Функція обробки тесту перед викликом submitResults
 function submitTestResults(testType) {
-    console.log(`✅ Виклик submitResults для ${testType}`);
+    console.log("📩 Виклик submitTestResults() для тесту:", testType);
+
 
     if (!testType) {
         console.error("❌ testType не визначено!");
