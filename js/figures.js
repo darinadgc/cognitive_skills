@@ -35,7 +35,6 @@ const sendResultsBtnFigures = document.getElementById("send-results-figures-btn"
   let unansweredTasks = [...tasks]; 
   let incorrectAnswers = []; 
   let currentTask = null;
-  let timerInterval;
     // if (startBtnFigures) {
     //     startBtnFigures.addEventListener("click", () => {
     //         console.log("✅ Початок тесту: Упізнай фігури");
