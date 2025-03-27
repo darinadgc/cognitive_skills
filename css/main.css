@@ -220,11 +220,16 @@ button {
 }
 #figure-task, .test-container-raven {
   
-  
   display: none; /* Спочатку приховуємо */
   
+}  
+#figure-task, #main-image {
+    margin: auto;
 }
-
+#figure-task {
+    width: max-content;
+	
+}
 div#task-container-raven {
   display: flex;
   flex-wrap: wrap;
