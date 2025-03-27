@@ -168,7 +168,7 @@ window.submitResults = function(finalScore, level, entryIDs, sendStudentName) {
     if (window.isSubmitting) return;
     window.isSubmitting = true;
     console.log("✅ Функція submitResults викликана!");   
-    let entryIDs = getEntryIDs();
+    entryIDs = getEntryIDs();
 if (!entryIDs) {
         console.error(`❌ Не вдалося знайти entry ID для тесту: ${testType}`);
         return;
