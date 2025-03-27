@@ -43,7 +43,7 @@ const sendResultsBtnFigures = document.getElementById("send-results-figures-btn"
     // } else {
     //     console.error("❌ start-btn-figures не знайдено!");
     // }
-  startBtnFigures.addEventListener("click", startTest);
+  startBtn.addEventListener("click", startTest);
 
   function startTest() {
     unansweredTasks = [...tasks];
