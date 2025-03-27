@@ -48,7 +48,7 @@ function allQuestionsAnswered(Motivation) {
     // Отримуємо всі питання для даного тесту
     const questions = document.querySelectorAll(`.question-${Motivation}`);  
 if (questions.length === 0) {
-        console.warn(`⚠️ Помилка: не знайдено жодного питання для тесту "${Motivation}". Переконайтеся, що класи ".question-${testType}" існують.`);
+        console.warn(`⚠️ Помилка: не знайдено жодного питання для тесту "${Motivation}". Переконайтеся, що класи ".question-${Motivation}" існують.`);
         return false;
     }
   
@@ -276,21 +276,38 @@ window.getLevelMotivation = function(score) {
   // ✅ Додаємо обробник події ПІСЛЯ оголошення функції
   startBtnRaven.addEventListener("click", startTestRaven);
 
-  function startTimerRaven(duration) {
-    let timeLeft = duration;
+  // function startTimerRaven(duration) {
+  //   let timeLeft = duration;
 
+  //   timerIntervalRaven = setInterval(() => {
+  //     const minutes = Math.floor(timeLeft / 60);
+  //     const seconds = timeLeft % 60;
+  //     timerElRaven.textContent = `⏳ ${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+  //     timeLeft--;
+
+  //     if (timeLeft < 0) {
+  //       clearInterval(timerIntervalRaven);
+  //       finishTestRaven();
+  //     }
+  //   }, 1000);
+  // }
+let timerIntervalRaven; // Глобальна змінна для таймера
+if (timerIntervalRaven) {
+    clearInterval(timerIntervalRaven);
+}
+
+function startTimerRaven() {
+    let timeLeft = 600; // 10 хвилин
     timerIntervalRaven = setInterval(() => {
-      const minutes = Math.floor(timeLeft / 60);
-      const seconds = timeLeft % 60;
-      timerElRaven.textContent = `⏳ ${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
-      timeLeft--;
-
-      if (timeLeft < 0) {
-        clearInterval(timerIntervalRaven);
-        finishTestRaven();
-      }
+        if (timeLeft <= 0) {
+            clearInterval(timerIntervalRaven);
+            finishTestRaven();
+        } else {
+            console.log(`⏳ Час залишився: ${timeLeft} секунд`);
+            timeLeft--;
+        }
     }, 1000);
-  }
+}
 
 let currentTaskIndexRaven = 0;// ✅ Оголошуємо глобально
 
@@ -346,12 +363,22 @@ window.calculateLevelRaven = function () {
 };
 
  //🏁finishTest
-  function finishTestRaven() {
-    clearInterval(timerIntervalRaven);
+  // function finishTestRaven() {
+  //   clearInterval(timerIntervalRaven);
+  //   window.resultElRaven.innerHTML = "🛑 Тест завершено! Натисніть 'Надіслати результат'.";
+  //   taskContainerRaven.innerHTML = "";
+  //   sendResultsBtnRaven.style.display = "block";
+  // }//🏁finishTest 
+function finishTestRaven() {
+    if (timerIntervalRaven) {
+        clearInterval(timerIntervalRaven);
+        console.log("✅ Таймер зупинено!");
+    }
+
     window.resultElRaven.innerHTML = "🛑 Тест завершено! Натисніть 'Надіслати результат'.";
     taskContainerRaven.innerHTML = "";
     sendResultsBtnRaven.style.display = "block";
-  }//🏁finishTest 
+}
 
     //🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩
     const figureTaskEl = document.getElementById("figure-task");
