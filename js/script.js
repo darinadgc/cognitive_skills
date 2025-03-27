@@ -8,12 +8,12 @@ document.addEventListener("DOMContentLoaded", () => {
 const sendResultsBtns = document.querySelectorAll(".send-results-btn");
   const startBtnFigures = document.getElementById("start-btn-figures");
   const startBtnRaven = document.getElementById("start-btn-raven");
-const sendResultsBtnFigures = document.getElementById("send-results-figures-btn");
-const sendResultsBtnRaven = document.getElementById("send-results-raven-btn");
-const sendResultsBtnMotivation = document.getElementById("send-results-motivation-btn");
+// const sendResultsBtnFigures = document.getElementById("send-results-figures-btn");
+// const sendResultsBtnRaven = document.getElementById("send-results-raven-btn");
+// const sendResultsBtnMotivation = document.getElementById("send-results-motivation-btn");
 
-    sendResultsBtnFigures.addEventListener("click", () => submitTestResults("figures"));
-    sendResultsBtnRaven.addEventListener("click", () => submitTestResults("raven"));
+    // sendResultsBtnFigures.addEventListener("click", () => submitTestResults("figures"));
+    // sendResultsBtnRaven.addEventListener("click", () => submitTestResults("raven"));
  let timerIntervalFigures;
   let score;
   let timerIntervalRaven;
@@ -43,12 +43,46 @@ sendResultsBtns.forEach((btn) => {
     console.log("🔹 Кнопка знайдена:", btn, "| data-test-type:", btn.dataset.testType);
 });
 
+function allQuestionsAnswered(testType) {
+    // Отримуємо всі питання для даного тесту
+    const questions = document.querySelectorAll(`.question-${testType}`);
+    
+    for (let question of questions) {
+        // Шукаємо вибраний варіант у кожному питанні
+        const selectedAnswer = question.querySelector("input[type='radio']:checked");
+        if (!selectedAnswer) {
+            console.warn(`⚠️ Не відповіли на питання:`, question);
+            return false; // Якщо хоч одне питання не заповнене – повертаємо false
+        }
+    }
+    
+    return true; // Всі питання мають відповіді
+}
 
+// sendResultsBtns.forEach((btn) => {
+//     btn.addEventListener("click", (event) => {
+//         const testType = event.target.dataset.testType; // ✅ Отримуємо testType з кнопки
+//         console.log("📌 Натиснута кнопка для тесту:", testType);
+//         submitTestResults(testType); // Передаємо testType у функцію
+//     });
+// });
 sendResultsBtns.forEach((btn) => {
     btn.addEventListener("click", (event) => {
-        const testType = event.target.dataset.testType; // ✅ Отримуємо testType з кнопки
+        const testType = event.target.dataset.testType;
+
+        if (!testType) {
+            console.error("❌ testType не визначено для кнопки!", event.target);
+            return;
+        }
+
+        // Перевіряємо, чи всі питання заповнені
+        if (!allQuestionsAnswered(testType)) {
+            alert("❗ Будь ласка, дайте відповідь на всі питання перед відправкою результату.");
+            return;
+        }
+
         console.log("📌 Натиснута кнопка для тесту:", testType);
-        submitTestResults(testType); // Передаємо testType у функцію
+        submitTestResults(testType);
     });
 });
 
@@ -443,110 +477,74 @@ window.calculateScoreFigures = function(timeTaken) {
 	
 
 
-    if (!selectedEntryIDs) {
-        console.error(`❌ Не вдалося знайти entry ID для тесту: ${testType}`);
-        return null;
-    }
+  //  if (!selectedEntryIDs) {
+   //     console.error(`❌ Не вдалося знайти entry ID для тесту: ${testType}`);
+   //     return null;
+ //   }
 
-    return selectedEntryIDs;
+//    return selectedEntryIDs;
 //❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕
 
 // ✅ Функція обробки тесту перед викликом submitResults
 function submitTestResults(testType) {
     console.log("📩 Виклик submitTestResults() для тесту:", testType);
 
-
     if (!testType) {
         console.error("❌ testType не визначено!");
         return;
     }
-   // let entryIDs = getEntryIDs(testType);//   
- let selectedEntryIDs = entryIDs[testType];   // ✅ Тепер entryIDs визначене
-   if (!entryIDs) {
+
+    // ✅ Перевірка, чи всі питання заповнені перед обчисленням результату
+    if (!allQuestionsAnswered(testType)) {
+        alert("❗ Будь ласка, дайте відповідь на всі питання перед завершенням!");
+        return;
+    }
+
+    let entryIDs = getEntryIDs(testType);
+    let selectedEntryIDs = entryIDs ? entryIDs[testType] : null;
+
+    if (!selectedEntryIDs) {
         console.error(`❌ Не вдалося знайти entry ID для тесту: ${testType}`);
         return;
     }
-    let finalScore = 0; // ✅ Оголошуємо змінні перед `if`
+
+    let finalScore = 0;
     let level = "";
-    // ✅ Визначаємо оцінку в залежності від тесту
-    if (testType === "Figures") {  
-    let sendStudentName = askStudentName();
-    if (!sendStudentName) {
-        console.error("❌ askStudentName() повернула `null`. Виконання зупинено.");
-        return;
-    }
-    console.log("✅ Ім'я студента:", sendStudentName);  
-        finalScore = calculateScoreFigures();
-        level = calculateLevel(finalScore);
-    } else if (testType === "Raven") {
+
     let sendStudentName = askStudentName();
     if (!sendStudentName) {
         console.error("❌ askStudentName() повернула `null`. Виконання зупинено.");
         return;
     }
     console.log("✅ Ім'я студента:", sendStudentName);
- 
-        finalScore = calculateLevelRaven(score);
-        level = calculateLevel(finalScore);
+
+    if (testType === "Figures") {  
+        finalScore = calculateScoreFigures();
+    } else if (testType === "Raven") {
+        finalScore = calculateScoreRaven();
     } else if (testType === "Motivation") {
-        if (typeof checkAllAnsweredMotivation !== "function") {
-            console.error("❌ Функція checkAllAnsweredMotivation не знайдена!");
-            return;
-        }
-
-        let checkResults = checkAllAnsweredMotivation();
-        console.log("🔹 Загальна кількість питань:", checkResults.totalQuestions.size);
-        console.log("🔹 Відповіді:", checkResults.answeredQuestions.size);
-         if (checkResults.answeredQuestions.size === 10) {
-    let finalScore, level;
-    let sendStudentName = askStudentName();
-    if (!sendStudentName) {
-        console.error("❌ askStudentName() повернула `null`. Виконання зупинено.");
-        return;
-    }
-    console.log("✅ Ім'я студента:", sendStudentName);        
-
         finalScore = calculateScoreMotivation();
         level = getLevelMotivation(finalScore);
-//❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗
-          //   submitResults(); ✅ Викликати `submitTestResults`, якщо всі відповіді є 
+    }
 
-           }
-   if (!checkResults || !checkResults.totalQuestions || !checkResults.answeredQuestions) {
-            console.error("❌ Помилка: `checkResults` повернув `undefined` або `null`.");
-            return;
-        }
+    // ✅ Один рівень для Figures і Raven
+    if (testType === "Figures" || testType === "Raven") {
+        level = calculateLevel(finalScore);
+    }
 
-
-  if (checkResults.answeredQuestions.size < 10) {
-            alert("❗ Будь ласка, відповідайте на всі запитання перед завершенням!");
-            return;
-        }
-
-
-} 
     if (typeof finalScore === "undefined" || typeof level === "undefined") {
         console.error("❌ finalScore або level не визначено!");
         return;
     }
-    console.log("✅ Визначені entry IDs:", selectedEntryIDs);
 
+    console.log("✅ Визначені entry IDs:", selectedEntryIDs);
     console.log("✅ Обчислений бал:", finalScore);
     console.log("✅ Визначений рівень:", level);
-    // console.log("🚀 Готуємось викликати submitResults...");
-    // console.log("📝 Данні перед відправкою:", {
-    //     finalScore,
-    //     level,
-    //     studentName: sendStudentName
-    //     });
-   // ✅ Запитуємо ім'я 
-    // let sendStudentName = askStudentName();
-    // if (!sendStudentName) {
-    //     console.error("❌ askStudentName() повернула `null`. Виконання зупинено.");
-    //     return;
-    // }
 
-}//✅ Виклик submitTestResults
+    // ✅ Викликаємо submitResults
+    submitResults(selectedEntryIDs, finalScore, level, sendStudentName);
+}
+//✅ Виклик submitTestResults
 
 // sendResultsBtn.addEventListener("click", () => {
 //     console.log("Виклик submitResults");
