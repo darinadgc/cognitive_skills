@@ -621,12 +621,12 @@ console.log("✅ Визначені entry IDs:", entryIDs);
     if (!sendStudentName) {
         console.error("❌ askStudentName() повернула `null`. Виконання зупинено.");
         return;
-    }
-    }
 if (isNaN(finalScore) || !level) { 
 
         console.error("❌ finalScore або level не визначено!");
         return;
+    }
+    }
     }
 
 }
