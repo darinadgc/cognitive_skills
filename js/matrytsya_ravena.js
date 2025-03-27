@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // const lastAttemptKey = getLastAttemptKey(); // ✅ Отримуємо ключ для LocalStorage
     // const lastAttempt = localStorage.getItem(lastAttemptKey); // ✅ Оголошуємо lastAttempt
     // const lastAttemptDate = lastAttempt ? new Date(lastAttempt) : null;
-   const startBtnRaven = document.getElementById("start-btn-raven");
+   const startBtn = document.getElementById("start-btn");
 const sendResultsBtnRaven = document.getElementById("send-results-raven-btn");
  const taskContainer = document.getElementById("task-container");
   const startBtn = document.getElementById("start-btn");
@@ -158,8 +158,8 @@ window.getEntryIDs = function () {
 
 
 
-   if (startBtnRaven) {
-        startBtnRaven.addEventListener("click", () => {
+   if (startBtn) {
+        startBtn.addEventListener("click", () => {
             console.log("✅ Початок тесту: Матриця Равена");
             startTest();
         });
