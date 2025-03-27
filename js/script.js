@@ -461,8 +461,9 @@ function submitTestResults(testType) {
         console.error("❌ testType не визначено!");
         return;
     }
-    let entryIDs = getEntryIDs(testType);
-    if (!entryIDs) {
+   // let entryIDs = getEntryIDs(testType);//   
+ let selectedEntryIDs = entryIDs[testType];   // ✅ Тепер entryIDs визначене
+   if (!entryIDs) {
         console.error(`❌ Не вдалося знайти entry ID для тесту: ${testType}`);
         return;
     }
@@ -529,6 +530,7 @@ function submitTestResults(testType) {
         console.error("❌ finalScore або level не визначено!");
         return;
     }
+    console.log("✅ Визначені entry IDs:", selectedEntryIDs);
 
     console.log("✅ Обчислений бал:", finalScore);
     console.log("✅ Визначений рівень:", level);
