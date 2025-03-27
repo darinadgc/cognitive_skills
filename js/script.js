@@ -206,7 +206,7 @@ window.submitResults = function(finalScore, level, entryIDs, sendStudentName) {
 
 //💗💗💗💗💗💗💗💗
 window.checkAllAnsweredMotivation = function() {
-    const questions = document.querySelectorAll('.question-Motivation input[type="radio"]'); // Вибираємо ТІЛЬКИ мотиваційні питання
+    const questions = document.querySelectorAll('.question-Motivation'); // Вибираємо ТІЛЬКИ мотиваційні питання
     const totalQuestions = new Set();
     const answeredQuestions = new Set();
     let score = 0; // Загальний бал
