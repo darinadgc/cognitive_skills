@@ -442,7 +442,6 @@ window.calculateScoreFigures = function(timeTaken) {
 
 	
 
-    let selectedEntryIDs = entryIDs[testType];
 
     if (!selectedEntryIDs) {
         console.error(`❌ Не вдалося знайти entry ID для тесту: ${testType}`);
