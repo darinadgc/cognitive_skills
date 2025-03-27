@@ -494,12 +494,6 @@ function submitTestResults(testType) {
         return;
     }
 
-    // ✅ Перевірка, чи всі питання заповнені перед обчисленням результату
-    if (!allQuestionsAnswered(testType)) {
-        alert("❗ Будь ласка, дайте відповідь на всі питання перед завершенням!");
-        return;
-    }
-
     let entryIDs = getEntryIDs(testType);
     // let selectedEntryIDs = entryIDs ? entryIDs[testType] : null;
 if (!entryIDs) {
@@ -528,10 +522,16 @@ console.log("✅ Визначені entry IDs:", entryIDs);
     } else if (testType === "Raven") {
         finalScore = calculateScoreRaven();
     } else if (testType === "Motivation") {
+    // ✅ Перевірка, чи всі питання заповнені перед обчисленням результату
+    if (!allQuestionsAnswered(testType)) {
+        alert("❗ Будь ласка, дайте відповідь на всі питання перед завершенням!");
+        return;
+    }
+else if (allQuestionsAnswered(testType)){
         finalScore = calculateScoreMotivation();
         level = getLevelMotivation(finalScore);
     }
-
+}
     // ✅ Один рівень для Figures і Raven
     if (testType === "Figures" || testType === "Raven") {
         level = calculateLevel(finalScore);
