@@ -1,47 +1,17 @@
 document.addEventListener("DOMContentLoaded", () => {
     window.resultElMotivation = document.getElementById("result-motivation");
-    window.resultElFigures = document.getElementById("result-figures");
-    window.resultElRaven = document.getElementById("result-raven");
     // const lastAttemptKey = getLastAttemptKey(); // ✅ Отримуємо ключ для LocalStorage
     // const lastAttempt = localStorage.getItem(lastAttemptKey); // ✅ Оголошуємо lastAttempt
     // const lastAttemptDate = lastAttempt ? new Date(lastAttempt) : null;
-const sendResultsBtns = document.querySelectorAll(".send-results-btn");
-  const startBtnFigures = document.getElementById("start-btn-figures");
-  const startBtnRaven = document.getElementById("start-btn-raven");
-const sendResultsBtnFigures = document.getElementById("send-results-figures-btn");
-const sendResultsBtnRaven = document.getElementById("send-results-raven-btn");
+
 const sendResultsBtnMotivation = document.getElementById("send-results-motivation-btn");
 
-    // sendResultsBtnFigures.addEventListener("click", () => submitTestResults("figures"));
-    // sendResultsBtnRaven.addEventListener("click", () => submitTestResults("raven"));
- let timerIntervalFigures;
   let score;
-  let timerIntervalRaven;
-// ACCORDION
-let acc = document.getElementsByClassName("accordion");
-let i; 
-	for (i = 0; i < acc.length; i++) {
-	  acc[i].addEventListener("click", function() {
-	    this.classList.toggle("active");
-	    let panel = this.nextElementSibling;
-	    if (panel.style.maxHeight){
-	      panel.style.maxHeight = null;
-	    } else {
-	      panel.style.maxHeight = panel.scrollHeight + "1px";
-	    }; 
-	  });
-	};//for
+
+
   // let sendStudentName; 🔹 Щоб не оголошувати всередині `if`
-    window.calculateLevel = function(score) {
-    if (score === 10) return "Дуже високий";
-    if (score >= 8) return "Високий";
-    if (score >= 4) return "Середній";
-    if (score >= 2) return "Низький";
-    return "Дуже низький";
-};
-sendResultsBtns.forEach((btn) => {
-    console.log("🔹 Кнопка знайдена:", btn, "| data-test-type:", btn.dataset.testType);
-});
+
+
 
 // function allQuestionsAnswered(Motivation) {
 //     console.log(`🔍 Перевіряємо, чи всі питання заповнені для тесту: ${Motivation}`);
@@ -71,37 +41,8 @@ sendResultsBtns.forEach((btn) => {
 //         submitTestResults(testType); // Передаємо testType у функцію
 //     });
 // });
-sendResultsBtns.forEach((btn) => {
-    btn.addEventListener("click", (event) => {
-        const testType = event.target.dataset.testType;
+        // submitResults(normalizedTestType);
 
-        if (!testType) {
-            console.error("❌ testType не визначено для кнопки!", event.target);
-            return;
-        }
- // Нормалізуємо testType (перша літера велика)
-        const normalizedTestType = testType.charAt(0).toUpperCase() + testType.slice(1).toLowerCase();
-
-        console.log("📌 Натиснута кнопка для тесту:", normalizedTestType);
-
-        // Перевіряємо, чи всі питання заповнені
-        console.log(`🔍 Перевірка відповідей для ${normalizedTestType}:`);
-
-        // if (!allQuestionsAnswered(normalizedTestType)) {, allQuestionsAnswered(normalizedTestType))
-        //     alert("❗ Будь ласка, дайте відповідь на всі питання перед відправкою результату.");
-        //     return;
-        // }
-        // // Перевіряємо, чи всі питання заповнені
-        // if (!allQuestionsAnswered(testType)) {
-        //     alert("❗ Будь ласка, дайте відповідь на всі питання перед відправкою результату.");
-        //     return;
-        // }
-// submitTestResults(testType);
-        console.log("📌 Натиснута кнопка для тесту:", testType);
-                // Викликаємо `submitTestResults()`if (allQuestionsAnswered(testType))else {}
-        submitTestResults(normalizedTestType);
-    });//click
-});//forEach
 
 
 
@@ -155,8 +96,8 @@ if (!testType) {
       //   return null;
       // }
         return entryIDs;
-
   };//getEntryIDs
+
     console.log("✅ Успішно додані обробники подій!");
 	//✅✅✅✅✅✅✅✅✅✅✅submitResults
 // ✅ Головна функція для надсилання результатів у Google Forms
@@ -247,301 +188,15 @@ window.getLevelMotivation = function(score) {
 };
 //🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔
  
- const taskContainerRaven = document.getElementById("task-container-raven");
-  const timerElRaven = document.getElementById("timer-raven");
-  
-
-  const tasksRaven = [
-    { image: "img/matrytsya_ravena/matrytsya_ravena1.jpg", correct: 7 },
-    { image: "img/matrytsya_ravena/matrytsya_ravena2.jpg", correct: 6 },
-    { image: "img/matrytsya_ravena/matrytsya_ravena3.jpg", correct: 6 },
-    { image: "img/matrytsya_ravena/matrytsya_ravena4.jpg", correct: 1 },
-    { image: "img/matrytsya_ravena/matrytsya_ravena5.jpg", correct: 2 },
-    { image: "img/matrytsya_ravena/matrytsya_ravena6.jpg", correct: 5 },
-    { image: "img/matrytsya_ravena/matrytsya_ravena7.jpg", correct: 6 },
-    { image: "img/matrytsya_ravena/matrytsya_ravena8.jpg", correct: 1 },
-    { image: "img/matrytsya_ravena/matrytsya_ravena9.jpg", correct: 3 },
-    { image: "img/matrytsya_ravena/matrytsya_ravena10.jpg", correct: 5 }
-  ];
-
-   function startTestRaven() {
-  console.log("✅ Початок тесту: Матриця Равена");   
-  console.log("🔹 startTest() запущено!");
-    currentTaskIndexRaven = 0;
-    score = 0;
-    taskContainerRaven.style.display = "flex";
-    startBtnRaven.style.display = "none";
-    sendResultsBtnRaven.style.display = "none";
-    startTimerRaven(600);
-    loadTaskRaven();
-  }
-
-  // ✅ Додаємо обробник події ПІСЛЯ оголошення функції
-  startBtnRaven.addEventListener("click", startTestRaven);
-
-
-function startTimerRaven(duration) {
-    let timeLeft = duration;
-    const timerElRaven = document.getElementById("timer-raven");
-
-    if (!timerElRaven) {
-        console.error("❌ Не знайдено елемент #timer-raven!");
-        return;
-    }
-
-    console.log("⏳ Запуск таймера Матриця Равена...");
-
-    timerIntervalRaven = setInterval(() => {
-        const minutes = Math.floor(timeLeft / 60);
-        const seconds = timeLeft % 60;
-        timerElRaven.textContent = `⏳ ${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
-        
-        console.log(`⏳ Час залишився (Равен): ${minutes}:${seconds}`);
-
-        if (timeLeft <= 0) {
-            clearInterval(timerIntervalRaven);
-            console.log("🛑 Час вийшов! Завершуємо тест.");
-            finishTestRaven();
-        } else {
-            timeLeft--;
-        }
-    }, 1000);
-}
-
-// let timerIntervalRaven; Глобальна змінна для таймера
-if (timerIntervalRaven) {
-    clearInterval(timerIntervalRaven);
-}
-
-// function startTimerRaven() {
-//     let timeLeft = 600; // 10 хвилин
-//     timerIntervalRaven = setInterval(() => {
-//         if (timeLeft <= 0) {
-//             clearInterval(timerIntervalRaven);
-//             finishTestRaven();
-//         } else {
-//             console.log(`⏳ Час залишився: ${timeLeft} секунд`);
-//             timeLeft--;
-//         }
-//     }, 1000);
-// }
-
-let currentTaskIndexRaven = 0;// ✅ Оголошуємо глобально
-
-  function loadTaskRaven() {
-    const taskRaven = tasksRaven[currentTaskIndexRaven];
-
-    taskContainerRaven.innerHTML = `
-      <img src="${taskRaven.image}" class="main-image">
-      <div class="next-div">
-        <button id="next-btn">Далі</button>
-        <ol class="radio-options">
-          ${[1, 2, 3, 4, 5, 6, 7, 8].map(num => `
-            <li>
-              <input type="radio" name="task" id="option-${num}" value="${num}">
-              <label for="option-${num}">${num}</label>
-            </li>
-          `).join('')}
-        </ol>
-      </div>
-    `;
-
-    document.getElementById("next-btn").addEventListener("click", checkAnswerRaven);
-  }//loadTaskRaven
-//✅ checkAnswer
-  function checkAnswerRaven() {
-    const selectedOption = document.querySelector('input[name="task"]:checked');
-    if (!selectedOption) {
-      alert("Оберіть відповідь перед переходом до наступного завдання.");
-      return;
-    }
-
-    const userAnswerRaven = parseInt(selectedOption.value);
-    if (userAnswerRaven === tasksRaven[currentTaskIndexRaven].correct) {
-      score++;
-    }
-
-    currentTaskIndexRaven++;
-    if (currentTaskIndexRaven < tasksRaven.length) {
-      loadTaskRaven();
-    } else {clearInterval(timerIntervalRaven);
-        console.log("✅ Таймер зупинено!");
-      finishTestRaven();
-    }
-  }//✅ checkAnswer
-window.calculateLevelRaven = function () {
-    let score = 0;
-       const answers = document.querySelectorAll('.radio-options input[type="radio"]:checked');
- answers.forEach((input) => {
-        if (input.value === "1") score++; // Припустимо, що правильні відповіді мають value="1"
-    });
-
-    console.log("✅ Підрахований бал:", score);
-    return score;
-};
-
- //🏁finishTest
-  // function finishTestRaven() {
-  //   clearInterval(timerIntervalRaven);
-  //   window.resultElRaven.innerHTML = "🛑 Тест завершено! Натисніть 'Надіслати результат'.";
-  //   taskContainerRaven.innerHTML = "";
-  //   sendResultsBtnRaven.style.display = "block";
-  // }//🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁finishTest 
-function finishTestRaven() {
-    if (timerIntervalRaven) {
-        clearInterval(timerIntervalRaven);
-        console.log("✅ Таймер зупинено!");
-    }
-
-    window.resultElRaven.innerHTML = "🛑 Тест завершено! Натисніть 'Надіслати результат'.";
-    taskContainerRaven.innerHTML = "";
-    sendResultsBtnRaven.style.display = "block";
-}
 
     //🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩
-    const figureTaskEl = document.getElementById("figure-task");
-  const timerElFigures = document.getElementById("timer-figures");
- const tasksFigures = [
-    { id: 1, image: "img/upiznay_fihury/upiznay_fihury1.png", correct: 2 },
-    { id: 2, image: "img/upiznay_fihury/upiznay_fihury2.png", correct: 3 },
-    { id: 3, image: "img/upiznay_fihury/upiznay_fihury3.png", correct: 1 },
-    { id: 4, image: "img/upiznay_fihury/upiznay_fihury4.png", correct: 2 },
-    { id: 5, image: "img/upiznay_fihury/upiznay_fihury5.png", correct: 4 },
-    { id: 6, image: "img/upiznay_fihury/upiznay_fihury6.png", correct: 3 },
-    { id: 7, image: "img/upiznay_fihury/upiznay_fihury7.png", correct: 1 },
-    { id: 8, image: "img/upiznay_fihury/upiznay_fihury8.png", correct: 4 },
-    { id: 9, image: "img/upiznay_fihury/upiznay_fihury9.png", correct: 3 },
-    { id: 10, image: "img/upiznay_fihury/upiznay_fihury10.png", correct: 2 }
-  ];
-// let unansweredTasksFigures = []; // Додайте глобально
+  //   const figureTaskEl = document.getElementById("figure-task");
+  // const timerElFigures = document.getElementById("timer-figures");
 
-  let unansweredTasksFigures = [...tasksFigures]; 
-  let incorrectAnswersFigures = []; 
-  let currentTaskFigures = null;
-console.log("📌 Завдання перед стартом:", tasksFigures);
-console.log("📌 Копія завдань у unansweredTasksFigures:", unansweredTasksFigures);
-
-  function startTestFigures() {
-    console.log("✅ Початок тесту: Фігури");
-    
-    unansweredTasksFigures = [...tasksFigures];
-    incorrectAnswersFigures = [];
-    score = 0;
-    startBtnFigures.style.display = "none";
-    sendResultsBtnFigures.style.display = "none";
-    document.getElementById("figure-task").style.display = "block";
-    startTimerFigures(90);
-    generateTaskFigures();
-  }
-
-   startBtnFigures.addEventListener("click", startTestFigures);
-
-  function startTimerFigures(duration) {
-    let timeLeft = duration;
-
-    if (!timerElFigures) {
-        console.error("❌ Не знайдено елемент #timer-figures!");
-        return;
-    }
-    console.log("⏳ Запуск таймера Фігури...");
-    timerIntervalFigures = setInterval(() => {
-      const minutes = Math.floor(timeLeft / 60);
-      const seconds = timeLeft % 60;
-      timerElFigures.textContent = `⏳ ${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
-        console.log(`⏳ Час залишився (Фігури): ${minutes}:${seconds}`);
-if (timeLeft <= 0) {
-            clearInterval(timerIntervalFigures);
-            console.log("🛑 Час вийшов! Завершуємо тест.");
-            finishTestFigures();
-        } else {
-            timeLeft--;
-        }
-    }, 1000);
-}//startTimerFigures
-
-function generateTaskFigures() {
- 
-
-    // Перевіряємо, чи є ще завдання
-    if (unansweredTasksFigures.length === 0 && incorrectAnswersFigures.length === 0) {
-        console.warn("⚠️ Немає більше завдань для відображення! Зупиняємо таймер.");
-        clearInterval(timerIntervalFigures); // ⏹️ Зупиняємо таймер
-        finishTestFigures();
-        return;
-    }
-
-    // Вибір нового завдання
-    currentTaskFigures = unansweredTasksFigures.length > 0
-        ? unansweredTasksFigures.shift()
-        : incorrectAnswersFigures.shift();
-
-    // Оновлюємо контент на сторінці
-    figureTaskEl.innerHTML = `
-      <img src="${currentTaskFigures.image}" class="main-image">
-      <div class="options">
-        ${[1, 2, 3, 4].map(num => `
-          <img class="option" src="img/upiznay_fihury/upiznay_fihury${currentTaskFigures.id}_${num}.png" data-index="${num}">
-        `).join("")}
-      </div>
-    `;
-
-    // Додаємо обробник кліку на варіанти відповіді
-    document.querySelectorAll(".option").forEach(option => {
-        option.addEventListener("click", () => checkAnswerFigures(Number(option.dataset.index)));
-    });
-}
-
-
-  function checkAnswerFigures(selectedIndex) {
-    if (selectedIndex === currentTaskFigures.correct) {
-      score++;
-      incorrectAnswersFigures = incorrectAnswersFigures.filter(task => task.id !== currentTaskFigures.id);
-    } else {
-      if (!incorrectAnswersFigures.some(task => task.id === currentTaskFigures.id)) {
-        incorrectAnswersFigures.push(currentTaskFigures);
-      }
-    }
-    setTimeout(generateTaskFigures, 1);
-  }
-window.calculateScoreFigures = function(timeTaken) {
-    if (timeTaken < 45) return 10;
-    if (timeTaken <= 47) return 9;
-    if (timeTaken <= 49) return 8;
-    if (timeTaken <= 52) return 7;
-    if (timeTaken <= 59) return 6;
-    if (timeTaken <= 62) return 5;
-    if (timeTaken <= 69) return 4;
-    if (timeTaken <= 72) return 3;
-    if (timeTaken <= 79) return 2;
-    if (timeTaken <= 82) return 1;
-    return 0;
-};
-
-//🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁finishTest
-  function finishTestFigures() {
-    clearInterval(timerIntervalFigures);
-    resultElFigures.innerHTML = "🛑 Тест завершено! Натисніть 'Надіслати результат'.";
-    figureTaskEl.innerHTML = "";
-    sendResultsBtnFigures.style.display = "block";
-  }//🏁finishTest
    // 🔹 Додаємо обробники подій до кнопок "Почати тест"
-    if (startBtnFigures) {
-        startBtnFigures.addEventListener("click", () => {
-            console.log("✅ Початок тесту: Упізнай фігури");
-            startTestFigures();
-        });
-    } else {
-        console.error("❌ start-btn-figures не знайдено!");
-    }
 
-    if (startBtnRaven) {
-        startBtnRaven.addEventListener("click", () => {
-            console.log("✅ Початок тесту: Матриця Равена");
-            startTestRaven();
-        });
-    } else {
-        console.error("❌ start-btn-raven не знайдено!");
-    }
+
+ 
 // let selectedEntryIDs = getEntryIDs(testType);
 
 
@@ -633,8 +288,8 @@ if (isNaN(finalScore) || !level) {
     }
     }
 
-}
-//✅ Виклик submitTestResults
+}//✅ Виклик submitTestResults
+
 
 // sendResultsBtn.addEventListener("click", () => {
 //     console.log("Виклик submitResults");
