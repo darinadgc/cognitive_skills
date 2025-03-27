@@ -291,7 +291,7 @@ window.getLevelMotivation = function(score) {
   //     }
   //   }, 1000);
   // }
-let timerIntervalRaven; // Глобальна змінна для таймера
+// let timerIntervalRaven; Глобальна змінна для таймера
 if (timerIntervalRaven) {
     clearInterval(timerIntervalRaven);
 }
