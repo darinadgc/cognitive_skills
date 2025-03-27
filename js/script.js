@@ -537,7 +537,7 @@ console.log("✅ Визначені entry IDs:", entryIDs);
         alert("❗ Будь ласка, дайте відповідь на всі питання перед завершенням!");
         return;
     }
-else if (allQuestionsAnswered(testType)&&testType === "Motivation"){
+else if (allQuestionsAnswered(testType)){
     let sendStudentName = askStudentName();
     if (!sendStudentName) {
         console.error("❌ askStudentName() повернула `null`. Виконання зупинено.");
