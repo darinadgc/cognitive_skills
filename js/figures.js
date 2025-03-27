@@ -20,7 +20,6 @@ const sendResultsBtnFigures = document.getElementById("send-results-figures-btn"
 // sendResultsBtns.forEach((btn) => {
 //     console.log("🔹 Кнопка знайдена:", btn, "| data-test-type:", btn.dataset.testType);
 // });
-     const figureTaskEl = document.getElementById("figure-task");
   const timerEl= document.getElementById("timer");
  const tasks = [
     { id: 1, image: "img/upiznay_fihury/upiznay_fihury1.png", correct: 2 },
