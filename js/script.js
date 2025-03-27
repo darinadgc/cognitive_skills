@@ -284,17 +284,21 @@ window.getLevelMotivation = function(score) {
     }
     console.log("⏳ Запуск таймера Равена...");
 
-    timerIntervalRaven = setInterval(() => {
-      const minutes = Math.floor(timeLeft / 60);
-      const seconds = timeLeft % 60;
-      timerElRaven.textContent = `⏳ ${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
-      timeLeft--;
+function startTimerRaven(duration) {
+    let timeLeft = duration;
+    const timerElRaven = document.getElementById("timer-raven");
 
-      if (timeLeft < 0) {
-        clearInterval(timerIntervalRaven);
-        finishTestRaven();
-      }else {
-            console.log(`⏳ Час залишився: ${timeLeft} секунд`);
+    if (!timerElRaven) {
+        console.error("❌ Не знайдено елемент #timer-raven!");
+        return;
+    }
+
+    console.log("⏳ Запуск таймера Матриця Равена...");
+
+    timerIntervalRaven = setInterval(() => {
+        const minutes = Math.floor(timeLeft / 60);
+        const seconds = timeLeft % 60;
+        timerElRaven.textContent = `⏳ ${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
         
         console.log(`⏳ Час залишився (Равен): ${minutes}:${seconds}`);
 
@@ -307,6 +311,7 @@ window.getLevelMotivation = function(score) {
         }
     }, 1000);
 }
+
 // let timerIntervalRaven; Глобальна змінна для таймера
 if (timerIntervalRaven) {
     clearInterval(timerIntervalRaven);
