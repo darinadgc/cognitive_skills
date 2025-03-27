@@ -262,8 +262,9 @@ window.getLevelMotivation = function(score) {
     { image: "img/matrytsya_ravena/matrytsya_ravena10.jpg", correct: 5 }
   ];
 
-  function startTestRaven() {
-    console.log("🔹 startTest() запущено!");
+   function startTestRaven() {
+  console.log("✅ Початок тесту: Матриця Равена");   
+  console.log("🔹 startTest() запущено!");
     currentTaskIndexRaven = 0;
     score = 0;
     taskContainerRaven.style.display = "flex";
@@ -275,9 +276,13 @@ window.getLevelMotivation = function(score) {
 
   // ✅ Додаємо обробник події ПІСЛЯ оголошення функції
   startBtnRaven.addEventListener("click", startTestRaven);
-
   function startTimerRaven(duration) {
     let timeLeft = duration;
+    if (!timerElRaven) {
+        console.error("❌ Не знайдено елемент #timer-raven!");
+        return;
+    }
+    console.log("⏳ Запуск таймера Равена...");
 
     timerIntervalRaven = setInterval(() => {
       const minutes = Math.floor(timeLeft / 60);
@@ -290,10 +295,18 @@ window.getLevelMotivation = function(score) {
         finishTestRaven();
       }else {
             console.log(`⏳ Час залишився: ${timeLeft} секунд`);
+        
+        console.log(`⏳ Час залишився (Равен): ${minutes}:${seconds}`);
+
+        if (timeLeft <= 0) {
+            clearInterval(timerIntervalRaven);
+            console.log("🛑 Час вийшов! Завершуємо тест.");
+            finishTestRaven();
+        } else {
             timeLeft--;
         }
     }, 1000);
-  }
+}
 // let timerIntervalRaven; Глобальна змінна для таймера
 if (timerIntervalRaven) {
     clearInterval(timerIntervalRaven);
@@ -407,36 +420,44 @@ console.log("📌 Завдання перед стартом:", tasksFigures);
 console.log("📌 Копія завдань у unansweredTasksFigures:", unansweredTasksFigures);
 
   function startTestFigures() {
+    console.log("✅ Початок тесту: Фігури");
+    
     unansweredTasksFigures = [...tasksFigures];
     incorrectAnswersFigures = [];
     score = 0;
     startBtnFigures.style.display = "none";
     sendResultsBtnFigures.style.display = "none";
     document.getElementById("figure-task").style.display = "block";
-
     startTimerFigures(90);
     generateTaskFigures();
   }
 
- 
-  startBtnFigures.addEventListener("click", startTestFigures);
+   startBtnFigures.addEventListener("click", startTestFigures);
+
   function startTimerFigures(duration) {
     let timeLeft = duration;
 
+    if (!timerElFigures) {
+        console.error("❌ Не знайдено елемент #timer-figures!");
+        return;
+    }
+    console.log("⏳ Запуск таймера Фігури...");
     timerIntervalFigures = setInterval(() => {
       const minutes = Math.floor(timeLeft / 60);
       const seconds = timeLeft % 60;
       timerElFigures.textContent = `⏳ ${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
-      timeLeft--;
-
-      if (timeLeft < 0) {
-        clearInterval(timerIntervalFigures);
-        finishTestFigures();
-      }
+        console.log(`⏳ Час залишився (Фігури): ${minutes}:${seconds}`);
+if (timeLeft <= 0) {
+            clearInterval(timerIntervalFigures);
+            console.log("🛑 Час вийшов! Завершуємо тест.");
+            finishTestFigures();
+        } else {
+            timeLeft--;
+        }
     }, 1000);
-  }
-  function generateTaskFigures() {
+}//startTimerFigures
 
+  function generateTaskFigures() {
 
     if (score === 10 && incorrectAnswersFigures.length === 0) {
       finishTestFigures();
