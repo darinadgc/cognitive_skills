@@ -150,11 +150,11 @@ if (!testType) {
         }
         };
  // return entryIDs[testType] || null;
-        if (!entryIDs[testType]) {
-        console.error(`❌ entryIDs не знайдено для тесту: ${testType}`);
-        return null;
-      }
-        return entryIDs[testType];
+      //   if (!entryIDs[testType]) {
+      //   console.error(`❌ entryIDs не знайдено для тесту: ${testType}`);
+      //   return null;
+      // }
+        return entryIDs;
 
   };
     console.log("✅ Успішно додані обробники подій!");
