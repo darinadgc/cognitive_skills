@@ -43,12 +43,12 @@ sendResultsBtns.forEach((btn) => {
     console.log("🔹 Кнопка знайдена:", btn, "| data-test-type:", btn.dataset.testType);
 });
 
-function allQuestionsAnswered(testType) {
-    console.log(`🔍 Перевіряємо, чи всі питання заповнені для тесту: ${testType}`);
+function allQuestionsAnswered(Motivation) {
+    console.log(`🔍 Перевіряємо, чи всі питання заповнені для тесту: ${Motivation}`);
     // Отримуємо всі питання для даного тесту
-    const questions = document.querySelectorAll(`.question-${testType}`);  
+    const questions = document.querySelectorAll(`.question-${Motivation}`);  
 if (questions.length === 0) {
-        console.warn(`⚠️ Помилка: не знайдено жодного питання для тесту "${testType}". Переконайтеся, що класи ".question-${testType}" існують.`);
+        console.warn(`⚠️ Помилка: не знайдено жодного питання для тесту "${Motivation}". Переконайтеся, що класи ".question-${testType}" існують.`);
         return false;
     }
   
@@ -60,7 +60,7 @@ if (questions.length === 0) {
             return false; // Якщо хоч одне питання не заповнене – повертаємо false
         }
     }
-    console.log(`✅ Усі питання для тесту "${testType}" заповнені.`);
+    console.log(`✅ Усі питання для тесту "${Motivation}" заповнені.`);
     return true; // Всі питання мають відповіді
 }
 
