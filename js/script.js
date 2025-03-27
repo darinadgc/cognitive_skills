@@ -588,6 +588,8 @@ console.log("✅ Визначені entry IDs:", entryIDs);
     //     alert("❗ Будь ласка, дайте відповідь на всі питання перед завершенням!");
     //     return;
     // }
+	    let checkResults = checkAllAnsweredMotivation();
+//  let totalQuestions, answeredQuestions;
     if (checkResults.answeredQuestions.size === 10) {    
     let sendStudentName = askStudentName();
     if (!sendStudentName) {
