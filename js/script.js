@@ -30,7 +30,7 @@ let i;
 	      panel.style.maxHeight = panel.scrollHeight + "1px";
 	    }; 
 	  });
-	}; 	
+	};//for
   // let sendStudentName; 🔹 Щоб не оголошувати всередині `if`
     window.calculateLevel = function(score) {
     if (score === 10) return "Дуже високий";
@@ -43,26 +43,26 @@ sendResultsBtns.forEach((btn) => {
     console.log("🔹 Кнопка знайдена:", btn, "| data-test-type:", btn.dataset.testType);
 });
 
-function allQuestionsAnswered(Motivation) {
-    console.log(`🔍 Перевіряємо, чи всі питання заповнені для тесту: ${Motivation}`);
-    // Отримуємо всі питання для даного тесту
-    const questions = document.querySelectorAll(`.question-${Motivation}`);  
-if (questions.length === 0) {
-        console.warn(`⚠️ Помилка: не знайдено жодного питання для тесту "${Motivation}". Переконайтеся, що класи ".question-${Motivation}" існують.`);
-        return false;
-    }
+// function allQuestionsAnswered(Motivation) {
+//     console.log(`🔍 Перевіряємо, чи всі питання заповнені для тесту: ${Motivation}`);
+//     // Отримуємо всі питання для даного тесту
+//     const questions = document.querySelectorAll(`.question-${Motivation}`);  
+// if (questions.length === 0) {
+//         console.warn(`⚠️ Помилка: не знайдено жодного питання для тесту "${Motivation}". Переконайтеся, що класи ".question-${Motivation}" існують.`);
+//         return false;
+//     }
   
-    for (let question of questions) {
-        // Шукаємо вибраний варіант у кожному питанні
-        const selectedAnswer = question.querySelector("input[type='radio']:checked");
-        if (!selectedAnswer) {
-            console.warn(`⚠️ Не відповіли на питання:`, question);
-            return false; // Якщо хоч одне питання не заповнене – повертаємо false
-        }
-    }
-    console.log(`✅ Усі питання для тесту "${Motivation}" заповнені.`);
-    return true; // Всі питання мають відповіді
-}
+//     for (let question of questions) {
+//         // Шукаємо вибраний варіант у кожному питанні
+//         const selectedAnswer = question.querySelector("input[type='radio']:checked");
+//         if (!selectedAnswer) {
+//             console.warn(`⚠️ Не відповіли на питання:`, question);
+//             return false; // Якщо хоч одне питання не заповнене – повертаємо false
+//         }
+//     }
+//     console.log(`✅ Усі питання для тесту "${Motivation}" заповнені.`);
+//     return true; // Всі питання мають відповіді
+// }
 
 // sendResultsBtns.forEach((btn) => {
 //     btn.addEventListener("click", (event) => {
@@ -148,7 +148,7 @@ if (!testType) {
             score: "entry.1008291282",
             level: "entry.1332224844"
         }
-        };
+        };//entryIDs
  // return entryIDs[testType] || null;
       //   if (!entryIDs[testType]) {
       //   console.error(`❌ entryIDs не знайдено для тесту: ${testType}`);
@@ -156,7 +156,7 @@ if (!testType) {
       // }
         return entryIDs;
 
-  };
+  };//getEntryIDs
     console.log("✅ Успішно додані обробники подій!");
 	//✅✅✅✅✅✅✅✅✅✅✅submitResults
 // ✅ Головна функція для надсилання результатів у Google Forms
@@ -226,7 +226,7 @@ window.checkAllAnsweredMotivation = function() {
     console.log("🔹 Обчислений бал:", score);
 
     return { totalQuestions, answeredQuestions, score };
-};
+};//checkAllAnsweredMotivation
 window.calculateScoreMotivation = function() {
     let checkedAnswers = document.querySelectorAll('input[type="radio"]:checked'); // ✅ Отримуємо відповіді
     let score = 0; // Загальний бал
@@ -237,7 +237,7 @@ window.calculateScoreMotivation = function() {
 
     console.log("🔹 Обчислений бал:", score); // ✅ Переносимо до return
     return score;
-}
+}//calculateScoreMotivation
 window.getLevelMotivation = function(score) {
     if (score > 13) return "Високий";
     if (score > 7) return "Середній";
@@ -276,13 +276,7 @@ window.getLevelMotivation = function(score) {
 
   // ✅ Додаємо обробник події ПІСЛЯ оголошення функції
   startBtnRaven.addEventListener("click", startTestRaven);
-  function startTimerRaven(duration) {
-    let timeLeft = duration;
-    if (!timerElRaven) {
-        console.error("❌ Не знайдено елемент #timer-raven!");
-        return;
-    }
-    console.log("⏳ Запуск таймера Равена...");
+
 
 function startTimerRaven(duration) {
     let timeLeft = duration;
