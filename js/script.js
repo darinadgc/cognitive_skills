@@ -611,10 +611,6 @@ console.log("✅ Визначені entry IDs:", entryIDs);
     if (testType === "Figures" || testType === "Raven") {
         level = calculateLevel(finalScore);
     let sendStudentName = askStudentName();
-    if (!sendStudentName) {
-        console.error("❌ askStudentName() повернула `null`. Виконання зупинено.");
-        return;
-    }
     console.log("✅ Ім'я студента:", sendStudentName);
     console.log("✅ Визначені entry IDs:", selectedEntryIDs);
     console.log("✅ Обчислений бал:", finalScore);
@@ -622,6 +618,10 @@ console.log("✅ Визначені entry IDs:", entryIDs);
 
     // ✅ Викликаємо submitResults
     submitResults(selectedEntryIDs, finalScore, level, sendStudentName);
+    if (!sendStudentName) {
+        console.error("❌ askStudentName() повернула `null`. Виконання зупинено.");
+        return;
+    }
     }
 if (isNaN(finalScore) || !level) { 
 
