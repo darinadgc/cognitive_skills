@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const startBtnFigures = document.getElementById("start-btn-figures");
 const sendResultsBtnFigures = document.getElementById("send-results-figures-btn");
  let timerInterval;
-  let score;
+  let score = 0;
       window.calculateLevel = function(score) {
     if (score === 10) return "Дуже високий";
     if (score >= 8) return "Високий";
@@ -35,7 +35,6 @@ const sendResultsBtnFigures = document.getElementById("send-results-figures-btn"
   let unansweredTasks = [...tasks]; 
   let incorrectAnswers = []; 
   let currentTask = null;
-  let score = 0;
   let timerInterval;
     // if (startBtnFigures) {
     //     startBtnFigures.addEventListener("click", () => {
