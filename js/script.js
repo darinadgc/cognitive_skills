@@ -98,8 +98,8 @@ sendResultsBtns.forEach((btn) => {
         }
 // submitTestResults(testType);
         console.log("📌 Натиснута кнопка для тесту:", testType);
-                // Викликаємо `submitTestResults()`if (allQuestionsAnswered(testType))
-        else {submitTestResults(normalizedTestType);}
+                // Викликаємо `submitTestResults()`if (allQuestionsAnswered(testType))else {}
+        submitTestResults(normalizedTestType);
     });
 });
 
