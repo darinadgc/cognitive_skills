@@ -191,7 +191,7 @@ console.log("✅ Визначені entry IDs:", entryIDs);
     console.log("✅ Визначений рівень:", level);
 
     // ✅ Викликаємо submitResults
-    submitResults(selectedEntryIDs, finalScore, level, sendStudentName);
+    // submitResults(selectedEntryIDs, finalScore, level, sendStudentName);
     if (!sendStudentName) {
         console.error("❌ askStudentName() повернула `null`. Виконання зупинено.");
         return;
