@@ -44,9 +44,14 @@ sendResultsBtns.forEach((btn) => {
 });
 
 function allQuestionsAnswered(testType) {
+    console.log(`🔍 Перевіряємо, чи всі питання заповнені для тесту: ${testType}`);
     // Отримуємо всі питання для даного тесту
-    const questions = document.querySelectorAll(`.question-${testType}`);
-    
+    const questions = document.querySelectorAll(`.question-${testType}`);  
+if (questions.length === 0) {
+        console.warn(`⚠️ Помилка: не знайдено жодного питання для тесту "${testType}". Переконайтеся, що класи ".question-${testType}" існують.`);
+        return false;
+    }
+  
     for (let question of questions) {
         // Шукаємо вибраний варіант у кожному питанні
         const selectedAnswer = question.querySelector("input[type='radio']:checked");
@@ -55,7 +60,7 @@ function allQuestionsAnswered(testType) {
             return false; // Якщо хоч одне питання не заповнене – повертаємо false
         }
     }
-    
+    console.log(`✅ Усі питання для тесту "${testType}" заповнені.`);
     return true; // Всі питання мають відповіді
 }
 
@@ -74,15 +79,27 @@ sendResultsBtns.forEach((btn) => {
             console.error("❌ testType не визначено для кнопки!", event.target);
             return;
         }
+ // Нормалізуємо testType (перша літера велика)
+        const normalizedTestType = testType.charAt(0).toUpperCase() + testType.slice(1).toLowerCase();
 
+        console.log("📌 Натиснута кнопка для тесту:", normalizedTestType);
+
+        // Перевіряємо, чи всі питання заповнені
+        console.log(`🔍 Перевірка відповідей для ${normalizedTestType}:`, allQuestionsAnswered(normalizedTestType));
+
+        if (!allQuestionsAnswered(normalizedTestType)) {
+            alert("❗ Будь ласка, дайте відповідь на всі питання перед відправкою результату.");
+            return;
+        }
         // Перевіряємо, чи всі питання заповнені
         if (!allQuestionsAnswered(testType)) {
             alert("❗ Будь ласка, дайте відповідь на всі питання перед відправкою результату.");
             return;
         }
-
+// submitTestResults(testType);
         console.log("📌 Натиснута кнопка для тесту:", testType);
-        submitTestResults(testType);
+                // Викликаємо `submitTestResults()`
+        else if (allQuestionsAnswered(testType)){submitTestResults(normalizedTestType);}
     });
 });
 
@@ -510,13 +527,6 @@ console.log("✅ Визначені entry IDs:", entryIDs);
     let finalScore = 0;
     let level = "";
 
-    let sendStudentName = askStudentName();
-    if (!sendStudentName) {
-        console.error("❌ askStudentName() повернула `null`. Виконання зупинено.");
-        return;
-    }
-    console.log("✅ Ім'я студента:", sendStudentName);
-
     if (testType === "Figures") {  
         finalScore = calculateScoreFigures();
     } else if (testType === "Raven") {
@@ -527,7 +537,14 @@ console.log("✅ Визначені entry IDs:", entryIDs);
         alert("❗ Будь ласка, дайте відповідь на всі питання перед завершенням!");
         return;
     }
-else if (allQuestionsAnswered(testType)){
+else if (allQuestionsAnswered(testType)&&testType === "Motivation"){
+    let sendStudentName = askStudentName();
+    if (!sendStudentName) {
+        console.error("❌ askStudentName() повернула `null`. Виконання зупинено.");
+        return;
+    }
+    console.log("✅ Ім'я студента:", sendStudentName);
+
         finalScore = calculateScoreMotivation();
         level = getLevelMotivation(finalScore);
     }
@@ -535,8 +552,15 @@ else if (allQuestionsAnswered(testType)){
     // ✅ Один рівень для Figures і Raven
     if (testType === "Figures" || testType === "Raven") {
         level = calculateLevel(finalScore);
-    }
 
+    let sendStudentName = askStudentName();
+    if (!sendStudentName) {
+        console.error("❌ askStudentName() повернула `null`. Виконання зупинено.");
+        return;
+    }
+    console.log("✅ Ім'я студента:", sendStudentName);
+
+    }
 if (isNaN(finalScore) || !level) { 
 
         console.error("❌ finalScore або level не визначено!");
