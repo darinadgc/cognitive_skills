@@ -206,7 +206,7 @@ window.submitResults = function(finalScore, level, entryIDs, sendStudentName) {
 
 //💗💗💗💗💗💗💗💗
 window.checkAllAnsweredMotivation = function() {
-    const questions = document.querySelectorAll('.question-Motivation'); // Вибираємо ТІЛЬКИ мотиваційні питання
+    const questions = document.querySelectorAll('input[type="radio"][name^="mot-que"]'); // Вибираємо всі питання мотивації
     const totalQuestions = new Set();
     const answeredQuestions = new Set();
     let score = 0; // Загальний бал
@@ -225,8 +225,9 @@ window.checkAllAnsweredMotivation = function() {
     console.log("🔹 Відповіді:", answeredQuestions.size);
     console.log("🔹 Обчислений бал:", score);
 
-    return { totalQuestions, answeredQuestions, score };
-};//checkAllAnsweredMotivation
+    return { totalQuestions: totalQuestions.size, answeredQuestions: answeredQuestions.size, score };
+};
+//checkAllAnsweredMotivation
 window.calculateScoreMotivation = function() {
     let checkedAnswers = document.querySelectorAll('input[type="radio"]:checked'); // ✅ Отримуємо відповіді
     let score = 0; // Загальний бал
