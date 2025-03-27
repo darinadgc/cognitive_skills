@@ -85,9 +85,9 @@ sendResultsBtns.forEach((btn) => {
         console.log("📌 Натиснута кнопка для тесту:", normalizedTestType);
 
         // Перевіряємо, чи всі питання заповнені
-        console.log(`🔍 Перевірка відповідей для ${normalizedTestType}:`, allQuestionsAnswered(normalizedTestType));
+        console.log(`🔍 Перевірка відповідей для ${normalizedTestType}:`;
 
-        // if (!allQuestionsAnswered(normalizedTestType)) {
+        // if (!allQuestionsAnswered(normalizedTestType)) {, allQuestionsAnswered(normalizedTestType))
         //     alert("❗ Будь ласка, дайте відповідь на всі питання перед відправкою результату.");
         //     return;
         // }
@@ -206,12 +206,12 @@ window.submitResults = function(finalScore, level, entryIDs, sendStudentName) {
 
 //💗💗💗💗💗💗💗💗
 window.checkAllAnsweredMotivation = function() {
-    const questions = document.querySelectorAll('input[type="radio"]');
+    const questions = document.querySelectorAll('.question-Motivation input[type="radio"]'); // Вибираємо ТІЛЬКИ мотиваційні питання
     const totalQuestions = new Set();
     const answeredQuestions = new Set();
     let score = 0; // Загальний бал
 
-    // ✅ Додаємо питання за `name`, а не за `value`
+    // ✅ Додаємо питання за `name`, щоб уникнути дублікатів
     questions.forEach((input) => totalQuestions.add(input.name));
 
     questions.forEach((input) => {
@@ -565,28 +565,32 @@ console.log("✅ Визначені entry IDs:", entryIDs);
         return;
     }
 else if (allQuestionsAnswered(Motivation)){
+    if (checkResults.answeredQuestions.size === 10) {    
     let sendStudentName = askStudentName();
     if (!sendStudentName) {
         console.error("❌ askStudentName() повернула `null`. Виконання зупинено.");
         return;
     }
     console.log("✅ Ім'я студента:", sendStudentName);
-
         finalScore = calculateScoreMotivation();
         level = getLevelMotivation(finalScore);
-    }
+     }   
+   if (checkResults.answeredQuestions.size < 10) {
+            alert("❗ Будь ласка, відповідайте на всі запитання перед завершенням!");
+            return;
+        }
+
+}//Motivation
 }
     // ✅ Один рівень для Figures і Raven
     if (testType === "Figures" || testType === "Raven") {
         level = calculateLevel(finalScore);
-
     let sendStudentName = askStudentName();
     if (!sendStudentName) {
         console.error("❌ askStudentName() повернула `null`. Виконання зупинено.");
         return;
     }
     console.log("✅ Ім'я студента:", sendStudentName);
-
     }
 if (isNaN(finalScore) || !level) { 
 
