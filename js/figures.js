@@ -2,9 +2,27 @@ document.addEventListener("DOMContentLoaded", () => {
   const figureTaskEl = document.getElementById("figure-task");
   const startBtn = document.getElementById("start-btn");
   const timerEl = document.getElementById("timer");
-
-
-  const tasks = [
+    window.resultElFigures = document.getElementById("result-figures");
+   // const lastAttemptKey = getLastAttemptKey(); // ✅ Отримуємо ключ для LocalStorage
+    // const lastAttempt = localStorage.getItem(lastAttemptKey); // ✅ Оголошуємо lastAttempt
+    // const lastAttemptDate = lastAttempt ? new Date(lastAttempt) : null;
+  const startBtnFigures = document.getElementById("start-btn-figures");
+const sendResultsBtnFigures = document.getElementById("send-results-figures-btn");
+ let timerInterval;
+  let score;
+      window.calculateLevel = function(score) {
+    if (score === 10) return "Дуже високий";
+    if (score >= 8) return "Високий";
+    if (score >= 4) return "Середній";
+    if (score >= 2) return "Низький";
+    return "Дуже низький";
+};
+// sendResultsBtns.forEach((btn) => {
+//     console.log("🔹 Кнопка знайдена:", btn, "| data-test-type:", btn.dataset.testType);
+// });
+     const figureTaskEl = document.getElementById("figure-task");
+  const timerEl= document.getElementById("timer");
+ const tasks = [
     { id: 1, image: "img/upiznay_fihury/upiznay_fihury1.png", correct: 2 },
     { id: 2, image: "img/upiznay_fihury/upiznay_fihury2.png", correct: 3 },
     { id: 3, image: "img/upiznay_fihury/upiznay_fihury3.png", correct: 1 },
@@ -16,14 +34,20 @@ document.addEventListener("DOMContentLoaded", () => {
     { id: 9, image: "img/upiznay_fihury/upiznay_fihury9.png", correct: 3 },
     { id: 10, image: "img/upiznay_fihury/upiznay_fihury10.png", correct: 2 }
   ];
-
   let unansweredTasks = [...tasks]; 
   let incorrectAnswers = []; 
   let currentTask = null;
   let score = 0;
   let timerInterval;
-
-  startBtn.addEventListener("click", startTest);
+    // if (startBtnFigures) {
+    //     startBtnFigures.addEventListener("click", () => {
+    //         console.log("✅ Початок тесту: Упізнай фігури");
+    //         startTest();
+    //     });
+    // } else {
+    //     console.error("❌ start-btn-figures не знайдено!");
+    // }
+  startBtnFigures.addEventListener("click", startTest);
 
   function startTest() {
     unansweredTasks = [...tasks];
@@ -110,22 +134,185 @@ window.calculateScoreFigures = function(timeTaken) {
     sendResultsBtn.style.display = "block";
   }//🏁finishTest
 
-  // function handleSendResults() {
-  //   const studentName = prompt("Введіть ваше ім'я:");
+
+// 🏫🧒📛 Функція для запиту імені студента
+window.askStudentName = function () {
+    let studentName = prompt("Введіть ваші ім'я та першу літеру прізвища:").trim();
+
+    if (!studentName || studentName.length < 2) {
+        alert("❗ Будь ласка, введіть ім'я, більше за 1 символ.");
+        return null;  // ❌ Якщо ім'я некоректне, повертаємо null
+    }
+
+    // ✅ Фільтр символів у імені
+    let cleanedStudentName = studentName.replace(/[^a-zA-ZА-Яа-яЇїІіЄєҐґ0-9' ]/g, "");
+
+    return cleanedStudentName;  // ✅ Повертаємо очищене ім'я
+};// 🏫🧒📛 Функція для запиту імені студента
+
   
-  //   if (!studentName || studentName.trim() === "") {
-  //     alert("❗ Будь ласка, введіть ім'я.");
-  //     return;
-  //   }
+window.getEntryIDs = function () {
+// Перетворюємо першу літеру в велику, решту — в малі
   
-  //   const finalScore = score; 
-  //   const level = calculateLevel(finalScore); 
-  
-  //   submitResults(finalScore, level, scriptURL, studentName);
-  
-  //   // ✅ Приховуємо кнопку після надсилання
-  //   sendResultsBtn.style.display = "none";
-  // }
+    const entryIDs = {
+        
+        "Figures": {
+            formURL: "https://docs.google.com/forms/d/e/1FAIpQLSfSJTHeQHKjxr-_Nfwr0qC1-5Rinq1xGevQ4i8yFKegE9Wfyw/formResponse",
+            name: "entry.511676966",
+            score: "entry.1332224844",
+            level: "entry.1008291282"
+        }
+        };//entryIDs
+
+       return entryIDs;
+  };//getEntryIDs
+window.submitResults = function(finalScore, level, entryIDs, sendStudentName) {
+    console.log("📨 submitResults() запущено!");
+
+    if (window.isSubmitting) return;
+    window.isSubmitting = true;
+    console.log("✅ Функція submitResults викликана!");   
+    let entryIDs = getEntryIDs();
+if (!entryIDs) {
+        console.error(`❌ Не вдалося знайти entry ID для тесту: ${testType}`);
+        return;
+    }
+console.log("✅ Визначені entry IDs:", entryIDs);
+    let selectedEntryIDs = entryIDs; // ✅ Правильне призначення
+
+    let finalScore = 0;
+    let level = "";
+        finalScore = calculateScore();
+       level = calculateLevel(finalScore);
+    let sendStudentName = askStudentName();
+    console.log("✅ Ім'я студента:", sendStudentName);
+    console.log("✅ Визначені entry IDs:", selectedEntryIDs);
+    console.log("✅ Обчислений бал:", finalScore);
+    console.log("✅ Визначений рівень:", level);
+
+    // ✅ Викликаємо submitResults
+    submitResults(selectedEntryIDs, finalScore, level, sendStudentName);
+    if (!sendStudentName) {
+        console.error("❌ askStudentName() повернула `null`. Виконання зупинено.");
+        return;
+if (isNaN(finalScore) || !level) { 
+
+        console.error("❌ finalScore або level не визначено!");
+        return;
+    }
+}
+    if (!entryIDs || !entryIDs.formURL) {
+        console.error("❌ Не вдалося знайти entry ID для цієї сторінки.");
+        alert("❌ Помилка! Не вдалося знайти entry ID.");
+        window.isSubmitting = false;
+        return;
+    }
+
+    console.log("🔹 Отримані entry IDs:", entryIDs);
+
+    const formData = new URLSearchParams();
+    formData.append(entryIDs.name, sendStudentName);
+    formData.append(entryIDs.score, Number(finalScore));
+    formData.append(entryIDs.level, String(level));
+
+    console.log("🔹 Надсилаємо:", Object.fromEntries(formData));
+    console.log("📩 Формат перед відправкою:", formData.toString());
+
+    fetch(entryIDs.formURL, {
+        method: "POST",
+        mode: "no-cors", 
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: formData
+    })
+    .then(() => {
+        console.log("✅ Успішно надіслано!");
+        alert("✅ Дані успішно надіслані у Google Forms!");
+    })
+    .catch(error => {
+        console.error("❌ Помилка надсилання:", error);
+        alert("❌ Не вдалося надіслати результати. Будь ласка, спробуйте ще раз.");
+    })
+    .finally(() => {
+        window.isSubmitting = false;
+    });
+};// ✅ Головна функція для надсилання результатів у Google Forms
+
+    sendResultsBtnFigures.addEventListener("click", () => submitResults());
+
+    // ✅ Функції обмеження повторного проходження тесту (не виконується при завантаженні)
+
+// ✅ Функція перевірки обмежень для конкретного тесту
+// function checkTestRetry(testType, retryElement) {
+//     const lastAttemptKey = `lastAttempt${testType}`;
+//     const lastAttempt = localStorage.getItem(lastAttemptKey);
+//     const lastAttemptDate = lastAttempt ? new Date(lastAttempt) : null;
+
+//     if (lastAttemptDate && !isAllowedToRetry(lastAttemptDate)) {
+	
+
+//         retryElement.innerHTML = `❌ Ви вже проходили тест. Можна повторити через ${daysUntilRetry(lastAttemptDate)} днів.`;
+//         return false;
+//     }
+
+//     return true;
+// }
+
+// ✅ Додаємо обробники подій на заголовки тестів
+// document.addEventListener("DOMContentLoaded", () => {
+//     document.getElementById("figures-title").addEventListener("click", () => {
+//         checkTestRetry("Figures", document.getElementById("figures-panel"));
+//     });
+
+//     document.getElementById("raven-title").addEventListener("click", () => {
+//         checkTestRetry("Raven", document.getElementById("raven-panel"));
+//     });
+
+//     document.getElementById("motivation-title").addEventListener("click", () => {
+//         checkTestRetry("Motivation", document.getElementById("motivation-panel"));
+//     });
+// });
+
+
+
+
+
+
+
+//    function getLastAttemptKey() {
+//     const currentPage = window.location.pathname;
+//     if (currentPage.includes("cognitive_skills/")) return "lastAttemptMotivation";
+//     if (currentPage.includes("matrytsya_ravena.html")) return "lastAttemptRaven";
+//     if (currentPage.includes("upiznay_fihury.html")) return "lastAttemptFigures";
+//     return "lastAttemptDefault";
+// }
+
+function isAllowedToRetry(lastAttemptDate) {
+    const now = new Date();
+    const daysPassed = (now - lastAttemptDate) / (1000 * 60 * 60 * 24);
+    return daysPassed >= 21; // Через 3 тижні
+}
+
+function daysUntilRetry(lastAttemptDate) {
+    const now = new Date();
+    const daysPassed = (now - lastAttemptDate) / (1000 * 60 * 60 * 24);
+    return Math.ceil(21 - daysPassed);
+}
+
+
+
+
+
+
+
+
+    // if (lastAttempt && !isAllowedToRetry(new Date(lastAttempt))) {
+    //     resultEl.innerHTML = `❌ Ви вже проходили тест. Можна повторити через ${daysUntilRetry(new Date(lastAttempt))} днів.`;
+    //     sendResultsBtn.disabled = true;
+    //     return;
+    // }
+ 
+
+
   
   
 });//DOMContentLoaded
