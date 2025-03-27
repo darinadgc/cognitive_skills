@@ -85,7 +85,7 @@ sendResultsBtns.forEach((btn) => {
         console.log("📌 Натиснута кнопка для тесту:", normalizedTestType);
 
         // Перевіряємо, чи всі питання заповнені
-        console.log(`🔍 Перевірка відповідей для ${normalizedTestType}:`;
+        console.log(`🔍 Перевірка відповідей для ${normalizedTestType}:`);
 
         // if (!allQuestionsAnswered(normalizedTestType)) {, allQuestionsAnswered(normalizedTestType))
         //     alert("❗ Будь ласка, дайте відповідь на всі питання перед відправкою результату.");
@@ -100,8 +100,8 @@ sendResultsBtns.forEach((btn) => {
         console.log("📌 Натиснута кнопка для тесту:", testType);
                 // Викликаємо `submitTestResults()`if (allQuestionsAnswered(testType))else {}
         submitTestResults(normalizedTestType);
-    });
-});
+    });//click
+});//forEach
 
 
 
@@ -276,38 +276,41 @@ window.getLevelMotivation = function(score) {
   // ✅ Додаємо обробник події ПІСЛЯ оголошення функції
   startBtnRaven.addEventListener("click", startTestRaven);
 
-  // function startTimerRaven(duration) {
-  //   let timeLeft = duration;
+  function startTimerRaven(duration) {
+    let timeLeft = duration;
 
-  //   timerIntervalRaven = setInterval(() => {
-  //     const minutes = Math.floor(timeLeft / 60);
-  //     const seconds = timeLeft % 60;
-  //     timerElRaven.textContent = `⏳ ${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
-  //     timeLeft--;
+    timerIntervalRaven = setInterval(() => {
+      const minutes = Math.floor(timeLeft / 60);
+      const seconds = timeLeft % 60;
+      timerElRaven.textContent = `⏳ ${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+      timeLeft--;
 
-  //     if (timeLeft < 0) {
-  //       clearInterval(timerIntervalRaven);
-  //       finishTestRaven();
-  //     }
-  //   }, 1000);
-  // }
+      if (timeLeft < 0) {
+        clearInterval(timerIntervalRaven);
+        finishTestRaven();
+      }else {
+            console.log(`⏳ Час залишився: ${timeLeft} секунд`);
+            timeLeft--;
+        }
+    }, 1000);
+  }
 // let timerIntervalRaven; Глобальна змінна для таймера
 if (timerIntervalRaven) {
     clearInterval(timerIntervalRaven);
 }
 
-function startTimerRaven() {
-    let timeLeft = 600; // 10 хвилин
-    timerIntervalRaven = setInterval(() => {
-        if (timeLeft <= 0) {
-            clearInterval(timerIntervalRaven);
-            finishTestRaven();
-        } else {
-            console.log(`⏳ Час залишився: ${timeLeft} секунд`);
-            timeLeft--;
-        }
-    }, 1000);
-}
+// function startTimerRaven() {
+//     let timeLeft = 600; // 10 хвилин
+//     timerIntervalRaven = setInterval(() => {
+//         if (timeLeft <= 0) {
+//             clearInterval(timerIntervalRaven);
+//             finishTestRaven();
+//         } else {
+//             console.log(`⏳ Час залишився: ${timeLeft} секунд`);
+//             timeLeft--;
+//         }
+//     }, 1000);
+// }
 
 let currentTaskIndexRaven = 0;// ✅ Оголошуємо глобально
 
