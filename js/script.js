@@ -533,11 +533,11 @@ console.log("✅ Визначені entry IDs:", entryIDs);
         finalScore = calculateScoreRaven();
     } else if (testType === "Motivation") {
     // ✅ Перевірка, чи всі питання заповнені перед обчисленням результату
-    if (!allQuestionsAnswered(testType)) {
+    if (!allQuestionsAnswered(Motivation)) {
         alert("❗ Будь ласка, дайте відповідь на всі питання перед завершенням!");
         return;
     }
-else if (allQuestionsAnswered(testType)){
+else if (allQuestionsAnswered(Motivation)){
     let sendStudentName = askStudentName();
     if (!sendStudentName) {
         console.error("❌ askStudentName() повернула `null`. Виконання зупинено.");
