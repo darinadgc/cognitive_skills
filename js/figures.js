@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // const lastAttempt = localStorage.getItem(lastAttemptKey); // ✅ Оголошуємо lastAttempt
     // const lastAttemptDate = lastAttempt ? new Date(lastAttempt) : null;
   const startBtnFigures = document.getElementById("start-btn-figures");
-const sendResultsBtnFigures = document.getElementById("send-results-figures-btn");
+const sendResultsBtn = document.getElementById("send-results-btn");
  let timerInterval;
   let score = 0;
       window.calculateLevel = function(score) {
@@ -233,7 +233,7 @@ if (isNaN(finalScore) || !level) {
     });
 };// ✅ Головна функція для надсилання результатів у Google Forms
 
-    sendResultsBtnFigures.addEventListener("click", () => submitResults());
+    sendResultsBtn.addEventListener("click", () => submitResults());
 
     // ✅ Функції обмеження повторного проходження тесту (не виконується при завантаженні)
 
