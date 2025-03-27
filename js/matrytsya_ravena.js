@@ -6,7 +6,6 @@ document.addEventListener("DOMContentLoaded", () => {
    const startBtn = document.getElementById("start-btn");
 const sendResultsBtnRaven = document.getElementById("send-results-raven-btn");
  const taskContainer = document.getElementById("task-container");
-  const startBtn = document.getElementById("start-btn");
   const timerEl = document.getElementById("timer");
   let currentTaskIndex = 0;
   let score = 0;//  let score;
