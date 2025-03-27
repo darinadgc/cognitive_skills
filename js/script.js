@@ -501,12 +501,17 @@ function submitTestResults(testType) {
     }
 
     let entryIDs = getEntryIDs(testType);
-    let selectedEntryIDs = entryIDs ? entryIDs[testType] : null;
-
-    if (!selectedEntryIDs) {
+    // let selectedEntryIDs = entryIDs ? entryIDs[testType] : null;
+if (!entryIDs) {
         console.error(`❌ Не вдалося знайти entry ID для тесту: ${testType}`);
         return;
     }
+    // if (!selectedEntryIDs) {
+    //     console.error(`❌ Не вдалося знайти entry ID для тесту: ${testType}`);
+    //     return;
+    // }
+console.log("✅ Визначені entry IDs:", entryIDs);
+    let selectedEntryIDs = entryIDs; // ✅ Правильне призначення
 
     let finalScore = 0;
     let level = "";
@@ -532,7 +537,8 @@ function submitTestResults(testType) {
         level = calculateLevel(finalScore);
     }
 
-    if (typeof finalScore === "undefined" || typeof level === "undefined") {
+if (isNaN(finalScore) || !level) { 
+
         console.error("❌ finalScore або level не визначено!");
         return;
     }
