@@ -171,7 +171,7 @@ window.getEntryIDs = function () {
 
 window.submitResults = function(finalScore, level, entryIDs, sendStudentName) {
     console.log("📨 submitResults() запущено!");
-    let entryIDs = getEntryIDs(testType);
+    let entryIDs = getEntryIDs();
  if (!entryIDs) {
         console.error(`❌ Не вдалося знайти entry ID для тесту: ${testType}`);
         return;
