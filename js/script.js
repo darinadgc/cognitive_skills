@@ -8,9 +8,9 @@ document.addEventListener("DOMContentLoaded", () => {
 const sendResultsBtns = document.querySelectorAll(".send-results-btn");
   const startBtnFigures = document.getElementById("start-btn-figures");
   const startBtnRaven = document.getElementById("start-btn-raven");
-// const sendResultsBtnFigures = document.getElementById("send-results-figures-btn");
-// const sendResultsBtnRaven = document.getElementById("send-results-raven-btn");
-// const sendResultsBtnMotivation = document.getElementById("send-results-motivation-btn");
+const sendResultsBtnFigures = document.getElementById("send-results-figures-btn");
+const sendResultsBtnRaven = document.getElementById("send-results-raven-btn");
+const sendResultsBtnMotivation = document.getElementById("send-results-motivation-btn");
 
     // sendResultsBtnFigures.addEventListener("click", () => submitTestResults("figures"));
     // sendResultsBtnRaven.addEventListener("click", () => submitTestResults("raven"));
