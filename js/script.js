@@ -210,6 +210,7 @@ window.checkAllAnsweredMotivation = function() {
     const totalQuestions = new Set();
     const answeredQuestions = new Set();
     let score = 0; // Загальний бал
+console.log("🟢 Всі знайдені питання:", questions);
 
     // ✅ Додаємо питання за `name`, щоб уникнути дублікатів
     questions.forEach((input) => totalQuestions.add(input.name));
@@ -346,7 +347,7 @@ let currentTaskIndexRaven = 0;// ✅ Оголошуємо глобально
     `;
 
     document.getElementById("next-btn").addEventListener("click", checkAnswerRaven);
-  }
+  }//loadTaskRaven
 //✅ checkAnswer
   function checkAnswerRaven() {
     const selectedOption = document.querySelector('input[name="task"]:checked');
@@ -363,7 +364,8 @@ let currentTaskIndexRaven = 0;// ✅ Оголошуємо глобально
     currentTaskIndexRaven++;
     if (currentTaskIndexRaven < tasksRaven.length) {
       loadTaskRaven();
-    } else {
+    } else {clearInterval(timerIntervalRaven);
+        console.log("✅ Таймер зупинено!");
       finishTestRaven();
     }
   }//✅ checkAnswer
@@ -384,7 +386,7 @@ window.calculateLevelRaven = function () {
   //   window.resultElRaven.innerHTML = "🛑 Тест завершено! Натисніть 'Надіслати результат'.";
   //   taskContainerRaven.innerHTML = "";
   //   sendResultsBtnRaven.style.display = "block";
-  // }//🏁finishTest 
+  // }//🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁finishTest 
 function finishTestRaven() {
     if (timerIntervalRaven) {
         clearInterval(timerIntervalRaven);
@@ -457,21 +459,21 @@ if (timeLeft <= 0) {
     }, 1000);
 }//startTimerFigures
 
-  function generateTaskFigures() {
+function generateTaskFigures() {
+ 
 
-    if (score === 10 && incorrectAnswersFigures.length === 0) {
-      finishTestFigures();
-      return;
-    }
-// Переконуємося, що є ще завдання
+    // Перевіряємо, чи є ще завдання
     if (unansweredTasksFigures.length === 0 && incorrectAnswersFigures.length === 0) {
-        console.warn("⚠️ Немає більше завдань для відображення!");
+        console.warn("⚠️ Немає більше завдань для відображення! Зупиняємо таймер.");
+        clearInterval(timerIntervalFigures); // ⏹️ Зупиняємо таймер
         finishTestFigures();
         return;
     }
+
+    // Вибір нового завдання
     currentTaskFigures = unansweredTasksFigures.length > 0
-      ? unansweredTasksFigures.shift()
-      : incorrectAnswersFigures.shift(); 
+        ? unansweredTasksFigures.shift()
+        : incorrectAnswersFigures.shift();
 
     // Оновлюємо контент на сторінці
     figureTaskEl.innerHTML = `
@@ -483,10 +485,12 @@ if (timeLeft <= 0) {
       </div>
     `;
 
+    // Додаємо обробник кліку на варіанти відповіді
     document.querySelectorAll(".option").forEach(option => {
-      option.addEventListener("click", () => checkAnswerFigures(Number(option.dataset.index)));
+        option.addEventListener("click", () => checkAnswerFigures(Number(option.dataset.index)));
     });
-  }
+}
+
 
   function checkAnswerFigures(selectedIndex) {
     if (selectedIndex === currentTaskFigures.correct) {
@@ -513,7 +517,7 @@ window.calculateScoreFigures = function(timeTaken) {
     return 0;
 };
 
-//🏁finishTest
+//🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁finishTest
   function finishTestFigures() {
     clearInterval(timerIntervalFigures);
     resultElFigures.innerHTML = "🛑 Тест завершено! Натисніть 'Надіслати результат'.";
