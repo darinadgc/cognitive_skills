@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    window.resultElRaven = document.getElementById("result-raven");
-    // const lastAttemptKey = getLastAttemptKey(); // ✅ Отримуємо ключ для LocalStorage
+window.resultEl = document.getElementById("result");    // const lastAttemptKey = getLastAttemptKey(); // ✅ Отримуємо ключ для LocalStorage
     // const lastAttempt = localStorage.getItem(lastAttemptKey); // ✅ Оголошуємо lastAttempt
     // const lastAttemptDate = lastAttempt ? new Date(lastAttempt) : null;
    const startBtn = document.getElementById("start-btn");
