@@ -615,6 +615,12 @@ console.log("✅ Визначені entry IDs:", entryIDs);
         return;
     }
     console.log("✅ Ім'я студента:", sendStudentName);
+    console.log("✅ Визначені entry IDs:", selectedEntryIDs);
+    console.log("✅ Обчислений бал:", finalScore);
+    console.log("✅ Визначений рівень:", level);
+
+    // ✅ Викликаємо submitResults
+    submitResults(selectedEntryIDs, finalScore, level, sendStudentName);
     }
 if (isNaN(finalScore) || !level) { 
 
@@ -622,12 +628,6 @@ if (isNaN(finalScore) || !level) {
         return;
     }
 
-    console.log("✅ Визначені entry IDs:", selectedEntryIDs);
-    console.log("✅ Обчислений бал:", finalScore);
-    console.log("✅ Визначений рівень:", level);
-
-    // ✅ Викликаємо submitResults
-    submitResults(selectedEntryIDs, finalScore, level, sendStudentName);
 }
 //✅ Виклик submitTestResults
 
