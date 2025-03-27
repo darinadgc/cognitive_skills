@@ -197,7 +197,7 @@ console.log("✅ Визначені entry IDs:", entryIDs);
     level = "";
         finalScore = calculateScoreRaven();
        level = calculateLevel(finalScore);
-    let sendStudentName = askStudentName();
+    sendStudentName = askStudentName();
     console.log("✅ Ім'я студента:", sendStudentName);
     console.log("✅ Визначені entry IDs:", selectedEntryIDs);
     console.log("✅ Обчислений бал:", finalScore);
