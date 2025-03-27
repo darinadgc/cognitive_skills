@@ -154,17 +154,17 @@ window.askStudentName = function () {
 window.getEntryIDs = function () {
 // Перетворюємо першу літеру в велику, решту — в малі
   
-    const entryIDs = {
+
         
-        "Figures": {
+        return {
             formURL: "https://docs.google.com/forms/d/e/1FAIpQLSfSJTHeQHKjxr-_Nfwr0qC1-5Rinq1xGevQ4i8yFKegE9Wfyw/formResponse",
             name: "entry.511676966",
             score: "entry.1332224844",
             level: "entry.1008291282"
         }
-        };//entryIDs
-
-       return entryIDs;
+      
+        return null;
+ 
   };//getEntryIDs
 window.submitResults = function(finalScore, level, entryIDs, sendStudentName) {
     console.log("📨 submitResults() запущено!");
