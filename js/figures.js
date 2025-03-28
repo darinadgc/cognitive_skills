@@ -9,7 +9,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const startBtnFigures = document.getElementById("start-btn-figures");
 const sendResultsBtn = document.getElementById("send-results-btn");
  let timerInterval;
-  let score = 0;
       window.calculateLevel = function(score) {
     if (score === 10) return "Дуже високий";
     if (score >= 8) return "Високий";
@@ -175,11 +174,12 @@ if (!entryIDs) {
     }
 console.log("✅ Визначені entry IDs:", entryIDs);
     let selectedEntryIDs = entryIDs; // ✅ Правильне призначення
+  let score = 0;
 
  //  let  finalScore = 0;
    // let level = "";
         finalScore = calculateScore();
-       level = calculateLevel(finalScore);
+      let  level = calculateLevel(finalScore);
     sendStudentName = askStudentName();
     console.log("✅ Ім'я студента:", sendStudentName);
     console.log("✅ Визначені entry IDs:", selectedEntryIDs);
