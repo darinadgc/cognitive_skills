@@ -82,6 +82,51 @@ window.askStudentName = function () {
   };//getEntryIDs
 
     console.log("✅ Успішно додані обробники подій!");
+
+//💗💗💗💗💗💗💗💗
+    const questions = document.querySelectorAll('input[type="radio"][name^="mot-que"]'); // Вибираємо всі питання мотивації
+    const totalQuestions = new Set();
+    const answeredQuestions = new Set();
+window.checkAllAnsweredMotivation = function() {
+    score = 0; //let  Загальний бал
+console.log("🟢 Всі знайдені питання:", questions);
+
+    // ✅ Додаємо питання за `name`, щоб уникнути дублікатів
+    questions.forEach((input) => totalQuestions.add(input.name));
+
+    questions.forEach((input) => {
+        if (input.checked) {
+            answeredQuestions.add(input.name);
+            score += parseInt(input.value) || 0; // Додаємо бал
+        }
+    });
+
+    console.log("🔹 Загальна кількість питань:", totalQuestions.size);
+    console.log("🔹 Відповіді:", answeredQuestions.size);
+    console.log("🔹 Обчислений бал:", score);
+
+    return { totalQuestions: totalQuestions.size, answeredQuestions: answeredQuestions.size, score };
+};//checkAllAnsweredMotivation Number()
+
+window.calculateScoreMotivation = function() {
+    let checkedAnswers = document.querySelectorAll('input[type="radio"]:checked'); // ✅ Отримуємо відповіді
+    score = 0; // let Загальний бал
+
+        checkedAnswers.forEach((input) => {
+        score += parseInt(input.value) || 0; // ✅ Додаємо бали
+    });
+    console.log("🔹 Обчислений бал:", score); // ✅ Переносимо до return
+//❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗
+    return score;
+}//calculateScoreMotivation
+window.getLevelMotivation = function(score) {
+    if (score > 13) return "Високий";
+    if (score > 7) return "Середній";
+    return "Низький";
+};
+//    return selectedEntryIDs;
+//❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕
+
 	//✅submitResults
 // 	📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧
 window.submitResults = function(finalScore, level, entryIDs, sendStudentName) {
@@ -151,51 +196,6 @@ if (!sendStudentName) {
         window.isSubmitting = false;
     });
 };// ✅ Головна функція для надсилання результатів у Google Forms
-
-//💗💗💗💗💗💗💗💗
-    const questions = document.querySelectorAll('input[type="radio"][name^="mot-que"]'); // Вибираємо всі питання мотивації
-    const totalQuestions = new Set();
-    const answeredQuestions = new Set();
-window.checkAllAnsweredMotivation = function() {
-    score = 0; //let  Загальний бал
-console.log("🟢 Всі знайдені питання:", questions);
-
-    // ✅ Додаємо питання за `name`, щоб уникнути дублікатів
-    questions.forEach((input) => totalQuestions.add(input.name));
-
-    questions.forEach((input) => {
-        if (input.checked) {
-            answeredQuestions.add(input.name);
-            score += parseInt(input.value) || 0; // Додаємо бал
-        }
-    });
-
-    console.log("🔹 Загальна кількість питань:", totalQuestions.size);
-    console.log("🔹 Відповіді:", answeredQuestions.size);
-    console.log("🔹 Обчислений бал:", score);
-
-    return { totalQuestions: totalQuestions.size, answeredQuestions: answeredQuestions.size, score };
-};//checkAllAnsweredMotivation Number()
-
-window.calculateScoreMotivation = function() {
-    let checkedAnswers = document.querySelectorAll('input[type="radio"]:checked'); // ✅ Отримуємо відповіді
-    score = 0; // let Загальний бал
-
-        checkedAnswers.forEach((input) => {
-        score += parseInt(input.value) || 0; // ✅ Додаємо бали
-    });
-    console.log("🔹 Обчислений бал:", score); // ✅ Переносимо до return
-//❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗
-    return score;
-}//calculateScoreMotivation
-window.getLevelMotivation = function(score) {
-    if (score > 13) return "Високий";
-    if (score > 7) return "Середній";
-    return "Низький";
-};
-//    return selectedEntryIDs;
-//❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕
-
 
 
 
