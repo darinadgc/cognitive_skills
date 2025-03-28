@@ -62,40 +62,23 @@ window.askStudentName = function () {
 };// 🏫🧒📛 Функція для запиту імені студента
 
   
-window.getEntryIDs = function (testType) {
-    console.log("🔹 Визначаємо entry ID для тесту:", testType);
-if (!testType) {
-        console.error("❌testType не визначено або має некоректне значення!");
-        return null;
-    }// Перетворюємо першу літеру в велику, решту — в малі
-    testType = testType.charAt(0).toUpperCase() + testType.slice(1).toLowerCase();
-    console.log("🔹 Визначаємо entry ID для тесту:", testType);
+window.getEntryIDs = function () {
+    
+   
     const entryIDs = {
-        "Motivation": {
+         return {
             formURL: "https://docs.google.com/forms/d/e/1FAIpQLSeco-wWwULNG0-L1Qwnxn4tYBtQxinBXjVg4jTB1C2HzZ2KNw/formResponse",
             name: "entry.511676966",
             score: "entry.1008291282",
             level: "entry.1332224844"
-        },
-        "Figures": {
-            formURL: "https://docs.google.com/forms/d/e/1FAIpQLSfSJTHeQHKjxr-_Nfwr0qC1-5Rinq1xGevQ4i8yFKegE9Wfyw/formResponse",
-            name: "entry.511676966",
-            score: "entry.1332224844",
-            level: "entry.1008291282"
-        },
-        "Raven": {
-            formURL: "https://docs.google.com/forms/u/0/d/e/1FAIpQLSfyylO6_4cpbzuD6THcT95VMAW5R7Foy1qykWDloI7Rew2b1g/formResponse",
-            name: "entry.511676966",
-            score: "entry.1008291282",
-            level: "entry.1332224844"
         }
-        };//entryIDs
+   
  // return entryIDs[testType] || null;
       //   if (!entryIDs[testType]) {
       //   console.error(`❌ entryIDs не знайдено для тесту: ${testType}`);
       //   return null;
       // }
-        return entryIDs;
+        return null;
   };//getEntryIDs
 
     console.log("✅ Успішно додані обробники подій!");
@@ -135,7 +118,9 @@ window.submitResults = function(finalScore, level, entryIDs, sendStudentName) {
     .then(() => {
         console.log("✅ Успішно надіслано!");
         alert("✅ Дані успішно надіслані у Google Forms!");
-    })
+    document.getElementById("send-results-btn").style.display = "none";
+        resultEl.innerHTML = `<strong>Дякуємо за відповіді!</strong>`;
+})
     .catch(error => {
         console.error("❌ Помилка надсилання:", error);
         alert("❌ Не вдалося надіслати результати. Будь ласка, спробуйте ще раз.");
@@ -186,45 +171,19 @@ window.getLevelMotivation = function(score) {
     if (score > 7) return "Середній";
     return "Низький";
 };
-//🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔
- 
 
-    //🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩
-  //   const figureTaskEl = document.getElementById("figure-task");
-  // const timerElFigures = document.getElementById("timer-figures");
-
-   // 🔹 Додаємо обробники подій до кнопок "Почати тест"
-
-
- 
-// let selectedEntryIDs = getEntryIDs(testType);
-
-
-
-	
-
-
-  //  if (!selectedEntryIDs) {
-   //     console.error(`❌ Не вдалося знайти entry ID для тесту: ${testType}`);
-   //     return null;
- //   }
 
 //    return selectedEntryIDs;
 //❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕
 
-// ✅ Функція обробки тесту перед викликом submitResults
-function submitTestResults(testType) {
-    console.log("📩 Виклик submitTestResults() для тесту:", testType);
+// ✅ Функція обробки тесту 
+function submitResults() {
+    
 
-    if (!testType) {
-        console.error("❌ testType не визначено!");
-        return;
-    }
-
-    let entryIDs = getEntryIDs(testType);
+    let entryIDs = getEntryIDs();
     // let selectedEntryIDs = entryIDs ? entryIDs[testType] : null;
 if (!entryIDs) {
-        console.error(`❌ Не вдалося знайти entry ID для тесту: ${testType}`);
+        console.error(`❌ Не вдалося знайти entry ID для тесту`);
         return;
     }
     // if (!selectedEntryIDs) {
@@ -233,63 +192,36 @@ if (!entryIDs) {
     // }
 console.log("✅ Визначені entry IDs:", entryIDs);
     let selectedEntryIDs = entryIDs; // ✅ Правильне призначення
-
-    let finalScore = 0;
-    let level = "";
-
-    if (testType === "Figures") {  
-        finalScore = calculateScoreFigures();
-    } else if (testType === "Raven") {
-        finalScore = calculateScoreRaven();
-    } else if (testType === "Motivation") {
-    // ✅ Перевірка, чи всі питання заповнені перед обчисленням результату
-    // if (!allQuestionsAnswered(Motivation)) {
-    //     alert("❗ Будь ласка, дайте відповідь на всі питання перед завершенням!");
-    //     return;
-    // }
 	    let checkResults = checkAllAnsweredMotivation();
+
+   
 //  let totalQuestions, answeredQuestions;
     if (checkResults.answeredQuestions.size === 10) {    
     let sendStudentName = askStudentName();
-    if (!sendStudentName) {
+    
+    let finalScore = 0;
+    let level = "";
+
+    console.log("✅ Визначений рівень:", level);if (!sendStudentName) {
         console.error("❌ askStudentName() повернула `null`. Виконання зупинено.");
         return;
     }
     console.log("✅ Ім'я студента:", sendStudentName);
         finalScore = calculateScoreMotivation();
         level = getLevelMotivation(finalScore);
-     }   
+        console.log("✅ Ім'я студента:", sendStudentName);
+    console.log("✅ Визначені entry IDs:", selectedEntryIDs);
+    console.log("✅ Обчислений бал:", finalScore);
+ }   
    if (checkResults.answeredQuestions.size < 10) {
             alert("❗ Будь ласка, відповідайте на всі запитання перед завершенням!");
             return;
         }
 
-}//Motivation
+} // submitResults
 
-    // ✅ Один рівень для Figures і Raven
-    if (testType === "Figures" || testType === "Raven") {
-        level = calculateLevel(finalScore);
-    let sendStudentName = askStudentName();
-    console.log("✅ Ім'я студента:", sendStudentName);
-    console.log("✅ Визначені entry IDs:", selectedEntryIDs);
-    console.log("✅ Обчислений бал:", finalScore);
-    console.log("✅ Визначений рівень:", level);
 
-    // ✅ Викликаємо submitResults
-    submitResults(selectedEntryIDs, finalScore, level, sendStudentName);
-    if (!sendStudentName) {
-        console.error("❌ askStudentName() повернула `null`. Виконання зупинено.");
-        return;
-if (isNaN(finalScore) || !level) { 
-
-        console.error("❌ finalScore або level не визначено!");
-        return;
-    }
-    }
-    }
-
-}//✅ Виклик submitTestResults
-
+  sendResultsBtn.addEventListener("click", () => submitResults());  // ✅ Викликаємо submitResults
 
 // sendResultsBtn.addEventListener("click", () => {
 //     console.log("Виклик submitResults");
