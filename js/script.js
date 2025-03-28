@@ -198,15 +198,15 @@ console.log("✅ Визначені entry IDs:", entryIDs);
 //  let totalQuestions, answeredQuestions;
     if (checkResults.answeredQuestions.size === 10) {    
     let sendStudentName = askStudentName();
-    
+        console.log("✅ Ім'я студента:", sendStudentName);
+
     let finalScore = 0;
     let level = "";
-
-    console.log("✅ Визначений рівень:", level);if (!sendStudentName) {
+    console.log("✅ Визначений рівень:", level);
+if (!sendStudentName) {
         console.error("❌ askStudentName() повернула `null`. Виконання зупинено.");
         return;
     }
-    console.log("✅ Ім'я студента:", sendStudentName);
         finalScore = calculateScoreMotivation();
         level = getLevelMotivation(finalScore);
         console.log("✅ Ім'я студента:", sendStudentName);
