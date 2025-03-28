@@ -230,7 +230,9 @@ if (isNaN(finalScore) || !level) {
     .then(() => {
         console.log("✅ Успішно надіслано!");
         alert("✅ Дані успішно надіслані у Google Forms!");
-    })
+    document.getElementById("send-results-btn").style.display = "none";
+        resultEl.innerHTML = `<strong>Дякуємо за проходження!</strong>`;
+})
     .catch(error => {
         console.error("❌ Помилка надсилання:", error);
         alert("❌ Не вдалося надіслати результати. Будь ласка, спробуйте ще раз.");
