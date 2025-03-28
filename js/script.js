@@ -6,8 +6,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 const sendResultsBtnMotivation = document.getElementById("send-results-motivation-btn");
 
-  let score;
-
 
   // let sendStudentName; 🔹 Щоб не оголошувати всередині `if`
 
@@ -87,6 +85,7 @@ window.askStudentName = function () {
     const questions = document.querySelectorAll('input[type="radio"][name^="mot-que"]'); // Вибираємо всі питання мотивації
     const totalQuestions = new Set();
     const answeredQuestions = new Set();
+//	✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅
 window.checkAllAnsweredMotivation = function() {
     score = 0; //let  Загальний бал
 console.log("🟢 Всі знайдені питання:", questions);
@@ -106,15 +105,14 @@ console.log("🟢 Всі знайдені питання:", questions);
     console.log("🔹 Обчислений бал:", score);
 
     return { totalQuestions: totalQuestions.size, answeredQuestions: answeredQuestions.size, score };
-};//checkAllAnsweredMotivation Number()
-
+};//checkAllAnsweredMotivation ✅✅✅✅✅✅✅✅
     console.log("🔹 Загальна кількість питань:", totalQuestions.size);
     console.log("🔹 Відповіді:", answeredQuestions.size);
     console.log("🔹 Обчислений бал:", score);
-
+//🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮
 window.calculateScoreMotivation = function() {
     let checkedAnswers = document.querySelectorAll('input[type="radio"]:checked'); // ✅ Отримуємо відповіді
-    score = 0; // let Загальний бал
+   const score = 0; // let Загальний бал
 
         checkedAnswers.forEach((input) => {
         score += parseInt(input.value) || 0; // ✅ Додаємо бали
@@ -122,7 +120,7 @@ window.calculateScoreMotivation = function() {
     console.log("🔹 Обчислений бал:", score); // ✅ Переносимо до return
 //❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗
     return score;
-}//calculateScoreMotivation
+}//calculateScoreMotivation🧮🧮🧮🧮🧮🧮
 window.getLevelMotivation = function(score) {
     if (score > 13) return "Високий";
     if (score > 7) return "Середній";
@@ -210,15 +208,26 @@ if (!sendStudentName) {
 	    let checkResults = checkAllAnsweredMotivation();
     console.log("Відповіді ",answeredQuestions.size);
 //  let totalQuestions, answeredQuestions;
-   if (isNaN(checkResults.answeredQuestions.size) && isNaN(checkResults.totalQuestions.size)) { 
+console.log("🔍 Перевірка checkResults:", checkResults);
+console.log("🔍 answeredQuestions:", checkResults.answeredQuestions);
+console.log("🔍 totalQuestions:", checkResults.totalQuestions);
 
-        console.error("❌ Відповіді не визначено!");
-        return;
-    }
+if (
+    !checkResults.answeredQuestions || 
+    !checkResults.totalQuestions || 
+    isNaN(checkResults.answeredQuestions.size) || 
+    isNaN(checkResults.totalQuestions.size)
+) {
+    console.error("❌ Помилка! Значення answeredQuestions або totalQuestions некоректне.", checkResults);
+    return;
+}
+
      if (checkResults.answeredQuestions.size === checkResults.totalQuestions.size) {   
-   console.log("Відповіді ",checkResults.answeredQuestions.size);
-    console.log("Відповідей ",checkResults.totalQuestions.size);
-submitResults(); // ✅ Викликаємо submitResults
+     console.log("Відповіді ",checkResults.answeredQuestions.size);
+   console.log("Відповідей ",checkResults.totalQuestions.size);
+	     
+	console.log("🚀 Виклик submitResults()");
+    submitResults(); // ✅ Викликаємо submitResults
    }
 	   if (checkResults.answeredQuestions.size < checkResults.totalQuestions.size) {
             alert("❗ Будь ласка, відповідайте на всі запитання перед завершенням!");
