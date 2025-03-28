@@ -1,9 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
+    console.log("🔄 Документ завантажено!");
+
     window.resultElMotivation = document.getElementById("result-motivation");
     // const lastAttemptKey = getLastAttemptKey(); // ✅ Отримуємо ключ для LocalStorage
     // const lastAttempt = localStorage.getItem(lastAttemptKey); // ✅ Оголошуємо lastAttempt
     // const lastAttemptDate = lastAttempt ? new Date(lastAttempt) : null;
-
 const sendResultsBtnMotivation = document.getElementById("send-results-motivation-btn");
 
 
@@ -112,7 +113,7 @@ console.log("🟢 Всі знайдені питання:", questions);
 //🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮
 window.calculateScoreMotivation = function() {
     let checkedAnswers = document.querySelectorAll('input[type="radio"]:checked'); // ✅ Отримуємо відповіді
-   const score = 0; // let Загальний бал
+   let score = 0; // const Загальний бал
 
         checkedAnswers.forEach((input) => {
         score += parseInt(input.value) || 0; // ✅ Додаємо бали
