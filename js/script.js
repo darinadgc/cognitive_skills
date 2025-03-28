@@ -213,15 +213,15 @@ if (!sendStudentName) {
 
   sendResultsBtnMotivation.addEventListener("click", () => {
 	    let checkResults = checkAllAnsweredMotivation();
-    console.log(answeredQuestions.size, " відповідей");
+    console.log(answeredQuestions.size, " відповідь (ей)");
 //  let totalQuestions, answeredQuestions;
     if (checkResults.answeredQuestions.size === 10) {   
 submitResults(); // ✅ Викликаємо submitResults
    }   
 
-    console.log(answeredQuestions.size, " відповідей");
 	   if (checkResults.answeredQuestions.size < 10) {
             alert("❗ Будь ласка, відповідайте на всі запитання перед завершенням!");
+    console.log(answeredQuestions.size, " відповідь (ей)");
             return;
         }
   
