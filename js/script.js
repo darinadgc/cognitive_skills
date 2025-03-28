@@ -157,7 +157,7 @@ if (!sendStudentName) {
     const totalQuestions = new Set();
     const answeredQuestions = new Set();
 window.checkAllAnsweredMotivation = function() {
-    let score = 0; // Загальний бал
+    score = 0; //let  Загальний бал
 console.log("🟢 Всі знайдені питання:", questions);
 
     // ✅ Додаємо питання за `name`, щоб уникнути дублікатів
@@ -179,7 +179,7 @@ console.log("🟢 Всі знайдені питання:", questions);
 
 window.calculateScoreMotivation = function() {
     let checkedAnswers = document.querySelectorAll('input[type="radio"]:checked'); // ✅ Отримуємо відповіді
-    let score = 0; // Загальний бал
+    score = 0; // let Загальний бал
 
         checkedAnswers.forEach((input) => {
         score += parseInt(input.value) || 0; // ✅ Додаємо бали
