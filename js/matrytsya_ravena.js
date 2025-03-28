@@ -191,10 +191,10 @@ window.submitResults = function(finalScore, level, entryIDs, sendStudentName) {
 console.log("✅ Визначені entry IDs:", entryIDs);
     let selectedEntryIDs = entryIDs; // ✅ Правильне призначення
 
- //   finalScore = 0;
-//    level = "";
-       let finalScore = calculateScoreRaven();
-       let  level = calculateLevel(finalScore);
+ //  let  finalScore = 0;
+//     level = "";
+       finalScore = calculateScoreRaven();
+      let  level = calculateLevel(finalScore);
     sendStudentName = askStudentName();
     console.log("✅ Ім'я студента:", sendStudentName);
     console.log("✅ Визначені entry IDs:", selectedEntryIDs);
