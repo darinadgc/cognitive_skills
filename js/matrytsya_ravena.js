@@ -192,9 +192,9 @@ console.log("✅ Визначені entry IDs:", entryIDs);
     let selectedEntryIDs = entryIDs; // ✅ Правильне призначення
 
  //  let  finalScore = 0;
-//     level = "";
+//    let  level = "";
        finalScore = calculateScoreRaven();
-      let  level = calculateLevel(finalScore);
+       level = calculateLevel(finalScore);
     sendStudentName = askStudentName();
     console.log("✅ Ім'я студента:", sendStudentName);
     console.log("✅ Визначені entry IDs:", selectedEntryIDs);
