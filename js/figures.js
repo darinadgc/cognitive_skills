@@ -177,9 +177,9 @@ console.log("✅ Визначені entry IDs:", entryIDs);
     let selectedEntryIDs = entryIDs; // ✅ Правильне призначення
 
  //  let  finalScore = 0;
-   //let  level = "";
+   // level = "";
         finalScore = calculateScore();
-       level = calculateLevel(finalScore);
+      let  level = calculateLevel(finalScore);
     sendStudentName = askStudentName();
     console.log("✅ Ім'я студента:", sendStudentName);
     console.log("✅ Визначені entry IDs:", selectedEntryIDs);
