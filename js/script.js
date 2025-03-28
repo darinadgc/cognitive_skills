@@ -108,6 +108,10 @@ console.log("🟢 Всі знайдені питання:", questions);
     return { totalQuestions: totalQuestions.size, answeredQuestions: answeredQuestions.size, score };
 };//checkAllAnsweredMotivation Number()
 
+    console.log("🔹 Загальна кількість питань:", totalQuestions.size);
+    console.log("🔹 Відповіді:", answeredQuestions.size);
+    console.log("🔹 Обчислений бал:", score);
+
 window.calculateScoreMotivation = function() {
     let checkedAnswers = document.querySelectorAll('input[type="radio"]:checked'); // ✅ Отримуємо відповіді
     score = 0; // let Загальний бал
@@ -206,9 +210,13 @@ if (!sendStudentName) {
 	    let checkResults = checkAllAnsweredMotivation();
     console.log("Відповіді ",answeredQuestions.size);
 //  let totalQuestions, answeredQuestions;
-    if (checkResults.answeredQuestions.size === checkResults.totalQuestions.size) {   
-   
-    console.log("Відповіді ",checkResults.answeredQuestions.size);
+   if (isNaN(checkResults.answeredQuestions.size) && isNaN(checkResults.totalQuestions.size)) { 
+
+        console.error("❌ Відповіді не визначено!");
+        return;
+    }
+     if (checkResults.answeredQuestions.size === checkResults.totalQuestions.size) {   
+   console.log("Відповіді ",checkResults.answeredQuestions.size);
     console.log("Відповідей ",checkResults.totalQuestions.size);
 submitResults(); // ✅ Викликаємо submitResults
    }
