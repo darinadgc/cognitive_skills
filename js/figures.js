@@ -46,8 +46,6 @@ const sendResultsBtn = document.getElementById("send-results-btn");
   startBtn.addEventListener("click", startTest);
 //🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛
   function startTest() {
-    window.startTime = Date.now(); // Записуємо час початку тесту
-    
     unansweredTasks = [...tasks];
     incorrectAnswers = [];
     score = 0;
@@ -129,17 +127,12 @@ window.calculateScore = function(timeTaken) {
 
 //🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁finishTest
   function finishTest() {
-let timeTaken = Math.floor((Date.now() - window.startTime) / 1000);
-console.log("⌛ Час витрачений на тест:", timeTaken);
-
     clearInterval(timerInterval);
     resultEl.innerHTML = "🛑 Тест завершено! Натисніть 'Надіслати результат'.";
     figureTaskEl.innerHTML = "";
     sendResultsBtn.style.display = "block";
-
-    // Додатково збережемо timeTaken глобально
-    window.timeTaken = timeTaken;
   }//🏁finishTest
+
 
 // 🏫🧒📛 Функція для запиту імені студента
 window.askStudentName = function () {
@@ -170,10 +163,8 @@ window.getEntryIDs = function () {
         }
       
         return null;
-  };//getEntryIDs 
-let finalScore = calculateScore(window.timeTaken);
-console.log("🎯 Розрахований бал:", finalScore);
-
+ 
+  };//getEntryIDs
 window.submitResults = function(finalScore, level, entryIDs, sendStudentName) {
     console.log("📨 submitResults() запущено!");
 
@@ -181,32 +172,38 @@ window.submitResults = function(finalScore, level, entryIDs, sendStudentName) {
     window.isSubmitting = true;
     console.log("✅ Функція submitResults викликана!");   
     entryIDs = getEntryIDs();
-
-    if (!entryIDs) {
-        console.error("❌ Не вдалося знайти entry ID для тесту");
+if (!entryIDs) {
+        console.error(`❌ Не вдалося знайти entry ID для тесту: ${testType}`);
         return;
     }
-    console.log("✅ Визначені entry IDs:", entryIDs);
+console.log("✅ Визначені entry IDs:", entryIDs);
+    let selectedEntryIDs = entryIDs; // ✅ Правильне призначення
+  let score = 0;
 
-    console.log("⌛ Час витрачений на тест:", timeTaken);
-    finalScore = calculateScore(timeTaken);
-    console.log("🎯 Розрахований бал:", finalScore);
-    level = calculateLevel(finalScore);
+ //  let  finalScore = 0;
+   // let  let level = "";
+console.log("⌛ Час витрачений на тест:", timeTaken);
+finalScore = calculateScore(timeTaken);
+
+console.log("🎯 Розрахований бал:", finalScore);
+      level = calculateLevel(finalScore);
     sendStudentName = askStudentName();
-
     console.log("✅ Ім'я студента:", sendStudentName);
-    console.log("✅ Визначені entry IDs:", entryIDs);
+    console.log("✅ Визначені entry IDs:", selectedEntryIDs);
     console.log("✅ Обчислений бал:", finalScore);
     console.log("✅ Визначений рівень:", level);
 
+    // ✅ Викликаємо submitResults
+    // submitResults(selectedEntryIDs, finalScore, level, sendStudentName);
     if (!sendStudentName) {
         console.error("❌ askStudentName() повернула `null`. Виконання зупинено.");
         return;
-    }
-    if (isNaN(finalScore) || !level) { 
+if (isNaN(finalScore) || !level) { 
+
         console.error("❌ finalScore або level не визначено!");
         return;
     }
+}
     if (!entryIDs || !entryIDs.formURL) {
         console.error("❌ Не вдалося знайти entry ID для цієї сторінки.");
         alert("❌ Помилка! Не вдалося знайти entry ID.");
@@ -218,51 +215,32 @@ window.submitResults = function(finalScore, level, entryIDs, sendStudentName) {
 
     const formData = new URLSearchParams();
     formData.append(entryIDs.name, sendStudentName);
-    formData.append(entryIDs.score, String(finalScore)); 
+    formData.append(entryIDs.score, Number(finalScore));
     formData.append(entryIDs.level, String(level));
 
     console.log("🔹 Надсилаємо:", Object.fromEntries(formData));
     console.log("📩 Формат перед відправкою:", formData.toString());
 
-    // Викликаємо нову функцію для надсилання
-    sendFormResults(sendStudentName, finalScore, level);
-};
-
-// ✅ Нова функція для надсилання даних
-function sendFormResults(sendStudentName, finalScore, level) {
-    console.log("📨 sendFormResults() запущено!");
-
-    const form = document.createElement("form");
-    form.method = "POST";
-    form.action = "https://docs.google.com/forms/d/e/1FAIpQLSfSJTHeQHKjxr-_Nfwr0qC1-5Rinq1xGevQ4i8yFKegE9Wfyw/formResponse";
-
-    function createHiddenInput(name, value) {
-        const input = document.createElement("input");
-        input.type = "hidden";
-        input.name = name;
-        input.value = value;
-        return input;
-    }
-
-    form.appendChild(createHiddenInput("entry.511676966", sendStudentName));
-    form.appendChild(createHiddenInput("entry.1332224844", finalScore));
-    form.appendChild(createHiddenInput("entry.1008291282", level));
-
-    document.body.appendChild(form);
-    form.submit(); 
-
-    console.log("✅ Дані надіслано через <form>!");
-    alert("✅ Дані успішно надіслані у Google Forms!");
-
-    document.getElementById("send-results-btn").style.display = "none";
-    resultEl.innerHTML = `<strong>Дякуємо за проходження! Успіхів!</strong>`;
-
-    window.isSubmitting = false;
-}
-
-// Додаємо подію на кнопку
-// document.getElementById("send-results-btn").addEventListener("click", submitResults);
-
+    fetch(entryIDs.formURL, {
+        method: "POST",
+        mode: "no-cors", 
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: formData
+    })
+    .then(() => {
+        console.log("✅ Успішно надіслано!");
+        alert("✅ Дані успішно надіслані у Google Forms!");
+document.getElementById("send-results-btn").style.display = "none";
+        resultEl.innerHTML = `<strong>Дякуємо за проходження! Успіхів!</strong>`;
+    })
+    .catch(error => {
+        console.error("❌ Помилка надсилання:", error);
+        alert("❌ Не вдалося надіслати результати. Будь ласка, спробуйте ще раз.");
+    })
+    .finally(() => {
+        window.isSubmitting = false;
+    });
+};// ✅ Головна функція для надсилання результатів у Google Forms
 
     sendResultsBtn.addEventListener("click", () => submitResults());
 
