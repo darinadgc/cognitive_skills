@@ -176,19 +176,30 @@ console.log("🎯 Розрахований бал:", finalScore);
 // 	📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧
 window.submitResults = function(finalScore, level, entryIDs, sendStudentName) {
     console.log("📨 submitResults() запущено!");
+   entryIDs = getEntryIDs();// let 
+ if (!entryIDs) {
+        console.error(`❌ Не вдалося знайти entry ID для тесту: ${testType}`);
+        return;
+    }   // let selectedEntryIDs = entryIDs ? entryIDs[testType] : null;
 
     if (window.isSubmitting) return;
     window.isSubmitting = true;
+
     console.log("✅ Функція submitResults викликана!");   
-    entryIDs = getEntryIDs();
-if (!entryIDs) {
-        console.error(`❌ Не вдалося знайти entry ID для тесту: ${testType}`);
+
+    if (!entryIDs || !entryIDs.formURL) {
+        console.error("❌ Не вдалося знайти entry ID для цієї сторінки.");
+        alert("❌ Помилка! Не вдалося знайти entry ID.");
+        window.isSubmitting = false;
         return;
     }
-console.log("✅ Визначені entry IDs:", entryIDs);
-    let selectedEntryIDs = entryIDs; // ✅ Правильне призначення
-  let score = 0;
 
+    console.log("🔹 Отримані entry IDs:", entryIDs);
+console.log("✅ Визначені entry IDs:", entryIDs);
+
+    let selectedEntryIDs = entryIDs; // ✅ Правильне призначення
+//❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕
+  score = 0;
  //  let  finalScore = 0;
    // let  let level = "";
 console.log("⌛ Час витрачений на тест:", timeTaken);
@@ -213,15 +224,6 @@ if (isNaN(finalScore) || !level) {
         return;
     }
 }
-    if (!entryIDs || !entryIDs.formURL) {
-        console.error("❌ Не вдалося знайти entry ID для цієї сторінки.");
-        alert("❌ Помилка! Не вдалося знайти entry ID.");
-        window.isSubmitting = false;
-        return;
-    }
-
-    console.log("🔹 Отримані entry IDs:", entryIDs);
-
     const formData = new URLSearchParams();
     formData.append(entryIDs.name, sendStudentName);
     formData.append(entryIDs.score, Number(finalScore));
@@ -239,9 +241,9 @@ if (isNaN(finalScore) || !level) {
     .then(() => {
         console.log("✅ Успішно надіслано!");
         alert("✅ Дані успішно надіслані у Google Forms!");
-document.getElementById("send-results-btn").style.display = "none";
-        resultEl.innerHTML = `<strong>Дякуємо за проходження! Успіхів!</strong>`;
-    })
+    document.getElementById("send-results-btn").style.display = "none";
+        resultEl.innerHTML = `<strong>Дякуємо за проходження!</strong>`;
+})
     .catch(error => {
         console.error("❌ Помилка надсилання:", error);
         alert("❌ Не вдалося надіслати результати. Будь ласка, спробуйте ще раз.");
@@ -250,7 +252,6 @@ document.getElementById("send-results-btn").style.display = "none";
         window.isSubmitting = false;
     });
 };// ✅ Головна функція для надсилання результатів у Google Forms
-
     sendResultsBtn.addEventListener("click", () => submitResults());
 
     // ❌❌❌❌❌❌❌❌❌❌❌❌❌❌✅ Функції обмеження повторного проходження тесту (не виконується при завантаженні)
