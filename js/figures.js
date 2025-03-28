@@ -46,6 +46,8 @@ const sendResultsBtn = document.getElementById("send-results-btn");
   startBtn.addEventListener("click", startTest);
 //🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛
   function startTest() {
+    window.startTime = Date.now(); // Записуємо час початку тесту
+    
     unansweredTasks = [...tasks];
     incorrectAnswers = [];
     score = 0;
@@ -127,12 +129,17 @@ window.calculateScore = function(timeTaken) {
 
 //🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁finishTest
   function finishTest() {
+let timeTaken = Math.floor((Date.now() - window.startTime) / 1000);
+console.log("⌛ Час витрачений на тест:", timeTaken);
+
     clearInterval(timerInterval);
     resultEl.innerHTML = "🛑 Тест завершено! Натисніть 'Надіслати результат'.";
     figureTaskEl.innerHTML = "";
     sendResultsBtn.style.display = "block";
-  }//🏁finishTest
 
+    // Додатково збережемо timeTaken глобально
+    window.timeTaken = timeTaken;
+  }//🏁finishTest
 
 // 🏫🧒📛 Функція для запиту імені студента
 window.askStudentName = function () {
@@ -163,8 +170,11 @@ window.getEntryIDs = function () {
         }
       
         return null;
- 
-  };//getEntryIDs
+  };//getEntryIDs 
+let finalScore = calculateScore(window.timeTaken);
+console.log("🎯 Розрахований бал:", finalScore);
+submitResults(finalScore, level, entryIDs, sendStudentName);
+
 window.submitResults = function(finalScore, level, entryIDs, sendStudentName) {
     console.log("📨 submitResults() запущено!");
 
