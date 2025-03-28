@@ -193,6 +193,7 @@ if (!entryIDs) {
 console.log("✅ Визначені entry IDs:", entryIDs);
     let selectedEntryIDs = entryIDs; // ✅ Правильне призначення
 	    let checkResults = checkAllAnsweredMotivation();
+    console.log(answeredQuestions.size, " відповідей");
 
    
 //  let totalQuestions, answeredQuestions;
@@ -214,7 +215,7 @@ if (!sendStudentName) {
     console.log("✅ Обчислений бал:", finalScore);
  }   
 
-    console.log(answeredQuestions.size);
+    console.log(answeredQuestions.size, " відповідей");
    if (checkResults.answeredQuestions.size < 10) {
             alert("❗ Будь ласка, відповідайте на всі запитання перед завершенням!");
             return;
