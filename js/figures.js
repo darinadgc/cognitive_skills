@@ -182,7 +182,7 @@ window.submitResults = function(finalScore, level, entryIDs, sendStudentName) {
     console.log("✅ Функція submitResults викликана!");   
     entryIDs = getEntryIDs();
 if (!entryIDs) {
-        console.error(`❌ Не вдалося знайти entry ID для тесту: ${testType}`);
+        console.error(`❌ Не вдалося знайти entry ID для тесту`);
         return;
     }
 console.log("✅ Визначені entry IDs:", entryIDs);
@@ -230,11 +230,32 @@ formData.append(entryIDs.level, String(level));
 console.log("🔹 Надсилаємо:", Object.fromEntries(formData));
 console.log("📩 Формат перед відправкою:", formData.toString());
 
-fetch(entryIDs.formURL, {
-    method: "POST",
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: formData.toString() // 🛠 Конвертація в рядок
-})
+function submitResults() {
+    console.log("📨 submitResults() запущено!");
+
+    const form = document.createElement("form");
+    form.method = "POST";
+    form.action = "https://docs.google.com/forms/d/e/1FAIpQLSfSJTHeQHKjxr-_Nfwr0qC1-5Rinq1xGevQ4i8yFKegE9Wfyw/formResponse";
+
+    function createHiddenInput(name, value) {
+        const input = document.createElement("input");
+        input.type = "hidden";
+        input.name = name;
+        input.value = value;
+        return input;
+    }
+
+    form.appendChild(createHiddenInput("entry.511676966", sendStudentName));
+    form.appendChild(createHiddenInput("entry.1332224844", finalScore));
+    form.appendChild(createHiddenInput("entry.1008291282", level));
+
+    document.body.appendChild(form);
+    form.submit();
+
+    console.log("✅ Дані надіслано через <form>!");
+    alert("✅ Дані успішно надіслані у Google Forms!");
+}
+
 .then(response => {
     console.log("✅ Успішно надіслано!", response);
     alert("✅ Дані успішно надіслані у Google Forms!");
