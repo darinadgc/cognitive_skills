@@ -214,11 +214,11 @@ if (isNaN(finalScore) || !level) {
         console.error("❌ finalScore або level не визначено!");
         return;
     }
-}
+}//Number() String()
     const formData = new URLSearchParams();
     formData.append(entryIDs.name, sendStudentName);
-    formData.append(entryIDs.score, Number(finalScore));
-    formData.append(entryIDs.level, String(level));
+    formData.append(entryIDs.score, finalScore);
+    formData.append(entryIDs.level, level);
 
     console.log("🔹 Надсилаємо:", Object.fromEntries(formData));
     console.log("📩 Формат перед відправкою:", formData.toString());
