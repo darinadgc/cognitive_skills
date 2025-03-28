@@ -6,10 +6,10 @@ document.addEventListener("DOMContentLoaded", () => {
    // const lastAttemptKey = getLastAttemptKey(); // ✅ Отримуємо ключ для LocalStorage
     // const lastAttempt = localStorage.getItem(lastAttemptKey); // ✅ Оголошуємо lastAttempt
     // const lastAttemptDate = lastAttempt ? new Date(lastAttempt) : null;
-  const startBtnFigures = document.getElementById("start-btn-figures");
 const sendResultsBtn = document.getElementById("send-results-btn");
  let timerInterval;
-      window.calculateLevel = function(score) {
+     //📶📶📶📶📶📶📶📶📶📶📶📶📶📶📶📶📶📶📶📶📶
+	window.calculateLevel = function(score) {
     if (score === 10) return "Дуже високий";
     if (score >= 8) return "Високий";
     if (score >= 4) return "Середній";
@@ -19,6 +19,7 @@ const sendResultsBtn = document.getElementById("send-results-btn");
 // sendResultsBtns.forEach((btn) => {
 //     console.log("🔹 Кнопка знайдена:", btn, "| data-test-type:", btn.dataset.testType);
 // });
+//🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩
  const tasks = [
     { id: 1, image: "img/upiznay_fihury/upiznay_fihury1.png", correct: 2 },
     { id: 2, image: "img/upiznay_fihury/upiznay_fihury2.png", correct: 3 },
@@ -36,14 +37,14 @@ const sendResultsBtn = document.getElementById("send-results-btn");
   let currentTask = null;
     // if (startBtnFigures) {
     //     startBtnFigures.addEventListener("click", () => {
-    //         console.log("✅ Початок тесту: Упізнай фігури");
+    //         console.log("✅ Початок тесту: Упізнай фігури");	
     //         startTest();
     //     });
     // } else {
     //     console.error("❌ start-btn-figures не знайдено!");
     // }
   startBtn.addEventListener("click", startTest);
-
+//🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛
   function startTest() {
     unansweredTasks = [...tasks];
     incorrectAnswers = [];
@@ -55,7 +56,7 @@ const sendResultsBtn = document.getElementById("send-results-btn");
     startTimer(90);
     generateTask();
   }
-
+//⏳⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛
   function startTimer(duration) {
     let timeLeft = duration;
 
@@ -71,7 +72,7 @@ const sendResultsBtn = document.getElementById("send-results-btn");
       }
     }, 1000);
   }
-
+//➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕
   function generateTask() {
     if (score === 10 && incorrectAnswers.length === 0) {
       finishTest();
@@ -95,7 +96,7 @@ const sendResultsBtn = document.getElementById("send-results-btn");
       option.addEventListener("click", () => checkAnswer(Number(option.dataset.index)));
     });
   }
-
+//✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅
   function checkAnswer(selectedIndex) {
     if (selectedIndex === currentTask.correct) {
       score++;
@@ -107,6 +108,7 @@ const sendResultsBtn = document.getElementById("send-results-btn");
     }
     setTimeout(generateTask, 1);
   }
+	// 🔢🎯🔢🎯🎯🎯🔢🔢🎯🎯🎯🔢🎯🎯🔢🔢
 window.calculateScore = function(timeTaken) {
     if (timeTaken < 45) return 10;
     if (timeTaken <= 47) return 9;
@@ -123,7 +125,7 @@ window.calculateScore = function(timeTaken) {
     return 0;
 };
 
-//🏁finishTest
+//🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁finishTest
   function finishTest() {
     clearInterval(timerInterval);
     resultEl.innerHTML = "🛑 Тест завершено! Натисніть 'Надіслати результат'.";
@@ -147,7 +149,7 @@ window.askStudentName = function () {
     return cleanedStudentName;  // ✅ Повертаємо очищене ім'я
 };// 🏫🧒📛 Функція для запиту імені студента
 
-  
+  //🆔🆔🆔🆔🆔🆔🆔🆔🆔🆔🆔🆔🆔🆔🆔🆔🆔🆔🆔🆔🆔🆔🆔🆔🆔🆔
 window.getEntryIDs = function () {
 // Перетворюємо першу літеру в велику, решту — в малі
   
@@ -242,7 +244,7 @@ document.getElementById("send-results-btn").style.display = "none";
 
     sendResultsBtn.addEventListener("click", () => submitResults());
 
-    // ✅ Функції обмеження повторного проходження тесту (не виконується при завантаженні)
+    // ❌❌❌❌❌❌❌❌❌❌❌❌❌❌✅ Функції обмеження повторного проходження тесту (не виконується при завантаженні)
 
 // ✅ Функція перевірки обмежень для конкретного тесту
 // function checkTestRetry(testType, retryElement) {
