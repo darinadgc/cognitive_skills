@@ -38,7 +38,7 @@ const sendResultsBtn = document.getElementById("send-results-raven-btn");
     score = 0;
     taskContainer.style.display = "flex";
     startBtn.style.display = "none";
-    sendResultsBtnRaven.style.display = "none";
+    sendResultsBtn.style.display = "none";
     startTimer(600);
     loadTask();
   }
