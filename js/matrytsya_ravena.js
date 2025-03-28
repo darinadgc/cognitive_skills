@@ -118,7 +118,7 @@ window.calculateLevelRaven = function () {
     taskContainer.innerHTML = "";
     sendResultsBtn.style.display = "block";
   }//🏁finishTest 
-});
+
 
 
 
@@ -193,7 +193,7 @@ console.log("✅ Визначені entry IDs:", entryIDs);
 
  //  let  finalScore = 0;
 //    let  level = "";
-       finalScore = calculateScoreRaven();
+       finalScore = calculateScore();
        level = calculateLevel(finalScore);
     sendStudentName = askStudentName();
     console.log("✅ Ім'я студента:", sendStudentName);
@@ -322,3 +322,4 @@ function daysUntilRetry(lastAttemptDate) {
     // }
 
 
+    });
