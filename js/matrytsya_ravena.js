@@ -3,7 +3,7 @@ const resultEl = document.getElementById("result");    // const lastAttemptKey =
     // const lastAttempt = localStorage.getItem(lastAttemptKey); // ✅ Оголошуємо lastAttempt
     // const lastAttemptDate = lastAttempt ? new Date(lastAttempt) : null;
    const startBtn = document.getElementById("start-btn");
-const sendResultsBtnRaven = document.getElementById("send-results-raven-btn");
+const sendResultsBtn = document.getElementById("send-results-raven-btn");
  const taskContainer = document.getElementById("task-container");
   const timerEl = document.getElementById("timer");
   let currentTaskIndex = 0;
