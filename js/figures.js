@@ -181,7 +181,8 @@ console.log("✅ Визначені entry IDs:", entryIDs);
  //  let  finalScore = 0;
    // let  let level = "";
 console.log("⌛ Час витрачений на тест:", timeTaken);
-let finalScore = calculateScore(timeTaken);
+finalScore = calculateScore(timeTaken);
+
 console.log("🎯 Розрахований бал:", finalScore);
       level = calculateLevel(finalScore);
     sendStudentName = askStudentName();
