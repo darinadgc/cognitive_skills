@@ -140,7 +140,7 @@ if (!sendStudentName) {
     .then(() => {
         console.log("✅ Успішно надіслано!");
         alert("✅ Дані успішно надіслані у Google Forms!");
-    document.getElementById("send-results-btn").style.display = "none";
+    sendResultsBtnMotivation.style.display = "none";
         resultEl.innerHTML = `<strong>Дякуємо за відповіді!</strong>`;
 })
     .catch(error => {
@@ -206,7 +206,7 @@ window.getLevelMotivation = function(score) {
 	    let checkResults = checkAllAnsweredMotivation();
     console.log("Відповіді ",answeredQuestions.size);
 //  let totalQuestions, answeredQuestions;
-    if (checkResults.answeredQuestions.size == checkResults.totalQuestions.size) {   
+    if (checkResults.answeredQuestions.size === checkResults.totalQuestions.size) {   
 submitResults(); // ✅ Викликаємо submitResults
    }   
 
