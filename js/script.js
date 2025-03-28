@@ -103,13 +103,13 @@ if (!entryIDs) {
         window.isSubmitting = false;
         return;
     }
-    let selectedEntryIDs = entryIDs; //let  ✅ Правильне призначення
+    let selectedEntryIDs = entryIDs; //let let  let ✅ Правильне призначення
  
     sendStudentName = askStudentName();
         console.log("✅ Ім'я студента:", sendStudentName);
 
-    let finalScore = 0;
-    let level = "";
+    finalScore = 0;
+    level = "";
     console.log("✅ Визначений рівень:", level);
 if (!sendStudentName) {
         console.error("❌ askStudentName() повернула `null`. Виконання зупинено.");
