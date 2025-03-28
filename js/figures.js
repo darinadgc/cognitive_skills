@@ -220,35 +220,35 @@ if (isNaN(finalScore) || !level) {
         return;
     }
 
-    console.log("🔹 Отримані entry IDs:", entryIDs);
+  console.log("🔹 Отримані entry IDs:", entryIDs);
 
-    const formData = new URLSearchParams();
-    formData.append(entryIDs.name, sendStudentName);
-    formData.append(entryIDs.score, Number(finalScore));
-    formData.append(entryIDs.level, String(level));
+const formData = new URLSearchParams();
+formData.append(entryIDs.name, sendStudentName);
+formData.append(entryIDs.score, String(finalScore)); // Рядковий тип
+formData.append(entryIDs.level, String(level));
 
-    console.log("🔹 Надсилаємо:", Object.fromEntries(formData));
-    console.log("📩 Формат перед відправкою:", formData.toString());
+console.log("🔹 Надсилаємо:", Object.fromEntries(formData));
+console.log("📩 Формат перед відправкою:", formData.toString());
 
-    fetch(entryIDs.formURL, {
-        method: "POST",
-        mode: "no-cors", 
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: formData
-    })
-    .then(() => {
-        console.log("✅ Успішно надіслано!");
-        alert("✅ Дані успішно надіслані у Google Forms!");
-document.getElementById("send-results-btn").style.display = "none";
-        resultEl.innerHTML = `<strong>Дякуємо за проходження! Успіхів!</strong>`;
-    })
-    .catch(error => {
-        console.error("❌ Помилка надсилання:", error);
-        alert("❌ Не вдалося надіслати результати. Будь ласка, спробуйте ще раз.");
-    })
-    .finally(() => {
-        window.isSubmitting = false;
-    });
+fetch(entryIDs.formURL, {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: formData.toString() // 🛠 Конвертація в рядок
+})
+.then(response => {
+    console.log("✅ Успішно надіслано!", response);
+    alert("✅ Дані успішно надіслані у Google Forms!");
+    document.getElementById("send-results-btn").style.display = "none";
+    resultEl.innerHTML = `<strong>Дякуємо за проходження! Успіхів!</strong>`;
+})
+.catch(error => {
+    console.error("❌ Помилка надсилання:", error);
+    alert("❌ Не вдалося надіслати результати. Будь ласка, спробуйте ще раз.");
+})
+.finally(() => {
+    window.isSubmitting = false;
+});
+
 };// ✅ Головна функція для надсилання результатів у Google Forms
 
     sendResultsBtn.addEventListener("click", () => submitResults());
