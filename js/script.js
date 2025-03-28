@@ -174,8 +174,8 @@ console.log("🟢 Всі знайдені питання:", questions);
     console.log("🔹 Відповіді:", answeredQuestions.size);
     console.log("🔹 Обчислений бал:", score);
 
-    return { totalQuestions: Number(totalQuestions.size), answeredQuestions: Number(answeredQuestions.size), Number(score) };
-};//checkAllAnsweredMotivation
+    return { totalQuestions: totalQuestions.size, answeredQuestions: answeredQuestions.size, score };
+};//checkAllAnsweredMotivation Number()
 
 window.calculateScoreMotivation = function() {
     let checkedAnswers = document.querySelectorAll('input[type="radio"]:checked'); // ✅ Отримуємо відповіді
@@ -206,7 +206,7 @@ window.getLevelMotivation = function(score) {
 	    let checkResults = checkAllAnsweredMotivation();
     console.log("Відповіді ",answeredQuestions.size);
 //  let totalQuestions, answeredQuestions;
-    if (checkResults.answeredQuestions.size === 10) {   
+    if (checkResults.answeredQuestions.size == 10) {   
 submitResults(); // ✅ Викликаємо submitResults
    }   
 
