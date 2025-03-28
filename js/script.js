@@ -141,7 +141,7 @@ if (!sendStudentName) {
         console.log("✅ Успішно надіслано!");
         alert("✅ Дані успішно надіслані у Google Forms!");
     sendResultsBtnMotivation.style.display = "none";
-        resultEl.innerHTML = `<strong>Дякуємо за відповіді!</strong>`;
+        resultElMotivation.innerHTML = `<strong>Дякуємо за відповіді!</strong>`;
 })
     .catch(error => {
         console.error("❌ Помилка надсилання:", error);
@@ -207,9 +207,11 @@ window.getLevelMotivation = function(score) {
     console.log("Відповіді ",answeredQuestions.size);
 //  let totalQuestions, answeredQuestions;
     if (checkResults.answeredQuestions.size === checkResults.totalQuestions.size) {   
+   
+    console.log("Відповіді ",checkResults.answeredQuestions.size);
+    console.log("Відповідей ",checkResults.totalQuestions.size);
 submitResults(); // ✅ Викликаємо submitResults
-   }   
-
+   }
 	   if (checkResults.answeredQuestions.size < checkResults.totalQuestions.size) {
             alert("❗ Будь ласка, відповідайте на всі запитання перед завершенням!");
     console.log("Відповіді ",answeredQuestions.size);
@@ -450,7 +452,7 @@ function daysUntilRetry(lastAttemptDate) {
 
 
     // if (lastAttempt && !isAllowedToRetry(new Date(lastAttempt))) {
-    //     resultEl.innerHTML = `❌ Ви вже проходили тест. Можна повторити через ${daysUntilRetry(new Date(lastAttempt))} днів.`;
+    //     resultElMotivation.innerHTML = `❌ Ви вже проходили тест. Можна повторити через ${daysUntilRetry(new Date(lastAttempt))} днів.`;
     //     sendResultsBtn.disabled = true;
     //     return;
     // }
