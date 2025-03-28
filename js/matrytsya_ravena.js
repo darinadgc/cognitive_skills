@@ -99,7 +99,7 @@ const sendResultsBtn = document.getElementById("send-results-btn");
       finishTest();
     }
   }//✅ checkAnswer let
-window.calculateLevelRaven = function () {
+window.calculateLevel = function () {
     score = 0;
     const answers = document.querySelectorAll('input[type="radio"]:checked');
 
