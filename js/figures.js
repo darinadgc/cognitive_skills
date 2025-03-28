@@ -260,7 +260,7 @@ function submitResults() {
 
     window.isSubmitting = false; // Фіксуємо статус
 }// ✅ Головна функція для надсилання результатів у Google Forms
-
+}
 // Додаємо подію на кнопку
 // document.getElementById("send-results-btn").addEventListener("click", submitResults);
 
