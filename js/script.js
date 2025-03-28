@@ -154,7 +154,6 @@ if (!entryIDs) {
  
     sendStudentName = askStudentName();
         console.log("✅ Ім'я студента:", sendStudentName);
-
     finalScore = 0;
     level = "";
     console.log("✅ Визначений рівень:", level);
@@ -162,7 +161,10 @@ if (!sendStudentName) {
         console.error("❌ askStudentName() повернула `null`. Виконання зупинено.");
         return;
     }
-        finalScore = calculateScoreMotivation();
+console.log("🔍 Викликаємо calculateScoreMotivation...");
+finalScore = calculateScoreMotivation();
+console.log("✅ finalScore після розрахунку:", finalScore);
+
         level = getLevelMotivation(finalScore);
         console.log("✅ Ім'я студента:", sendStudentName);
     console.log("✅ Визначені entry IDs:", selectedEntryIDs);
