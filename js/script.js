@@ -213,7 +213,7 @@ if (!sendStudentName) {
 
   sendResultsBtnMotivation.addEventListener("click", () => {
 	    let checkResults = checkAllAnsweredMotivation();
-    console.log(answeredQuestions.size, " відповідь (ей)");
+    console.log("Відповіді ",answeredQuestions.size);
 //  let totalQuestions, answeredQuestions;
     if (checkResults.answeredQuestions.size === 10) {   
 submitResults(); // ✅ Викликаємо submitResults
@@ -221,7 +221,7 @@ submitResults(); // ✅ Викликаємо submitResults
 
 	   if (checkResults.answeredQuestions.size < 10) {
             alert("❗ Будь ласка, відповідайте на всі запитання перед завершенням!");
-    console.log(answeredQuestions.size, " відповідь (ей)");
+    console.log("Відповіді ",answeredQuestions.size);
             return;
         }
   
