@@ -174,7 +174,7 @@ console.log("🟢 Всі знайдені питання:", questions);
     console.log("🔹 Відповіді:", answeredQuestions.size);
     console.log("🔹 Обчислений бал:", score);
 
-    return { totalQuestions: totalQuestions.size, answeredQuestions: answeredQuestions.size, score };
+    return { Number(totalQuestions: totalQuestions.size), Number(answeredQuestions: answeredQuestions.size), Number(score) };
 };//checkAllAnsweredMotivation
 
 window.calculateScoreMotivation = function() {
