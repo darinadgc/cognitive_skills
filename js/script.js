@@ -62,10 +62,10 @@ window.askStudentName = function () {
 };// 🏫🧒📛 Функція для запиту імені студента
 
   
-window.getEntryIDs = function () {
+
     
-   
-    
+ //  🆔🆔🆔🆔🆔🆔🆔🆔🆔🆔🆔🆔🆔🆔🆔🆔🆔🆔🆔🆔🆔🆔🆔🆔🆔🆔🆔🆔🆔
+ window.getEntryIDs = function () {   
          return {
             formURL: "https://docs.google.com/forms/d/e/1FAIpQLSeco-wWwULNG0-L1Qwnxn4tYBtQxinBXjVg4jTB1C2HzZ2KNw/formResponse",
             name: "entry.511676966",
@@ -184,8 +184,8 @@ window.calculateScoreMotivation = function() {
         checkedAnswers.forEach((input) => {
         score += parseInt(input.value) || 0; // ✅ Додаємо бали
     });
-
     console.log("🔹 Обчислений бал:", score); // ✅ Переносимо до return
+//❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗
     return score;
 }//calculateScoreMotivation
 window.getLevelMotivation = function(score) {
@@ -206,11 +206,11 @@ window.getLevelMotivation = function(score) {
 	    let checkResults = checkAllAnsweredMotivation();
     console.log("Відповіді ",answeredQuestions.size);
 //  let totalQuestions, answeredQuestions;
-    if (checkResults.answeredQuestions.size == 10) {   
+    if (checkResults.answeredQuestions.size == checkResults.totalQuestions.size) {   
 submitResults(); // ✅ Викликаємо submitResults
    }   
 
-	   if (checkResults.answeredQuestions.size < 10) {
+	   if (checkResults.answeredQuestions.size < checkResults.totalQuestions.size) {
             alert("❗ Будь ласка, відповідайте на всі запитання перед завершенням!");
     console.log("Відповіді ",answeredQuestions.size);
             return;
