@@ -122,7 +122,6 @@ window.calculateScore = function(timeTaken) {
     if (timeTaken <= 72) return 3;
     if (timeTaken <= 79) return 2;
     if (timeTaken <= 82) return 1;
-	console.log("⚠️ Час більше 82 сек:", timeTaken);
 
     return 0;
 };
