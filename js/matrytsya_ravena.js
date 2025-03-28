@@ -156,14 +156,14 @@ window.getEntryIDs = function () {
 
 
 
-   if (startBtn) {
+  /* if (startBtn) {
         startBtn.addEventListener("click", () => {
             console.log("✅ Початок тесту: Матриця Равена");
             startTest();
         });
     } else {
         console.error("❌ start-btn не знайдено!");
-    }
+    }*/
 
 
 
