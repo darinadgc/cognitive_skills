@@ -192,7 +192,6 @@ if (!entryIDs) {
     // }
 console.log("✅ Визначені entry IDs:", entryIDs);
     let selectedEntryIDs = entryIDs; // ✅ Правильне призначення
-	    let checkResults = checkAllAnsweredMotivation();
  
     let sendStudentName = askStudentName();
         console.log("✅ Ім'я студента:", sendStudentName);
@@ -213,6 +212,7 @@ if (!sendStudentName) {
 } // submitResults
 
   sendResultsBtnMotivation.addEventListener("click", () => {
+	    let checkResults = checkAllAnsweredMotivation();
     console.log(answeredQuestions.size, " відповідей");
 //  let totalQuestions, answeredQuestions;
     if (checkResults.answeredQuestions.size === 10) {   
