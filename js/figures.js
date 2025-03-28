@@ -250,27 +250,20 @@ function submitResults() {
     form.appendChild(createHiddenInput("entry.1008291282", level));
 
     document.body.appendChild(form);
-    form.submit();
+    form.submit(); // ❗️ Це не Promise, тому `.then()` тут зайве
 
     console.log("✅ Дані надіслано через <form>!");
     alert("✅ Дані успішно надіслані у Google Forms!");
-}
 
-.then(response => {
-    console.log("✅ Успішно надіслано!", response);
-    alert("✅ Дані успішно надіслані у Google Forms!");
     document.getElementById("send-results-btn").style.display = "none";
     resultEl.innerHTML = `<strong>Дякуємо за проходження! Успіхів!</strong>`;
-})
-.catch(error => {
-    console.error("❌ Помилка надсилання:", error);
-    alert("❌ Не вдалося надіслати результати. Будь ласка, спробуйте ще раз.");
-})
-.finally(() => {
-    window.isSubmitting = false;
-});
 
-};// ✅ Головна функція для надсилання результатів у Google Forms
+    window.isSubmitting = false; // Фіксуємо статус
+}// ✅ Головна функція для надсилання результатів у Google Forms
+
+// Додаємо подію на кнопку
+// document.getElementById("send-results-btn").addEventListener("click", submitResults);
+
 
     sendResultsBtn.addEventListener("click", () => submitResults());
 
