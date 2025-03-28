@@ -82,11 +82,16 @@ window.getEntryIDs = function () {
   };//getEntryIDs
 
     console.log("✅ Успішно додані обробники подій!");
-	//✅✅✅✅✅✅✅✅✅✅✅submitResults
-// ✅ Головна функція для надсилання результатів у Google Forms
+	//✅submitResults
+// 	📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧
 window.submitResults = function(finalScore, level, entryIDs, sendStudentName) {
     console.log("📨 submitResults() запущено!");
-
+   let entryIDs = getEntryIDs();
+    // let selectedEntryIDs = entryIDs ? entryIDs[testType] : null;
+if (!entryIDs) {
+        console.error(`❌ Не вдалося знайти entry ID для тесту`);
+        return;
+    }
     if (window.isSubmitting) return;
     window.isSubmitting = true;
 
@@ -98,7 +103,24 @@ window.submitResults = function(finalScore, level, entryIDs, sendStudentName) {
         window.isSubmitting = false;
         return;
     }
+    let selectedEntryIDs = entryIDs; // ✅ Правильне призначення
+ 
+    let sendStudentName = askStudentName();
+        console.log("✅ Ім'я студента:", sendStudentName);
 
+    let finalScore = 0;
+    let level = "";
+    console.log("✅ Визначений рівень:", level);
+if (!sendStudentName) {
+        console.error("❌ askStudentName() повернула `null`. Виконання зупинено.");
+        return;
+    }
+        finalScore = calculateScoreMotivation();
+        level = getLevelMotivation(finalScore);
+        console.log("✅ Ім'я студента:", sendStudentName);
+    console.log("✅ Визначені entry IDs:", selectedEntryIDs);
+    console.log("✅ Обчислений бал:", finalScore);
+ 
     console.log("🔹 Отримані entry IDs:", entryIDs);
 
     const formData = new URLSearchParams();
@@ -178,38 +200,7 @@ window.getLevelMotivation = function(score) {
 
 
     
-// ✅ 📩📩📩📩📩📩📩📩📩📩📩📩📩📩📩📩📩📩📩📩📩📩📩📩📩📩Функція обробки тесту 
-function submitResults() {
-    let entryIDs = getEntryIDs();
-    // let selectedEntryIDs = entryIDs ? entryIDs[testType] : null;
-if (!entryIDs) {
-        console.error(`❌ Не вдалося знайти entry ID для тесту`);
-        return;
-    }
-    // if (!selectedEntryIDs) {
-    //     console.error(`❌ Не вдалося знайти entry ID для тесту: ${testType}`);
-    //     return;
-    // }
-console.log("✅ Визначені entry IDs:", entryIDs);
-    let selectedEntryIDs = entryIDs; // ✅ Правильне призначення
- 
-    let sendStudentName = askStudentName();
-        console.log("✅ Ім'я студента:", sendStudentName);
 
-    let finalScore = 0;
-    let level = "";
-    console.log("✅ Визначений рівень:", level);
-if (!sendStudentName) {
-        console.error("❌ askStudentName() повернула `null`. Виконання зупинено.");
-        return;
-    }
-        finalScore = calculateScoreMotivation();
-        level = getLevelMotivation(finalScore);
-        console.log("✅ Ім'я студента:", sendStudentName);
-    console.log("✅ Визначені entry IDs:", selectedEntryIDs);
-    console.log("✅ Обчислений бал:", finalScore);
- 
-} // submitResults
 
   sendResultsBtnMotivation.addEventListener("click", () => {
 	    let checkResults = checkAllAnsweredMotivation();
