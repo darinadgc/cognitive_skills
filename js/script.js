@@ -221,7 +221,7 @@ console.log("✅ Визначені entry IDs:", entryIDs);
 } // submitResults
 
 
-  sendResultsBtn.addEventListener("click", () => submitResults());  // ✅ Викликаємо submitResults
+  sendResultsBtnMotivation.addEventListener("click", () => submitResults());  // ✅ Викликаємо submitResults
 
 // sendResultsBtn.addEventListener("click", () => {
 //     console.log("Виклик submitResults");
