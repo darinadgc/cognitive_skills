@@ -176,10 +176,10 @@ if (!entryIDs) {
 console.log("✅ Визначені entry IDs:", entryIDs);
     let selectedEntryIDs = entryIDs; // ✅ Правильне призначення
 
-    finalScore = 0;
-    level = "";
-        finalScore = calculateScore();
-       level = calculateLevel(finalScore);
+ //   finalScore = 0;
+   // level = "";
+        let finalScore = calculateScore();
+       let level = calculateLevel(finalScore);
     sendStudentName = askStudentName();
     console.log("✅ Ім'я студента:", sendStudentName);
     console.log("✅ Визначені entry IDs:", selectedEntryIDs);
