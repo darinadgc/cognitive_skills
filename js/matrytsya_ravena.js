@@ -98,9 +98,9 @@ const sendResultsBtnRaven = document.getElementById("send-results-raven-btn");
     } else {
       finishTest();
     }
-  }//✅ checkAnswer
+  }//✅ checkAnswer let
 window.calculateLevelRaven = function () {
-    let score = 0;
+    score = 0;
     const answers = document.querySelectorAll('input[type="radio"]:checked');
 
     answers.forEach((input) => {
