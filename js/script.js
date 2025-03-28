@@ -86,7 +86,7 @@ window.getEntryIDs = function () {
 // 	📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧
 window.submitResults = function(finalScore, level, entryIDs, sendStudentName) {
     console.log("📨 submitResults() запущено!");
-   let entryIDs = getEntryIDs();
+   entryIDs = getEntryIDs();
     // let selectedEntryIDs = entryIDs ? entryIDs[testType] : null;
 if (!entryIDs) {
         console.error(`❌ Не вдалося знайти entry ID для тесту`);
