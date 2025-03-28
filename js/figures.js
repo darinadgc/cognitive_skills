@@ -171,9 +171,15 @@ window.getEntryIDs = function () {
         return null;
   };//getEntryIDs 
 let finalScore = calculateScore(window.timeTaken);
+	
 // 	📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧
 window.submitResults = function(finalScore, level, entryIDs, sendStudentName) {
    entryIDs = getEntryIDs();// let 
+	finalScore = calculateScore(timeTaken);
+    let selectedEntryIDs = entryIDs; // ✅ Правильне призначення
+
+      level = calculateLevel(finalScore);
+    sendStudentName = askStudentName();
  if (!entryIDs) {
         console.error(`❌ Не вдалося знайти entry ID для тесту: ${testType}`);
         return;
@@ -192,15 +198,11 @@ window.submitResults = function(finalScore, level, entryIDs, sendStudentName) {
 
 
 
-    let selectedEntryIDs = entryIDs; // ✅ Правильне призначення
 //❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕
 //    score = 0;
  //  let  finalScore = 0;
    // let  let level = "";
-finalScore = calculateScore(timeTaken);
 
-      level = calculateLevel(finalScore);
-    sendStudentName = askStudentName();
 
 
     // ✅ Викликаємо submitResults
@@ -213,11 +215,11 @@ if (isNaN(finalScore) || !level) {
         console.error("❌ finalScore або level не визначено!");
         return;
     }
-}//Number() String()
+}// 
     const formData = new URLSearchParams();
     formData.append(entryIDs.name, sendStudentName);
-    formData.append(entryIDs.score, finalScore);
-    formData.append(entryIDs.level, level);
+    formData.append(entryIDs.score, Number(finalScore));
+    formData.append(entryIDs.level, String(level));
 
     console.log("🔹 Надсилаємо:", Object.fromEntries(formData));
     console.log("📩 Формат перед відправкою:", formData.toString());
