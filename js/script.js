@@ -131,10 +131,10 @@ window.submitResults = function(finalScore, level, entryIDs, sendStudentName) {
 };// ✅ Головна функція для надсилання результатів у Google Forms
 
 //💗💗💗💗💗💗💗💗
-window.checkAllAnsweredMotivation = function() {
     const questions = document.querySelectorAll('input[type="radio"][name^="mot-que"]'); // Вибираємо всі питання мотивації
     const totalQuestions = new Set();
     const answeredQuestions = new Set();
+window.checkAllAnsweredMotivation = function() {
     let score = 0; // Загальний бал
 console.log("🟢 Всі знайдені питання:", questions);
 
