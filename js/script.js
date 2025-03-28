@@ -65,7 +65,7 @@ window.askStudentName = function () {
 window.getEntryIDs = function () {
     
    
-    const entryIDs = {
+    
          return {
             formURL: "https://docs.google.com/forms/d/e/1FAIpQLSeco-wWwULNG0-L1Qwnxn4tYBtQxinBXjVg4jTB1C2HzZ2KNw/formResponse",
             name: "entry.511676966",
