@@ -108,7 +108,7 @@ const sendResultsBtn = document.getElementById("send-results-btn");
     }
     setTimeout(generateTask, 1);
   }
-window.calculateScoreFigures = function(timeTaken) {
+window.calculateScore = function(timeTaken) {
     if (timeTaken < 45) return 10;
     if (timeTaken <= 47) return 9;
     if (timeTaken <= 49) return 8;
