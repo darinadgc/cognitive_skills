@@ -173,7 +173,6 @@ window.getEntryIDs = function () {
   };//getEntryIDs 
 let finalScore = calculateScore(window.timeTaken);
 console.log("🎯 Розрахований бал:", finalScore);
-submitResults(finalScore, level, entryIDs, sendStudentName);
 
 window.submitResults = function(finalScore, level, entryIDs, sendStudentName) {
     console.log("📨 submitResults() запущено!");
