@@ -103,9 +103,9 @@ if (!entryIDs) {
         window.isSubmitting = false;
         return;
     }
-    let selectedEntryIDs = entryIDs; // ✅ Правильне призначення
+    let selectedEntryIDs = entryIDs; //let  ✅ Правильне призначення
  
-    let sendStudentName = askStudentName();
+    sendStudentName = askStudentName();
         console.log("✅ Ім'я студента:", sendStudentName);
 
     let finalScore = 0;
