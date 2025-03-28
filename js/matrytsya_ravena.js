@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-window.resultEl = document.getElementById("result");    // const lastAttemptKey = getLastAttemptKey(); // ✅ Отримуємо ключ для LocalStorage
+const resultEl = document.getElementById("result");    // const lastAttemptKey = getLastAttemptKey(); // ✅ Отримуємо ключ для LocalStorage
     // const lastAttempt = localStorage.getItem(lastAttemptKey); // ✅ Оголошуємо lastAttempt
     // const lastAttemptDate = lastAttempt ? new Date(lastAttempt) : null;
    const startBtn = document.getElementById("start-btn");
