@@ -153,8 +153,8 @@ console.log("🟢 Всі знайдені питання:", questions);
     console.log("🔹 Обчислений бал:", score);
 
     return { totalQuestions: totalQuestions.size, answeredQuestions: answeredQuestions.size, score };
-};
-//checkAllAnsweredMotivation
+};//checkAllAnsweredMotivation
+
 window.calculateScoreMotivation = function() {
     let checkedAnswers = document.querySelectorAll('input[type="radio"]:checked'); // ✅ Отримуємо відповіді
     let score = 0; // Загальний бал
@@ -171,15 +171,15 @@ window.getLevelMotivation = function(score) {
     if (score > 7) return "Середній";
     return "Низький";
 };
-
-
 //    return selectedEntryIDs;
 //❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕
 
+
+
+
+    
 // ✅ 📩📩📩📩📩📩📩📩📩📩📩📩📩📩📩📩📩📩📩📩📩📩📩📩📩📩Функція обробки тесту 
 function submitResults() {
-    
-
     let entryIDs = getEntryIDs();
     // let selectedEntryIDs = entryIDs ? entryIDs[testType] : null;
 if (!entryIDs) {
@@ -193,11 +193,7 @@ if (!entryIDs) {
 console.log("✅ Визначені entry IDs:", entryIDs);
     let selectedEntryIDs = entryIDs; // ✅ Правильне призначення
 	    let checkResults = checkAllAnsweredMotivation();
-    console.log(answeredQuestions.size, " відповідей");
-
-   
-//  let totalQuestions, answeredQuestions;
-    if (checkResults.answeredQuestions.size === 10) {    
+ 
     let sendStudentName = askStudentName();
         console.log("✅ Ім'я студента:", sendStudentName);
 
@@ -213,17 +209,23 @@ if (!sendStudentName) {
         console.log("✅ Ім'я студента:", sendStudentName);
     console.log("✅ Визначені entry IDs:", selectedEntryIDs);
     console.log("✅ Обчислений бал:", finalScore);
- }   
+ 
+} // submitResults
+
+  sendResultsBtnMotivation.addEventListener("click", () => {
+    console.log(answeredQuestions.size, " відповідей");
+//  let totalQuestions, answeredQuestions;
+    if (checkResults.answeredQuestions.size === 10) {   
+submitResults(); // ✅ Викликаємо submitResults
+   }   
 
     console.log(answeredQuestions.size, " відповідей");
-   if (checkResults.answeredQuestions.size < 10) {
+	   if (checkResults.answeredQuestions.size < 10) {
             alert("❗ Будь ласка, відповідайте на всі запитання перед завершенням!");
             return;
         }
-} // submitResults
-
-
-  sendResultsBtnMotivation.addEventListener("click", () => submitResults());  // ✅ Викликаємо submitResults
+  
+  }); 
 
 // sendResultsBtn.addEventListener("click", () => {
 //     console.log("Виклик submitResults");
