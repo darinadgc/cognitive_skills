@@ -174,9 +174,10 @@ window.getEntryIDs = function () {
       
         return null;
   };//getEntryIDs 
+console.log("⏳ Значення window.timeTaken перед обчисленням балу:", window.timeTaken);
+
 let finalScore = calculateScore(window.timeTaken);
-console.log("📌 Значення window.timeTaken перед викликом submitResults:", window.timeTaken);
-	
+console.log("📌 Значення window.timeTaken перед викликом submitResults:", window.timeTaken);	
 // 	📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧
 window.submitResults = function(finalScore, level, entryIDs, sendStudentName) {
     console.log("📨 submitResults() запущено!");
