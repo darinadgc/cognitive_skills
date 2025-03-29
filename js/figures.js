@@ -175,6 +175,7 @@ window.getEntryIDs = function () {
         return null;
   };//getEntryIDs 
 let finalScore = calculateScore(window.timeTaken);
+console.log("📌 Значення window.timeTaken перед викликом submitResults:", window.timeTaken);
 	
 // 	📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧
 window.submitResults = function(finalScore, level, entryIDs, sendStudentName) {
