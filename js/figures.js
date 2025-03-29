@@ -111,14 +111,14 @@ const sendResultsBtn = document.getElementById("send-results-btn");
     setTimeout(generateTask, 1);
   }
 //🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁finishTest
-  function finishTest() {
+
 let timeTaken = Math.floor((Date.now() - window.startTime) / 1000);
+  function finishTest() {
 console.log("⌛ Час витрачений на тест:", timeTaken);
     clearInterval(timerInterval);
     resultEl.innerHTML = "🛑 Тест завершено! Натисніть 'Надіслати результат'.";
     figureTaskEl.innerHTML = "";
     sendResultsBtn.style.display = "block";
-
     // Додатково збережемо timeTaken глобально
     window.timeTaken = timeTaken;
   }//🏁finishTest
