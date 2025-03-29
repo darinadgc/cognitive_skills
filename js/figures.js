@@ -69,7 +69,7 @@ console.log("🕒 Початок тесту:", window.startTime);
   }
 //✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅
   function checkAnswer(selectedIndex) {
-       score = 0;
+      let score = 0;
 if (selectedIndex === currentTask.correct) {
 	 
       score++;
