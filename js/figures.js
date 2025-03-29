@@ -187,42 +187,39 @@ window.submitResults = function(finalScore, level, entryIDs, sendStudentName) {
 
     if (window.isSubmitting) return;
     window.isSubmitting = true;
-    console.log("✅ Функція submitResults викликана!");   
+    console.log("✅ Функція submitResults викликана!");
+
     entryIDs = getEntryIDs();
-if (!entryIDs) {
-        console.error(`❌ Не вдалося знайти entry ID для тесту: ${testType}`);
+    if (!entryIDs) {
+        console.error("❌ Не вдалося знайти entry ID для тесту");
         return;
     }
-console.log("✅ Визначені entry IDs:", entryIDs);
-    let selectedEntryIDs = entryIDs; // ✅ Правильне призначення
- // let score = 0;
 
- //  let  finalScore = 0;
-   // let  let level = "";
-console.log("⌛ Час витрачений на тест:", timeTaken);
-//finalScore = calculateScore(timeTaken);let 
+    console.log("✅ Визначені entry IDs:", entryIDs);
 
-console.log("🎯 Розрахований бал:", finalScore);
-console.log("⏳ Значення window.timeTaken перед обчисленням балу:", window.timeTaken);
-finalScore = calculateScore(window.timeTaken);
-console.log("📌 Викликаємо submitResults з балом:", finalScore);
-    sendStudentName = askStudentName();
-    console.log("✅ Ім'я студента:", sendStudentName);
-    console.log("✅ Визначені entry IDs:", selectedEntryIDs);
-    console.log("✅ Обчислений бал:", finalScore);
+    // Обчислення балу
+    finalScore = calculateScore(window.timeTaken);
+    window.finalScore = finalScore;
+    console.log("🎯 Розрахований бал:", window.finalScore);
+
+    // Обчислення рівня
+    level = calculateLevel(finalScore);
     console.log("✅ Визначений рівень:", level);
 
-    // ✅ Викликаємо submitResults
-    // submitResults(selectedEntryIDs, finalScore, level, sendStudentName);
+    // Отримання імені студента
+    sendStudentName = askStudentName();
     if (!sendStudentName) {
         console.error("❌ askStudentName() повернула `null`. Виконання зупинено.");
         return;
-if (isNaN(finalScore) || !level) { 
+    }
 
+    if (isNaN(finalScore) || !level) { 
         console.error("❌ finalScore або level не визначено!");
         return;
     }
-}
+
+    console.log("✅ Ім'я студента:", sendStudentName);
+
     if (!entryIDs || !entryIDs.formURL) {
         console.error("❌ Не вдалося знайти entry ID для цієї сторінки.");
         alert("❌ Помилка! Не вдалося знайти entry ID.");
@@ -249,7 +246,7 @@ if (isNaN(finalScore) || !level) {
     .then(() => {
         console.log("✅ Успішно надіслано!");
         alert("✅ Дані успішно надіслані у Google Forms!");
-document.getElementById("send-results-btn").style.display = "none";
+        document.getElementById("send-results-btn").style.display = "none";
         resultEl.innerHTML = `<strong>Дякуємо за проходження! Успіхів!</strong>`;
     })
     .catch(error => {
@@ -259,12 +256,14 @@ document.getElementById("send-results-btn").style.display = "none";
     .finally(() => {
         window.isSubmitting = false;
     });
-};// ✅ Головна функція для надсилання результатів у Google Forms
+};
 
+// ✅ Викликаємо `submitResults()` правильно при натисканні на кнопку
 sendResultsBtn.addEventListener("click", () => { 
     console.log("📌 Викликаємо submitResults з балом:", window.finalScore);
-    submitResults();
+    submitResults(window.finalScore, calculateLevel(window.finalScore), getEntryIDs(), askStudentName());
 });
+
 
     // ❌❌❌❌❌❌❌❌❌❌❌❌❌❌✅ Функції обмеження повторного проходження тесту (не виконується при завантаженні)
 
