@@ -31,7 +31,7 @@ const sendResultsBtn = document.getElementById("send-results-btn");
 
   // ✅ Додаємо обробник події ПІСЛЯ оголошення функції
   startBtn.addEventListener("click", startTest);
-
+//🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛
   function startTest() {
     console.log("🔹 startTest() запущено!");
     currentTaskIndex = 0;
@@ -42,7 +42,7 @@ const sendResultsBtn = document.getElementById("send-results-btn");
     startTimer(600);
     loadTask();
   }
-
+//⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛
   function startTimer(duration) {
     let timeLeft = duration;
 
@@ -58,7 +58,7 @@ const sendResultsBtn = document.getElementById("send-results-btn");
       }
     }, 1000);
   }
-
+//➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕
   function loadTask() {
     const task = tasks[currentTaskIndex];
 
@@ -79,7 +79,7 @@ const sendResultsBtn = document.getElementById("send-results-btn");
 
     document.getElementById("next-btn").addEventListener("click", checkAnswer);
   }
-//✅ checkAnswer
+//✅ ✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅checkAnswer
   function checkAnswer() {
     const selectedOption = document.querySelector('input[name="task"]:checked');
     if (!selectedOption) {
@@ -99,19 +99,20 @@ const sendResultsBtn = document.getElementById("send-results-btn");
       finishTest();
     }
   }//✅ checkAnswer let
-window.calculateScore = function () {
+	//🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮
+/*window.calculateScore = function () {
     score = 0;
     const answers = document.querySelectorAll('input[type="radio"]:checked');
 
     answers.forEach((input) => {
         if (input.value === "1") score++; // Припустимо, що правильні відповіді мають value="1"
-    });
+    });*/
 
     console.log("✅ Підрахований бал:", score);
     return score;
 };
 
- //🏁finishTest
+ //🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁finishTest
   function finishTest() {
     clearInterval(timerInterval);
     resultEl.innerHTML = "🛑 Тест завершено! Натисніть 'Надіслати результат'.";
@@ -193,7 +194,7 @@ console.log("✅ Визначені entry IDs:", entryIDs);
 
  //  let  finalScore = 0;
 //    let  level = "";
-       finalScore = calculateScore();
+       finalScore = checkAnswer(score);
        level = calculateLevel(finalScore);
     sendStudentName = askStudentName();
     console.log("✅ Ім'я студента:", sendStudentName);
