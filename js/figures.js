@@ -112,15 +112,15 @@ const sendResultsBtn = document.getElementById("send-results-btn");
   }
 //🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁finishTest
 
-let timeTaken = Math.floor((Date.now() - window.startTime) / 1000);
   function finishTest() {
-console.log("⌛ Час витрачений на тест:", timeTaken);
     clearInterval(timerInterval);
-    resultEl.innerHTML = "🛑 Тест завершено! Натисніть 'Надіслати результат'.";
+   let timeTaken = Math.floor((Date.now() - window.startTime) / 1000);
+console.log("⌛ Час витрачений на тест:", timeTaken);
+ resultEl.innerHTML = "🛑 Тест завершено! Натисніть 'Надіслати результат'.";
     figureTaskEl.innerHTML = "";
     sendResultsBtn.style.display = "block";
-    // Додатково збережемо timeTaken глобально
-    window.timeTaken = timeTaken;
+    //window.timeTaken = timeTaken; Додатково збережемо timeTaken глобально
+    
   }//🏁finishTest
 	// 🔢🎯🔢🎯🎯🎯🔢🔢🎯🎯🎯🔢🎯🎯🔢🔢
 window.calculateScore = function(timeTaken) {
