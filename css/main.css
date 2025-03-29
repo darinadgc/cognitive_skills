@@ -228,7 +228,7 @@ button {
 }
 #figure-task {
     width: max-content;
-	
+	margin: 83px auto;
 }
    div#task-container-raven .main-image {
     max-height: 337px;
