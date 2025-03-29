@@ -195,8 +195,10 @@ console.log("⏳ Значення window.timeTaken перед обчисленн
 window.submitResults = function(finalScore, level, entryIDs, sendStudentName) {
     console.log("📨 submitResults() запущено!");
    entryIDs = getEntryIDs();// let 
+	console.log("🔍 Отримані entryIDs:", getEntryIDs());
+
  if (!entryIDs) {
-        console.error(`❌ Не вдалося знайти entry ID для тесту: ${testType}`);
+        console.error(`❌ Не вдалося знайти entry ID для тесту`);
         return;
     }   // let selectedEntryIDs = entryIDs ? entryIDs[testType] : null;
 
@@ -281,10 +283,14 @@ sendResultsBtn.addEventListener("click", () => {
     let entryIDs = getEntryIDs();
     let studentName = askStudentName();
 
-    console.log("📌 Викликаємо submitResults з балом:", finalScore);
-    console.log("📌 Значення window.timeTaken перед викликом submitResults:", window.timeTaken);
+console.log("📌 Викликаємо submitResults з такими аргументами:");
+console.log("🔹 finalScore:", finalScore);
+console.log("🔹 level:", calculateLevel(finalScore));
+console.log("🔹 entryIDs:", getEntryIDs());
+console.log("🔹 studentName:", askStudentName());
 
-    submitResults(finalScore, level, entryIDs, studentName);
+
+    submitResults(finalScore, calculateLevel(finalScore), getEntryIDs(), askStudentName());
 });
    // ❌❌❌❌❌❌❌❌❌❌❌❌❌❌✅ Функції обмеження повторного проходження тесту (не виконується при завантаженні)
 
