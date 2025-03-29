@@ -83,11 +83,12 @@ function checkAnswer(selectedIndex) {
 
 	//➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕
   function generateTask() {
-    if (score === 10 && incorrectAnswers.length === 0) {
+      console.log("🔍 Поточний score:", score); // Додаємо перевірку
+ 
+ if (score === 10 && incorrectAnswers.length === 0) {
       finishTest();
       return;
     }
-
     currentTask = unansweredTasks.length > 0
       ? unansweredTasks.shift()
       : incorrectAnswers.shift(); 
