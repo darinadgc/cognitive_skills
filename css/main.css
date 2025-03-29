@@ -297,10 +297,7 @@ img.option, label, #option, input[type='radio'] {
     
     flex-direction: row;
 }
-button#next-btn {
-    padding: 4px;
-    width: fit-content;
-}			     
+			     
 }
 @media (min-width: 68px) and (max-width: 480px) {
    h1 {
