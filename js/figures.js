@@ -110,6 +110,18 @@ const sendResultsBtn = document.getElementById("send-results-btn");
     }
     setTimeout(generateTask, 1);
   }
+//🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁finishTest
+  function finishTest() {
+let timeTaken = Math.floor((Date.now() - window.startTime) / 1000);
+console.log("⌛ Час витрачений на тест:", timeTaken);
+    clearInterval(timerInterval);
+    resultEl.innerHTML = "🛑 Тест завершено! Натисніть 'Надіслати результат'.";
+    figureTaskEl.innerHTML = "";
+    sendResultsBtn.style.display = "block";
+
+    // Додатково збережемо timeTaken глобально
+    window.timeTaken = timeTaken;
+  }//🏁finishTest
 	// 🔢🎯🔢🎯🎯🎯🔢🔢🎯🎯🎯🔢🎯🎯🔢🔢
 window.calculateScore = function(timeTaken) {
     if (typeof timeTaken !== "number" || isNaN(timeTaken)) {
@@ -130,18 +142,7 @@ window.calculateScore = function(timeTaken) {
     return 0;
 };
 
-//🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁finishTest
-  function finishTest() {
-let timeTaken = Math.floor((Date.now() - window.startTime) / 1000);
-console.log("⌛ Час витрачений на тест:", timeTaken);
-    clearInterval(timerInterval);
-    resultEl.innerHTML = "🛑 Тест завершено! Натисніть 'Надіслати результат'.";
-    figureTaskEl.innerHTML = "";
-    sendResultsBtn.style.display = "block";
 
-    // Додатково збережемо timeTaken глобально
-    window.timeTaken = timeTaken;
-  }//🏁finishTest
 
 // 🏫🧒📛 Функція для запиту імені студента
 window.askStudentName = function () {
