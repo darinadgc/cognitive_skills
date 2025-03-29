@@ -261,13 +261,13 @@ window.submitResults = function(finalScore, level, entryIDs, sendStudentName) {
 // ✅ Викликаємо `submitResults()` правильно при натисканні на кнопку
 sendResultsBtn.addEventListener("click", () => { 
     console.log("📌 Викликаємо submitResults з балом:", window.finalScore);
-    submitResults(window.finalScore, calculateLevel(window.finalScore), getEntryIDs(), askStudentName());
+    submitResults();
 });
 
 
     // ❌❌❌❌❌❌❌❌❌❌❌❌❌❌✅ Функції обмеження повторного проходження тесту (не виконується при завантаженні)
 
-// ✅ Функція перевірки обмежень для конкретного тесту
+// ✅ window.finalScore, calculateLevel(window.finalScore), getEntryIDs(), askStudentName()Функція перевірки обмежень для конкретного тесту
 // function checkTestRetry(testType, retryElement) {
 //     const lastAttemptKey = `lastAttempt${testType}`;
 //     const lastAttempt = localStorage.getItem(lastAttemptKey);
