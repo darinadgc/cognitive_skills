@@ -59,7 +59,8 @@ const sendResultsBtn = document.getElementById("send-results-btn");
     }, 1000);
   }
 //➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕
-  function loadTask() {
+    //           <input type="radio" name="task" id="option-${num}" value="${num === correct ? '1' : 0}">
+function loadTask() {
     const task = tasks[currentTaskIndex];
 
     taskContainer.innerHTML = `
@@ -69,8 +70,7 @@ const sendResultsBtn = document.getElementById("send-results-btn");
         <ol class="radio-options">
           ${[1, 2, 3, 4, 5, 6, 7, 8].map(num => `
             <li>
-             <input type="radio" name="task" id="option-${num}" value="${num === correct ? '1' : 0}">
-
+<input type="radio" name="task" id="option-${num}" value="0">
               <label for="option-${num}">${num}</label>
             </li>
           `).join('')}
@@ -78,13 +78,13 @@ const sendResultsBtn = document.getElementById("send-results-btn");
       </div>
     `;
 
-   /* const correctAnswers = tasks[currentTaskIndex].correct;
+   const correctAnswers = tasks[currentTaskIndex].correct;
     const options = document.querySelectorAll('input[name="task"]');
     options.forEach(option => {
         if (option.value === correctAnswers) {
             option.value = "1";
         }
-    });*/
+    });/* */
 
     document.getElementById("next-btn").addEventListener("click", checkAnswer);
   }
