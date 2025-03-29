@@ -176,8 +176,8 @@ window.getEntryIDs = function () {
   };//getEntryIDs 
 console.log("⏳ Значення window.timeTaken перед обчисленням балу:", window.timeTaken);
 
-let finalScore = calculateScore(window.timeTaken);
-console.log("📌 Значення window.timeTaken перед викликом submitResults:", window.timeTaken);	
+//let finalScore = calculateScore(window.timeTaken);
+//console.log("📌 Значення window.timeTaken перед викликом submitResults:", window.timeTaken);	
 // 	📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧
 window.submitResults = function(finalScore, level, entryIDs, sendStudentName) {
     console.log("📨 submitResults() запущено!");
@@ -255,10 +255,25 @@ if (isNaN(finalScore) || !level) {
         window.isSubmitting = false;
     });
 };// ✅ Головна функція для надсилання результатів у Google Forms
-console.log("📌 Викликаємо submitResults з балом:", finalScore);
+// ✅ Головна функція для надсилання результатів у Google Forms
+sendResultsBtn.addEventListener("click", () => {
+    if (typeof window.timeTaken !== "number" || isNaN(window.timeTaken)) {
+        console.error("❌ Неправильне значення timeTaken:", window.timeTaken);
+        alert("❌ Час тесту не визначено! Спробуйте ще раз.");
+        return;
+    }
 
-    sendResultsBtn.addEventListener("click", () => submitResults());
-    // ❌❌❌❌❌❌❌❌❌❌❌❌❌❌✅ Функції обмеження повторного проходження тесту (не виконується при завантаженні)
+    let finalScore = calculateScore(window.timeTaken);
+    let level = calculateLevel(finalScore);
+    let entryIDs = getEntryIDs();
+    let studentName = askStudentName();
+
+    console.log("📌 Викликаємо submitResults з балом:", finalScore);
+    console.log("📌 Значення window.timeTaken перед викликом submitResults:", window.timeTaken);
+
+    submitResults(finalScore, level, entryIDs, studentName);
+});
+   // ❌❌❌❌❌❌❌❌❌❌❌❌❌❌✅ Функції обмеження повторного проходження тесту (не виконується при завантаженні)
 
 // ✅ Функція перевірки обмежень для конкретного тесту
 // function checkTestRetry(testType, retryElement) {
