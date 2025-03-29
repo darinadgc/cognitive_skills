@@ -107,7 +107,7 @@ console.log("🟢 Всі знайдені питання:", questions);
 
     console.log("🔹 Обчислений бал:", score);
 
-    return { totalQuestions: totalQuestions, answeredQuestions: answeredQuestions, score };
+    return { totalQuestions: totalQuestions.size, answeredQuestions: answeredQuestions.size, score }; // ✅ Повертаємо об'єкт
 };//checkAllAnsweredMotivation ✅✅✅✅✅✅✅✅.size.size.size
 
 //🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮
