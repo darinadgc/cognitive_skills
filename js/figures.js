@@ -106,9 +106,17 @@ function checkAnswer(selectedIndex) {
       option.addEventListener("click", () => checkAnswer(Number(option.dataset.index)));
     });
   }
+console.log("⏳ Значення window.timeTaken перед обчисленням балу:", window.timeTaken);
 
 	// 🔢🎯🔢🎯🎯🎯🔢🔢🎯🎯🎯🔢🎯🎯🔢🔢
 window.calculateScore = function(timeTaken) {
+    if (typeof timeTaken !== "number" || isNaN(timeTaken)) {
+        console.error("❌ Неправильне значення timeTaken:", timeTaken);
+        return 0; // Запобігає undefined
+    }
+
+    console.log("⌛ Час витрачений:", timeTaken);
+
     if (timeTaken < 45) return 10;
     if (timeTaken <= 47) return 9;
     if (timeTaken <= 49) return 8;
@@ -119,10 +127,9 @@ window.calculateScore = function(timeTaken) {
     if (timeTaken <= 72) return 3;
     if (timeTaken <= 79) return 2;
     if (timeTaken <= 82) return 1;
-	console.log("⚠️ Час більше 82 сек:", timeTaken);
-
     return 0;
 };
+
 
 //🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁finishTest
   function finishTest() {
@@ -168,8 +175,9 @@ window.getEntryIDs = function () {
         }
       
         return null;
- 
-  };//getEntryIDs
+   };//getEntryIDs
+console.log("📌 Перед передачею у submitResults: finalScore =", finalScore);
+
 window.submitResults = function(finalScore, level, entryIDs, sendStudentName) {
     console.log("📨 submitResults() запущено!");
 
