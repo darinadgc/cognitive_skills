@@ -98,9 +98,9 @@ score = 0;
       loadTask();
     } else {
       finishTest();
+    }
     console.log("✅ Підрахований бал:", score);
     return score;
-    }
   }//✅ checkAnswer let
 /*window.calculateScore = function () {
     
