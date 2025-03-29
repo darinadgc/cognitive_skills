@@ -194,7 +194,7 @@ console.log("✅ Визначені entry IDs:", entryIDs);
 
  //  let  finalScore = 0;
 //    let  level = "";
-       finalScore = checkAnswer.score;
+       finalScore = checkAnswer();
        level = calculateLevel(finalScore);
     sendStudentName = askStudentName();
     console.log("✅ Ім'я студента:", sendStudentName);
