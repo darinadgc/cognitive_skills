@@ -102,10 +102,10 @@ console.log("🟢 Всі знайдені питання:", questions);
         }
     });
 
-    console.log("🔹 Загальна кількість питань:", totalQuestions);
-    console.log("Відповіді ", checkResults.answeredQuestions);
+   // console.log("🔹 Загальна кількість питань:", totalQuestions);
+   // console.log("Відповіді ", checkResults.answeredQuestions);
 
-    console.log("🔹 Обчислений бал:", score);
+  //  console.log("🔹 Обчислений бал:", score);
 
     return { totalQuestions: totalQuestions.size, answeredQuestions: answeredQuestions.size, score }; // ✅ Повертаємо об'єкт
 };//checkAllAnsweredMotivation ✅✅✅✅✅✅✅✅.size.size.size
