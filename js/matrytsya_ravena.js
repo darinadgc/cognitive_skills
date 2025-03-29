@@ -88,34 +88,34 @@ const sendResultsBtn = document.getElementById("send-results-btn");
     document.getElementById("next-btn").addEventListener("click", calculateScore);
   }
 //✅ ✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅checkAnswer
-/*  function checkAnswer() {
-
-
-    const userAnswer = parseInt(selectedOption.value);
+/*    const userAnswer = parseInt(selectedOption.value);
     if (userAnswer === tasks[currentTaskIndex].correct) {
       score++;
-    }
-
-
-  }*///✅ checkAnswer let
-	//🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮
-/**/window.calculateScore = function () {
-    score = 0;
-    const answers = document.querySelectorAll('input[type="radio"]:checked');
-    const selectedOption = document.querySelector('input[name="task"]:checked');
+    }*/  function checkAnswer() {
+   const selectedOption = document.querySelector('input[name="task"]:checked');
     if (!selectedOption) {
       alert("Оберіть відповідь перед переходом до наступного завдання.");
       return;
     }
-    answers.forEach((input) => {
-        if (input.value === "1") score++; // Припустимо, що правильні відповіді мають value="1"
-    });
-        currentTaskIndex++;
+
+       currentTaskIndex++;
     if (currentTaskIndex < tasks.length) {
       loadTask();
     } else {
       finishTest();
     }
+
+
+  }//✅ checkAnswer let
+	//🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮
+/**/window.calculateScore = function () {
+    score = 0;
+     const answers = document.querySelectorAll('input[type="radio"]:checked');
+
+    answers.forEach((input) => {
+        if (input.value === "1") score++; // Припустимо, що правильні відповіді мають value="1"
+    });
+ 
 console.log("✅ Підрахований бал:", score);
     return score;
 };
