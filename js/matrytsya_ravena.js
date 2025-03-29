@@ -85,7 +85,7 @@ const sendResultsBtn = document.getElementById("send-results-btn");
         }
     });
 
-    document.getElementById("next-btn").addEventListener("click", calculateScore);
+    document.getElementById("next-btn").addEventListener("click", checkAnswer);
   }
 //✅ ✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅checkAnswer
 /*    const userAnswer = parseInt(selectedOption.value);
