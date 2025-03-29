@@ -70,6 +70,7 @@ const sendResultsBtn = document.getElementById("send-results-btn");
 
       if (timeLeft < 0) {
         clearInterval(timerInterval);
+	      console.log(window.timeTaken);
         finishTest();
       }
     }, 1000);
@@ -77,6 +78,7 @@ const sendResultsBtn = document.getElementById("send-results-btn");
 //➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕
   function generateTask() {
     if (score === 10 && incorrectAnswers.length === 0) {
+	    console.log(window.timeTaken);
       finishTest();
       return;
     }
