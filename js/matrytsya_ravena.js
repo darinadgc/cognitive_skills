@@ -7,7 +7,7 @@ const sendResultsBtn = document.getElementById("send-results-btn");
  const taskContainer = document.getElementById("task-container-raven");
   const timerEl = document.getElementById("timer");
   let currentTaskIndex = 0;
-  let score = 0;//  let score;
+  let score;//  let score = 0;
   let timerInterval;
       window.calculateLevel = function(score) {
     if (score === 10) return "Дуже високий";
