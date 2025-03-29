@@ -83,12 +83,13 @@ window.askStudentName = function () {
     console.log("✅ Успішно додані обробники подій!");
 
 //💗💗💗💗💗💗💗💗
-
-//	✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅
-window.checkAllAnsweredMotivation = function() {
     const questions = document.querySelectorAll('input[type="radio"][name^="mot-que"]'); // Вибираємо всі питання мотивації
     const totalQuestions = new Set();
     const answeredQuestions = new Set();
+//	✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅
+window.checkAllAnsweredMotivation = function() {
+totalQuestions.clear(); // Очищаємо перед підрахунком
+    answeredQuestions.clear();
     let score = 0; // Загальний бал
 console.log("🟢 Всі знайдені питання:", questions);
     // ✅ Додаємо питання за `name`, щоб уникнути дублікатів
@@ -102,7 +103,8 @@ console.log("🟢 Всі знайдені питання:", questions);
     });
 
     console.log("🔹 Загальна кількість питань:", totalQuestions.size);
-    console.log("🔹 Відповіді:", answeredQuestions.size);
+    console.log("Відповіді ", checkResults.answeredQuestions);
+
     console.log("🔹 Обчислений бал:", score);
 
     return { totalQuestions: totalQuestions.size, answeredQuestions: answeredQuestions.size, score };
@@ -224,7 +226,7 @@ console.log("🔍 totalQuestions:", checkResults.totalQuestions);
     console.error("❌ Помилка! Значення answeredQuestions або totalQuestions некоректне.", checkResults);
     return;
 }*/
-
+// 
      if (checkResults.answeredQuestions.size === checkResults.totalQuestions.size) {   
      console.log("Відповіді ",checkResults.answeredQuestions.size);
    console.log("Відповідей ",checkResults.totalQuestions.size);
