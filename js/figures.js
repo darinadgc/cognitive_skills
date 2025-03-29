@@ -261,7 +261,7 @@ window.submitResults = function(finalScore, level, entryIDs, sendStudentName) {
 // ✅ Викликаємо `submitResults()` правильно при натисканні на кнопку
 sendResultsBtn.addEventListener("click", () => { 
     console.log("📌 Викликаємо submitResults з балом:", window.finalScore);
-    submitResults();
+    submitResults(window.finalScore, calculateLevel(window.finalScore), getEntryIDs());
 });
 
 
