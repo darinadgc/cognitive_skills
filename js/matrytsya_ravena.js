@@ -106,11 +106,11 @@ const sendResultsBtn = document.getElementById("send-results-btn");
 
     answers.forEach((input) => {
         if (input.value === "1") score++; // Припустимо, що правильні відповіді мають value="1"
-    });*/
-
+    });
     console.log("✅ Підрахований бал:", score);
     return score;
 };
+*/
 
  //🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁finishTest
   function finishTest() {
