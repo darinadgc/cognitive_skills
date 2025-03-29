@@ -7,7 +7,7 @@ const sendResultsBtn = document.getElementById("send-results-btn");
  const taskContainer = document.getElementById("task-container-raven");
   const timerEl = document.getElementById("timer");
   let currentTaskIndex = 0;
-  let score;//  let score = 0;
+  let score = 0;//  let score;
   let timerInterval;
       window.calculateLevel = function(score) {
     if (score === 10) return "Дуже високий";
@@ -31,7 +31,7 @@ const sendResultsBtn = document.getElementById("send-results-btn");
 
   // ✅ Додаємо обробник події ПІСЛЯ оголошення функції
   startBtn.addEventListener("click", startTest);
-//🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛
+
   function startTest() {
     console.log("🔹 startTest() запущено!");
     currentTaskIndex = 0;
@@ -42,7 +42,7 @@ const sendResultsBtn = document.getElementById("send-results-btn");
     startTimer(600);
     loadTask();
   }
-//⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛
+
   function startTimer(duration) {
     let timeLeft = duration;
 
@@ -58,9 +58,8 @@ const sendResultsBtn = document.getElementById("send-results-btn");
       }
     }, 1000);
   }
-//➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕
-    //           <input type="radio" name="task" id="option-${num}" value="${num === correct ? '1' : 0}">
-function loadTask() {
+
+  function loadTask() {
     const task = tasks[currentTaskIndex];
 
     taskContainer.innerHTML = `
@@ -70,7 +69,7 @@ function loadTask() {
         <ol class="radio-options">
           ${[1, 2, 3, 4, 5, 6, 7, 8].map(num => `
             <li>
-<input type="radio" name="task" id="option-${num}" value="0">
+              <input type="radio" name="task" id="option-${num}" value="${num}">
               <label for="option-${num}">${num}</label>
             </li>
           `).join('')}
@@ -78,50 +77,41 @@ function loadTask() {
       </div>
     `;
 
-   const correctAnswers = tasks[currentTaskIndex].correct;
-    const options = document.querySelectorAll('input[name="task"]');
-    options.forEach(option => {
-        if (option.value === correctAnswers) {
-            option.value = "1";
-        }
-    });/* */
-
     document.getElementById("next-btn").addEventListener("click", checkAnswer);
   }
-//✅ ✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅checkAnswer
-/*    const userAnswer = parseInt(selectedOption.value);
-    if (userAnswer === tasks[currentTaskIndex].correct) {
-      score++;
-    }*/  function checkAnswer() {
-   const selectedOption = document.querySelector('input[name="task"]:checked');
+//✅ checkAnswer
+  function checkAnswer() {
+    const selectedOption = document.querySelector('input[name="task"]:checked');
     if (!selectedOption) {
       alert("Оберіть відповідь перед переходом до наступного завдання.");
       return;
     }
 
-       currentTaskIndex++;
+    const userAnswer = parseInt(selectedOption.value);
+    if (userAnswer === tasks[currentTaskIndex].correct) {
+      score++;
+    }
+
+    currentTaskIndex++;
     if (currentTaskIndex < tasks.length) {
       loadTask();
     } else {
       finishTest();
     }
-
-
   }//✅ checkAnswer let
-	//🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮
-/**/window.calculateScore = function () {
+window.calculateScore = function () {
     score = 0;
-     const answers = document.querySelectorAll('input[type="radio"]:checked');
+    const answers = document.querySelectorAll('input[type="radio"]:checked');
 
     answers.forEach((input) => {
         if (input.value === "1") score++; // Припустимо, що правильні відповіді мають value="1"
     });
- 
-console.log("✅ Підрахований бал:", score);
+
+    console.log("✅ Підрахований бал:", score);
     return score;
 };
 
- //🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁finishTest
+ //🏁finishTest
   function finishTest() {
     clearInterval(timerInterval);
     resultEl.innerHTML = "🛑 Тест завершено! Натисніть 'Надіслати результат'.";
@@ -199,7 +189,10 @@ window.submitResults = function(finalScore, level, entryIDs, sendStudentName) {
 
     console.log("🔹 Отримані entry IDs:", entryIDs);
 console.log("✅ Визначені entry IDs:", entryIDs);
-    let selectedEntryIDs = entryIDs; 
+    let selectedEntryIDs = entryIDs; // ✅ Правильне призначення
+
+ //  let  finalScore = 0;
+//    let  level = "";
        finalScore = calculateScore();
        level = calculateLevel(finalScore);
     sendStudentName = askStudentName();
