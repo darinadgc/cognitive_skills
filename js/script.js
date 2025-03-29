@@ -215,7 +215,7 @@ console.log("🔍 Перевірка checkResults:", checkResults);
 console.log("🔍 answeredQuestions:", checkResults.answeredQuestions);
 console.log("🔍 totalQuestions:", checkResults.totalQuestions);
 
-if (
+/*if (
     !checkResults.answeredQuestions || 
     !checkResults.totalQuestions || 
     isNaN(checkResults.answeredQuestions.size) || 
@@ -223,14 +223,14 @@ if (
 ) {
     console.error("❌ Помилка! Значення answeredQuestions або totalQuestions некоректне.", checkResults);
     return;
-}
+}*/
 
      if (checkResults.answeredQuestions.size === checkResults.totalQuestions.size) {   
      console.log("Відповіді ",checkResults.answeredQuestions.size);
    console.log("Відповідей ",checkResults.totalQuestions.size);
 	     
 	console.log("🚀 Виклик submitResults()");
-    submitResults(); // ✅ Викликаємо submitResults
+    // submitResults(); ✅ Викликаємо submitResults
    }
 	   if (checkResults.answeredQuestions.size < checkResults.totalQuestions.size) {
             alert("❗ Будь ласка, відповідайте на всі запитання перед завершенням!");
