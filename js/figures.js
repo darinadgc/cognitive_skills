@@ -132,9 +132,8 @@ window.calculateScore = function(timeTaken) {
 
 
 //🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁finishTest
-  function finishTest() {
-    let timeTaken = Math.floor((Date.now() - window.startTime) / 1000);
-    window.timeTaken = timeTaken; // ✅ Збереження в глобальну змінну
+ function finishTest() {
+    window.timeTaken = Math.floor((Date.now() - window.startTime) / 1000);
     
     console.log("⌛ Час витрачений на тест (у finishTest):", window.timeTaken);
 
@@ -142,7 +141,12 @@ window.calculateScore = function(timeTaken) {
     resultEl.innerHTML = "🛑 Тест завершено! Натисніть 'Надіслати результат'.";
     figureTaskEl.innerHTML = "";
     sendResultsBtn.style.display = "block";
+
+    // ✅ Збереження finalScore в глобальну змінну
+    window.finalScore = calculateScore(window.timeTaken);
+    console.log("🎯 Обчислений бал:", window.finalScore);
 }
+
 //🏁finishTest
 
 
@@ -257,7 +261,10 @@ document.getElementById("send-results-btn").style.display = "none";
     });
 };// ✅ Головна функція для надсилання результатів у Google Forms
 
-    sendResultsBtn.addEventListener("click", () => submitResults());
+sendResultsBtn.addEventListener("click", () => { 
+    console.log("📌 Викликаємо submitResults з балом:", window.finalScore);
+    submitResults();
+});
 
     // ❌❌❌❌❌❌❌❌❌❌❌❌❌❌✅ Функції обмеження повторного проходження тесту (не виконується при завантаженні)
 
