@@ -35,19 +35,12 @@ const sendResultsBtn = document.getElementById("send-results-btn");
   let unansweredTasks = [...tasks]; 
   let incorrectAnswers = []; 
   let currentTask = null;
-    // if (startBtnFigures) {
-    //     startBtnFigures.addEventListener("click", () => {
-    //         console.log("✅ Початок тесту: Упізнай фігури");	
-    //         startTest();
-    //     });
-    // } else {
-    //     console.error("❌ start-btn-figures не знайдено!");
-    // }
+   window.startTime = Date.now();
+console.log("🕒 Початок тесту:", window.startTime);
+
   startBtn.addEventListener("click", startTest);
 //🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛
   function startTest() {
-    window.startTime = Date.now(); // Записуємо час початку тесту
-    
     unansweredTasks = [...tasks];
     incorrectAnswers = [];
     score = 0;
@@ -59,37 +52,24 @@ const sendResultsBtn = document.getElementById("send-results-btn");
     generateTask();
   }
 //⏳⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛
- function startTimer(duration) {
+  function startTimer(duration) {
     let timeLeft = duration;
-    window.startTime = Date.now(); // ✅ Фіксуємо початок тесту!
 
     timerInterval = setInterval(() => {
-        const minutes = Math.floor(timeLeft / 60);
-        const seconds = timeLeft % 60;
-        timerEl.textContent = `⏳ ${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
-        timeLeft--;
+      const minutes = Math.floor(timeLeft / 60);
+      const seconds = timeLeft % 60;
+      timerEl.textContent = `⏳ ${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+      timeLeft--;
 
-        if (timeLeft < 0) {
-            clearInterval(timerInterval);
-            
-            // ✅ Визначаємо timeTaken перед викликом finishTest()
-            window.timeTaken = Math.floor((Date.now() - window.startTime) / 1000);
-            console.log("⌛ Час витрачений на тест:", window.timeTaken);
-
-            finishTest();
-        }
+      if (timeLeft < 0) {
+        clearInterval(timerInterval);
+        finishTest();
+      }
     }, 1000);
-}
-
+  }
 //➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕
   function generateTask() {
     if (score === 10 && incorrectAnswers.length === 0) {
-if (score === 10 && incorrectAnswers.length === 0) {
-    window.timeTaken = Math.floor((Date.now() - window.startTime) / 1000);
-    console.log("⌛ Час витрачений на тест (generateTask):", window.timeTaken);
-    finishTest();
-    return;
-}
       finishTest();
       return;
     }
@@ -99,7 +79,7 @@ if (score === 10 && incorrectAnswers.length === 0) {
       : incorrectAnswers.shift(); 
 
     figureTaskEl.innerHTML = `
-      <img src="${currentTask.image}" class="main-image" id="main-image-figures">
+      <img src="${currentTask.image}" class="main-image">
       <div class="options">
         ${[1, 2, 3, 4].map(num => `
           <img class="option" src="img/upiznay_fihury/upiznay_fihury${currentTask.id}_${num}.png" data-index="${num}">
@@ -123,24 +103,8 @@ if (score === 10 && incorrectAnswers.length === 0) {
     }
     setTimeout(generateTask, 1);
   }
-//🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁finishTest
-
-  function finishTest() {
-    clearInterval(timerInterval);
-   let timeTaken = Math.floor((Date.now() - window.startTime) / 1000);
-console.log("⌛ Час витрачений на тест:", timeTaken);
- resultEl.innerHTML = "🛑 Тест завершено! Натисніть 'Надіслати результат'.";
-    figureTaskEl.innerHTML = "";
-    sendResultsBtn.style.display = "block";
-    //window.timeTaken = timeTaken; Додатково збережемо timeTaken глобально
-    
-  }//🏁finishTest
 	// 🔢🎯🔢🎯🎯🎯🔢🔢🎯🎯🎯🔢🎯🎯🔢🔢
 window.calculateScore = function(timeTaken) {
-    if (typeof timeTaken !== "number" || isNaN(timeTaken)) {
-        console.error("❌ Неправильне значення timeTaken:", timeTaken);
-        return 0; // Запобігання помилкам
-    }
     if (timeTaken < 45) return 10;
     if (timeTaken <= 47) return 9;
     if (timeTaken <= 49) return 8;
@@ -151,10 +115,24 @@ window.calculateScore = function(timeTaken) {
     if (timeTaken <= 72) return 3;
     if (timeTaken <= 79) return 2;
     if (timeTaken <= 82) return 1;
+	console.log("⚠️ Час більше 82 сек:", timeTaken);
 
     return 0;
 };
 
+//🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁finishTest
+  function finishTest() {
+    let timeTaken = Math.floor((Date.now() - window.startTime) / 1000);
+    window.timeTaken = timeTaken; // ✅ Збереження в глобальну змінну
+    
+    console.log("⌛ Час витрачений на тест (у finishTest):", window.timeTaken);
+
+    clearInterval(timerInterval);
+    resultEl.innerHTML = "🛑 Тест завершено! Натисніть 'Надіслати результат'.";
+    figureTaskEl.innerHTML = "";
+    sendResultsBtn.style.display = "block";
+}
+//🏁finishTest
 
 
 // 🏫🧒📛 Функція для запиту імені студента
@@ -186,50 +164,35 @@ window.getEntryIDs = function () {
         }
       
         return null;
-  };//getEntryIDs 
-console.log("⏳ Значення window.timeTaken перед обчисленням балу:", window.timeTaken);
-
-//let finalScore = calculateScore(window.timeTaken);
-//console.log("📌 Значення window.timeTaken перед викликом submitResults:", window.timeTaken);	
-// 	📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧
+ 
+  };//getEntryIDs
 window.submitResults = function(finalScore, level, entryIDs, sendStudentName) {
     console.log("📨 submitResults() запущено!");
-   entryIDs = getEntryIDs();// let 
-	console.log("🔍 Отримані entryIDs:", getEntryIDs());
-
- if (!entryIDs) {
-        console.error(`❌ Не вдалося знайти entry ID для тесту`);
-        return;
-    }   // let selectedEntryIDs = entryIDs ? entryIDs[testType] : null;
 
     if (window.isSubmitting) return;
     window.isSubmitting = true;
-
     console.log("✅ Функція submitResults викликана!");   
-
-    if (!entryIDs || !entryIDs.formURL) {
-        console.error("❌ Не вдалося знайти entry ID для цієї сторінки.");
-        alert("❌ Помилка! Не вдалося знайти entry ID.");
-        window.isSubmitting = false;
+    entryIDs = getEntryIDs();
+if (!entryIDs) {
+        console.error(`❌ Не вдалося знайти entry ID для тесту: ${testType}`);
         return;
     }
-
-    console.log("🔹 Отримані entry IDs:", entryIDs);
 console.log("✅ Визначені entry IDs:", entryIDs);
     let selectedEntryIDs = entryIDs; // ✅ Правильне призначення
+  let score = 0;
 
  //  let  finalScore = 0;
-//    let  level = "";finalScore = calculateScore(timeTaken);
-console.log("⏳ Час перед обчисленням балу:", timeTaken);
+   // let  let level = "";
+console.log("⌛ Час витрачений на тест:", timeTaken);
+finalScore = calculateScore(timeTaken);
 
-console.log("🎯 Обчислений бал:", finalScore);
-       level = calculateLevel(finalScore);
+console.log("🎯 Розрахований бал:", finalScore);
+      level = calculateLevel(finalScore);
     sendStudentName = askStudentName();
     console.log("✅ Ім'я студента:", sendStudentName);
     console.log("✅ Визначені entry IDs:", selectedEntryIDs);
     console.log("✅ Обчислений бал:", finalScore);
     console.log("✅ Визначений рівень:", level);
-
 
     // ✅ Викликаємо submitResults
     // submitResults(selectedEntryIDs, finalScore, level, sendStudentName);
@@ -241,7 +204,16 @@ if (isNaN(finalScore) || !level) {
         console.error("❌ finalScore або level не визначено!");
         return;
     }
-}// 
+}
+    if (!entryIDs || !entryIDs.formURL) {
+        console.error("❌ Не вдалося знайти entry ID для цієї сторінки.");
+        alert("❌ Помилка! Не вдалося знайти entry ID.");
+        window.isSubmitting = false;
+        return;
+    }
+
+    console.log("🔹 Отримані entry IDs:", entryIDs);
+
     const formData = new URLSearchParams();
     formData.append(entryIDs.name, sendStudentName);
     formData.append(entryIDs.score, Number(finalScore));
@@ -259,9 +231,9 @@ if (isNaN(finalScore) || !level) {
     .then(() => {
         console.log("✅ Успішно надіслано!");
         alert("✅ Дані успішно надіслані у Google Forms!");
-    document.getElementById("send-results-btn").style.display = "none";
-        resultEl.innerHTML = `<strong>Дякуємо за проходження!</strong>`;
-})
+document.getElementById("send-results-btn").style.display = "none";
+        resultEl.innerHTML = `<strong>Дякуємо за проходження! Успіхів!</strong>`;
+    })
     .catch(error => {
         console.error("❌ Помилка надсилання:", error);
         alert("❌ Не вдалося надіслати результати. Будь ласка, спробуйте ще раз.");
@@ -270,29 +242,10 @@ if (isNaN(finalScore) || !level) {
         window.isSubmitting = false;
     });
 };// ✅ Головна функція для надсилання результатів у Google Forms
-// ✅ Головна функція для надсилання результатів у Google Forms
-sendResultsBtn.addEventListener("click", () => {
-    if (typeof window.timeTaken !== "number" || isNaN(window.timeTaken)) {
-        console.error("❌ Неправильне значення timeTaken:", window.timeTaken);
-        alert("❌ Час тесту не визначено! Спробуйте ще раз.");
-        return;
-    }
 
-    let finalScore = calculateScore(window.timeTaken);
-    let level = calculateLevel(finalScore);
-    let entryIDs = getEntryIDs();
-    let studentName = askStudentName();
+    sendResultsBtn.addEventListener("click", () => submitResults());
 
-console.log("📌 Викликаємо submitResults з такими аргументами:");
-console.log("🔹 finalScore:", finalScore);
-console.log("🔹 level:", calculateLevel(finalScore));
-console.log("🔹 entryIDs:", getEntryIDs());
-console.log("🔹 studentName:", askStudentName());
-
-
-    submitResults(finalScore, calculateLevel(finalScore), getEntryIDs(), askStudentName());
-});
-   // ❌❌❌❌❌❌❌❌❌❌❌❌❌❌✅ Функції обмеження повторного проходження тесту (не виконується при завантаженні)
+    // ❌❌❌❌❌❌❌❌❌❌❌❌❌❌✅ Функції обмеження повторного проходження тесту (не виконується при завантаженні)
 
 // ✅ Функція перевірки обмежень для конкретного тесту
 // function checkTestRetry(testType, retryElement) {
