@@ -232,7 +232,7 @@ console.log("🔍 totalQuestions:", checkResults.totalQuestions);
    console.log("Відповідей ",checkResults.totalQuestions);
 	     
 	console.log("🚀 Виклик submitResults()");
-    submitResults(); ✅ Викликаємо submitResults// (checkResults.score); // ✅ Передаємо `score`
+    submitResults(checkResults.score);//(); ✅ Викликаємо submitResults  // ✅ Передаємо `score`
    }
 	   if (checkResults.answeredQuestions < checkResults.totalQuestions) {
             alert("❗ Будь ласка, відповідайте на всі запитання перед завершенням!");
