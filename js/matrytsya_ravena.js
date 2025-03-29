@@ -81,6 +81,8 @@ const sendResultsBtn = document.getElementById("send-results-btn");
   }
 //✅ checkAnswer
   function checkAnswer() {
+score = 0;
+
     const selectedOption = document.querySelector('input[name="task"]:checked');
     if (!selectedOption) {
       alert("Оберіть відповідь перед переходом до наступного завдання.");
@@ -91,25 +93,23 @@ const sendResultsBtn = document.getElementById("send-results-btn");
     if (userAnswer === tasks[currentTaskIndex].correct) {
       score++;
     }
-
     currentTaskIndex++;
     if (currentTaskIndex < tasks.length) {
       loadTask();
     } else {
       finishTest();
+    console.log("✅ Підрахований бал:", score);
+    return score;
     }
   }//✅ checkAnswer let
-window.calculateScore = function () {
-    score = 0;
+/*window.calculateScore = function () {
+    
     const answers = document.querySelectorAll('input[type="radio"]:checked');
 
     answers.forEach((input) => {
         if (input.value === "1") score++; // Припустимо, що правильні відповіді мають value="1"
     });
-
-    console.log("✅ Підрахований бал:", score);
-    return score;
-};
+};*/
 
  //🏁finishTest
   function finishTest() {
