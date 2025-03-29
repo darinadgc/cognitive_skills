@@ -83,14 +83,14 @@ window.askStudentName = function () {
     console.log("✅ Успішно додані обробники подій!");
 
 //💗💗💗💗💗💗💗💗
+
+//	✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅
+window.checkAllAnsweredMotivation = function() {
     const questions = document.querySelectorAll('input[type="radio"][name^="mot-que"]'); // Вибираємо всі питання мотивації
     const totalQuestions = new Set();
     const answeredQuestions = new Set();
-//	✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅
-window.checkAllAnsweredMotivation = function() {
     let score = 0; // Загальний бал
 console.log("🟢 Всі знайдені питання:", questions);
-
     // ✅ Додаємо питання за `name`, щоб уникнути дублікатів
     questions.forEach((input) => totalQuestions.add(input.name));
 
@@ -111,7 +111,7 @@ console.log("🟢 Всі знайдені питання:", questions);
 //🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮
 window.calculateScoreMotivation = function() {
     let checkedAnswers = document.querySelectorAll('input[type="radio"]:checked'); // ✅ Отримуємо відповіді
-   let score = 0; // const Загальний бал
+   score = 0; // const Загальний бал
 
         checkedAnswers.forEach((input) => {
         score += parseInt(input.value) || 0; // ✅ Додаємо бали
