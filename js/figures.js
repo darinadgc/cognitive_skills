@@ -112,6 +112,10 @@ const sendResultsBtn = document.getElementById("send-results-btn");
   }
 	// 🔢🎯🔢🎯🎯🎯🔢🔢🎯🎯🎯🔢🎯🎯🔢🔢
 window.calculateScore = function(timeTaken) {
+    if (typeof timeTaken !== "number" || isNaN(timeTaken)) {
+        console.error("❌ Неправильне значення timeTaken:", timeTaken);
+        return 0; // Запобігання помилкам
+    }
     if (timeTaken < 45) return 10;
     if (timeTaken <= 47) return 9;
     if (timeTaken <= 49) return 8;
@@ -130,7 +134,6 @@ window.calculateScore = function(timeTaken) {
   function finishTest() {
 let timeTaken = Math.floor((Date.now() - window.startTime) / 1000);
 console.log("⌛ Час витрачений на тест:", timeTaken);
-
     clearInterval(timerInterval);
     resultEl.innerHTML = "🛑 Тест завершено! Натисніть 'Надіслати результат'.";
     figureTaskEl.innerHTML = "";
