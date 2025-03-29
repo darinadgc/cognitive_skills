@@ -240,7 +240,7 @@ div#task-container-raven {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  gap: 20px;
+  gap: 5px;
 }
 .radio-options {
     list-style: none;
@@ -286,9 +286,16 @@ img.option, label, #option, input[type='radio'] {
 	   font-size: 41px;
 	  }
 }
-  @media (max-width: 581px) {  div#task-container-raven {
-    flex-wrap: wrap;
+  @media (max-width: 581px) {  div#task-container-raven .main-image {
+    max-height: 337px;
 }
+}
+  @media (max-width: 429px) {  div#task-container-raven .main-image {
+    max-height: 303px;
+}
+.radio-options {
+flex-direction: column;
+} 
 }
 @media (min-width: 68px) and (max-width: 480px) {
    h1 {
