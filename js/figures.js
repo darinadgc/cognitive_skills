@@ -59,26 +59,37 @@ const sendResultsBtn = document.getElementById("send-results-btn");
     generateTask();
   }
 //⏳⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛
-  function startTimer(duration) {
+ function startTimer(duration) {
     let timeLeft = duration;
+    window.startTime = Date.now(); // ✅ Фіксуємо початок тесту!
 
     timerInterval = setInterval(() => {
-      const minutes = Math.floor(timeLeft / 60);
-      const seconds = timeLeft % 60;
-      timerEl.textContent = `⏳ ${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
-      timeLeft--;
+        const minutes = Math.floor(timeLeft / 60);
+        const seconds = timeLeft % 60;
+        timerEl.textContent = `⏳ ${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+        timeLeft--;
 
-      if (timeLeft < 0) {
-        clearInterval(timerInterval);
-	      console.log(window.timeTaken);
-        finishTest();
-      }
+        if (timeLeft < 0) {
+            clearInterval(timerInterval);
+            
+            // ✅ Визначаємо timeTaken перед викликом finishTest()
+            window.timeTaken = Math.floor((Date.now() - window.startTime) / 1000);
+            console.log("⌛ Час витрачений на тест:", window.timeTaken);
+
+            finishTest();
+        }
     }, 1000);
-  }
+}
+
 //➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕
   function generateTask() {
     if (score === 10 && incorrectAnswers.length === 0) {
-	    console.log(window.timeTaken);
+if (score === 10 && incorrectAnswers.length === 0) {
+    window.timeTaken = Math.floor((Date.now() - window.startTime) / 1000);
+    console.log("⌛ Час витрачений на тест (generateTask):", window.timeTaken);
+    finishTest();
+    return;
+}
       finishTest();
       return;
     }
