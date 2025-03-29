@@ -43,7 +43,6 @@ console.log("🕒 Початок тесту:", window.startTime);
   function startTest() {
     unansweredTasks = [...tasks];
     incorrectAnswers = [];
-           let score = 0;
     startBtn.style.display = "none";
     sendResultsBtn.style.display = "none";
     document.getElementById("figure-task").style.display = "block";
@@ -68,19 +67,20 @@ console.log("🕒 Початок тесту:", window.startTime);
     }, 1000);
   }
 //✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅
-  function checkAnswer(selectedIndex) {
-      let score = 0;
-if (selectedIndex === currentTask.correct) {
-	 
-      score++;
-      incorrectAnswers = incorrectAnswers.filter(task => task.id !== currentTask.id);
+let score = 0;  // Оголошуємо змінну на глобальному рівні
+
+function checkAnswer(selectedIndex) {
+    if (selectedIndex === currentTask.correct) {
+        score++;  // Тепер score оновлюється глобально
+        incorrectAnswers = incorrectAnswers.filter(task => task.id !== currentTask.id);
     } else {
-      if (!incorrectAnswers.some(task => task.id === currentTask.id)) {
-        incorrectAnswers.push(currentTask);
-      }
+        if (!incorrectAnswers.some(task => task.id === currentTask.id)) {
+            incorrectAnswers.push(currentTask);
+        }
     }
     setTimeout(generateTask, 1);
-  }
+}
+
 	//➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕
   function generateTask() {
     if (score === 10 && incorrectAnswers.length === 0) {
