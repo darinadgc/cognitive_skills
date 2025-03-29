@@ -199,7 +199,7 @@ window.submitResults = function(finalScore, level, entryIDs, sendStudentName) {
     console.log("🔹 Отримані entry IDs:", entryIDs);
 console.log("✅ Визначені entry IDs:", entryIDs);
     let selectedEntryIDs = entryIDs; 
-       finalScore = checkAnswer();
+       finalScore = calculateScore();
        level = calculateLevel(finalScore);
     sendStudentName = askStudentName();
     console.log("✅ Ім'я студента:", sendStudentName);
