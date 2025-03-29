@@ -43,7 +43,7 @@ console.log("🕒 Початок тесту:", window.startTime);
   function startTest() {
     unansweredTasks = [...tasks];
     incorrectAnswers = [];
-    score = 0;
+           let score = 0;
     startBtn.style.display = "none";
     sendResultsBtn.style.display = "none";
     document.getElementById("figure-task").style.display = "block";
@@ -67,7 +67,21 @@ console.log("🕒 Початок тесту:", window.startTime);
       }
     }, 1000);
   }
-//➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕
+//✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅
+  function checkAnswer(selectedIndex) {
+       score = 0;
+if (selectedIndex === currentTask.correct) {
+	 
+      score++;
+      incorrectAnswers = incorrectAnswers.filter(task => task.id !== currentTask.id);
+    } else {
+      if (!incorrectAnswers.some(task => task.id === currentTask.id)) {
+        incorrectAnswers.push(currentTask);
+      }
+    }
+    setTimeout(generateTask, 1);
+  }
+	//➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕
   function generateTask() {
     if (score === 10 && incorrectAnswers.length === 0) {
       finishTest();
@@ -91,18 +105,7 @@ console.log("🕒 Початок тесту:", window.startTime);
       option.addEventListener("click", () => checkAnswer(Number(option.dataset.index)));
     });
   }
-//✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅
-  function checkAnswer(selectedIndex) {
-    if (selectedIndex === currentTask.correct) {
-      score++;
-      incorrectAnswers = incorrectAnswers.filter(task => task.id !== currentTask.id);
-    } else {
-      if (!incorrectAnswers.some(task => task.id === currentTask.id)) {
-        incorrectAnswers.push(currentTask);
-      }
-    }
-    setTimeout(generateTask, 1);
-  }
+
 	// 🔢🎯🔢🎯🎯🎯🔢🔢🎯🎯🎯🔢🎯🎯🔢🔢
 window.calculateScore = function(timeTaken) {
     if (timeTaken < 45) return 10;
@@ -179,15 +182,17 @@ if (!entryIDs) {
     }
 console.log("✅ Визначені entry IDs:", entryIDs);
     let selectedEntryIDs = entryIDs; // ✅ Правильне призначення
-  let score = 0;
+ // let score = 0;
 
  //  let  finalScore = 0;
    // let  let level = "";
 console.log("⌛ Час витрачений на тест:", timeTaken);
-finalScore = calculateScore(timeTaken);
+//finalScore = calculateScore(timeTaken);
 
 console.log("🎯 Розрахований бал:", finalScore);
-      level = calculateLevel(finalScore);
+console.log("⏳ Значення window.timeTaken перед обчисленням балу:", window.timeTaken);
+let finalScore = calculateScore(window.timeTaken);
+console.log("📌 Викликаємо submitResults з балом:", finalScore);
     sendStudentName = askStudentName();
     console.log("✅ Ім'я студента:", sendStudentName);
     console.log("✅ Визначені entry IDs:", selectedEntryIDs);
