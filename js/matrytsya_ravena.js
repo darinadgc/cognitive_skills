@@ -77,40 +77,48 @@ const sendResultsBtn = document.getElementById("send-results-btn");
       </div>
     `;
 
+    const correctAnswers = tasks[currentTaskIndex].correct;
+    const options = document.querySelectorAll('input[name="task"]');
+    options.forEach(option => {
+        if (option.value === correctAnswers) {
+            option.value = "1";
+        }
+    });
+
     document.getElementById("next-btn").addEventListener("click", checkAnswer);
   }
 //✅ ✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅checkAnswer
-  function checkAnswer() {
-    const selectedOption = document.querySelector('input[name="task"]:checked');
-    if (!selectedOption) {
-      alert("Оберіть відповідь перед переходом до наступного завдання.");
-      return;
-    }
+/*  function checkAnswer() {
+
 
     const userAnswer = parseInt(selectedOption.value);
     if (userAnswer === tasks[currentTaskIndex].correct) {
       score++;
     }
 
-    currentTaskIndex++;
+
+  }*///✅ checkAnswer let
+	//🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮
+/**/window.calculateScore = function () {
+    score = 0;
+    const answers = document.querySelectorAll('input[type="radio"]:checked');
+    const selectedOption = document.querySelector('input[name="task"]:checked');
+    if (!selectedOption) {
+      alert("Оберіть відповідь перед переходом до наступного завдання.");
+      return;
+    }
+    answers.forEach((input) => {
+        if (input.value === "1") score++; // Припустимо, що правильні відповіді мають value="1"
+    });
+        currentTaskIndex++;
     if (currentTaskIndex < tasks.length) {
       loadTask();
     } else {
       finishTest();
     }
-  }//✅ checkAnswer let
-	//🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮
-/*window.calculateScore = function () {
-    score = 0;
-    const answers = document.querySelectorAll('input[type="radio"]:checked');
-
-    answers.forEach((input) => {
-        if (input.value === "1") score++; // Припустимо, що правильні відповіді мають value="1"
-    });
-    console.log("✅ Підрахований бал:", score);
+console.log("✅ Підрахований бал:", score);
     return score;
 };
-*/
 
  //🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁finishTest
   function finishTest() {
@@ -190,10 +198,7 @@ window.submitResults = function(finalScore, level, entryIDs, sendStudentName) {
 
     console.log("🔹 Отримані entry IDs:", entryIDs);
 console.log("✅ Визначені entry IDs:", entryIDs);
-    let selectedEntryIDs = entryIDs; // ✅ Правильне призначення
-
- //  let  finalScore = 0;
-//    let  level = "";
+    let selectedEntryIDs = entryIDs; 
        finalScore = checkAnswer();
        level = calculateLevel(finalScore);
     sendStudentName = askStudentName();
