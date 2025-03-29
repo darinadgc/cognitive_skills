@@ -86,7 +86,7 @@ const sendResultsBtn = document.getElementById("send-results-btn");
       : incorrectAnswers.shift(); 
 
     figureTaskEl.innerHTML = `
-      <img src="${currentTask.image}" class="main-image">
+      <img src="${currentTask.image}" class="main-image" id="main-image-figures">
       <div class="options">
         ${[1, 2, 3, 4].map(num => `
           <img class="option" src="img/upiznay_fihury/upiznay_fihury${currentTask.id}_${num}.png" data-index="${num}">
