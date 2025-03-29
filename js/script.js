@@ -107,9 +107,7 @@ console.log("🟢 Всі знайдені питання:", questions);
 
     return { totalQuestions: totalQuestions.size, answeredQuestions: answeredQuestions.size, score };
 };//checkAllAnsweredMotivation ✅✅✅✅✅✅✅✅
-    console.log("🔹 Загальна кількість питань:", totalQuestions.size);
-    console.log("🔹 Відповіді:", answeredQuestions.size);
-    console.log("🔹 Обчислений бал:", score);
+
 //🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮
 window.calculateScoreMotivation = function() {
     let checkedAnswers = document.querySelectorAll('input[type="radio"]:checked'); // ✅ Отримуємо відповіді
@@ -118,6 +116,8 @@ window.calculateScoreMotivation = function() {
         checkedAnswers.forEach((input) => {
         score += parseInt(input.value) || 0; // ✅ Додаємо бали
     });
+        console.log("🔹 Загальна кількість питань:", totalQuestions.size);
+    console.log("🔹 Відповіді:", answeredQuestions.size);
     console.log("🔹 Обчислений бал:", score); // ✅ Переносимо до return
 //❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗
     return score;
