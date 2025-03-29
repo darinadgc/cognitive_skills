@@ -88,7 +88,7 @@ window.askStudentName = function () {
     const answeredQuestions = new Set();
 //	✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅
 window.checkAllAnsweredMotivation = function() {
-    score = 0; //let  Загальний бал
+    let score = 0; // Загальний бал
 console.log("🟢 Всі знайдені питання:", questions);
 
     // ✅ Додаємо питання за `name`, щоб уникнути дублікатів
