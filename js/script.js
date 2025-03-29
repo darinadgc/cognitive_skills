@@ -102,13 +102,13 @@ console.log("🟢 Всі знайдені питання:", questions);
         }
     });
 
-    console.log("🔹 Загальна кількість питань:", totalQuestions.size);
+    console.log("🔹 Загальна кількість питань:", totalQuestions);
     console.log("Відповіді ", checkResults.answeredQuestions);
 
     console.log("🔹 Обчислений бал:", score);
 
-    return { totalQuestions: totalQuestions.size, answeredQuestions: answeredQuestions.size, score };
-};//checkAllAnsweredMotivation ✅✅✅✅✅✅✅✅
+    return { totalQuestions: totalQuestions, answeredQuestions: answeredQuestions, score };
+};//checkAllAnsweredMotivation ✅✅✅✅✅✅✅✅.size.size.size
 
 //🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮
 window.calculateScoreMotivation = function() {
@@ -211,8 +211,8 @@ console.log("✅ finalScore після розрахунку:", finalScore);
 
   sendResultsBtnMotivation.addEventListener("click", () => {
 	    let checkResults = checkAllAnsweredMotivation();
-    console.log("Відповіді ",answeredQuestions.size);
-//  let totalQuestions, answeredQuestions;
+    console.log("Відповіді ",checkResults.answeredQuestions);
+// .size let totalQuestions, answeredQuestions;
 console.log("🔍 Перевірка checkResults:", checkResults);
 console.log("🔍 answeredQuestions:", checkResults.answeredQuestions);
 console.log("🔍 totalQuestions:", checkResults.totalQuestions);
@@ -220,23 +220,23 @@ console.log("🔍 totalQuestions:", checkResults.totalQuestions);
 /*if (
     !checkResults.answeredQuestions || 
     !checkResults.totalQuestions || 
-    isNaN(checkResults.answeredQuestions.size) || 
-    isNaN(checkResults.totalQuestions.size)
+    isNaN(checkResults.answeredQuestions) || 
+    isNaN(checkResults.totalQuestions)
 ) {
     console.error("❌ Помилка! Значення answeredQuestions або totalQuestions некоректне.", checkResults);
     return;
 }*/
-// 
-     if (checkResults.answeredQuestions.size === checkResults.totalQuestions.size) {   
-     console.log("Відповіді ",checkResults.answeredQuestions.size);
-   console.log("Відповідей ",checkResults.totalQuestions.size);
+// .size.size.size.size.size.size.size.size.size
+     if (checkResults.answeredQuestions === checkResults.totalQuestions) {   
+     console.log("Відповіді ",checkResults.answeredQuestions);
+   console.log("Відповідей ",checkResults.totalQuestions);
 	     
 	console.log("🚀 Виклик submitResults()");
     // submitResults(); ✅ Викликаємо submitResults
    }
-	   if (checkResults.answeredQuestions.size < checkResults.totalQuestions.size) {
+	   if (checkResults.answeredQuestions < checkResults.totalQuestions) {
             alert("❗ Будь ласка, відповідайте на всі запитання перед завершенням!");
-    console.log("Відповіді ",answeredQuestions.size);
+    console.log("Відповіді ",answeredQuestions);
             return;
         }
   
