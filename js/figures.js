@@ -184,45 +184,16 @@ console.log("📌 Перед передачею у submitResults: score =", scor
 //📨📨📨📨📨📨📨📨📨📨📨📨📨📨📨📨📨📨📨
 window.submitResults = function(finalScore, level, entryIDs, sendStudentName) {
     console.log("📨 submitResults() запущено!");
-
+   entryIDs = getEntryIDs();
+    // let selectedEntryIDs = entryIDs ? entryIDs[testType] : null;
+if (!entryIDs) {
+        console.error(`❌ Не вдалося знайти entry ID для тесту`);
+        return;
+    }
     if (window.isSubmitting) return;
     window.isSubmitting = true;
-    console.log("✅ Функція submitResults викликана!");
 
-    entryIDs = getEntryIDs();
-    if (!entryIDs) {
-        console.error("❌ Не вдалося знайти entry ID для тесту");
-        return;
-    }
-
-    console.log("✅ Визначені entry IDs:", entryIDs);
-if (typeof window.timeTaken === "undefined") {
-    console.error("❌ Час не визначено! Неможливо розрахувати бал.");
-    return;
-}
-
-    // Обчислення балу
-    finalScore = calculateScore(window.timeTaken);
-    window.finalScore = finalScore;
-    console.log("🎯 Розрахований бал:", window.finalScore);
-
-    // Обчислення рівня
-    level = calculateLevel(finalScore);
-    console.log("✅ Визначений рівень:", level);
-
-    // Отримання імені студента
-    sendStudentName = askStudentName();
-    if (!sendStudentName) {
-        console.error("❌ askStudentName() повернула `null`. Виконання зупинено.");
-        return;
-    }
-
-    if (isNaN(finalScore) || !level) { 
-        console.error("❌ finalScore або level не визначено!");
-        return;
-    }
-
-    console.log("✅ Ім'я студента:", sendStudentName);
+    console.log("✅ Функція submitResults викликана!");   
 
     if (!entryIDs || !entryIDs.formURL) {
         console.error("❌ Не вдалося знайти entry ID для цієї сторінки.");
@@ -230,7 +201,31 @@ if (typeof window.timeTaken === "undefined") {
         window.isSubmitting = false;
         return;
     }
+    let selectedEntryIDs = entryIDs; //let let  let ✅ Правильне призначення
+ 
+    sendStudentName = askStudentName();
+        console.log("✅ Ім'я студента:", sendStudentName);
+    finalScore = 0;
+    level = "";
+    console.log("✅ Визначений рівень:", level);
+if (!sendStudentName) {
+        console.error("❌ askStudentName() повернула `null`. Виконання зупинено.");
+        return;
+    }
+console.log("🔍 Викликаємо calculateScoreMotivation...");
+  //   window.finalScore = finalScore;
 
+    // Обчислення рівня
+    level = calculateLevel(finalScore);
+    console.log("✅ Визначений рівень:", level);
+finalScore = calculateScore();
+    console.log("🎯 Розрахований бал:", finalScore);
+console.log("✅ finalScore після розрахунку:", finalScore);
+        level = getLevelMotivation(finalScore);
+        console.log("✅ Ім'я студента:", sendStudentName);
+    console.log("✅ Визначені entry IDs:", selectedEntryIDs);
+    console.log("✅ Обчислений бал:", finalScore);
+ 
     console.log("🔹 Отримані entry IDs:", entryIDs);
 
     const formData = new URLSearchParams();
@@ -265,11 +260,11 @@ if (typeof window.timeTaken === "undefined") {
 // ✅ Викликаємо `submitResults()` правильно при натисканні на кнопку
 sendResultsBtn.addEventListener("click", () => { 
 console.log("📌 Викликаємо submitResults з балом:", window.finalScore);
-
+  let checkScore = calculateScore(window.timeTaken);
     // let finalScore = window.finalScore || 0; Запобігаємо `undefined`
     // let level = calculateLevel(finalScore); Визначаємо рівень
     // let entryIDs = getEntryIDs(); Отримуємо entry ID для Google Forms
-submitResults(); // ✅ Передаємо аргументиfinalScore, level, entryIDs
+submitResults(checkScore.score); // ✅ Передаємо аргументиfinalScore, level, entryIDs
        //  submitResults(window.finalScore, calculateLevel(window.finalScore), getEntryIDs());
 });
 
