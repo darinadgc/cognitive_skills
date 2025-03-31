@@ -232,8 +232,7 @@ button {
 }
    div#task-container-raven .main-image {
         max-height: 337px;
-    display: block;
-    margin: 0 auto;
+
 }
 div#task-container-raven {
   display: flex;
