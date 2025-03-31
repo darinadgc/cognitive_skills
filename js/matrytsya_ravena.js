@@ -59,26 +59,28 @@ const sendResultsBtn = document.getElementById("send-results-btn");
     }, 1000);
   }
 
-  function loadTask() {
+function loadTask() {
     const task = tasks[currentTaskIndex];
 
     taskContainer.innerHTML = `
-      <img src="${task.image}" class="main-image">
-      <div class="next-div">
-        <button id="next-btn">Далі</button>
-        <ol class="radio-options">
-          ${[1, 2, 3, 4, 5, 6, 7, 8].map(num => `
-            <li>
-              <input type="radio" name="task" id="option-${num}" value="${num}">
-              <label for="option-${num}">${num}</label>
-            </li>
-          `).join('')}
-        </ol>
-      </div>
+        <div class="task-content">
+            <img src="${task.image}" class="main-image">
+            <div class="next-div">
+                <button id="next-btn">Далі</button>
+                <ol class="radio-options">
+                    ${[1, 2, 3, 4, 5, 6, 7, 8].map(num => `
+                        <li>
+                            <input type="radio" name="task" id="option-${num}" value="${num}">
+                            <label for="option-${num}">${num}</label>
+                        </li>
+                    `).join('')}
+                </ol>
+            </div>
+        </div>
     `;
 
     document.getElementById("next-btn").addEventListener("click", checkAnswer);
-  }
+}
 //✅ checkAnswer
 function checkAnswer() {
     const selectedOption = document.querySelector('input[name="task"]:checked');
