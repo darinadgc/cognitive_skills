@@ -10,6 +10,7 @@ const sendResultsBtn = document.getElementById("send-results-btn");
  let timerInterval;
      //📶📶📶📶📶📶📶📶📶📶📶📶📶📶📶📶📶📶📶📶📶
 	window.calculateLevel = function(score) {
+      console.log("🔍 Поточний score (calculateLevel):", score);
     if (score === 10) return "Дуже високий";
     if (score >= 8) return "Високий";
     if (score >= 4) return "Середній";
