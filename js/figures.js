@@ -210,7 +210,6 @@ if (!sendStudentName) {
         console.error("❌ askStudentName() повернула `null`. Виконання зупинено.");
         return;
     }
-console.log("🔍 Викликаємо calculateScoreMotivation...");
   //   window.finalScore = finalScore;
 
     // console.log("✅ Визначений рівень:", level);Обчислення рівня    level = calculateLevel(finalScore);
