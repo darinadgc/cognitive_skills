@@ -107,7 +107,6 @@ function checkAnswer(selectedIndex) {
       option.addEventListener("click", () => checkAnswer(Number(option.dataset.index)));
     });
   }
-console.log("⏳ Значення window.timeTaken перед обчисленням балу:", window.timeTaken);
 
 	// 🔢🎯🔢🎯🎯🎯🔢🔢🎯🎯🎯🔢🎯🎯🔢🔢
 window.calculateScore = function(timeTaken) {
@@ -221,12 +220,12 @@ console.log("🔍 Викликаємо calculateScoreMotivation...");
     return;
 }
    
-window.finalScore = calculateScore(timeTaken);
-    console.log("🎯 Розрахований бал:", finalScore);
+//window.finalScore = calculateScore(timeTaken);
+   // console.log("🎯 Розрахований бал:", finalScore);
         level = calculateLevel(finalScore);
         console.log("✅ Ім'я студента:", sendStudentName);
     console.log("✅ Визначені entry IDs:", selectedEntryIDs);
-    console.log("✅ Обчислений бал:", finalScore);
+    //console.log("✅ Обчислений бал:", finalScore);
  
     console.log("🔹 Отримані entry IDs:", entryIDs);
 
@@ -262,6 +261,7 @@ window.finalScore = calculateScore(timeTaken);
 // ✅ Викликаємо `submitResults()` правильно при натисканні на кнопку
 sendResultsBtn.addEventListener("click", () => { 
     console.log("📌 Викликаємо submitResults з балом:", window.finalScore);
+console.log("⏳ Значення window.timeTaken перед  submitResults:", window.timeTaken);
 
     // ✅ Тепер `submitResults()` сама розраховує бал і рівень, тому не треба передавати аргументи
     submitResults();
