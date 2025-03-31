@@ -231,7 +231,9 @@ button {
 	margin: 83px auto;
 }
    div#task-container-raven .main-image {
-    max-height: 337px;
+        max-height: 337px;
+    display: block;
+    margin: 0 auto;
 }
 div#task-container-raven {
   display: flex;
@@ -268,6 +270,7 @@ button {
 .next-div {
   flex-direction: column;
   display: flex;
+  align-items: center;
 }
 img.option, label, #option, input[type='radio'] {
   cursor: pointer;
