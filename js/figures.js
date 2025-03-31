@@ -215,12 +215,11 @@ if (!sendStudentName) {
 console.log("🔍 Викликаємо calculateScoreMotivation...");
   //   window.finalScore = finalScore;
 
-    // Обчислення рівня
-    level = calculateLevel(finalScore);
-    console.log("✅ Визначений рівень:", level);
+    // console.log("✅ Визначений рівень:", level);Обчислення рівня    level = calculateLevel(finalScore);
+
+    
 finalScore = calculateScore();
     console.log("🎯 Розрахований бал:", finalScore);
-console.log("✅ finalScore після розрахунку:", finalScore);
         level = getLevel(finalScore);
         console.log("✅ Ім'я студента:", sendStudentName);
     console.log("✅ Визначені entry IDs:", selectedEntryIDs);
