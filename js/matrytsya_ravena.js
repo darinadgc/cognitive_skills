@@ -111,7 +111,7 @@ score = 0;
     });
 };*/
 
- //🏁finishTest
+ //🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁finishTest
   function finishTest() {
     clearInterval(timerInterval);
     resultEl.innerHTML = "🛑 Тест завершено! Натисніть 'Надіслати результат'.";
@@ -132,7 +132,7 @@ window.askStudentName = function () {
     }
 
     // ✅ Фільтр символів у імені
-    let cleanedStudentName = studentName.replace(/[^a-zA-ZА-Яа-яЇїІіЄєҐґ0-9' ]/g, "");
+    let cleanedStudentName = studentName.replace(/[^a-zA-ZА-Яа-яЇїІіЄєҐґ0-9.' ]/g, "");
 
     return cleanedStudentName;  // ✅ Повертаємо очищене ім'я
 };// 🏫🧒📛 Функція для запиту імені студента
