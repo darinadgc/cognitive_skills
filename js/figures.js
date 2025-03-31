@@ -258,7 +258,7 @@ function submitResults(finalScore, level, entryIDs, sendStudentName) {
 
 // Додання обробника події до кнопки надсилання результатів
 sendResultsBtn.addEventListener("click", () => {
-    submitResults(window.finalScore, null, null, null);
+    submitResults();
 });
 
 
