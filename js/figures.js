@@ -180,9 +180,9 @@ window.getEntryIDs = function () {
       
         return null;
    };//getEntryIDs
-console.log("📌 Перед передачею у submitResults: finalScore =", finalScore);
+console.log("📌 Перед передачею у submitResults: finalScore =", window.finalScore);
 //📨📨📨📨📨📨📨📨📨📨📨📨📨📨📨📨📨📨📨
-window.submitResults = function(finalScore, level, entryIDs, sendStudentName) {
+window.submitResults = function(window.finalScore, level, entryIDs, sendStudentName) {
     console.log("📨 submitResults() запущено!");
    entryIDs = getEntryIDs();
     // let selectedEntryIDs = entryIDs ? entryIDs[testType] : null;
