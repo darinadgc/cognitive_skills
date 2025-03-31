@@ -39,7 +39,7 @@ const sendResultsBtn = document.getElementById("send-results-btn");
     console.log("🔹 startTest() запущено!");
     currentTaskIndex = 0;
     score = 0;
-    //taskContainer.style.display = "flex";
+    taskContainer.style.display = "flex";
     startBtn.style.display = "none";
     sendResultsBtn.style.display = "none";
     startTimer(600);
@@ -73,8 +73,8 @@ function loadTask() {
                 </li>
             `).join('')}
         `;
-        nextBtn.style.display = "block";
-        nextBtn.addEventListener("click", checkAnswer);
+            nextBtn.style.display = "block";
+        nextBtn.onclick = checkAnswer;
     }
 //✅ checkAnswer
 function checkAnswer() {
@@ -109,8 +109,8 @@ function checkAnswer() {
   function finishTest() {
     clearInterval(timerInterval);
     resultEl.innerHTML = "🛑 Тест завершено! Натисніть 'Надіслати результат'.";
-    taskContainer.innerHTML = "";
-    sendResultsBtn.style.display = "block";
+ taskContainer.style.display = "none";
+        sendResultsBtn.style.display = "block";
   }//🏁finishTest 
 
 
