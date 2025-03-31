@@ -181,7 +181,11 @@ window.getEntryIDs = function () {
         return null;
    };//getEntryIDs
 //📨📨📨📨📨📨📨📨📨📨📨📨📨📨📨📨📨📨📨
-window.submitResults = function(finalScore, level, entryIDs, sendStudentName) {
+
+
+// ✅ Викликаємо `submitResults()` правильно при натисканні на кнопку
+sendResultsBtn.addEventListener("click", () => { 
+    window.submitResults = function(finalScore, level, entryIDs, sendStudentName) {
     console.log("📨 submitResults() запущено!");
     entryIDs = getEntryIDs();
     if (!entryIDs) {
@@ -253,18 +257,8 @@ window.submitResults = function(finalScore, level, entryIDs, sendStudentName) {
     .finally(() => {
         window.isSubmitting = false;
     });
-};
-
-// ✅ Викликаємо `submitResults()` правильно при натисканні на кнопку
-sendResultsBtn.addEventListener("click", () => { 
-    if (typeof window.finalScore === "undefined") {
-        console.error("❌ Бал не визначено! Неможливо відправити результат.");
-        return;
-    }
-    console.log("📌 Викликаємо submitResults з балом:", window.finalScore);
-    console.log("⏳ Значення window.timeTaken перед submitResults:", window.timeTaken);
-    submitResults(window.finalScore);
-});
+};//submitResults
+});//click
 
 
 
