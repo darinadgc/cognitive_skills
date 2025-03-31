@@ -181,11 +181,8 @@ window.getEntryIDs = function () {
         return null;
    };//getEntryIDs
 //📨📨📨📨📨📨📨📨📨📨📨📨📨📨📨📨📨📨📨
-
-
-// ✅ Викликаємо `submitResults()` правильно при натисканні на кнопку
-sendResultsBtn.addEventListener("click", () => { 
-    window.submitResults = function(finalScore, level, entryIDs, sendStudentName) {
+// Оголошення функції submitResults на глобальному рівні
+function submitResults(finalScore, level, entryIDs, sendStudentName) {
     console.log("📨 submitResults() запущено!");
     entryIDs = getEntryIDs();
     if (!entryIDs) {
@@ -195,7 +192,7 @@ sendResultsBtn.addEventListener("click", () => {
     if (window.isSubmitting) return;
     window.isSubmitting = true;
 
-    console.log("✅ Функція submitResults викликана!");   
+    console.log("✅ Функція submitResults викликана!");
 
     if (!entryIDs || !entryIDs.formURL) {
         console.error("❌ Не вдалося знайти entry ID для цієї сторінки.");
@@ -203,7 +200,7 @@ sendResultsBtn.addEventListener("click", () => {
         window.isSubmitting = false;
         return;
     }
-    let selectedEntryIDs = entryIDs; 
+    let selectedEntryIDs = entryIDs;
 
     sendStudentName = askStudentName();
     console.log("✅ Ім'я студента:", sendStudentName);
@@ -240,7 +237,7 @@ sendResultsBtn.addEventListener("click", () => {
 
     fetch(entryIDs.formURL, {
         method: "POST",
-        mode: "no-cors", 
+        mode: "no-cors",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: formData
     })
@@ -257,8 +254,12 @@ sendResultsBtn.addEventListener("click", () => {
     .finally(() => {
         window.isSubmitting = false;
     });
-};//submitResults
-});//click
+}
+
+// Додання обробника події до кнопки надсилання результатів
+sendResultsBtn.addEventListener("click", () => {
+    submitResults(window.finalScore, null, null, null);
+});
 
 
 
