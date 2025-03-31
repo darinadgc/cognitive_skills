@@ -196,6 +196,10 @@ window.submitResults = function(finalScore, level, entryIDs, sendStudentName) {
     }
 
     console.log("✅ Визначені entry IDs:", entryIDs);
+if (typeof window.timeTaken === "undefined") {
+    console.error("❌ Час не визначено! Неможливо розрахувати бал.");
+    return;
+}
 
     // Обчислення балу
     finalScore = calculateScore(window.timeTaken);
