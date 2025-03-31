@@ -217,7 +217,11 @@ console.log("🔍 Викликаємо calculateScoreMotivation...");
 
     // console.log("✅ Визначений рівень:", level);Обчислення рівня    level = calculateLevel(finalScore);
 
-    
+ if (typeof window.timeTaken === "undefined") {
+    console.error("❌ Час не визначено! Неможливо розрахувати бал.");
+    return;
+}
+   
 finalScore = calculateScore();
     console.log("🎯 Розрахований бал:", finalScore);
         level = calculateLevel(finalScore);
