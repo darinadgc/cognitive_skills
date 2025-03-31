@@ -220,7 +220,7 @@ console.log("🔍 Викликаємо calculateScoreMotivation...");
     return;
 }
    
-finalScore = calculateScore(window.timeTaken);
+window.finalScore = calculateScore(timeTaken);
     console.log("🎯 Розрахований бал:", finalScore);
         level = calculateLevel(finalScore);
         console.log("✅ Ім'я студента:", sendStudentName);
