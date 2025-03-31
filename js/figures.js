@@ -260,14 +260,12 @@ finalScore = calculateScore(window.timeTaken);
 
 // ✅ Викликаємо `submitResults()` правильно при натисканні на кнопку
 sendResultsBtn.addEventListener("click", () => { 
-console.log("📌 Викликаємо submitResults з балом:", window.finalScore);
-  let checkScore = calculateScore(timeTaken);
-    // let finalScore = window.finalScore || 0; Запобігаємо `undefined`
-    // let level = calculateLevel(finalScore); Визначаємо рівень
-    // let entryIDs = getEntryIDs(); Отримуємо entry ID для Google Forms
-submitResults(checkScore.score); // ✅ Передаємо аргументиfinalScore, level, entryIDs
-       //  submitResults(window.finalScore, calculateLevel(window.finalScore), getEntryIDs());
+    console.log("📌 Викликаємо submitResults з балом:", window.finalScore);
+
+    // ✅ Тепер `submitResults()` сама розраховує бал і рівень, тому не треба передавати аргументи
+    submitResults();
 });
+
 
 
     // ❌❌❌❌❌❌❌❌❌❌❌❌❌❌✅ Функції обмеження повторного проходження тесту (не виконується при завантаженні)
