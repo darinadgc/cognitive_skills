@@ -9,7 +9,10 @@ const sendResultsBtn = document.getElementById("send-results-btn");
     const nextBtn = document.getElementById("next-btn");
     const radioOptions = document.querySelector(".radio-options");
   const timerEl = document.getElementById("timer");
-  let currentTaskIndex = 0;
+    const bodyContent = document.querySelector("main");
+    const header = document.querySelector("header");
+    const footer = document.querySelector("footer");
+	let currentTaskIndex = 0;
   let score = 0;//  let score;
   let timerInterval;
       window.calculateLevel = function(score) {
@@ -36,16 +39,23 @@ const sendResultsBtn = document.getElementById("send-results-btn");
   startBtn.addEventListener("click", startTest);
 
   function startTest() {
-    console.log("🔹 startTest() запущено!");
-    currentTaskIndex = 0;
-    score = 0;
-    taskContainer.style.display = "flex";
-    startBtn.style.display = "none";
-    sendResultsBtn.style.display = "none";
-    startTimer(600);
-    loadTask();
-  }
-
+        console.log("🔹 startTest() запущено!");
+        currentTaskIndex = 0;
+        score = 0;
+        taskContainer.style.display = "flex";
+        taskContainer.classList.add("task-container-active");
+        startBtn.style.display = "none";
+        sendResultsBtn.style.display = "none";
+        header.classList.add("low-opacity");
+        footer.classList.add("low-opacity");
+        Array.from(bodyContent.children).forEach(child => {
+            if (child !== taskContainer && child !== timerEl) {
+                child.classList.add("low-opacity");
+            }
+        });
+        startTimer(600);
+        loadTask();
+    }
   function startTimer(duration) {
     let timeLeft = duration;
 
