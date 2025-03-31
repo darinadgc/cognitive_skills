@@ -263,7 +263,7 @@ sendResultsBtn.addEventListener("click", () => {
     }
     console.log("📌 Викликаємо submitResults з балом:", window.finalScore);
     console.log("⏳ Значення window.timeTaken перед submitResults:", window.timeTaken);
-    submitResults();
+    submitResults(window.finalScore);
 });
 
 
