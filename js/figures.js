@@ -221,7 +221,7 @@ console.log("🔍 Викликаємо calculateScoreMotivation...");
 finalScore = calculateScore();
     console.log("🎯 Розрахований бал:", finalScore);
 console.log("✅ finalScore після розрахунку:", finalScore);
-        level = getLevelMotivation(finalScore);
+        level = getLevel(finalScore);
         console.log("✅ Ім'я студента:", sendStudentName);
     console.log("✅ Визначені entry IDs:", selectedEntryIDs);
     console.log("✅ Обчислений бал:", finalScore);
