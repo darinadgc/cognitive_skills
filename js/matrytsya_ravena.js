@@ -80,28 +80,25 @@ const sendResultsBtn = document.getElementById("send-results-btn");
     document.getElementById("next-btn").addEventListener("click", checkAnswer);
   }
 //✅ checkAnswer
-  function checkAnswer() {
-score = 0;
-
+function checkAnswer() {
     const selectedOption = document.querySelector('input[name="task"]:checked');
     if (!selectedOption) {
-      alert("Оберіть відповідь перед переходом до наступного завдання.");
-      return;
+        alert("Оберіть відповідь перед переходом до наступного завдання.");
+        return;
     }
-
     const userAnswer = parseInt(selectedOption.value);
     if (userAnswer === tasks[currentTaskIndex].correct) {
-      score++;
+        score++;
     }
     currentTaskIndex++;
     if (currentTaskIndex < tasks.length) {
-      loadTask();
+        loadTask();
     } else {
-      finishTest();
+        finishTest();
     }
     console.log("✅ Підрахований бал:", score);
     return score;
-  }//✅ checkAnswer let
+}//✅ checkAnswer let
 /*window.calculateScore = function () {
     
     const answers = document.querySelectorAll('input[type="radio"]:checked');
@@ -169,16 +166,15 @@ window.getEntryIDs = function () {
 
 window.submitResults = function(finalScore, level, entryIDs, sendStudentName) {
     console.log("📨 submitResults() запущено!");
-   entryIDs = getEntryIDs();// let 
- if (!entryIDs) {
+    entryIDs = getEntryIDs();
+    if (!entryIDs) {
         console.error(`❌ Не вдалося знайти entry ID для тесту: ${testType}`);
         return;
-    }   // let selectedEntryIDs = entryIDs ? entryIDs[testType] : null;
-
+    }
     if (window.isSubmitting) return;
     window.isSubmitting = true;
 
-    console.log("✅ Функція submitResults викликана!");   
+    console.log("✅ Функція submitResults викликана!");
 
     if (!entryIDs || !entryIDs.formURL) {
         console.error("❌ Не вдалося знайти entry ID для цієї сторінки.");
@@ -188,34 +184,27 @@ window.submitResults = function(finalScore, level, entryIDs, sendStudentName) {
     }
 
     console.log("🔹 Отримані entry IDs:", entryIDs);
-console.log("✅ Визначені entry IDs:", entryIDs);
-    let selectedEntryIDs = entryIDs; // ✅ Правильне призначення
-
- //  let  finalScore = 0;
-//    let  level = "";
-       finalScore = checkAnswer();
-       level = calculateLevel(finalScore);
+    console.log("✅ Визначені entry IDs:", entryIDs);
+    
+    level = calculateLevel(score);  // Використовує глобальну змінну score
     sendStudentName = askStudentName();
     console.log("✅ Ім'я студента:", sendStudentName);
-    console.log("✅ Визначені entry IDs:", selectedEntryIDs);
-    console.log("✅ Обчислений бал:", finalScore);
+    console.log("✅ Визначені entry IDs:", entryIDs);
+    console.log("✅ Обчислений бал:", score);
     console.log("✅ Визначений рівень:", level);
 
-    // ✅ Викликаємо submitResults
-   //  submitResults(selectedEntryIDs, finalScore, level, sendStudentName);
     if (!sendStudentName) {
         console.error("❌ askStudentName() повернула `null`. Виконання зупинено.");
         return;
-if (isNaN(finalScore) || !level) { 
-
+    }
+    if (isNaN(score) || !level) {
         console.error("❌ finalScore або level не визначено!");
         return;
     }
-    }
-    
+
     const formData = new URLSearchParams();
     formData.append(entryIDs.name, sendStudentName);
-    formData.append(entryIDs.score, Number(finalScore));
+    formData.append(entryIDs.score, Number(score));
     formData.append(entryIDs.level, String(level));
 
     console.log("🔹 Надсилаємо:", Object.fromEntries(formData));
@@ -230,9 +219,9 @@ if (isNaN(finalScore) || !level) {
     .then(() => {
         console.log("✅ Успішно надіслано!");
         alert("✅ Дані успішно надіслані у Google Forms!");
-    document.getElementById("send-results-btn").style.display = "none";
+        document.getElementById("send-results-btn").style.display = "none";
         resultEl.innerHTML = `<strong>Дякуємо за проходження!</strong>`;
-})
+    })
     .catch(error => {
         console.error("❌ Помилка надсилання:", error);
         alert("❌ Не вдалося надіслати результати. Будь ласка, спробуйте ще раз.");
