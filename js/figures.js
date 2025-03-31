@@ -180,13 +180,11 @@ window.getEntryIDs = function () {
       
         return null;
    };//getEntryIDs
-console.log("📌 Перед передачею у submitResults: finalScore =", window.finalScore);
 //📨📨📨📨📨📨📨📨📨📨📨📨📨📨📨📨📨📨📨
 window.submitResults = function(finalScore, level, entryIDs, sendStudentName) {
     console.log("📨 submitResults() запущено!");
-   entryIDs = getEntryIDs();
-    // let selectedEntryIDs = entryIDs ? entryIDs[testType] : null;
-if (!entryIDs) {
+    entryIDs = getEntryIDs();
+    if (!entryIDs) {
         console.error(`❌ Не вдалося знайти entry ID для тесту`);
         return;
     }
@@ -201,39 +199,36 @@ if (!entryIDs) {
         window.isSubmitting = false;
         return;
     }
-    let selectedEntryIDs = entryIDs; //let let  let ✅ Правильне призначення
- 
-    sendStudentName = askStudentName();
-        console.log("✅ Ім'я студента:", sendStudentName);
+    let selectedEntryIDs = entryIDs; 
 
-if (!sendStudentName) {
+    sendStudentName = askStudentName();
+    console.log("✅ Ім'я студента:", sendStudentName);
+
+    if (!sendStudentName) {
         console.error("❌ askStudentName() повернула `null`. Виконання зупинено.");
         return;
     }
-  //   window.finalScore = finalScore;
 
-    // console.log("✅ Визначений рівень:", level);Обчислення рівня    level = calculateLevel(finalScore);
+    if (typeof window.timeTaken === "undefined") {
+        console.error("❌ Час не визначено! Неможливо розрахувати бал.");
+        return;
+    }
 
- if (typeof window.timeTaken === "undefined") {
-    console.error("❌ Час не визначено! Неможливо розрахувати бал.");
-    return;
-}
-   
-//window.finalScore = calculateScore(timeTaken);
-   // console.log("🎯 Розрахований бал:", finalScore);
     // Переносимо обчислення finalScore сюди
     window.finalScore = calculateScore(window.timeTaken);
     console.log("🎯 Обчислений бал:", window.finalScore);
 
     // Обчислення рівня
     level = calculateLevel(window.finalScore);
-    //console.log("✅ Обчислений бал:", finalScore);
- 
+    console.log("✅ Визначений рівень:", level);
+    console.log("✅ Ім'я студента:", sendStudentName);
+    console.log("✅ Визначені entry IDs:", selectedEntryIDs);
+
     console.log("🔹 Отримані entry IDs:", entryIDs);
 
     const formData = new URLSearchParams();
     formData.append(entryIDs.name, sendStudentName);
-    formData.append(entryIDs.score, Number(finalScore));
+    formData.append(entryIDs.score, Number(window.finalScore));
     formData.append(entryIDs.level, String(level));
 
     console.log("🔹 Надсилаємо:", Object.fromEntries(formData));
