@@ -205,9 +205,7 @@ if (!entryIDs) {
  
     sendStudentName = askStudentName();
         console.log("✅ Ім'я студента:", sendStudentName);
-    finalScore = 0;
-    level = "";
-    console.log("✅ Визначений рівень:", level);
+
 if (!sendStudentName) {
         console.error("❌ askStudentName() повернула `null`. Виконання зупинено.");
         return;
@@ -222,7 +220,7 @@ console.log("🔍 Викликаємо calculateScoreMotivation...");
     return;
 }
    
-finalScore = calculateScore();
+finalScore = calculateScore(timeTaken);
     console.log("🎯 Розрахований бал:", finalScore);
         level = calculateLevel(finalScore);
         console.log("✅ Ім'я студента:", sendStudentName);
