@@ -143,8 +143,8 @@ window.calculateScore = function(timeTaken) {
     sendResultsBtn.style.display = "block";
 
     // ✅ Збереження finalScore в глобальну змінну
-    window.finalScore = calculateScore(window.timeTaken);
-    console.log("🎯 Обчислений бал:", window.finalScore);
+    // window.finalScore = calculateScore(window.timeTaken);
+   //  console.log("🎯 Обчислений бал:", window.finalScore);
 }
 
 //🏁finishTest
@@ -221,9 +221,12 @@ if (!sendStudentName) {
    
 //window.finalScore = calculateScore(timeTaken);
    // console.log("🎯 Розрахований бал:", finalScore);
-        level = calculateLevel(finalScore);
-        console.log("✅ Ім'я студента:", sendStudentName);
-    console.log("✅ Визначені entry IDs:", selectedEntryIDs);
+    // Переносимо обчислення finalScore сюди
+    window.finalScore = calculateScore(window.timeTaken);
+    console.log("🎯 Обчислений бал:", window.finalScore);
+
+    // Обчислення рівня
+    level = calculateLevel(window.finalScore);
     //console.log("✅ Обчислений бал:", finalScore);
  
     console.log("🔹 Отримані entry IDs:", entryIDs);
