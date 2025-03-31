@@ -259,7 +259,7 @@ finalScore = calculateScore();
 // ✅ Викликаємо `submitResults()` правильно при натисканні на кнопку
 sendResultsBtn.addEventListener("click", () => { 
 console.log("📌 Викликаємо submitResults з балом:", window.finalScore);
-  let checkScore = calculateScore(window.timeTaken);
+  let checkScore = window.calculateScore(timeTaken);
     // let finalScore = window.finalScore || 0; Запобігаємо `undefined`
     // let level = calculateLevel(finalScore); Визначаємо рівень
     // let entryIDs = getEntryIDs(); Отримуємо entry ID для Google Forms
