@@ -4,7 +4,7 @@ const resultEl = document.getElementById("result");    // const lastAttemptKey =
     // const lastAttemptDate = lastAttempt ? new Date(lastAttempt) : null;
    const startBtn = document.getElementById("start-btn");
 const sendResultsBtn = document.getElementById("send-results-btn");
- const taskContainer = document.getElementById("task-container-raven");
+ //const taskContainer = document.getElementById("task-container-raven");
   const timerEl = document.getElementById("timer");
   let currentTaskIndex = 0;
   let score = 0;//  let score;
@@ -60,27 +60,77 @@ const sendResultsBtn = document.getElementById("send-results-btn");
   }
 
 function loadTask() {
-    const task = tasks[currentTaskIndex];
+        const task = tasks[currentTaskIndex];
+        const newWindow = window.open("", "_blank", "width=800,height=600");
 
-    taskContainer.innerHTML = `
-        <div class="task-content">
-            <img src="${task.image}" class="main-image">
-            <div class="next-div">
-                <button id="next-btn">Далі</button>
-                <ol class="radio-options">
-                    ${[1, 2, 3, 4, 5, 6, 7, 8].map(num => `
-                        <li>
-                            <input type="radio" name="task" id="option-${num}" value="${num}">
-                            <label for="option-${num}">${num}</label>
-                        </li>
-                    `).join('')}
-                </ol>
-            </div>
-        </div>
-    `;
-
-    document.getElementById("next-btn").addEventListener("click", checkAnswer);
-}
+        newWindow.document.write(`
+            <html>
+            <head>
+                <title>Завдання ${currentTaskIndex + 1}</title>
+                <style>
+                    .main-image {
+                        max-height: 337px;
+                        display: block;
+                        margin: 0 auto;
+                    }
+                    .next-div {
+                        text-align: center;
+                        margin-top: 20px;
+                    }
+                    .radio-options {
+                        list-style: none;
+                        padding: 0;
+                        display: flex;
+                        justify-content: center;
+                        flex-wrap: wrap;
+                    }
+                    .radio-options li {
+                        margin: 12px;
+                    }
+                    button {
+                        padding: 10px 20px;
+                        font-size: 16px;
+                        cursor: pointer;
+                    }
+                </style>
+            </head>
+            <body>
+                <img src="${task.image}" class="main-image">
+                <div class="next-div">
+                    <button id="next-btn">Далі</button>
+                    <ol class="radio-options">
+                        ${[1, 2, 3, 4, 5, 6, 7, 8].map(num => `
+                            <li>
+                                <input type="radio" name="task" id="option-${num}" value="${num}">
+                                <label for="option-${num}">${num}</label>
+                            </li>
+                        `).join('')}
+                    </ol>
+                </div>
+                <script>
+                    document.getElementById("next-btn").addEventListener("click", () => {
+                        const selectedOption = document.querySelector('input[name="task"]:checked');
+                        if (!selectedOption) {
+                            alert("Оберіть відповідь перед переходом до наступного завдання.");
+                            return;
+                        }
+                        const userAnswer = parseInt(selectedOption.value);
+                        if (userAnswer === ${task.correct}) {
+                            window.opener.score++;
+                        }
+                        window.opener.currentTaskIndex++;
+                        if (window.opener.currentTaskIndex < ${tasks.length}) {
+                            window.opener.loadTask();
+                        } else {
+                            window.opener.finishTest();
+                        }
+                        window.close();
+                    });
+                </script>
+            </body>
+            </html>
+        `);
+    }
 //✅ checkAnswer
 function checkAnswer() {
     const selectedOption = document.querySelector('input[name="task"]:checked');
