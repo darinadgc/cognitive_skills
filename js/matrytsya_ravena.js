@@ -36,7 +36,7 @@ const sendResultsBtn = document.getElementById("send-results-btn");
     console.log("🔹 startTest() запущено!");
     currentTaskIndex = 0;
     score = 0;
-    taskContainer.style.display = "flex";
+    //taskContainer.style.display = "flex";
     startBtn.style.display = "none";
     sendResultsBtn.style.display = "none";
     startTimer(600);
