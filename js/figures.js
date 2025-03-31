@@ -180,7 +180,7 @@ window.getEntryIDs = function () {
       
         return null;
    };//getEntryIDs
-console.log("📌 Перед передачею у submitResults: score =", score);
+console.log("📌 Перед передачею у submitResults: finalScore =", finalScore);
 //📨📨📨📨📨📨📨📨📨📨📨📨📨📨📨📨📨📨📨
 window.submitResults = function(finalScore, level, entryIDs, sendStudentName) {
     console.log("📨 submitResults() запущено!");
