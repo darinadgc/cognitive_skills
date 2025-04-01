@@ -38,35 +38,42 @@ const sendResultsBtn = document.getElementById("send-results-btn");
   let currentTask = null;
   startBtn.addEventListener("click", startTest);
 //🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛
-  function startTest() {
-   window.startTime = Date.now();
-console.log("🕒 Початок тесту:", window.startTime);
+function startTest() {
+    window.startTime = Date.now(); // 🕒 Фіксуємо час початку тесту
+    console.log("🕒 Початок тесту:", window.startTime);
 
-    unansweredTasks = [...tasks];
-    incorrectAnswers = [];
-    startBtn.style.display = "none";
-    sendResultsBtn.style.display = "none";
+    unansweredTasks = [...tasks]; // 🔄 Копіюємо всі завдання
+
+    currentTaskIndex = 0;
+    score = 0;
+    incorrectAnswers = []; // Очищуємо список неправильних відповідей
     document.getElementById("figure-task").style.display = "block";
 
-    startTimer(90);
-    generateTask();
-  }
+    taskContainer.style.display = "flex";
+    startBtn.style.display = "none";
+    sendResultsBtn.style.display = "none";
+
+    startTimer(90); // ⏳ Запускаємо таймер на 90 секунд
+    loadTask();
+}
+
 //⏳⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛
-  function startTimer(duration) {
+function startTimer(duration) {
     let timeLeft = duration;
 
     timerInterval = setInterval(() => {
-      const minutes = Math.floor(timeLeft / 60);
-      const seconds = timeLeft % 60;
-      timerEl.textContent = `⏳ ${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
-      timeLeft--;
+        const minutes = Math.floor(timeLeft / 60);
+        const seconds = timeLeft % 60;
+        timerEl.textContent = `⏳ ${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+        timeLeft--;
 
-      if (timeLeft < 0) {
-        clearInterval(timerInterval);
-        finishTest();
-      }
+        if (timeLeft < 0) { // ⏳ Час вийшов
+            clearInterval(timerInterval);
+            finishTest(); // ⛔ Автоматично завершуємо тест
+        }
     }, 1000);
-  }
+}
+
 //✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅
 let score = 0;  // Оголошуємо змінну на глобальному рівні
 
