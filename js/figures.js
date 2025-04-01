@@ -113,6 +113,8 @@ function checkAnswer(selectedIndex) {
         `).join("")}
       </div>
     `;
+        header.classList.add("low-opacity");
+        footer.classList.add("low-opacity");
 Array.from(bodyContent.children).forEach(child => {
            if (child !== gameContainer && child !== timerEl) {
                 child.classList.add("low-opacity");
