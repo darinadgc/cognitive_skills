@@ -16,19 +16,70 @@ const sendResultsBtn = document.getElementById("send-results-btn");
     if (score >= 2) return "Низький";
     return "Дуже низький";
 };
-  const tasks = [
-    { image: "img/matrytsya_ravena/matrytsya_ravena1.jpg", correct: 7 },
-    { image: "img/matrytsya_ravena/matrytsya_ravena2.jpg", correct: 6 },
-    { image: "img/matrytsya_ravena/matrytsya_ravena3.jpg", correct: 6 },
-    { image: "img/matrytsya_ravena/matrytsya_ravena4.jpg", correct: 1 },
+const tasks = [
+    {
+        image: "img/matrytsya_ravena/matrytsya_ravena1.jpg",
+        options: [
+            "img/matrytsya_ravena/matrytsya_ravena1_1.png",
+            "img/matrytsya_ravena/matrytsya_ravena1_2.png",
+            "img/matrytsya_ravena/matrytsya_ravena1_3.png",
+            "img/matrytsya_ravena/matrytsya_ravena1_4.png",
+            "img/matrytsya_ravena/matrytsya_ravena1_5.png",
+            "img/matrytsya_ravena/matrytsya_ravena1_6.png",
+            "img/matrytsya_ravena/matrytsya_ravena1_7.png",
+            "img/matrytsya_ravena/matrytsya_ravena1_8.png"
+        ],
+        correct: 7
+    },
+    {
+        image: "img/matrytsya_ravena/matrytsya_ravena2.jpg",
+        options: [
+            "img/matrytsya_ravena/matrytsya_ravena2_1.png",
+            "img/matrytsya_ravena/matrytsya_ravena2_2.png",
+            "img/matrytsya_ravena/matrytsya_ravena2_3.png",
+            "img/matrytsya_ravena/matrytsya_ravena2_4.png",
+            "img/matrytsya_ravena/matrytsya_ravena2_5.png",
+            "img/matrytsya_ravena/matrytsya_ravena2_6.png",
+            "img/matrytsya_ravena/matrytsya_ravena2_7.png",
+            "img/matrytsya_ravena/matrytsya_ravena2_8.png"
+        ],
+        correct: 6
+    },
+    {
+        image: "img/matrytsya_ravena/matrytsya_ravena10.jpg",
+        options: [
+            "img/matrytsya_ravena/matrytsya_ravena10_1.png",
+            "img/matrytsya_ravena/matrytsya_ravena10_2.png",
+            "img/matrytsya_ravena/matrytsya_ravena10_3.png",
+            "img/matrytsya_ravena/matrytsya_ravena10_4.png",
+            "img/matrytsya_ravena/matrytsya_ravena10_5.png",
+            "img/matrytsya_ravena/matrytsya_ravena10_6.png",
+            "img/matrytsya_ravena/matrytsya_ravena10_7.png",
+            "img/matrytsya_ravena/matrytsya_ravena10_8.png"
+        ],
+        correct: 5
+    }
+,
+    {
+         image: "img/matrytsya_ravena/matrytsya_ravena4.jpg",
+        options: [
+            "img/matrytsya_ravena/matrytsya_ravena10_1.png",
+            "img/matrytsya_ravena/matrytsya_ravena10_2.png",
+            "img/matrytsya_ravena/matrytsya_ravena10_3.png",
+            "img/matrytsya_ravena/matrytsya_ravena10_4.png",
+            "img/matrytsya_ravena/matrytsya_ravena10_5.png",
+            "img/matrytsya_ravena/matrytsya_ravena10_6.png",
+            "img/matrytsya_ravena/matrytsya_ravena10_7.png",
+            "img/matrytsya_ravena/matrytsya_ravena10_8.png"
+        ], correct: 1 },
     { image: "img/matrytsya_ravena/matrytsya_ravena5.jpg", correct: 2 },
     { image: "img/matrytsya_ravena/matrytsya_ravena6.jpg", correct: 5 },
     { image: "img/matrytsya_ravena/matrytsya_ravena7.jpg", correct: 6 },
     { image: "img/matrytsya_ravena/matrytsya_ravena8.jpg", correct: 1 },
     { image: "img/matrytsya_ravena/matrytsya_ravena9.jpg", correct: 3 },
     { image: "img/matrytsya_ravena/matrytsya_ravena10.jpg", correct: 5 }
-  ];
 
+];
   // ✅ Додаємо обробник події ПІСЛЯ оголошення функції
   startBtn.addEventListener("click", startTest);
 
