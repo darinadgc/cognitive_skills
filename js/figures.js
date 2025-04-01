@@ -49,7 +49,6 @@ function startTest() {
     incorrectAnswers = []; // Очищуємо список неправильних відповідей
     document.getElementById("figure-task").style.display = "block";
 
-    taskContainer.style.display = "flex";
     startBtn.style.display = "none";
     sendResultsBtn.style.display = "none";
 
