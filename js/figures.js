@@ -36,12 +36,12 @@ const sendResultsBtn = document.getElementById("send-results-btn");
   let unansweredTasks = [...tasks]; 
   let incorrectAnswers = []; 
   let currentTask = null;
-   window.startTime = Date.now();
-console.log("🕒 Початок тесту:", window.startTime);
-
   startBtn.addEventListener("click", startTest);
 //🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛
   function startTest() {
+   window.startTime = Date.now();
+console.log("🕒 Початок тесту:", window.startTime);
+
     unansweredTasks = [...tasks];
     incorrectAnswers = [];
     startBtn.style.display = "none";
