@@ -53,7 +53,7 @@ function startTest() {
     sendResultsBtn.style.display = "none";
 
     startTimer(90); // ⏳ Запускаємо таймер на 90 секунд
-    loadTask();
+    generateTask();
 }
 
 //⏳⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛⌛
