@@ -117,9 +117,12 @@ function checkAnswer(selectedIndex) {
                 //child.classList.add("low-opacity");
             //}
         //});
-document.querySelectorAll("body > *:not(#game-container):not(#timer)").forEach(child => {
-    child.classList.add("low-opacity");
+document.querySelectorAll("header, main, footer").forEach(el => {
+    if (!el.matches("#game-container") && !el.matches("#timer")) {
+        el.classList.add("low-opacity");
+    }
 });
+
     document.querySelectorAll(".option").forEach(option => {
       option.addEventListener("click", () => checkAnswer(Number(option.dataset.index)));
     });
