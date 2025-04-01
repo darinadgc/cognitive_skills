@@ -66,52 +66,65 @@ function loadTask() {
         <div class="task-content">
             <img src="${task.image}" class="main-image">
             <div class="answer-options">
-                <ol class="radio-options">
-                    ${[1, 2, 3, 4, 5, 6, 7, 8].map(num => `
-                        <li>
-                            <input type="radio" name="task" id="option-${num}" value="${num}">
-                            <label for="option-${num}">${num}</label>
-                        </li>
-                    `).join('')}
-                </ol>
                 <button id="next-btn" disabled>Далі</button>
+                <div class="options">
+                    ${task.options.map((imgSrc, index) => `
+                        <img class="option" src="${imgSrc}" data-index="${index + 1}">
+                    `).join('')}
+                </div>
             </div>
         </div>
     `;
 
-    // Кнопка "Далі" стає активною після вибору відповіді
-    document.querySelectorAll("input[name='task']").forEach(input => {
-        input.addEventListener("change", () => {
+    // Отримуємо всі варіанти відповідей
+    const options = document.querySelectorAll(".option");
+    let selectedOption = null;
+
+    options.forEach(option => {
+        option.addEventListener("click", () => {
+            // Знімаємо виділення з усіх варіантів
+            options.forEach(opt => opt.classList.remove("selected"));
+
+            // Виділяємо обраний варіант
+            option.classList.add("selected");
+            selectedOption = option.getAttribute("data-index");
+
+            // Активуємо кнопку "Далі"
             document.getElementById("next-btn").disabled = false;
         });
     });
 
-    // Додаємо подію для перевірки відповіді при натисканні "Далі"
+    // Додаємо подію для кнопки "Далі"
     document.getElementById("next-btn").addEventListener("click", () => {
-        checkAnswer();
+        if (selectedOption !== null) {
+            checkAnswer(selectedOption);
+        }
     });
 }
 
+
 //✅ checkAnswer
-function checkAnswer() {
-    const selectedOption = document.querySelector('input[name="task"]:checked');
-    if (!selectedOption) {
-        alert("Оберіть відповідь перед переходом до наступного завдання.");
-        return;
-    }
-    const userAnswer = parseInt(selectedOption.value);
+function checkAnswer(selectedOption) {
+    // Перетворюємо selectedOption у число
+    const userAnswer = parseInt(selectedOption);
+    
+    // Перевіряємо, чи відповідає правильному варіанту
     if (userAnswer === tasks[currentTaskIndex].correct) {
         score++;
     }
+
+    // Переходимо до наступного завдання
     currentTaskIndex++;
+
     if (currentTaskIndex < tasks.length) {
         loadTask();
     } else {
         finishTest();
     }
+
     console.log("✅ Підрахований бал:", score);
-    return score;
-}//✅ checkAnswer let
+}
+//✅ checkAnswer let
 /*window.calculateScore = function () {
     
     const answers = document.querySelectorAll('input[type="radio"]:checked');
