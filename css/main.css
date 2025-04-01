@@ -313,7 +313,7 @@ img.option, label, #option, input[type='radio'] {
 }
 
 .low-opacity {
-    opacity: 21%;
+    opacity: 0.2;
 }
 
 
