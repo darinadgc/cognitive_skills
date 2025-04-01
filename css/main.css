@@ -265,11 +265,7 @@ div#task-container-raven {
 /* Кнопки варіантів */
 
 .option {
-  cursor: pointer;
-    width: 100px;
     height: auto;
-    margin: 5px;
-    cursor: pointer;
     transition: 0.3s;
 }
 
