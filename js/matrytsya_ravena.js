@@ -46,23 +46,89 @@ const tasks = [
         correct: 6
     },
     {
-        image: "img/matrytsya_ravena/matrytsya_ravena10.jpg",
+        image: "img/matrytsya_ravena/matrytsya_ravena3.jpg",
         options: [
-            "img/matrytsya_ravena/matrytsya_ravena10_1.png",
-            "img/matrytsya_ravena/matrytsya_ravena10_2.png",
-            "img/matrytsya_ravena/matrytsya_ravena10_3.png",
-            "img/matrytsya_ravena/matrytsya_ravena10_4.png",
-            "img/matrytsya_ravena/matrytsya_ravena10_5.png",
-            "img/matrytsya_ravena/matrytsya_ravena10_6.png",
-            "img/matrytsya_ravena/matrytsya_ravena10_7.png",
-            "img/matrytsya_ravena/matrytsya_ravena10_8.png"
+            "img/matrytsya_ravena/matrytsya_ravena3_1.png",
+            "img/matrytsya_ravena/matrytsya_ravena3_2.png",
+            "img/matrytsya_ravena/matrytsya_ravena3_3.png",
+            "img/matrytsya_ravena/matrytsya_ravena3_4.png",
+            "img/matrytsya_ravena/matrytsya_ravena3_5.png",
+            "img/matrytsya_ravena/matrytsya_ravena3_6.png",
+            "img/matrytsya_ravena/matrytsya_ravena3_7.png",
+            "img/matrytsya_ravena/matrytsya_ravena3_8.png"
         ],
-        correct: 5
+        correct: 6
     }
 ,
     {
          image: "img/matrytsya_ravena/matrytsya_ravena4.jpg",
         options: [
+            "img/matrytsya_ravena/matrytsya_ravena4_1.png",
+            "img/matrytsya_ravena/matrytsya_ravena4_2.png",
+            "img/matrytsya_ravena/matrytsya_ravena4_3.png",
+            "img/matrytsya_ravena/matrytsya_ravena4_4.png",
+            "img/matrytsya_ravena/matrytsya_ravena4_5.png",
+            "img/matrytsya_ravena/matrytsya_ravena4_6.png",
+            "img/matrytsya_ravena/matrytsya_ravena4_7.png",
+            "img/matrytsya_ravena/matrytsya_ravena4_8.png"
+        ], correct: 1 },
+    { image: "img/matrytsya_ravena/matrytsya_ravena5.jpg",
+        options: [
+            "img/matrytsya_ravena/matrytsya_ravena5_1.png",
+            "img/matrytsya_ravena/matrytsya_ravena5_2.png",
+            "img/matrytsya_ravena/matrytsya_ravena5_3.png",
+            "img/matrytsya_ravena/matrytsya_ravena5_4.png",
+            "img/matrytsya_ravena/matrytsya_ravena5_5.png",
+            "img/matrytsya_ravena/matrytsya_ravena5_6.png",
+            "img/matrytsya_ravena/matrytsya_ravena5_7.png",
+            "img/matrytsya_ravena/matrytsya_ravena5_8.png"
+        ], correct: 2 },
+    { image: "img/matrytsya_ravena/matrytsya_ravena6.jpg",
+        options: [
+            "img/matrytsya_ravena/matrytsya_ravena6_1.png",
+            "img/matrytsya_ravena/matrytsya_ravena6_2.png",
+            "img/matrytsya_ravena/matrytsya_ravena6_3.png",
+            "img/matrytsya_ravena/matrytsya_ravena6_4.png",
+            "img/matrytsya_ravena/matrytsya_ravena6_5.png",
+            "img/matrytsya_ravena/matrytsya_ravena6_6.png",
+            "img/matrytsya_ravena/matrytsya_ravena6_7.png",
+            "img/matrytsya_ravena/matrytsya_ravena6_8.png"
+        ], correct: 5 },
+    { image: "img/matrytsya_ravena/matrytsya_ravena7.jpg",
+        options: [
+            "img/matrytsya_ravena/matrytsya_ravena7_1.png",
+            "img/matrytsya_ravena/matrytsya_ravena7_2.png",
+            "img/matrytsya_ravena/matrytsya_ravena7_3.png",
+            "img/matrytsya_ravena/matrytsya_ravena7_4.png",
+            "img/matrytsya_ravena/matrytsya_ravena7_5.png",
+            "img/matrytsya_ravena/matrytsya_ravena7_6.png",
+            "img/matrytsya_ravena/matrytsya_ravena7_7.png",
+            "img/matrytsya_ravena/matrytsya_ravena7_8.png"
+        ], correct: 6 },
+    { image: "img/matrytsya_ravena/matrytsya_ravena8.jpg",
+        options: [
+            "img/matrytsya_ravena/matrytsya_ravena8_1.png",
+            "img/matrytsya_ravena/matrytsya_ravena8_2.png",
+            "img/matrytsya_ravena/matrytsya_ravena8_3.png",
+            "img/matrytsya_ravena/matrytsya_ravena8_4.png",
+            "img/matrytsya_ravena/matrytsya_ravena8_5.png",
+            "img/matrytsya_ravena/matrytsya_ravena8_6.png",
+            "img/matrytsya_ravena/matrytsya_ravena8_7.png",
+            "img/matrytsya_ravena/matrytsya_ravena8_8.png"
+        ], correct: 1 },
+    { image: "img/matrytsya_ravena/matrytsya_ravena9.jpg",
+        options: [
+            "img/matrytsya_ravena/matrytsya_ravena9_1.png",
+            "img/matrytsya_ravena/matrytsya_ravena9_2.png",
+            "img/matrytsya_ravena/matrytsya_ravena9_3.png",
+            "img/matrytsya_ravena/matrytsya_ravena9_4.png",
+            "img/matrytsya_ravena/matrytsya_ravena9_5.png",
+            "img/matrytsya_ravena/matrytsya_ravena9_6.png",
+            "img/matrytsya_ravena/matrytsya_ravena9_7.png",
+            "img/matrytsya_ravena/matrytsya_ravena9_8.png"
+        ], correct: 3 },
+    { image: "img/matrytsya_ravena/matrytsya_ravena10.jpg",
+        options: [
             "img/matrytsya_ravena/matrytsya_ravena10_1.png",
             "img/matrytsya_ravena/matrytsya_ravena10_2.png",
             "img/matrytsya_ravena/matrytsya_ravena10_3.png",
@@ -71,15 +137,21 @@ const tasks = [
             "img/matrytsya_ravena/matrytsya_ravena10_6.png",
             "img/matrytsya_ravena/matrytsya_ravena10_7.png",
             "img/matrytsya_ravena/matrytsya_ravena10_8.png"
-        ], correct: 1 },
-    { image: "img/matrytsya_ravena/matrytsya_ravena5.jpg", correct: 2 },
-    { image: "img/matrytsya_ravena/matrytsya_ravena6.jpg", correct: 5 },
-    { image: "img/matrytsya_ravena/matrytsya_ravena7.jpg", correct: 6 },
-    { image: "img/matrytsya_ravena/matrytsya_ravena8.jpg", correct: 1 },
-    { image: "img/matrytsya_ravena/matrytsya_ravena9.jpg", correct: 3 },
-    { image: "img/matrytsya_ravena/matrytsya_ravena10.jpg", correct: 5 }
+        ], correct: 5 }
 
-];
+];//tasks
+
+
+
+
+
+
+
+
+
+
+
+	
   // ✅ Додаємо обробник події ПІСЛЯ оголошення функції
   startBtn.addEventListener("click", startTest);
 
