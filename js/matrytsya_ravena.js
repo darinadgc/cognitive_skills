@@ -5,14 +5,8 @@ const resultEl = document.getElementById("result");    // const lastAttemptKey =
    const startBtn = document.getElementById("start-btn");
 const sendResultsBtn = document.getElementById("send-results-btn");
  const taskContainer = document.getElementById("task-container-raven");
-    const mainImage = document.getElementById("main-image");
-    const nextBtn = document.getElementById("next-btn");
-    const radioOptions = document.querySelector(".radio-options");
   const timerEl = document.getElementById("timer");
-    const bodyContent = document.querySelector("main");
-    const header = document.querySelector("header");
-    const footer = document.querySelector("footer");
-	let currentTaskIndex = 0;
+  let currentTaskIndex = 0;
   let score = 0;//  let score;
   let timerInterval;
       window.calculateLevel = function(score) {
@@ -39,23 +33,16 @@ const sendResultsBtn = document.getElementById("send-results-btn");
   startBtn.addEventListener("click", startTest);
 
   function startTest() {
-        console.log("🔹 startTest() запущено!");
-        currentTaskIndex = 0;
-        score = 0;
-        taskContainer.style.display = "flex";
-        taskContainer.classList.add("task-container-active");
-        startBtn.style.display = "none";
-        sendResultsBtn.style.display = "none";
-        header.classList.add("low-opacity");
-        footer.classList.add("low-opacity");
-        Array.from(bodyContent.children).forEach(child => {
-            if (child !== taskContainer && child !== timerEl) {
-                child.classList.add("low-opacity");
-            }
-        });
-        startTimer(600);
-        loadTask();
-    }
+    console.log("🔹 startTest() запущено!");
+    currentTaskIndex = 0;
+    score = 0;
+    taskContainer.style.display = "flex";
+    startBtn.style.display = "none";
+    sendResultsBtn.style.display = "none";
+    startTimer(600);
+    loadTask();
+  }
+
   function startTimer(duration) {
     let timeLeft = duration;
 
@@ -71,21 +58,29 @@ const sendResultsBtn = document.getElementById("send-results-btn");
       }
     }, 1000);
   }
-// ➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕
+
 function loadTask() {
-        const task = tasks[currentTaskIndex];
-        mainImage.src = task.image;
-        radioOptions.innerHTML = `
-            ${[1, 2, 3, 4, 5, 6, 7, 8].map(num => `
-                <li>
-                    <input type="radio" name="task" id="option-${num}" value="${num}">
-                    <label for="option-${num}">${num}</label>
-                </li>
-            `).join('')}
-        `;
-            nextBtn.style.display = "block";
-        nextBtn.onclick = checkAnswer;
-    }
+    const task = tasks[currentTaskIndex];
+
+    taskContainer.innerHTML = `
+        <div class="task-content">
+            <img src="${task.image}" class="main-image">
+            <div class="next-div">
+                <button id="next-btn">Далі</button>
+                <ol class="radio-options">
+                    ${[1, 2, 3, 4, 5, 6, 7, 8].map(num => `
+                        <li>
+                            <input type="radio" name="task" id="option-${num}" value="${num}">
+                            <label for="option-${num}">${num}</label>
+                        </li>
+                    `).join('')}
+                </ol>
+            </div>
+        </div>
+    `;
+
+    document.getElementById("next-btn").addEventListener("click", checkAnswer);
+}
 //✅ checkAnswer
 function checkAnswer() {
     const selectedOption = document.querySelector('input[name="task"]:checked');
@@ -119,8 +114,8 @@ function checkAnswer() {
   function finishTest() {
     clearInterval(timerInterval);
     resultEl.innerHTML = "🛑 Тест завершено! Натисніть 'Надіслати результат'.";
- taskContainer.style.display = "none";
-        sendResultsBtn.style.display = "block";
+    taskContainer.innerHTML = "";
+    sendResultsBtn.style.display = "block";
   }//🏁finishTest 
 
 
