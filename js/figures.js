@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
  const bodyContent = document.querySelector("main");
     const header = document.querySelector("header");
     const footer = document.querySelector("footer"); 	
-   window.gameContainer = document.getElementById("game-container");
+   window.figureTask = document.getElementById("figure-task");
     window.resultEl = document.getElementById("result");
    // const lastAttemptKey = getLastAttemptKey(); // ✅ Отримуємо ключ для LocalStorage
     // const lastAttempt = localStorage.getItem(lastAttemptKey); // ✅ Оголошуємо lastAttempt
@@ -96,7 +96,7 @@ function checkAnswer(selectedIndex) {
   function generateTask() {
       console.log("🔍 Поточний score:", score); // Додаємо перевірку
  
-        gameContainer.classList.add("container-active");
+        figureTask.classList.add("container-active");
  if (score === 10 && incorrectAnswers.length === 0) {
       finishTest();
       return;
@@ -116,7 +116,7 @@ function checkAnswer(selectedIndex) {
         header.classList.add("low-opacity");
         footer.classList.add("low-opacity");
 Array.from(bodyContent.children).forEach(child => {
-           if (child !== gameContainer && child !== timerEl) {
+           if (child !== figureTask && child !== timerEl) {
                 child.classList.add("low-opacity");
             }
         });
