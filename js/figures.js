@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const startBtn = document.getElementById("start-btn");
   const timerEl = document.getElementById("timer");
 	
-    const bodyContent = document.querySelector("body");
+    //const bodyContent = document.querySelector("body");
     window.gameContainer = document.getElementById("game-container");
     window.resultEl = document.getElementById("result");
    // const lastAttemptKey = getLastAttemptKey(); // ✅ Отримуємо ключ для LocalStorage
@@ -112,11 +112,14 @@ function checkAnswer(selectedIndex) {
         `).join("")}
       </div>
     `;
- Array.from(bodyContent.children).forEach(child => {
-            if (child !== gameContainer && child !== timerEl) {
-                child.classList.add("low-opacity");
-            }
-        });
+//Array.from(bodyContent.children).forEach(child => {
+           // if (child !== gameContainer && child !== timerEl) {
+                //child.classList.add("low-opacity");
+            //}
+        //});
+document.querySelectorAll("body > *:not(#game-container):not(#timer)").forEach(child => {
+    child.classList.add("low-opacity");
+});
     document.querySelectorAll(".option").forEach(option => {
       option.addEventListener("click", () => checkAnswer(Number(option.dataset.index)));
     });
