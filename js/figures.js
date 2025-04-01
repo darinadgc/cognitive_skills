@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const footer = document.querySelector("footer"); 	
    window.figureTask = document.getElementById("figure-task");
     window.resultEl = document.getElementById("result");
+  const gameContainer = document.getElementById("game-container");
    // const lastAttemptKey = getLastAttemptKey(); // ✅ Отримуємо ключ для LocalStorage
     // const lastAttempt = localStorage.getItem(lastAttemptKey); // ✅ Оголошуємо lastAttempt
     // const lastAttemptDate = lastAttempt ? new Date(lastAttempt) : null;
@@ -116,7 +117,7 @@ function checkAnswer(selectedIndex) {
         header.classList.add("low-opacity");
         footer.classList.add("low-opacity");
 Array.from(bodyContent.children).forEach(child => {
-           if (child !== figureTask && child !== timerEl) {
+           if (child !== figureTask && child !== timerEl && child !== gameContainer) {
                 child.classList.add("low-opacity");
             }
         });
