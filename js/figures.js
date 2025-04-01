@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const figureTaskEl = document.getElementById("figure-task");
   const startBtn = document.getElementById("start-btn");
   const timerEl = document.getElementById("timer");
+    window.gameContainer = document.getElementById("game-container");
     window.resultEl = document.getElementById("result");
    // const lastAttemptKey = getLastAttemptKey(); // ✅ Отримуємо ключ для LocalStorage
     // const lastAttempt = localStorage.getItem(lastAttemptKey); // ✅ Оголошуємо lastAttempt
@@ -92,6 +93,7 @@ function checkAnswer(selectedIndex) {
   function generateTask() {
       console.log("🔍 Поточний score:", score); // Додаємо перевірку
  
+        gameContainer.classList.add("container-active");
  if (score === 10 && incorrectAnswers.length === 0) {
       finishTest();
       return;
@@ -109,7 +111,7 @@ function checkAnswer(selectedIndex) {
       </div>
     `;
  Array.from(bodyContent.children).forEach(child => {
-            if (child !== taskContainer && child !== timerEl) {
+            if (child !== gameContainer && child !== timerEl) {
                 child.classList.add("low-opacity");
             }
         });
