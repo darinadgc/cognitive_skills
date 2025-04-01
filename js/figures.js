@@ -2,9 +2,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const figureTaskEl = document.getElementById("figure-task");
   const startBtn = document.getElementById("start-btn");
   const timerEl = document.getElementById("timer");
-	
-    //const bodyContent = document.querySelector("body");
-    window.gameContainer = document.getElementById("game-container");
+ const bodyContent = document.querySelector("main");
+    const header = document.querySelector("header");
+    const footer = document.querySelector("footer"); 	
+   window.gameContainer = document.getElementById("game-container");
     window.resultEl = document.getElementById("result");
    // const lastAttemptKey = getLastAttemptKey(); // ✅ Отримуємо ключ для LocalStorage
     // const lastAttempt = localStorage.getItem(lastAttemptKey); // ✅ Оголошуємо lastAttempt
@@ -112,16 +113,16 @@ function checkAnswer(selectedIndex) {
         `).join("")}
       </div>
     `;
-//Array.from(bodyContent.children).forEach(child => {
-           // if (child !== gameContainer && child !== timerEl) {
-                //child.classList.add("low-opacity");
-            //}
-        //});
-document.querySelectorAll("header, main, footer").forEach(el => {
-    if (!el.matches("#game-container") && !el.matches("#timer")) {
-        el.classList.add("low-opacity");
-    }
-});
+Array.from(bodyContent.children).forEach(child => {
+           if (child !== gameContainer && child !== timerEl) {
+                child.classList.add("low-opacity");
+            }
+        });
+// document.querySelectorAll("header, main, footer").forEach(el => {
+    //if (!el.matches("#game-container") && !el.matches("#timer")) {
+        //el.classList.add("low-opacity");
+    //}
+//});
 
     document.querySelectorAll(".option").forEach(option => {
       option.addEventListener("click", () => checkAnswer(Number(option.dataset.index)));
