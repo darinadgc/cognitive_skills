@@ -2,9 +2,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const figureTaskEl = document.getElementById("figure-task");
   const startBtn = document.getElementById("start-btn");
   const timerEl = document.getElementById("timer");
- const bodyContent = document.querySelector("main");
-    const header = document.querySelector("header");
-    const footer = document.querySelector("footer"); 	
+ const bodyContent = document.querySelector("body");
+    	
    window.figureTask = document.getElementById("figure-task");
     window.resultEl = document.getElementById("result");
   const gameContainer = document.getElementById("game-container");
@@ -97,7 +96,7 @@ function checkAnswer(selectedIndex) {
   function generateTask() {
       console.log("🔍 Поточний score:", score); // Додаємо перевірку
  
-        figureTask.classList.add("container-active");
+        gameContainer.classList.add("container-active");
  if (score === 10 && incorrectAnswers.length === 0) {
       finishTest();
       return;
@@ -114,8 +113,7 @@ function checkAnswer(selectedIndex) {
         `).join("")}
       </div>
     `;
-        header.classList.add("low-opacity");
-        footer.classList.add("low-opacity");
+        
 Array.from(bodyContent.children).forEach(child => {
            if (child !== figureTask && child !== timerEl && child !== gameContainer) {
                 child.classList.add("low-opacity");
