@@ -65,8 +65,7 @@ function loadTask() {
     taskContainer.innerHTML = `
         <div class="task-content">
             <img src="${task.image}" class="main-image">
-            <div class="next-div">
-                <button id="next-btn">Далі</button>
+            <div class="answer-options">
                 <ol class="radio-options">
                     ${[1, 2, 3, 4, 5, 6, 7, 8].map(num => `
                         <li>
@@ -75,12 +74,24 @@ function loadTask() {
                         </li>
                     `).join('')}
                 </ol>
+                <button id="next-btn" disabled>Далі</button>
             </div>
         </div>
     `;
 
-    document.getElementById("next-btn").addEventListener("click", checkAnswer);
+    // Кнопка "Далі" стає активною після вибору відповіді
+    document.querySelectorAll("input[name='task']").forEach(input => {
+        input.addEventListener("change", () => {
+            document.getElementById("next-btn").disabled = false;
+        });
+    });
+
+    // Додаємо подію для перевірки відповіді при натисканні "Далі"
+    document.getElementById("next-btn").addEventListener("click", () => {
+        checkAnswer();
+    });
 }
+
 //✅ checkAnswer
 function checkAnswer() {
     const selectedOption = document.querySelector('input[name="task"]:checked');
