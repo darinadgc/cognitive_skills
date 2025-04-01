@@ -231,34 +231,58 @@ button {
 	margin: 83px auto;
 }
    div#task-container-raven .main-image {
-        max-height: 337px;
+        max-height: 337px;/* ✅ Оптимальний розмір */
+  max-width: 90%; /* ✅ Щоб зображення не виходило за межі */
+  margin-top: 81px; /* ✅ Відступ для корекції */
+  display: block;
 
 }
 div#task-container-raven {
   display: flex;
-  flex-wrap: wrap;
-  display: none; /* Спочатку приховуємо */
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  flex-wrap: wrap;
+  display: none; /* Спочатку приховуємо */
   gap: 5px;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
 }
-.radio-options {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-.radio-options li, li>span {
-    margin: 12px;
-}
-
 .answer-options {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+.answer-options {
+  display: flex;
+  flex-wrap: wrap; /* ✅ Дозволяє переносити рядки, якщо екран малий */
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+/* Кнопки варіантів */
+.option {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+/* Зображення відповідей */
+.option img {
+  width: 100px; /* ✅ Налаштувати відповідний розмір */
+  height: auto;
+  transition: transform 0.2s ease-in-out;
+}
+
+/* Анімація при наведенні */
+.option:hover img {
+  transform: scale(1.1);
+}
+ li>span {
+    margin: 12px;
 }
 
 button {
