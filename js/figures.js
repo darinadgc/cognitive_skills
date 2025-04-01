@@ -108,7 +108,11 @@ function checkAnswer(selectedIndex) {
         `).join("")}
       </div>
     `;
-
+ Array.from(bodyContent.children).forEach(child => {
+            if (child !== taskContainer && child !== timerEl) {
+                child.classList.add("low-opacity");
+            }
+        });
     document.querySelectorAll(".option").forEach(option => {
       option.addEventListener("click", () => checkAnswer(Number(option.dataset.index)));
     });
