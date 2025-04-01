@@ -308,7 +308,7 @@ img.option, label, #option, input[type='radio'] {
   cursor: pointer;
 }
 
-.task-container-active {
+.container-active {
     position: absolute;
 }
 
