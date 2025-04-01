@@ -2,6 +2,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const figureTaskEl = document.getElementById("figure-task");
   const startBtn = document.getElementById("start-btn");
   const timerEl = document.getElementById("timer");
+	
+    const bodyContent = document.querySelector("body");
     window.gameContainer = document.getElementById("game-container");
     window.resultEl = document.getElementById("result");
    // const lastAttemptKey = getLastAttemptKey(); // ✅ Отримуємо ключ для LocalStorage
