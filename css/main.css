@@ -313,6 +313,8 @@ img.option, label, #option, input[type='radio'] {
     left: 50%;
     transform: translateX(-50%);
     top: 0;
+	padding: 35px;
+    background-color: inherit;
 }
 
 .low-opacity {
