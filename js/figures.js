@@ -123,8 +123,8 @@ function checkAnswer(selectedIndex) {
            // }
         //});
 header.classList.add("low-opacity"); 
-    main.classList.add("low-opacity"); 
-footer.classList.add("low-opacity"); 
+    main.display.style("none"); 
+footer.display.style("none"); 
 //("header, main, footer").forEach(el =>{if (!el.matches("#game-container") && !el.matches("#timer")) {
         //el.classList.add("low-opacity");
     //}
@@ -168,7 +168,9 @@ window.calculateScore = function(timeTaken) {
     resultEl.innerHTML = "🛑 Тест завершено! Натисніть 'Надіслати результат'.";
     figureTaskEl.innerHTML = "";
     sendResultsBtn.style.display = "block";
-
+header.classList.remove("low-opacity"); 
+    main.display.style("block"); 
+footer.display.style("block"); 
     // ✅ Збереження finalScore в глобальну змінну
     // window.finalScore = calculateScore(window.timeTaken);
    //  console.log("🎯 Обчислений бал:", window.finalScore);
