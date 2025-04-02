@@ -247,6 +247,8 @@ function submitResults(finalScore, level, entryIDs, sendStudentName) {
       //  console.error("❌ Час не визначено! Неможливо розрахувати бал.");
        // return;
    // }
+// Define the timeTaken variable here
+    const timeTaken = Math.floor((Date.now() - window.startTime) / 1000);
 
     // Переносимо обчислення finalScore сюди
     window.finalScore = calculateScore(timeTaken);
