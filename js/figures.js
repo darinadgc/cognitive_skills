@@ -4,6 +4,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const timerEl = document.getElementById("timer");
  const header = document.querySelector("header");
     	// const bodyContent = document.querySelector("body");
+    	 const main = document.querySelector("main");
+    	 const footer = document.querySelector("footer");
 
    window.figureTask = document.getElementById("figure-task");
     window.resultEl = document.getElementById("result");
@@ -121,7 +123,9 @@ function checkAnswer(selectedIndex) {
            // }
         //});
 header.classList.add("low-opacity"); 
-    //("header, main, footer").forEach(el =>{if (!el.matches("#game-container") && !el.matches("#timer")) {
+    main.classList.add("low-opacity"); 
+footer.classList.add("low-opacity"); 
+//("header, main, footer").forEach(el =>{if (!el.matches("#game-container") && !el.matches("#timer")) {
         //el.classList.add("low-opacity");
     //}
 //});
