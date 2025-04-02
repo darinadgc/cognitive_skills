@@ -243,13 +243,13 @@ function submitResults(finalScore, level, entryIDs, sendStudentName) {
         return;
     }
 
-    if (typeof window.timeTaken === "undefined") {
+    if (typeof timeTaken === "undefined") {
         console.error("❌ Час не визначено! Неможливо розрахувати бал.");
         return;
     }
 
     // Переносимо обчислення finalScore сюди
-    window.finalScore = calculateScore(window.timeTaken);
+    window.finalScore = calculateScore(timeTaken);
     console.log("🎯 Обчислений бал:", window.finalScore);
 
     // Обчислення рівня
