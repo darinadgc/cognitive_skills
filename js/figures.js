@@ -137,10 +137,10 @@ resultEl.classList.add("container-color");
 
 	// 🔢🎯🔢🎯🎯🎯🔢🔢🎯🎯🎯🔢🎯🎯🔢🔢
 window.calculateScore = function(timeTaken) {
-    if (typeof timeTaken !== "number" || isNaN(timeTaken)) {
-        console.error("❌ Неправильне значення timeTaken:", timeTaken);
-        return 0; // Запобігає undefined
-    }
+   // if (typeof timeTaken !== "number" || isNaN(timeTaken)) {
+       // console.error("❌ Неправильне значення timeTaken:", timeTaken);
+       // return 0; // Запобігає undefined
+   // }
 
     console.log("⌛ Час витрачений:", timeTaken);
 
