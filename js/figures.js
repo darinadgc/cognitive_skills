@@ -169,7 +169,8 @@ window.calculateScore = function(timeTaken) {
     figureTaskEl.innerHTML = "";
     sendResultsBtn.style.display = "block";
 header.classList.remove("low-opacity"); 
- 
+         gameContainer.classList.remove("container-active");
+
 footer.classList.remove("container-color");
 main.classList.remove("container-color");
 resultEl.classList.remove("container-color");
