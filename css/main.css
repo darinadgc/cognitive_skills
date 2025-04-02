@@ -228,7 +228,7 @@ button {
 }
 #figure-task {
     width: max-content;
-	margin: 83px auto;
+    margin: 7px auto;
 }
    div#task-container-raven .main-image {
         max-height: 337px;/* ✅ Оптимальний розмір */
@@ -310,6 +310,8 @@ img.option, label, #option, input[type='radio'] {
 
 .container-active {
     position: absolute;
+    left: 44%;
+    top: 0;
 }
 
 .low-opacity {
