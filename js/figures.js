@@ -249,7 +249,7 @@ function submitResults(finalScore, level, entryIDs, sendStudentName) {
    // }
 
     // Переносимо обчислення finalScore сюди
-    window.finalScore = calculateScore(timeTaken);
+    window.finalScore = calculateScore();
     console.log("🎯 Обчислений бал:", window.finalScore);
 
     // Обчислення рівня
