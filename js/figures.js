@@ -116,7 +116,8 @@ function checkAnswer(selectedIndex) {
         `).join("")}
       </div>
     `;
-        
+  //          ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜
+  console.log(tasks);
 // Array.from(bodyContent.children).forEach(child => {
            //if (child !== figureTask && child !== timerEl && child !== gameContainer) {
               //  child.classList.add("low-opacity");
