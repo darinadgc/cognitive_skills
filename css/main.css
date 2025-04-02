@@ -20,13 +20,24 @@
     margin: 0;
     display: flex;
     flex-direction: column;
-    font-size: 14px;
     line-height: 1;
     -ms-text-size-adjust: 100%;
     -moz-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
 }
-
+  body {
+	border: 2px solid #82FF50;
+	border-radius: 3.8px;
+	font-size: 26px;
+	line-height: 26.8px;
+	font-family: "Arial", sans-serif;
+	color: #222222;
+	letter-spacing: .7px;
+	padding: 2.6%;
+	}
+  body>* {
+	  padding: 1.28%;
+  } 
 .wrapper {
     display: flex;
     flex-direction: column;
@@ -86,19 +97,7 @@ display: flex;
   html {
 	  padding: 1.4%;
 	 }
-  body {
-	border: 2px solid #82FF50;
-	border-radius: 3.8px;
-	font-size: 26px;
-	line-height: 26.8px;
-	font-family: "Arial", sans-serif;
-	color: #222222;
-	letter-spacing: .7px;
-	padding: 2.6%;
-	}
-  body>* {
-	  padding: 1.28%;
-  } 
+
   main,
   header,
   footer, .accordion.active:hover, .accordion:hover {
