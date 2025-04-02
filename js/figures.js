@@ -128,6 +128,7 @@ header.classList.add("low-opacity");
     //}
 //});
 footer.classList.add("container-color");
+main.classList.add("container-color");
 resultEl.classList.add("container-color");
     document.querySelectorAll(".option").forEach(option => {
       option.addEventListener("click", () => checkAnswer(Number(option.dataset.index)));
@@ -170,6 +171,7 @@ window.calculateScore = function(timeTaken) {
 header.classList.remove("low-opacity"); 
  
 footer.classList.remove("container-color");
+main.classList.remove("container-color");
 resultEl.classList.remove("container-color");
     // ✅ Збереження finalScore в глобальну змінну
     // window.finalScore = calculateScore(window.timeTaken);
