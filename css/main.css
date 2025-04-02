@@ -19,10 +19,13 @@
 	display: block; }
        .wrapper, main {
             flex: 1;
-        
-        main {
+         main {
             padding: 16px;
-        }
+        }       
+  .wrapper,   #game-container-figures, html, body {
+display: flex;
+    flex-direction: column;
+  }
   html, body {
 	min-height: 100%;
 	min-width: 100%;
@@ -195,10 +198,7 @@ label {
 	  color: #bf7a11;
 	padding: 7px;
   }
-  .wrapper,   #game-container-figures, html, body {
-display: flex;
-    flex-direction: column;
-  }
+
   #game-container-figures {
     width: 100%;
     
