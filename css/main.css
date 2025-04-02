@@ -310,7 +310,8 @@ img.option, label, #option, input[type='radio'] {
 
 .container-active {
     position: absolute;
-    left: 44%;
+    left: 50%;
+    transform: translateX(-50%);
     top: 0;
 }
 
