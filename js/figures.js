@@ -114,7 +114,7 @@ function generateTask() {
     console.log("🟢 unansweredTasks після оновлення:", unansweredTasks);
     console.log("🔴 incorrectAnswers після оновлення:", incorrectAnswers);
 
-    if (currentTask) {
+   // if (currentTask) {
         figureTaskEl.innerHTML = `
             <img src="${currentTask.image}" class="main-image">
             <div class="options">
@@ -127,9 +127,9 @@ function generateTask() {
         document.querySelectorAll(".option").forEach(option => {
             option.addEventListener("click", () => checkAnswer(Number(option.dataset.index)));
         });
-    } else {
-        console.error("❌ Немає завдань для відображення.");
-    }
+   // } else {
+       // console.error("❌ Немає завдань для відображення.");
+   // }
   //          ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜
 
     console.log("🟪 tasks:", tasks); // Додаємо журнал для перевірки tasks
