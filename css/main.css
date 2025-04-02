@@ -17,7 +17,12 @@
   
   nav, footer, header, aside, a, #main-image {
 	display: block; }
-  
+       .wrapper, main {
+            flex: 1;
+        
+        main {
+            padding: 16px;
+        }
   html, body {
 	min-height: 100%;
 	min-width: 100%;
