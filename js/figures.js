@@ -107,7 +107,7 @@ function checkAnswer(selectedIndex) {
     currentTask = unansweredTasks.length > 0
       ? unansweredTasks.shift()
       : incorrectAnswers.shift(); 
-
+console.log(unansweredTasks);
     figureTaskEl.innerHTML = `
       <img src="${currentTask.image}" class="main-image">
       <div class="options">
