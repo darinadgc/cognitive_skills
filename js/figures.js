@@ -169,8 +169,8 @@ window.calculateScore = function(timeTaken) {
     figureTaskEl.innerHTML = "";
     sendResultsBtn.style.display = "block";
 header.classList.remove("low-opacity"); 
-    main.display.style"block"; 
-footer.display.style"block"; 
+    main.style.display = "block"; 
+footer.style.display = "block"; 
     // ✅ Збереження finalScore в глобальну змінну
     // window.finalScore = calculateScore(window.timeTaken);
    //  console.log("🎯 Обчислений бал:", window.finalScore);
