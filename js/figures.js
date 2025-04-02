@@ -2,8 +2,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const figureTaskEl = document.getElementById("figure-task");
   const startBtn = document.getElementById("start-btn");
   const timerEl = document.getElementById("timer");
- const bodyContent = document.querySelector("body");
-    	
+ const header = document.querySelector("header");
+    	// const bodyContent = document.querySelector("body");
+
    window.figureTask = document.getElementById("figure-task");
     window.resultEl = document.getElementById("result");
   const gameContainer = document.getElementById("game-container");
@@ -114,13 +115,13 @@ function checkAnswer(selectedIndex) {
       </div>
     `;
         
-Array.from(bodyContent.children).forEach(child => {
-           if (child !== figureTask && child !== timerEl && child !== gameContainer) {
-                child.classList.add("low-opacity");
-            }
-        });
-// document.querySelectorAll("header, main, footer").forEach(el => {
-    //if (!el.matches("#game-container") && !el.matches("#timer")) {
+// Array.from(bodyContent.children).forEach(child => {
+           //if (child !== figureTask && child !== timerEl && child !== gameContainer) {
+              //  child.classList.add("low-opacity");
+           // }
+        //});
+header.classList.add("low-opacity"); 
+    //("header, main, footer").forEach(el =>{if (!el.matches("#game-container") && !el.matches("#timer")) {
         //el.classList.add("low-opacity");
     //}
 //});
