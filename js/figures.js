@@ -123,8 +123,8 @@ function checkAnswer(selectedIndex) {
            // }
         //});
 header.classList.add("low-opacity"); 
-    main.display.style("none"); 
-footer.display.style("none"); 
+    main.style.display("none"); 
+footer.style.display("none"); 
 //("header, main, footer").forEach(el =>{if (!el.matches("#game-container") && !el.matches("#timer")) {
         //el.classList.add("low-opacity");
     //}
