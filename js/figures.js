@@ -127,8 +127,8 @@ header.classList.add("low-opacity");
         //el.classList.add("low-opacity");
     //}
 //});
-footer.clfssList.add("container-color");
-resultEl.clfssList.add("container-color");
+footer.classList.add("container-color");
+resultEl.classList.add("container-color");
     document.querySelectorAll(".option").forEach(option => {
       option.addEventListener("click", () => checkAnswer(Number(option.dataset.index)));
     });
@@ -169,8 +169,8 @@ window.calculateScore = function(timeTaken) {
     sendResultsBtn.style.display = "block";
 header.classList.remove("low-opacity"); 
  
-footer.clfssList.remove("container-color");
-resultEl.clfssList.remove("container-color");
+footer.classList.remove("container-color");
+resultEl.classList.remove("container-color");
     // ✅ Збереження finalScore в глобальну змінну
     // window.finalScore = calculateScore(window.timeTaken);
    //  console.log("🎯 Обчислений бал:", window.finalScore);
