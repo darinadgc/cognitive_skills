@@ -37,8 +37,8 @@ const sendResultsBtn = document.getElementById("send-results-btn");
     { id: 6, image: "img/upiznay_fihury/upiznay_fihury6.png", correct: 3 },
     { id: 7, image: "img/upiznay_fihury/upiznay_fihury7.png", correct: 1 },
     { id: 8, image: "img/upiznay_fihury/upiznay_fihury8.png", correct: 4 },
-    { id: 9, image: "img/upiznay_fihury/upiznay_fihury9.png", correct: 3 },
-    { id: 10, image: "img/upiznay_fihury/upiznay_fihury10.png", correct: 2 }
+    { id: 9, image: "img/upiznay_fihury/upiznay_fihury9.png", correct: 1 },
+    { id: 10, image: "img/upiznay_fihury/upiznay_fihury10.png", correct: 3 }
   ];
   let unansweredTasks = [...tasks]; 
   let incorrectAnswers = []; 
