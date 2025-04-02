@@ -133,7 +133,7 @@ function generateTask() {
   //          ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜
 
     console.log("🟪 tasks:", tasks); // Додаємо журнал для перевірки tasks
-}
+
 
 
 // Array.from(bodyContent.children).forEach(child => {
