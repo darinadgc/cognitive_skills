@@ -98,7 +98,9 @@ function checkAnswer(selectedIndex) {
 	//➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕
   function generateTask() {
       console.log("🔍 Поточний score:", score); // Додаємо перевірку
- 
+     console.log("🟢 unansweredTasks перед оновленням:", unansweredTasks);
+    console.log("🔴 incorrectAnswers перед оновленням:", incorrectAnswers);
+
         gameContainer.classList.add("container-active");
  if (score === 10 && incorrectAnswers.length === 0) {
       finishTest();
@@ -107,7 +109,9 @@ function checkAnswer(selectedIndex) {
     currentTask = unansweredTasks.length > 0
       ? unansweredTasks.shift()
       : incorrectAnswers.shift(); 
-console.log(unansweredTasks);
+    console.log("🟢 unansweredTasks після оновлення:", unansweredTasks);
+    console.log("🔴 incorrectAnswers після оновлення:", incorrectAnswers);
+
    if (currentTask) {
         figureTaskEl.innerHTML = `
             <img src="${currentTask.image}" class="main-image">
@@ -126,7 +130,8 @@ console.log(unansweredTasks);
     }
 
   //          ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜
-  console.log(tasks);
+      console.log("🟢 tasks:", tasks); // Додаємо журнал для перевірки tasks
+
 // Array.from(bodyContent.children).forEach(child => {
            //if (child !== figureTask && child !== timerEl && child !== gameContainer) {
               //  child.classList.add("low-opacity");
