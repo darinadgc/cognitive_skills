@@ -190,7 +190,7 @@ label {
 	  color: #bf7a11;
 	padding: 7px;
   }
-  .wrapper,   #game-container-figures {
+  .wrapper,   #game-container-figures, html, body {
 display: flex;
     flex-direction: column;
   }
