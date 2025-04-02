@@ -90,29 +90,31 @@ function checkAnswer(selectedIndex) {
     } else {
         if (!incorrectAnswers.some(task => task.id === currentTask.id)) {
             incorrectAnswers.push(currentTask);
+            console.log("Додано до incorrectAnswers:", currentTask);
         }
     }
     setTimeout(generateTask, 1);
 }
 
 	//➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕
-  function generateTask() {
-      console.log("🔍 Поточний score:", score); // Додаємо перевірку
-     console.log("🟢 unansweredTasks перед оновленням:", unansweredTasks);
+function generateTask() {
+    console.log("🔍 Поточний score:", score); // Додаємо перевірку
+    console.log("🟢 unansweredTasks перед оновленням:", unansweredTasks);
     console.log("🔴 incorrectAnswers перед оновленням:", incorrectAnswers);
 
-        gameContainer.classList.add("container-active");
- if (score === 10 && incorrectAnswers.length === 0) {
-      finishTest();
-      return;
+    gameContainer.classList.add("container-active");
+    if (score === 10 && incorrectAnswers.length === 0) {
+        finishTest();
+        return;
     }
+    
     currentTask = unansweredTasks.length > 0
-      ? unansweredTasks.shift()
-      : incorrectAnswers.shift(); 
+        ? unansweredTasks.shift()
+        : incorrectAnswers.shift(); 
     console.log("🟢 unansweredTasks після оновлення:", unansweredTasks);
     console.log("🔴 incorrectAnswers після оновлення:", incorrectAnswers);
 
-   if (currentTask) {
+    if (currentTask) {
         figureTaskEl.innerHTML = `
             <img src="${currentTask.image}" class="main-image">
             <div class="options">
@@ -128,9 +130,11 @@ function checkAnswer(selectedIndex) {
     } else {
         console.error("❌ Немає завдань для відображення.");
     }
-
   //          ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜
-      console.log("🟢 tasks:", tasks); // Додаємо журнал для перевірки tasks
+
+    console.log("🟪 tasks:", tasks); // Додаємо журнал для перевірки tasks
+}
+
 
 // Array.from(bodyContent.children).forEach(child => {
            //if (child !== figureTask && child !== timerEl && child !== gameContainer) {
