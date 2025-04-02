@@ -86,7 +86,10 @@
   }
   article {background-color: #DCFF50;
   }
-	
+.wrapper {
+min-height: 100%;
+}
+
   section,
   aside {
 	background-color: #FAF0BE;
@@ -187,11 +190,13 @@ label {
 	  color: #bf7a11;
 	padding: 7px;
   }
-  
+  .wrapper,   #game-container-figures {
+display: flex;
+    flex-direction: column;
+  }
   #game-container-figures {
     width: 100%;
-    display: flex;
-    flex-direction: column;
+    
     justify-content: center;
     align-items: center;
 }
