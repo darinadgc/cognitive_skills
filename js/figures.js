@@ -108,14 +108,23 @@ function checkAnswer(selectedIndex) {
       ? unansweredTasks.shift()
       : incorrectAnswers.shift(); 
 console.log(unansweredTasks);
-    figureTaskEl.innerHTML = `
-      <img src="${currentTask.image}" class="main-image">
-      <div class="options">
-        ${[1, 2, 3, 4].map(num => `
-          <img class="option" src="img/upiznay_fihury/upiznay_fihury${currentTask.id}_${num}.png" data-index="${num}">
-        `).join("")}
-      </div>
-    `;
+   if (currentTask) {
+        figureTaskEl.innerHTML = `
+            <img src="${currentTask.image}" class="main-image">
+            <div class="options">
+                ${[1, 2, 3, 4].map(num => `
+                    <img class="option" src="img/upiznay_fihury/upiznay_fihury${currentTask.id}_${num}.png" data-index="${num}">
+                `).join("")}
+            </div>
+        `;
+    
+        document.querySelectorAll(".option").forEach(option => {
+            option.addEventListener("click", () => checkAnswer(Number(option.dataset.index)));
+        });
+    } else {
+        console.error("❌ Немає завдань для відображення.");
+    }
+}
   //          ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜
   console.log(tasks);
 // Array.from(bodyContent.children).forEach(child => {
