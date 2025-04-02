@@ -160,7 +160,8 @@ window.calculateScore = function(timeTaken) {
 
 //🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁finishTest
  function finishTest() {
-    const timeTaken = Math.floor((Date.now() - window.startTime) / 1000); // Час витрачений в секундах
+    const timeTaken = Math.floor((Date.now() - window.startTime) / 1000);
+ //const timeTaken = Math.floor((Date.now() - window.startTime) / 1000); Час витрачений в секундах
     console.log("⌛ Час витрачений на тест (у finishTest):", timeTaken);
     if (timeTaken > 90) {
         console.log("Тест завершено через перевищення ліміту часу.");
@@ -176,8 +177,9 @@ footer.classList.remove("container-color");
 main.classList.remove("container-color");
 resultEl.classList.remove("container-color");
     // ✅ Збереження finalScore в глобальну змінну
-    // window.finalScore = calculateScore(window.timeTaken);
-   //  console.log("🎯 Обчислений бал:", window.finalScore);
+     window.finalScore = calculateScore(timeTaken);
+    console.log("🎯 Обчислений бал:", window.finalScore);
+
 }
 
 //🏁finishTest
@@ -248,11 +250,11 @@ function submitResults(finalScore, level, entryIDs, sendStudentName) {
        // return;
    // }
 // Define the timeTaken variable here
-    const timeTaken = Math.floor((Date.now() - window.startTime) / 1000);
+    
 
-    // Переносимо обчислення finalScore сюди
-    window.finalScore = calculateScore(timeTaken);
-    console.log("🎯 Обчислений бал:", window.finalScore);
+    //console.log("🎯 Обчислений бал:", window.finalScore); Переносимо обчислення finalScore сюди
+    
+    
 
     // Обчислення рівня
     level = calculateLevel(window.finalScore);
