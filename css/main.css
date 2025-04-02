@@ -314,7 +314,7 @@ img.option, label, #option, input[type='radio'] {
     transform: translateX(-50%);
     top: 0;
 	padding: 35px;
-    background-color: inherit;
+    background-color: #DCFF50;
 }
 
 .low-opacity {
