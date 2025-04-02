@@ -195,7 +195,9 @@ label {
     justify-content: center;
     align-items: center;
 }
-
+.container-active-color {
+    background-color: #eff4c4;
+}
 #figure-task {
     background: white;
 }
