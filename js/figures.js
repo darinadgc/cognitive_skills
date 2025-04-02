@@ -160,7 +160,7 @@ window.calculateScore = function(timeTaken) {
 
 //🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁finishTest
  function finishTest() {
-    const timeTaken = (Date.now() - window.startTime) / 1000; // Час витрачений в секундах
+    const timeTaken = Math.floor((Date.now() - window.startTime) / 1000); // Час витрачений в секундах
     console.log("⌛ Час витрачений на тест (у finishTest):", timeTaken);
     if (timeTaken > 90) {
         console.log("Тест завершено через перевищення ліміту часу.");
