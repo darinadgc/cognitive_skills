@@ -133,12 +133,12 @@ function generateTask() {
     }
 
     // **Перевірка перед встановленням src**
-    const taskImageEl = document.getElementById("taskImage");
-    if (taskImageEl) {
-        taskImageEl.src = currentTask.image;
-    } else {
-        console.error("❌ Помилка: taskImage не знайдено в DOM.");
-    }
+   // const taskImageEl = document.getElementById("taskImage");
+    //if (taskImageEl) {
+      //  taskImageEl.src = currentTask.image;
+   // } else {
+       // console.error("❌ Помилка: taskImage не знайдено в DOM.");
+    //}
 
     figureTaskEl.innerHTML = `
         <img src="${currentTask.image}" class="main-image">
