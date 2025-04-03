@@ -87,16 +87,19 @@ let score = 0;  // Оголошуємо змінну на глобальному
 
 function checkAnswer(selectedIndex) {
     if (selectedIndex === currentTask.correct) {
-        score++;  // Тепер score оновлюється глобально
+        score++;
         incorrectAnswers = incorrectAnswers.filter(task => task.id !== currentTask.id);
     } else {
         if (!incorrectAnswers.some(task => task.id === currentTask.id)) {
             incorrectAnswers.push(currentTask);
-            console.log("Додано до incorrectAnswers:", currentTask);
+            console.log("🚨 Додано до incorrectAnswers:", incorrectAnswers);
+        } else {
+            console.log("⚠️ Завдання вже в incorrectAnswers:", incorrectAnswers);
         }
     }
     setTimeout(generateTask, 1);
 }
+
 
 	//➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕
 function generateTask() {
@@ -107,24 +110,24 @@ function generateTask() {
 
     gameContainer.classList.add("container-active");
 
-    if (score === 10 && incorrectAnswers.length === 0) {
-        finishTest();
-        return;
-    }
-
     if (unansweredTasks.length === 0) {
         console.log("✅ Всі завдання виконані. Завершуємо тест.");
         finishTest();
         return;
     }
-
+console.log("🎯 Згенеровані варіанти:", optionsHTML);
     currentTask = unansweredTasks.length > 0
-        ? unansweredTasks.shift()
-        : incorrectAnswers.shift();
+        ? unansweredTasks.shift()//Якщо unansweredTasks не пустий, завдання береться звідти
+        : incorrectAnswers.shift();//Якщо unansweredTasks порожній, береться перше завдання з incorrectAnswers
 
     console.log("🟢 unansweredTasks після оновлення:", unansweredTasks);
     console.log("🔴 incorrectAnswers після оновлення:", incorrectAnswers);
     console.log("🟪 tasks:", tasks);
+
+    if (score === 10 && incorrectAnswers.length === 0) {
+        finishTest();
+        return;
+    }
 
     if (!currentTask) {
         console.error("⚠️ Поточне завдання undefined, завершення тесту.");
