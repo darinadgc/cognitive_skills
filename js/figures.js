@@ -123,7 +123,10 @@ if (unansweredTasks.length > 0) {
     currentTask = unansweredTasks.shift();
 } else if (incorrectAnswers.length > 0) {
     currentTask = incorrectAnswers.shift();
-    unansweredTasks.push(currentTask); // 🔥 Додаємо назад, щоб було ще раз
+    if (!unansweredTasks.includes(currentTask)) {
+        unansweredTasks.push(currentTask); // 🔥 Додаємо назад, щоб повторити
+    }
+
 }
 
     console.log("🟢 unansweredTasks після оновлення:", unansweredTasks);
