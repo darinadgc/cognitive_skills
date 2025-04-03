@@ -75,7 +75,6 @@ function startTimer(duration) {
     }, 1000);
 }
 
-//✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅
 let score = 0;  // Оголошуємо змінну на глобальному рівні
 	//➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕
 function generateTask() {
@@ -135,19 +134,25 @@ function generateTask() {
     main.classList.add("container-color");
     resultEl.classList.add("container-color");
 }
+//✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅
+
 function checkAnswer(selectedIndex) {
     if (selectedIndex === currentTask.correct) {
         score++;
         incorrectAnswers = incorrectAnswers.filter(task => task.id !== currentTask.id);
     } else {
-        if (!incorrectAnswers.some(task => task.id === currentTask.id)) {
+        const taskIndex = incorrectAnswers.findIndex(task => task.id === currentTask.id);
+        if (taskIndex === -1) {
             incorrectAnswers.push({ ...currentTask });
+        } else {
+            // Move the already existing incorrect task to the end of the queue
+            const [task] = incorrectAnswers.splice(taskIndex, 1);
+            incorrectAnswers.push(task);
         }
     }
 
     setTimeout(generateTask, 1);
 }
-
 
 
 
