@@ -116,9 +116,15 @@ function generateTask() {
         return;
     }
 //console.log("🎯 Згенеровані варіанти:", options);
-    currentTask = unansweredTasks.length > 0
-        ? unansweredTasks.shift()//Якщо unansweredTasks не пустий, завдання береться звідти
-        : incorrectAnswers.shift();//Якщо unansweredTasks порожній, береться перше завдання з incorrectAnswers
+   // currentTask = unansweredTasks.length > 0
+        //? unansweredTasks.shift()Якщо unansweredTasks не пустий, завдання береться звідти
+        //: incorrectAnswers.shift();Якщо unansweredTasks порожній, береться перше завдання з incorrectAnswers
+if (unansweredTasks.length > 0) {
+    currentTask = unansweredTasks.shift();
+} else if (incorrectAnswers.length > 0) {
+    currentTask = incorrectAnswers.shift();
+    unansweredTasks.push(currentTask); // 🔥 Додаємо назад, щоб було ще раз
+}
 
     console.log("🟢 unansweredTasks після оновлення:", unansweredTasks);
     console.log("🔴 incorrectAnswers після оновлення:", incorrectAnswers);
