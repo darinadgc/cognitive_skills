@@ -115,7 +115,7 @@ function generateTask() {
         finishTest();
         return;
     }
-console.log("🎯 Згенеровані варіанти:", options);
+//console.log("🎯 Згенеровані варіанти:", options);
     currentTask = unansweredTasks.length > 0
         ? unansweredTasks.shift()//Якщо unansweredTasks не пустий, завдання береться звідти
         : incorrectAnswers.shift();//Якщо unansweredTasks порожній, береться перше завдання з incorrectAnswers
