@@ -86,15 +86,14 @@ function startTimer(duration) {
 let score = 0;  // Оголошуємо змінну на глобальному рівні
 
 function checkAnswer(selectedIndex) {
-if (selectedIndex === currentTask.correct) {
-    score++;
-    incorrectAnswers = incorrectAnswers.filter(task => task.id !== currentTask.id);
-} else {
-    if (!incorrectAnswers.some(task => task.id === currentTask.id)) {
-        incorrectAnswers.push({...currentTask});
+    if (selectedIndex === currentTask.correct) {
+        score++;
+        incorrectAnswers = incorrectAnswers.filter(task => task.id !== currentTask.id);
+    } else {
+        if (!incorrectAnswers.some(task => task.id === currentTask.id)) {
+            incorrectAnswers.push({ ...currentTask });
+        }
     }
-}
-
 
     setTimeout(generateTask, 1);
 }
@@ -105,29 +104,21 @@ function generateTask() {
     console.log("🔍 Поточний score:", score);
     console.log("🟢 unansweredTasks перед оновленням:", unansweredTasks);
     console.log("🔴 incorrectAnswers перед оновленням:", incorrectAnswers);
-    console.log("❓ Видаляємо з unansweredTasks:", unansweredTasks[0]);
 
     gameContainer.classList.add("container-active");
 
-    if (unansweredTasks.length === 0) {
+    if (unansweredTasks.length === 0 && incorrectAnswers.length === 0) {
         console.log("✅ Всі завдання виконані. Завершуємо тест.");
         finishTest();
         return;
     }
-//console.log("🎯 Згенеровані варіанти:", options);
-   // currentTask = unansweredTasks.length > 0
-        //? unansweredTasks.shift()Якщо unansweredTasks не пустий, завдання береться звідти
-        //: incorrectAnswers.shift();Якщо unansweredTasks порожній, береться перше завдання з incorrectAnswers
-if (unansweredTasks.length > 0) {
-    currentTask = unansweredTasks.shift();
-} else if (incorrectAnswers.length > 0) {
-    currentTask = incorrectAnswers[0]; // Дивимося на перший елемент, але не видаляємо
-    if (!unansweredTasks.includes(currentTask)) {
-        unansweredTasks.push(currentTask); 
-    }
-    incorrectAnswers.shift(); // Тепер видаляємо
-}
 
+    if (unansweredTasks.length > 0) {
+        currentTask = unansweredTasks.shift();
+    } else if (incorrectAnswers.length > 0) {
+        currentTask = incorrectAnswers.shift();
+        unansweredTasks.push(currentTask); // Make sure the incorrect task is retried
+    }
 
     console.log("🟢 unansweredTasks після оновлення:", unansweredTasks);
     console.log("🔴 incorrectAnswers після оновлення:", incorrectAnswers);
@@ -137,7 +128,6 @@ if (unansweredTasks.length > 0) {
         finishTest();
         return;
     }
-console.log("🖼 Всі опції на екрані:", document.querySelectorAll(".option"));
 
     if (!currentTask) {
         console.error("⚠️ Поточне завдання undefined, завершення тесту.");
@@ -145,36 +135,22 @@ console.log("🖼 Всі опції на екрані:", document.querySelectorA
         return;
     }
 
-    // **Перевірка перед встановленням src**
-   // const taskImageEl = document.getElementById("taskImage");
-    //if (taskImageEl) {
-      //  taskImageEl.src = currentTask.image;
-   // } else {
-       // console.error("❌ Помилка: taskImage не знайдено в DOM.");
-    //}
+    const optionsHTML = [1, 2, 3, 4].map(num => `
+        <img class="option" src="img/upiznay_fihury/upiznay_fihury${currentTask.id}_${num}.png" data-index="${num}">
+    `).join("");
 
-   let optionsHTML = [1, 2, 3, 4].map(num => `
-    <img class="option" src="img/upiznay_fihury/upiznay_fihury${currentTask.id}_${num}.png" data-index="${num}">
-`).join("");
+    console.log("🎯 Згенеровані варіанти:", optionsHTML);
 
-console.log("🎯 Згенеровані варіанти:", optionsHTML); // Перевірка, чи створилися варіанти
+    figureTaskEl.innerHTML = `
+        <img src="${currentTask.image}" class="main-image">
+        <div class="options">${optionsHTML}</div>
+    `;
 
-figureTaskEl.innerHTML = `
-    <img src="${currentTask.image}" class="main-image">
-    <div class="options">${optionsHTML}</div>
-`;
-
-// Дочекатися оновлення DOM перед додаванням обробників
-setTimeout(() => {
-    document.querySelectorAll(".option").forEach(option => {
-        option.addEventListener("click", () => checkAnswer(Number(option.dataset.index)));
-    });
-}, 50); // 50 мс замість 10 мс
-
-
-    document.querySelectorAll(".option").forEach(option => {
-        option.addEventListener("click", () => checkAnswer(Number(option.dataset.index)));
-    });
+    setTimeout(() => {
+        document.querySelectorAll(".option").forEach(option => {
+            option.addEventListener("click", () => checkAnswer(Number(option.dataset.index)));
+        });
+    }, 50);
 
     header.classList.add("low-opacity");
     footer.classList.add("container-color");
