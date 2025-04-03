@@ -2,7 +2,11 @@ document.addEventListener("DOMContentLoaded", () => {
 const resultEl = document.getElementById("result");    // const lastAttemptKey = getLastAttemptKey(); // ✅ Отримуємо ключ для LocalStorage
     // const lastAttempt = localStorage.getItem(lastAttemptKey); // ✅ Оголошуємо lastAttempt
     // const lastAttemptDate = lastAttempt ? new Date(lastAttempt) : null;
-   const startBtn = document.getElementById("start-btn");
+   const header = document.querySelector("header");
+    	// const bodyContent = document.querySelector("body");
+    	 const main = document.querySelector("main");
+    	 const footer = document.querySelector("footer");
+ const startBtn = document.getElementById("start-btn");
 const sendResultsBtn = document.getElementById("send-results-btn");
  const taskContainer = document.getElementById("task-container-raven");
   const timerEl = document.getElementById("timer");
@@ -198,11 +202,13 @@ function loadTask() {
             </div>
         </div>
     `;
-
     // Отримуємо всі варіанти відповідей
     const options = document.querySelectorAll(".option");
     let selectedOption = null;
-
+taskContainer.classList.add("container-active");
+header.classList.add("low-opacity"); 
+footer.classList.add("container-color");
+main.classList.add("container-color");
     options.forEach(option => {
         option.addEventListener("click", () => {
             // Знімаємо виділення з усіх варіантів
@@ -211,7 +217,6 @@ function loadTask() {
             // Виділяємо обраний варіант
             option.classList.add("selected");
             selectedOption = option.getAttribute("data-index");
-
             // Активуємо кнопку "Далі"
             document.getElementById("next-btn").disabled = false;
         });
@@ -259,13 +264,17 @@ function checkAnswer(selectedOption) {
 
  //🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁finishTest
   function finishTest() {
+header.classList.remove("low-opacity"); 
+         taskContainer.classList.remove("container-active");
+
+footer.classList.remove("container-color");
+main.classList.remove("container-color"); 
+
     clearInterval(timerInterval);
     resultEl.innerHTML = "🛑 Тест завершено! Натисніть 'Надіслати результат'.";
     taskContainer.innerHTML = "";
     sendResultsBtn.style.display = "block";
-  }//🏁finishTest 
-
-
+  }//🏁finishTest
 
 
 // 🏫🧒📛 Функція для запиту імені студента
