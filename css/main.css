@@ -238,7 +238,7 @@ button {
 /* .inline-flex {
   display: inline-flex;
 } */
-.main-image {
+#game-container-figures .main-image {
     max-width: 100%;
     height: auto;
 }
@@ -255,9 +255,9 @@ button {
     margin: 7px auto;
 }
    div#task-container-raven .main-image {
-        max-height: 337px;/* ✅ Оптимальний розмір */
-  max-width: 90%; /* ✅ Щоб зображення не виходило за межі */
-  margin-top: 81px; /* ✅ Відступ для корекції */
+        height: 132px;/* ✅ Оптимальний розмір */
+  /* max-width: 90%; ✅ Щоб зображення не виходило за межі */
+ /*  margin-top: 81px; ✅ Відступ для корекції */
   display: block;
 
 }
@@ -269,27 +269,25 @@ div#task-container-raven {
   flex-wrap: wrap;
   display: none; /* Спочатку приховуємо */
   gap: 5px;
-  width: 100vw;
-  height: 100vh;
   overflow: hidden;
 }
 .answer-options {
     display: flex;
     flex-direction: column;
-    align-items: center;
+   /* align-items: center; */
 }
 .answer-options {
   display: flex;
   flex-wrap: wrap; /* ✅ Дозволяє переносити рядки, якщо екран малий */
   justify-content: center;
-  gap: 10px;
+  gap: 1%;
   margin-top: 2px;
 }
 
 /* Кнопки варіантів */
 
 .option {
-    height: auto;
+    height: 29px;
     transition: 0.3s;
 }
 
@@ -344,18 +342,29 @@ img.option, label, #option, input[type='radio'] {
 .low-opacity {
     opacity: 0.3;
 }
-
+div#task-container-raven {
+    padding: 8px;
+}
 
 /*Responsive*/
 @media (min-width: 800px) {   
-  
   .next-div {
    
  flex-wrap: wrap;
 
   } 
+}  
+@media (min-width: 678px) {   
+  div#task-container-raven .main-image {
+    height: 185px;
+    
 }
-
+}
+@media (mix-width: 714px) { 
+	.option {
+    height: 50px;
+}  
+}
 @media (max-width: 766px) {   h1 {
 	   font-size: 41px;
 	  }
