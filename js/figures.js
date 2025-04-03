@@ -110,7 +110,12 @@ console.log("❓ Видаляємо з unansweredTasks:", unansweredTasks[0]);
         finishTest();
         return;
     }
-    
+     // ДОДАНА ПЕРЕВІРКА, чи всі завдання відповіли перед завершенням
+    if (unansweredTasks.length === 0) {
+        console.log("✅ Всі завдання виконані. Завершуємо тест.");
+        finishTest();
+        return;
+    }
     currentTask = unansweredTasks.length > 0
         ? unansweredTasks.shift()
         : incorrectAnswers.shift(); 
@@ -154,6 +159,13 @@ main.classList.add("container-color");
 resultEl.classList.add("container-color");
     document.querySelectorAll(".option").forEach(option => {
       option.addEventListener("click", () => checkAnswer(Number(option.dataset.index)));
+	        if (!currentTask) {
+        console.error("⚠️ Поточне завдання undefined, завершення тесту.");
+        finishTest();
+        return;
+    }
+
+    document.getElementById("taskImage").src = currentTask.image;
     });
   }
 
