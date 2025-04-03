@@ -100,37 +100,47 @@ function checkAnswer(selectedIndex) {
 
 	//➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕
 function generateTask() {
-    console.log("🔍 Поточний score:", score); // Додаємо перевірку
+    console.log("🔍 Поточний score:", score);
     console.log("🟢 unansweredTasks перед оновленням:", unansweredTasks);
     console.log("🔴 incorrectAnswers перед оновленням:", incorrectAnswers);
-console.log("❓ Видаляємо з unansweredTasks:", unansweredTasks[0]);
+    console.log("❓ Видаляємо з unansweredTasks:", unansweredTasks[0]);
 
     gameContainer.classList.add("container-active");
+
     if (score === 10 && incorrectAnswers.length === 0) {
         finishTest();
         return;
     }
-     // ДОДАНА ПЕРЕВІРКА, чи всі завдання відповіли перед завершенням
+
     if (unansweredTasks.length === 0) {
         console.log("✅ Всі завдання виконані. Завершуємо тест.");
         finishTest();
         return;
     }
+
     currentTask = unansweredTasks.length > 0
         ? unansweredTasks.shift()
-        : incorrectAnswers.shift(); 
+        : incorrectAnswers.shift();
+
     console.log("🟢 unansweredTasks після оновлення:", unansweredTasks);
     console.log("🔴 incorrectAnswers після оновлення:", incorrectAnswers);
-    console.log("🟪 tasks:", tasks); // Додаємо журнал для перевірки tasks
-     if (!currentTask) {
+    console.log("🟪 tasks:", tasks);
+
+    if (!currentTask) {
         console.error("⚠️ Поточне завдання undefined, завершення тесту.");
         finishTest();
         return;
     }
-      // Оновлюємо зображення завдання
-    document.getElementById("taskImage").src = currentTask.image;
 
-      figureTaskEl.innerHTML = `
+    // **Перевірка перед встановленням src**
+    const taskImageEl = document.getElementById("taskImage");
+    if (taskImageEl) {
+        taskImageEl.src = currentTask.image;
+    } else {
+        console.error("❌ Помилка: taskImage не знайдено в DOM.");
+    }
+
+    figureTaskEl.innerHTML = `
         <img src="${currentTask.image}" class="main-image">
         <div class="options">
             ${[1, 2, 3, 4].map(num => `
@@ -142,19 +152,13 @@ console.log("❓ Видаляємо з unansweredTasks:", unansweredTasks[0]);
     document.querySelectorAll(".option").forEach(option => {
         option.addEventListener("click", () => checkAnswer(Number(option.dataset.index)));
     });
-       // console.error("❌ Немає завдань для відображення.");
-   // }
-     header.classList.add("low-opacity");
+
+    header.classList.add("low-opacity");
     footer.classList.add("container-color");
     main.classList.add("container-color");
     resultEl.classList.add("container-color");
-    
-  // document.querySelectorAll(".option").forEach(option => {
-    //  option.addEventListener("click", () => checkAnswer(Number(option.dataset.index)));
-	
-   // document.getElementById("taskImage").src = currentTask.image;
-   // });
-  }
+}
+
 
 	// 🔢🎯🔢🎯🎯🎯🔢🔢🎯🎯🎯🔢🎯🎯🔢🔢
 window.calculateScore = function(timeTaken) {
