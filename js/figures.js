@@ -121,52 +121,39 @@ console.log("❓ Видаляємо з unansweredTasks:", unansweredTasks[0]);
         : incorrectAnswers.shift(); 
     console.log("🟢 unansweredTasks після оновлення:", unansweredTasks);
     console.log("🔴 incorrectAnswers після оновлення:", incorrectAnswers);
-
-   // if (currentTask) {
-        figureTaskEl.innerHTML = `
-            <img src="${currentTask.image}" class="main-image">
-            <div class="options">
-                ${[1, 2, 3, 4].map(num => `
-                    <img class="option" src="img/upiznay_fihury/upiznay_fihury${currentTask.id}_${num}.png" data-index="${num}">
-                `).join("")}
-            </div>
-        `;
-    
-        document.querySelectorAll(".option").forEach(option => {
-            option.addEventListener("click", () => checkAnswer(Number(option.dataset.index)));
-        });
-   // } else {
-       // console.error("❌ Немає завдань для відображення.");
-   // }
-  //          ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜
-
     console.log("🟪 tasks:", tasks); // Додаємо журнал для перевірки tasks
-
-
-
-// Array.from(bodyContent.children).forEach(child => {
-           //if (child !== figureTask && child !== timerEl && child !== gameContainer) {
-              //  child.classList.add("low-opacity");
-           // }
-        //});
-header.classList.add("low-opacity"); 
-//("header, main, footer").forEach(el =>{if (!el.matches("#game-container") && !el.matches("#timer")) {
-        //el.classList.add("low-opacity");
-    //}
-//});
-footer.classList.add("container-color");
-main.classList.add("container-color");
-resultEl.classList.add("container-color");
-    document.querySelectorAll(".option").forEach(option => {
-      option.addEventListener("click", () => checkAnswer(Number(option.dataset.index)));
-	        if (!currentTask) {
+     if (!currentTask) {
         console.error("⚠️ Поточне завдання undefined, завершення тесту.");
         finishTest();
         return;
     }
-
+      // Оновлюємо зображення завдання
     document.getElementById("taskImage").src = currentTask.image;
+
+      figureTaskEl.innerHTML = `
+        <img src="${currentTask.image}" class="main-image">
+        <div class="options">
+            ${[1, 2, 3, 4].map(num => `
+                <img class="option" src="img/upiznay_fihury/upiznay_fihury${currentTask.id}_${num}.png" data-index="${num}">
+            `).join("")}
+        </div>
+    `;
+
+    document.querySelectorAll(".option").forEach(option => {
+        option.addEventListener("click", () => checkAnswer(Number(option.dataset.index)));
     });
+       // console.error("❌ Немає завдань для відображення.");
+   // }
+     header.classList.add("low-opacity");
+    footer.classList.add("container-color");
+    main.classList.add("container-color");
+    resultEl.classList.add("container-color");
+    
+  // document.querySelectorAll(".option").forEach(option => {
+    //  option.addEventListener("click", () => checkAnswer(Number(option.dataset.index)));
+	
+   // document.getElementById("taskImage").src = currentTask.image;
+   // });
   }
 
 	// 🔢🎯🔢🎯🎯🎯🔢🔢🎯🎯🎯🔢🎯🎯🔢🔢
