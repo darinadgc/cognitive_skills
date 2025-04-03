@@ -43,6 +43,7 @@ const sendResultsBtn = document.getElementById("send-results-btn");
   let unansweredTasks = [...tasks]; 
   let incorrectAnswers = []; 
   let currentTask = null;
+console.log("📌 Всі завдання перед початком тесту:", tasks);
   startBtn.addEventListener("click", startTest);
 //🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛
 function startTest() {
@@ -58,8 +59,9 @@ function startTest() {
 
     startBtn.style.display = "none";
     sendResultsBtn.style.display = "none";
-
     startTimer(90); // ⏳ Запускаємо таймер на 90 секунд
+console.log("🖼 Всі опції на екрані:", document.querySelectorAll(".option"));
+
     generateTask();
 }
 
@@ -101,6 +103,7 @@ function generateTask() {
     console.log("🔍 Поточний score:", score); // Додаємо перевірку
     console.log("🟢 unansweredTasks перед оновленням:", unansweredTasks);
     console.log("🔴 incorrectAnswers перед оновленням:", incorrectAnswers);
+console.log("❓ Видаляємо з unansweredTasks:", unansweredTasks[0]);
 
     gameContainer.classList.add("container-active");
     if (score === 10 && incorrectAnswers.length === 0) {
