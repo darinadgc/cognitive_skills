@@ -149,14 +149,16 @@ if (unansweredTasks.length > 0) {
        // console.error("❌ Помилка: taskImage не знайдено в DOM.");
     //}
 
-    figureTaskEl.innerHTML = `
-        <img src="${currentTask.image}" class="main-image">
-        <div class="options">
-            ${[1, 2, 3, 4].map(num => `
-                <img class="option" src="img/upiznay_fihury/upiznay_fihury${currentTask.id}_${num}.png" data-index="${num}">
-            `).join("")}
-        </div>
-    `;
+   let optionsHTML = [1, 2, 3, 4].map(num => `
+    <img class="option" src="img/upiznay_fihury/upiznay_fihury${currentTask.id}_${num}.png" data-index="${num}">
+`).join("");
+
+console.log("🎯 Згенеровані варіанти:", optionsHTML); // Перевірка, чи створилися варіанти
+
+figureTaskEl.innerHTML = `
+    <img src="${currentTask.image}" class="main-image">
+    <div class="options">${optionsHTML}</div>
+`;
 
     document.querySelectorAll(".option").forEach(option => {
         option.addEventListener("click", () => checkAnswer(Number(option.dataset.index)));
