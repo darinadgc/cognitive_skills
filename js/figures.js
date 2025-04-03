@@ -134,6 +134,7 @@ if (unansweredTasks.length > 0) {
         finishTest();
         return;
     }
+console.log("🖼 Всі опції на екрані:", document.querySelectorAll(".option"));
 
     if (!currentTask) {
         console.error("⚠️ Поточне завдання undefined, завершення тесту.");
@@ -159,6 +160,14 @@ figureTaskEl.innerHTML = `
     <img src="${currentTask.image}" class="main-image">
     <div class="options">${optionsHTML}</div>
 `;
+
+// Дочекатися оновлення DOM перед додаванням обробників
+setTimeout(() => {
+    document.querySelectorAll(".option").forEach(option => {
+        option.addEventListener("click", () => checkAnswer(Number(option.dataset.index)));
+    });
+}, 10);
+
 
     document.querySelectorAll(".option").forEach(option => {
         option.addEventListener("click", () => checkAnswer(Number(option.dataset.index)));
