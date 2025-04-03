@@ -283,7 +283,7 @@ div#task-container-raven {
   flex-wrap: wrap; /* ✅ Дозволяє переносити рядки, якщо екран малий */
   justify-content: center;
   gap: 10px;
-  margin-top: 20px;
+  margin-top: 2px;
 }
 
 /* Кнопки варіантів */
