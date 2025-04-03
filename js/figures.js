@@ -86,17 +86,15 @@ function startTimer(duration) {
 let score = 0;  // Оголошуємо змінну на глобальному рівні
 
 function checkAnswer(selectedIndex) {
-    if (selectedIndex === currentTask.correct) {
-        score++;
-        incorrectAnswers = incorrectAnswers.filter(task => task.id !== currentTask.id);
-    } else {
-        if (!incorrectAnswers.some(task => task.id === currentTask.id)) {
-            incorrectAnswers.push(currentTask);
-            console.log("🚨 Додано до incorrectAnswers:", incorrectAnswers);
-        } else {
-            console.log("⚠️ Завдання вже в incorrectAnswers:", incorrectAnswers);
-        }
+if (selectedIndex === currentTask.correct) {
+    score++;
+    incorrectAnswers = incorrectAnswers.filter(task => task.id !== currentTask.id); // Видаляємо правильні відповіді
+} else {
+    if (!incorrectAnswers.some(task => task.id === currentTask.id)) {
+        incorrectAnswers.push({...currentTask}); // Клонування об'єкта, щоб уникнути сторонніх змін
     }
+}
+
     setTimeout(generateTask, 1);
 }
 
