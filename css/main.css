@@ -244,7 +244,7 @@ div#task-container-raven {
 
 /* Кнопки варіантів */
 
-.option {
+div#task-container-raven .option {
     height: 29px;
     transition: 0.3s;
 }
