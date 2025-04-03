@@ -329,7 +329,6 @@ button {
 img.option, label, #option, input[type='radio'] {
   cursor: pointer;
 }
-
 .container-active {
     position: absolute;
     left: 50%;
@@ -337,7 +336,11 @@ img.option, label, #option, input[type='radio'] {
     top: 0;
 	padding: 35px;
     background-color: #DCFF50;
+	    z-index: 1000; /* Встановлює високий z-index, щоб елемент був над іншими */
+    display: block; /* Початково приховує елемент */
+
 }
+
 
 .low-opacity {
     opacity: 0.3;
