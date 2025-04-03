@@ -47,21 +47,14 @@ console.log("📌 Всі завдання перед початком тесту
   startBtn.addEventListener("click", startTest);
 //🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛🔛
 function startTest() {
-    window.startTime = Date.now(); // 🕒 Фіксуємо час початку тесту
-    console.log("🕒 Початок тесту:", window.startTime);
-
-    unansweredTasks = [...tasks]; // 🔄 Копіюємо всі завдання
-
-    currentTaskIndex = 0;
+    window.startTime = Date.now();
     score = 0;
-    incorrectAnswers = []; // Очищуємо список неправильних відповідей
+    unansweredTasks = [...tasks];
+    incorrectAnswers = [];
     document.getElementById("figure-task").style.display = "block";
-
     startBtn.style.display = "none";
     sendResultsBtn.style.display = "none";
-    startTimer(90); // ⏳ Запускаємо таймер на 90 секунд
-console.log("🖼 Всі опції на екрані:", document.querySelectorAll(".option"));
-
+    startTimer(90);
     generateTask();
 }
 
@@ -84,21 +77,6 @@ function startTimer(duration) {
 
 //✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅
 let score = 0;  // Оголошуємо змінну на глобальному рівні
-
-function checkAnswer(selectedIndex) {
-    if (selectedIndex === currentTask.correct) {
-        score++;
-        incorrectAnswers = incorrectAnswers.filter(task => task.id !== currentTask.id);
-    } else {
-        if (!incorrectAnswers.some(task => task.id === currentTask.id)) {
-            incorrectAnswers.push({ ...currentTask });
-        }
-    }
-
-    setTimeout(generateTask, 1);
-}
-
-
 	//➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕➕
 function generateTask() {
     console.log("🔍 Поточний score:", score);
@@ -157,6 +135,20 @@ function generateTask() {
     main.classList.add("container-color");
     resultEl.classList.add("container-color");
 }
+function checkAnswer(selectedIndex) {
+    if (selectedIndex === currentTask.correct) {
+        score++;
+        incorrectAnswers = incorrectAnswers.filter(task => task.id !== currentTask.id);
+    } else {
+        if (!incorrectAnswers.some(task => task.id === currentTask.id)) {
+            incorrectAnswers.push({ ...currentTask });
+        }
+    }
+
+    setTimeout(generateTask, 1);
+}
+
+
 
 
 	// 🔢🎯🔢🎯🎯🎯🔢🔢🎯🎯🎯🔢🎯🎯🔢🔢
