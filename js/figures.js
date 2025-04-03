@@ -94,7 +94,6 @@ function generateTask() {
         currentTask = unansweredTasks.shift();
     } else if (incorrectAnswers.length > 0) {
         currentTask = incorrectAnswers.shift();
-        unansweredTasks.push(currentTask); // Make sure the incorrect task is retried
     }
 
     console.log("🟢 unansweredTasks після оновлення:", unansweredTasks);
@@ -112,14 +111,14 @@ function generateTask() {
         return;
     }
 
-    const optionsHTML = [1, 2, 3, 4].map(num => `
+    const optionsHTML = [1, 2, 3, 4].map(num => ` 
         <img class="option" src="img/upiznay_fihury/upiznay_fihury${currentTask.id}_${num}.png" data-index="${num}">
     `).join("");
 
     console.log("🎯 Згенеровані варіанти:", optionsHTML);
 
-    figureTaskEl.innerHTML = `
-        <img src="${currentTask.image}" class="main-image">
+    figureTaskEl.innerHTML = ` 
+        <img src="${currentTask.image}" class="main-image"> 
         <div class="options">${optionsHTML}</div>
     `;
 
@@ -141,14 +140,10 @@ function checkAnswer(selectedIndex) {
         score++;
         incorrectAnswers = incorrectAnswers.filter(task => task.id !== currentTask.id);
     } else {
-        const taskIndex = incorrectAnswers.findIndex(task => task.id === currentTask.id);
-        if (taskIndex === -1) {
+        if (!incorrectAnswers.some(task => task.id === currentTask.id)) {
             incorrectAnswers.push({ ...currentTask });
-        } else {
-            // Move the already existing incorrect task to the end of the queue
-            const [task] = incorrectAnswers.splice(taskIndex, 1);
-            incorrectAnswers.push(task);
         }
+        unansweredTasks.push(currentTask); // Ensure the incorrect task is retried.
     }
 
     setTimeout(generateTask, 1);
