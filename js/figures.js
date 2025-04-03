@@ -122,12 +122,13 @@ function generateTask() {
 if (unansweredTasks.length > 0) {
     currentTask = unansweredTasks.shift();
 } else if (incorrectAnswers.length > 0) {
-    currentTask = incorrectAnswers.shift();
+    currentTask = incorrectAnswers[0]; // Дивимося на перший елемент, але не видаляємо
     if (!unansweredTasks.includes(currentTask)) {
-        unansweredTasks.push(currentTask); // 🔥 Додаємо назад, щоб повторити
+        unansweredTasks.push(currentTask); 
     }
-
+    incorrectAnswers.shift(); // Тепер видаляємо
 }
+
 
     console.log("🟢 unansweredTasks після оновлення:", unansweredTasks);
     console.log("🔴 incorrectAnswers після оновлення:", incorrectAnswers);
