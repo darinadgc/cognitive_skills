@@ -20,7 +20,7 @@
     margin: 5px;
     display: flex;
     flex-direction: column;
-    line-height: 1;
+    line-height: 1.5;
     -ms-text-size-adjust: 100%;
     -moz-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
@@ -104,7 +104,7 @@ display: flex;
 	background-color: #DCFF50;
 	/* */
   }
-  article {background-color: #DCFF50;
+  article {background-color: #DCFF50 !important;
   }
 .wrapper {
 min-height: 100%;
@@ -118,8 +118,8 @@ min-height: 100%;
   h1 {padding: 25px 10px 20px;
 	font-size: 53px;
    
-	line-height: normal;
-  color: #427e45;
+	line-height: 1.5;
+  color: #427e45 !important;
   font-weight: 600;
   }
   
@@ -203,11 +203,14 @@ label {
 	  min-width: 185px;
   }li {
 	  margin: 17px 0 17px 6%;
-	 }button {
-	  border: #c2fc6c 2px solid;
+    list-style-position: inside;  /* Додає номери списку всередині елементу */
+    color: #3ab747 !important; /* Додає колір для видимості */
+ }
+	button {
+	  border: #c2fc6c !important 2px solid;
 	  border-radius: 8%;
-	  background: #ffdc57;
-	  color: #bf7a11;
+	  background: #ffdc57 !important;
+	  color: #bf7a11 !important;
 	padding: 7px;
   }
 
@@ -294,7 +297,7 @@ img.option, label, #option, input[type='radio'] {
     transform: translateX(-50%);
     top: 0;
 	padding: 35px;
-    background-color: #DCFF50;
+    background-color: #DCFF50 !important;
 	    z-index: 1000; /* Встановлює високий z-index, щоб елемент був над іншими */
     display: block; /* Початково приховує елемент */
 
