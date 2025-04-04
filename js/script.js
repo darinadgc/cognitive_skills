@@ -42,50 +42,6 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log("❌ Ви вже проходили тест. Повідомлення відображено.");
         return; // Зупиняємо подальше виконання, якщо тест вже був пройдений
     }
- document.addEventListener("DOMContentLoaded", () => {
-    	 const main = document.querySelector("main");
-    window.resultElMotivation = document.getElementById("result-motivation");
- const lastAttemptKey = getLastAttemptKey(); // ✅ Отримуємо ключ для LocalStorage//   
-
-const sendResultsBtnMotivation = document.getElementById("send-results-motivation-btn");
-
-  // Виклик функції перевірки обмежень
-    checkTestRetry(main);
-
-  // let sendStudentName; 🔹 Щоб не оголошувати всередині `if`
-
-
-
-// function allQuestionsAnswered(Motivation) {
-//     console.log(`🔍 Перевіряємо, чи всі питання заповнені для тесту: ${Motivation}`);
-//     // Отримуємо всі питання для даного тесту
-//     const questions = document.querySelectorAll(`.question-${Motivation}`);  
-// if (questions.length === 0) {
-//         console.warn(`⚠️ Помилка: не знайдено жодного питання для тесту "${Motivation}". Переконайтеся, що класи ".question-${Motivation}" існують.`);
-//         return false;
-//     }
-  
-//     for (let question of questions) {
-//         // Шукаємо вибраний варіант у кожному питанні
-//         const selectedAnswer = question.querySelector("input[type='radio']:checked");
-//         if (!selectedAnswer) {
-//             console.warn(`⚠️ Не відповіли на питання:`, question);
-//             return false; // Якщо хоч одне питання не заповнене – повертаємо false
-//         }
-//     }
-//     console.log(`✅ Усі питання для тесту "${Motivation}" заповнені.`);
-//     return true; // Всі питання мають відповіді
-// }
-
-// sendResultsBtns.forEach((btn) => {
-//     btn.addEventListener("click", (event) => {
-//         const testType = event.target.dataset.testType; // ✅ Отримуємо testType з кнопки
-//         console.log("📌 Натиснута кнопка для тесту:", testType);
-//         submitTestResults(testType); // Передаємо testType у функцію
-//     });
-// });
-        // submitResults(normalizedTestType);
-
 
 
 
@@ -175,7 +131,23 @@ window.getLevelMotivation = function(score) {
 };
 //    return selectedEntryIDs;
 //❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕❕
+    sendResultsBtnMotivation.addEventListener("click", () => {
+        let checkResults = checkAllAnsweredMotivation();
+        console.log("Відповіді ", checkResults.answeredQuestions);
+        console.log("🔍 Перевірка checkResults:", checkResults);
+        console.log("🔍 answeredQuestions:", checkResults.answeredQuestions);
+        console.log("🔍 totalQuestions:", checkResults.totalQuestions);
 
+        if (checkResults.answeredQuestions === checkResults.totalQuestions) {
+            console.log("🚀 Виклик submitResults()");
+            submitResults(checkResults.score); // ✅ Викликаємо submitResults
+        } else {
+            alert("❗ Будь ласка, відповідайте на всі запитання перед завершенням!");
+            console.log("Відповіді ", answeredQuestions);
+            return;
+        }
+    });
+});// DOMContentLoaded
 	//✅submitResults
 // 	📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧📧
 // Функція для збереження результатів та дати останньої спроби
@@ -246,31 +218,7 @@ window.submitResults = function(finalScore, level, entryIDs, sendStudentName) {
     .finally(() => {
         window.isSubmitting = false;
     });
-};// ✅ Головна функція для надсилання результатів у Google Forms
-
-
-
-    
-
-
-   // Обробник події для кнопки "send-results"
-    sendResultsBtnMotivation.addEventListener("click", () => {
-        let checkResults = checkAllAnsweredMotivation();
-        console.log("Відповіді ", checkResults.answeredQuestions);
-        console.log("🔍 Перевірка checkResults:", checkResults);
-        console.log("🔍 answeredQuestions:", checkResults.answeredQuestions);
-        console.log("🔍 totalQuestions:", checkResults.totalQuestions);
-
-        if (checkResults.answeredQuestions === checkResults.totalQuestions) {
-            console.log("🚀 Виклик submitResults()");
-            submitResults(checkResults.score); // ✅ Викликаємо submitResults
-        } else {
-            alert("❗ Будь ласка, відповідайте на всі запитання перед завершенням!");
-            console.log("Відповіді ", answeredQuestions);
-            return;
-        }
-    });
-});
+};
 
 // sendResultsBtn.addEventListener("click", () => {
 //     console.log("Виклик submitResults");
@@ -438,4 +386,3 @@ window.submitResults = function(finalScore, level, entryIDs, sendStudentName) {
 // });//sendResultsBtn click                
 
 
-});
