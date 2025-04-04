@@ -204,7 +204,7 @@ label {
   }li {
 	  margin: 17px 0 17px 6%;
     list-style-position: inside;  /* Додає номери списку всередині елементу */
-    color: #3ab747 !important; /* Додає колір для видимості */
+    /* color: #3ab747 !important; Додає колір для видимості */
  }
 	button {
 	  border: #c2fc6c !important 2px solid;
