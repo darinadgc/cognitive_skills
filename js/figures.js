@@ -269,8 +269,12 @@ window.getEntryIDs = function () {
         }
         return null;
    };//getEntryIDs      
-    });// DOMContentLoaded
-
+   
+// Додання обробника події до кнопки надсилання результатів
+sendResultsBtn.addEventListener("click", () => {
+    submitResults();
+});
+ });// DOMContentLoaded
 //📨📨📨📨📨📨📨📨📨📨📨📨📨📨📨📨📨📨📨
 // Оголошення функції submitResults на глобальному рівні
 function submitResults(finalScore, level, entryIDs, sendStudentName) {
@@ -349,8 +353,4 @@ function submitResults(finalScore, level, entryIDs, sendStudentName) {
     });
 }
 
-// Додання обробника події до кнопки надсилання результатів
-sendResultsBtn.addEventListener("click", () => {
-    submitResults();
-});
 
