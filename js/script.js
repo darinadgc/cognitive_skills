@@ -3,16 +3,16 @@ document.addEventListener("DOMContentLoaded", () => {
     window.resultElMotivation = document.getElementById("result-motivation");
 
    // ❌❌❌❌❌❌❌❌❌❌❌❌❌ Функції обмеження повторного проходження тесту 
-
+// Визначення функції getLastAttemptKey
+function getLastAttemptKey() {
+    return "lastAttemptDefault";
+}
 // ✅ Функція перевірки обмежень 
 function checkTestRetry(retryElement) {
     const lastAttemptKey = `lastAttemptMotivation`;
     const lastAttempt = localStorage.getItem(lastAttemptKey);
     const lastAttemptDate = lastAttempt ? new Date(lastAttempt) : null;
-// Визначення функції getLastAttemptKey
-function getLastAttemptKey() {
-    return "lastAttemptDefault";
-}
+
     if (lastAttemptDate && !isAllowedToRetry(lastAttemptDate)) {
         retryElement.innerHTML = `❌ Ви вже проходили тест. Можна повторити через ${daysUntilRetry(lastAttemptDate)} днів.`;
         return false;
@@ -32,11 +32,11 @@ function daysUntilRetry(lastAttemptDate) {
     const daysPassed = (now - lastAttemptDate) / (1000 * 60 * 60 * 24);
     return Math.ceil(21 - daysPassed);
 } 
-  // Виклик функції перевірки обмежень
-    checkTestRetry(main);
- const lastAttemptKey = getLastAttemptKey(); // ✅ Отримуємо ключ для LocalStorage//   
 const sendResultsBtnMotivation = document.getElementById("send-results-motivation-btn");
 
+ const lastAttemptKey = getLastAttemptKey(); // ✅ Отримуємо ключ для LocalStorage//   
+  // Виклик функції перевірки обмежень
+    checkTestRetry(main);
 
   // let sendStudentName; 🔹 Щоб не оголошувати всередині `if`
 
