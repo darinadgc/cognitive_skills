@@ -1,10 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
     	 const main = document.querySelector("main");
-
     window.resultElMotivation = document.getElementById("result-motivation");
-    const lastAttemptKey = getLastAttemptKey(); // ✅ Отримуємо ключ для LocalStorage// 
-   const lastAttempt = localStorage.getItem(lastAttemptKey); // //  ✅ Оголошуємо lastAttempt
-   const lastAttemptDate = lastAttempt ? new Date(lastAttempt) : null; // 
+   // Виклик функції перевірки обмежень
+    checkTestRetry(main);
+ const lastAttemptKey = getLastAttemptKey(); // ✅ Отримуємо ключ для LocalStorage// 
+  
 const sendResultsBtnMotivation = document.getElementById("send-results-motivation-btn");
 
 
@@ -411,45 +411,17 @@ console.log("🔍 totalQuestions:", checkResults.totalQuestions);
 
 // ✅ Функція перевірки обмежень 
 function checkTestRetry(retryElement) {
-     const lastAttemptKey = `lastAttemptMotivation`;
+    const lastAttemptKey = `lastAttemptMotivation`;
     const lastAttempt = localStorage.getItem(lastAttemptKey);
-     const lastAttemptDate = lastAttempt ? new Date(lastAttempt) : null;
+    const lastAttemptDate = lastAttempt ? new Date(lastAttempt) : null;
 
-     if (lastAttemptDate && !isAllowedToRetry(lastAttemptDate)) {
-	
-
-         retryElement.innerHTML = `❌ Ви вже проходили тест. Можна повторити через ${daysUntilRetry(lastAttemptDate)} днів.`;
-         return false;
-     }
+    if (lastAttemptDate && !isAllowedToRetry(lastAttemptDate)) {
+        retryElement.innerHTML = `❌ Ви вже проходили тест. Можна повторити через ${daysUntilRetry(lastAttemptDate)} днів.`;
+        return false;
+    }
 
     return true;
 }
-
-// ✅ Додаємо обробники подій на заголовки тестів
-// document.addEventListener("DOMContentLoaded", () => {
-//     document.getElementById("figures-title").addEventListener("click", () => {
-//         checkTestRetry("Figures", document.getElementById("figures-panel"));
-//     });
-
-//     document.getElementById("raven-title").addEventListener("click", () => {
-//         checkTestRetry("Raven", document.getElementById("raven-panel"));
-//     });
-
-//     document.getElementById("motivation-title").addEventListener("click", () => {
-//         checkTestRetry("Motivation", document.getElementById("motivation-panel"));
-//     });
-// });
-
-
-
-
-
-
-
- function getLastAttemptKey() {
-    checkTestRetry(main);
-    return "lastAttemptDefault";
- }
 
 function isAllowedToRetry(lastAttemptDate) {
     const now = new Date();
@@ -462,18 +434,5 @@ function daysUntilRetry(lastAttemptDate) {
     const daysPassed = (now - lastAttemptDate) / (1000 * 60 * 60 * 24);
     return Math.ceil(21 - daysPassed);
 }
-
-
-
-
-
-
-
-
-     if (lastAttempt && !isAllowedToRetry(new Date(lastAttempt))) {
-      main.innerHTML = `❌ Ви вже проходили тест. Можна повторити через ${daysUntilRetry(new Date(lastAttempt))} днів.`;
-        sendResultsBtn.disabled = true;
-       return;
-    }
 
 });
