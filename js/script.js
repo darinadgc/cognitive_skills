@@ -9,6 +9,9 @@ function checkTestRetry(retryElement) {
     const lastAttempt = localStorage.getItem(lastAttemptKey);
     const lastAttemptDate = lastAttempt ? new Date(lastAttempt) : null;
 
+    console.log("lastAttempt:", lastAttempt); // Лог для перевірки збережених даних
+    console.log("lastAttemptDate:", lastAttemptDate); // Лог для перевірки дати
+
     if (lastAttemptDate && !isAllowedToRetry(lastAttemptDate)) {
         retryElement.innerHTML = `❌ Ви вже проходили тест. Можна повторити через ${daysUntilRetry(lastAttemptDate)} днів.`;
         return false;
