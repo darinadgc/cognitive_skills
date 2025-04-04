@@ -1,7 +1,3 @@
-document.addEventListener("DOMContentLoaded", () => {
-    	 const main = document.querySelector("main");
-    window.resultElMotivation = document.getElementById("result-motivation");
-
    // ❌❌❌❌❌❌❌❌❌❌❌❌❌ Функції обмеження повторного проходження тесту 
 // Визначення функції getLastAttemptKey
 function getLastAttemptKey() {
@@ -31,10 +27,14 @@ function daysUntilRetry(lastAttemptDate) {
     const now = new Date();
     const daysPassed = (now - lastAttemptDate) / (1000 * 60 * 60 * 24);
     return Math.ceil(21 - daysPassed);
-} 
+}
+ document.addEventListener("DOMContentLoaded", () => {
+    	 const main = document.querySelector("main");
+    window.resultElMotivation = document.getElementById("result-motivation");
+ const lastAttemptKey = getLastAttemptKey(); // ✅ Отримуємо ключ для LocalStorage//   
+
 const sendResultsBtnMotivation = document.getElementById("send-results-motivation-btn");
 
- const lastAttemptKey = getLastAttemptKey(); // ✅ Отримуємо ключ для LocalStorage//   
   // Виклик функції перевірки обмежень
     checkTestRetry(main);
 
