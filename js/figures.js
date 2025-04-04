@@ -6,7 +6,36 @@ document.addEventListener("DOMContentLoaded", () => {
     	// const bodyContent = document.querySelector("body");
     	 const main = document.querySelector("main");
     	 const footer = document.querySelector("footer");
+   // ❌❌❌❌❌❌❌❌❌❌❌❌❌ Функції обмеження повторного проходження тесту 
 
+// ✅ Функція перевірки обмежень 
+function checkTestRetry(retryElement) {
+    const lastAttemptKey = `lastAttemptMotivation`;
+    const lastAttempt = localStorage.getItem(lastAttemptKey);
+    const lastAttemptDate = lastAttempt ? new Date(lastAttempt) : null;
+
+    if (lastAttemptDate && !isAllowedToRetry(lastAttemptDate)) {
+        retryElement.innerHTML = `❌ Ви вже проходили тест. Можна повторити через ${daysUntilRetry(lastAttemptDate)} днів.`;
+        return false;
+    }
+
+    return true;
+}
+
+function isAllowedToRetry(lastAttemptDate) {
+    const now = new Date();
+    const daysPassed = (now - lastAttemptDate) / (1000 * 60 * 60 * 24);
+    return daysPassed >= 21; // Через 3 тижні
+}
+
+function daysUntilRetry(lastAttemptDate) {
+    const now = new Date();
+    const daysPassed = (now - lastAttemptDate) / (1000 * 60 * 60 * 24);
+    return Math.ceil(21 - daysPassed);
+} 
+  // Виклик функції перевірки обмежень
+    checkTestRetry(main);
+ const lastAttemptKey = getLastAttemptKey(); // ✅ Отримуємо ключ для LocalStorage// 
    window.figureTask = document.getElementById("figure-task");
     window.resultEl = document.getElementById("result");
   const gameContainer = document.getElementById("game-container");
