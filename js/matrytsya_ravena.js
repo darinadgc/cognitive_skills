@@ -2,7 +2,7 @@
 
 // Визначення функції getLastAttemptKey
 function getLastAttemptKey() {
-    return "lastAttemptFigures";
+    return "lastAttemptRaven";
 }
 // ✅ Функція перевірки обмежень 
 function checkTestRetry(retryElement) {
