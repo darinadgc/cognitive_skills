@@ -35,7 +35,7 @@ function daysUntilRetry(lastAttemptDate) {
 document.addEventListener("DOMContentLoaded", () => {
     const main = document.querySelector("main");
     window.resultElMotivation = document.getElementById("result-motivation");
-    const sendResultsBtnMotivation = document.getElementById("send-results-motivation-btn");
+    window.sendResultsBtnMotivation = document.getElementById("send-results-motivation-btn");
 
     // Виклик функції перевірки обмежень
     if (!checkTestRetry(main)) {
