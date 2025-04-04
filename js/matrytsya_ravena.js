@@ -357,8 +357,9 @@ window.getEntryIDs = function () {
         console.error("❌ start-btn не знайдено!");
     }*/
 
-    });// DOMContentLoaded
 
+    sendResultsBtn.addEventListener("click", () => submitResults());
+    });// DOMContentLoaded
 
 window.submitResults = function(finalScore, level, entryIDs, sendStudentName) {
     console.log("📨 submitResults() запущено!");
@@ -429,7 +430,6 @@ window.submitResults = function(finalScore, level, entryIDs, sendStudentName) {
 
 
 
-    sendResultsBtn.addEventListener("click", () => submitResults());
 
 
 
