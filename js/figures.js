@@ -343,6 +343,9 @@ function submitResults(finalScore, level, entryIDs, sendStudentName) {
         alert("✅ Дані успішно надіслані у Google Forms!");
         document.getElementById("send-results-btn").style.display = "none";
         resultEl.innerHTML = `<strong>Дякуємо за проходження! Успіхів!</strong>`;
+          // Зберігаємо дату останньої спроби в localStorage
+        localStorage.setItem(getLastAttemptKey(), new Date().toISOString());
+        console.log("✅ Дата останньої спроби збережена:", new Date().toISOString());
     })
     .catch(error => {
         console.error("❌ Помилка надсилання:", error);
