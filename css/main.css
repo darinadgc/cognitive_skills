@@ -207,7 +207,7 @@ label {
     /* color: #3ab747 !important; Додає колір для видимості */
  }
 	button {
-	  border: #c2fc6c !important 2px solid;
+	  border: #c2fc6c 2px solid !important;
 	  border-radius: 8%;
 	  background: #ffdc57 !important;
 	  color: #bf7a11 !important;
