@@ -298,7 +298,11 @@ function submitResults(finalScore, level, entryIDs, sendStudentName) {
     let selectedEntryIDs = entryIDs;
 
     sendStudentName = askStudentName();
-    console.log("✅ Ім'я студента:", sendStudentName);
+    if (!sendStudentName) {
+        console.error("❌ askStudentName() повернула `null`. Виконання зупинено.");
+        window.isSubmitting = false;
+        return;
+    }    console.log("✅ Ім'я студента:", sendStudentName);
 
     if (!sendStudentName) {
         console.error("❌ askStudentName() повернула `null`. Виконання зупинено.");
