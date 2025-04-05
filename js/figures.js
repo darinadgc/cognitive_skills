@@ -1,37 +1,4 @@
-   // ❌❌❌❌❌❌❌❌❌❌❌❌❌ Функції обмеження повторного проходження тесту 
-
-// Визначення функції getLastAttemptKey
-function getLastAttemptKey() {
-    return "lastAttemptFigures";
-}
-// ✅ Функція перевірки обмежень 
-function checkTestRetry(retryElement) {
-    const lastAttemptKey = getLastAttemptKey();
-    const lastAttempt = localStorage.getItem(lastAttemptKey);
-    const lastAttemptDate = lastAttempt ? new Date(lastAttempt) : null;
-
-    console.log("lastAttempt:", lastAttempt); // Лог для перевірки збережених даних
-    console.log("lastAttemptDate:", lastAttemptDate); // Лог для перевірки дати
-
-    if (lastAttemptDate && !isAllowedToRetry(lastAttemptDate)) {
-        retryElement.innerHTML = `❌ Ви вже проходили тест. Можна повторити через ${daysUntilRetry(lastAttemptDate)} днів.`;
-        return false;
-    }
-
-    return true;
-}
-
-function isAllowedToRetry(lastAttemptDate) {
-    const now = new Date();
-    const daysPassed = (now - lastAttemptDate) / (1000 * 60 * 60 * 24);
-    return daysPassed >= 21; // Через 3 тижні
-}
-
-function daysUntilRetry(lastAttemptDate) {
-    const now = new Date();
-    const daysPassed = (now - lastAttemptDate) / (1000 * 60 * 60 * 24);
-    return Math.ceil(21 - daysPassed);
-}
+  
 document.addEventListener("DOMContentLoaded", () => {
   const figureTaskEl = document.getElementById("figure-task");
   const startBtn = document.getElementById("start-btn");
@@ -271,10 +238,7 @@ window.getEntryIDs = function () {
    };//getEntryIDs      
    
 // Додання обробника події до кнопки надсилання результатів
-sendResultsBtn.addEventListener("click", () => {
-        level = calculateLevel(score);  // Use the global variable score
-        submitResults(score, level, getEntryIDs(), askStudentName());
-    }); 
+
 //📨📨📨📨📨📨📨📨📨📨📨📨📨📨📨📨📨📨📨
 // Оголошення функції submitResults на глобальному рівні
  window.submitResults = function(finalScore, level, entryIDs, sendStudentName) {
@@ -344,8 +308,8 @@ sendResultsBtn.addEventListener("click", () => {
         document.getElementById("send-results-btn").style.display = "none";
         resultEl.innerHTML = `<strong>Дякуємо за проходження! Успіхів!</strong>`;
           // Зберігаємо дату останньої спроби в localStorage
-        localStorage.setItem(getLastAttemptKey(), new Date().toISOString());
-        console.log("✅ Дата останньої спроби збережена:", new Date().toISOString());
+       // localStorage.setItem(getLastAttemptKey(), new Date().toISOString());
+        //console.log("✅ Дата останньої спроби збережена:", new Date().toISOString());
     })
     .catch(error => {
         console.error("❌ Помилка надсилання:", error);
@@ -355,6 +319,8 @@ sendResultsBtn.addEventListener("click", () => {
         window.isSubmitting = false;
     });
 }
+sendResultsBtn.addEventListener("click", () => {
+    submitResults();
+});
+
  });// DOMContentLoaded
-
-
