@@ -359,7 +359,7 @@ window.getEntryIDs = function () {
 
 sendResultsBtn.addEventListener("click", () => {
         level = calculateLevel(score);  // Use the global variable score
-        submitResults(score, level, entryIDs, sendStudentName);
+        submitResults(score, level, getEntryIDs(), askStudentName());
     });  
 
 window.submitResults = function(finalScore, level, entryIDs, sendStudentName) {
