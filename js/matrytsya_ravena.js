@@ -380,12 +380,16 @@ window.submitResults = function(finalScore, level, entryIDs, sendStudentName) {
         window.isSubmitting = false;
         return;
     }
-
+    sendStudentName = askStudentName();
+    if (!sendStudentName) {
+        console.error("❌ askStudentName() повернула `null`. Виконання зупинено.");
+        window.isSubmitting = false;
+        return;
+    }
     console.log("🔹 Отримані entry IDs:", entryIDs);
     console.log("✅ Визначені entry IDs:", entryIDs);
    console.log("✅ Обчислений бал:", score);  
    level = calculateLevel(score);  //  Використовує глобальну змінну score
-    sendStudentName = askStudentName();
     console.log("✅ Ім'я студента:", sendStudentName);
     console.log("✅ Визначені entry IDs:", entryIDs);
    
