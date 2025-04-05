@@ -220,7 +220,8 @@ label {
   /* max-width: 90%; ✅ Щоб зображення не виходило за межі */
  /*  margin-top: 81px; ✅ Відступ для корекції */
   display: block;
-
+}
+ div#task-content { display: none; /* Спочатку приховуємо */
 }
 div#task-container-raven {
   display: flex;
@@ -228,7 +229,6 @@ div#task-container-raven {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  display: none; /* Спочатку приховуємо */
   gap: 5px;
   overflow: hidden;
 }
