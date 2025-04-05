@@ -324,8 +324,10 @@ window.getEntryIDs = function () {
     }*/
 
 
-    sendResultsBtn.addEventListener("click", () => submitResults(score, calculateLevel(score), getEntryIDs(), askStudentName()));
-    });// DOMContentLoaded
+sendResultsBtn.addEventListener("click", () => {
+        level = calculateLevel(score);  // Use the global variable score
+        submitResults(score, level, getEntryIDs(), askStudentName);
+    });  
 
 window.submitResults = function(finalScore, level, entryIDs, sendStudentName) {
     console.log("📨 submitResults() запущено!");
@@ -348,8 +350,8 @@ window.submitResults = function(finalScore, level, entryIDs, sendStudentName) {
 
     console.log("🔹 Отримані entry IDs:", entryIDs);
     console.log("✅ Визначені entry IDs:", entryIDs);
-    
-   //  console.log("✅ Обчислений бал:", score); level = calculateLevel(score);  Використовує глобальну змінну score
+   console.log("✅ Обчислений бал:", score);  
+   level = calculateLevel(score);  //  Використовує глобальну змінну score
     sendStudentName = askStudentName();
     console.log("✅ Ім'я студента:", sendStudentName);
     console.log("✅ Визначені entry IDs:", entryIDs);
@@ -360,10 +362,10 @@ window.submitResults = function(finalScore, level, entryIDs, sendStudentName) {
         console.error("❌ askStudentName() повернула `null`. Виконання зупинено.");
         return;
     }
-    if (isNaN(score) || !level) {
-        console.error("❌ finalScore або level не визначено!");
-        return;
-    }
+   // if (isNaN(score) || !level) {
+       // console.error("❌ finalScore або level не визначено!");
+       // return;
+   // }
 
     const formData = new URLSearchParams();
     formData.append(entryIDs.name, sendStudentName);
@@ -396,7 +398,7 @@ window.submitResults = function(finalScore, level, entryIDs, sendStudentName) {
         window.isSubmitting = false;
     });
 };// ✅ Головна функція для надсилання результатів у Google Forms
-
+  });// DOMContentLoaded
 
 
 
