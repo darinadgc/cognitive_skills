@@ -1,4 +1,40 @@
-  
+    // if (!checkTestRetry(main)) {
+       // console.log("❌ Ви вже проходили тест. Повідомлення відображено.");
+        //  return;Зупиняємо подальше виконання, якщо тест вже був пройдений
+  //  } 
+ // ❌❌❌❌❌❌❌❌❌❌❌❌❌ Функції обмеження повторного проходження тесту 
+
+// Визначення функції getLastAttemptKey
+function getLastAttemptKey() {
+    return "lastAttemptFigures";
+}
+// ✅ Функція перевірки обмежень 
+function checkTestRetry(retryElement) {
+    const lastAttemptKey = getLastAttemptKey();
+    const lastAttempt = localStorage.getItem(lastAttemptKey);
+    const lastAttemptDate = lastAttempt ? new Date(lastAttempt) : null;
+
+    console.log("lastAttempt:", lastAttempt); // Лог для перевірки збережених даних
+    console.log("lastAttemptDate:", lastAttemptDate); // Лог для перевірки дати
+
+    if (lastAttemptDate && !isAllowedToRetry(lastAttemptDate)) {
+        retryElement.innerHTML = `❌ Ви вже проходили тест. Можна повторити через ${daysUntilRetry(lastAttemptDate)} днів.`;
+        return false;
+    }
+
+    return true;
+}
+
+function isAllowedToRetry(lastAttemptDate) {
+    const now = new Date();
+    const daysPassed = (now - lastAttemptDate) / (1000 * 60 * 60 * 24);
+    return daysPassed >= 21; // Через 3 тижні
+}
+function daysUntilRetry(lastAttemptDate) {
+    const now = new Date();
+    const daysPassed = (now - lastAttemptDate) / (1000 * 60 * 60 * 24);
+    return Math.ceil(21 - daysPassed);
+}
 document.addEventListener("DOMContentLoaded", () => {
   const figureTaskEl = document.getElementById("figure-task");
   const startBtn = document.getElementById("start-btn");
@@ -7,11 +43,6 @@ document.addEventListener("DOMContentLoaded", () => {
     	// const bodyContent = document.querySelector("body");
     	 const main = document.querySelector("main");
     	 const footer = document.querySelector("footer");
-    // Виклик функції перевірки обмежень
-   // if (!checkTestRetry(main)) {
-       // console.log("❌ Ви вже проходили тест. Повідомлення відображено.");
-        //  return;Зупиняємо подальше виконання, якщо тест вже був пройдений
-  //  }
 
    window.figureTask = document.getElementById("figure-task");
     window.resultEl = document.getElementById("result");
@@ -19,7 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
    // const lastAttemptKey = getLastAttemptKey(); // ✅ Отримуємо ключ для LocalStorage
     // const lastAttempt = localStorage.getItem(lastAttemptKey); // ✅ Оголошуємо lastAttempt
     // const lastAttemptDate = lastAttempt ? new Date(lastAttempt) : null;
-window.sendResultsBtn = document.getElementById("send-results-btn");
+const sendResultsBtn = document.getElementById("send-results-btn");
  let timerInterval;
      //📶📶📶📶📶📶📶📶📶📶📶📶📶📶📶📶📶📶📶📶📶
 	window.calculateLevel = function(score) {
@@ -234,14 +265,12 @@ window.getEntryIDs = function () {
             score: "entry.1008291282",
             level: "entry.1332224844"
         }
+      
         return null;
-   };//getEntryIDs      
-   
-// Додання обробника події до кнопки надсилання результатів
-
+   };//getEntryIDs
 //📨📨📨📨📨📨📨📨📨📨📨📨📨📨📨📨📨📨📨
 // Оголошення функції submitResults на глобальному рівні
- function submitResults(finalScore, level, entryIDs, sendStudentName) {
+function submitResults(finalScore, level, entryIDs, sendStudentName) {
     console.log("📨 submitResults() запущено!");
     entryIDs = getEntryIDs();
     if (!entryIDs) {
@@ -316,8 +345,88 @@ window.getEntryIDs = function () {
         window.isSubmitting = false;
     });
 }
+
+// Додання обробника події до кнопки надсилання результатів
 sendResultsBtn.addEventListener("click", () => {
     submitResults();
 });
 
- });// DOMContentLoaded
+
+
+    // ❌❌❌❌❌❌❌❌❌❌❌❌❌❌✅ Функції обмеження повторного проходження тесту (не виконується при завантаженні)
+
+// ✅ window.finalScore, calculateLevel(window.finalScore), getEntryIDs(), askStudentName()Функція перевірки обмежень для конкретного тесту
+// function checkTestRetry(testType, retryElement) {
+//     const lastAttemptKey = `lastAttempt${testType}`;
+//     const lastAttempt = localStorage.getItem(lastAttemptKey);
+//     const lastAttemptDate = lastAttempt ? new Date(lastAttempt) : null;
+
+//     if (lastAttemptDate && !isAllowedToRetry(lastAttemptDate)) {
+	
+
+//         retryElement.innerHTML = `❌ Ви вже проходили тест. Можна повторити через ${daysUntilRetry(lastAttemptDate)} днів.`;
+//         return false;
+//     }
+
+//     return true;
+// }
+
+// ✅ Додаємо обробники подій на заголовки тестів
+// document.addEventListener("DOMContentLoaded", () => {
+//     document.getElementById("figures-title").addEventListener("click", () => {
+//         checkTestRetry("Figures", document.getElementById("figures-panel"));
+//     });
+
+//     document.getElementById("raven-title").addEventListener("click", () => {
+//         checkTestRetry("Raven", document.getElementById("raven-panel"));
+//     });
+
+//     document.getElementById("motivation-title").addEventListener("click", () => {
+//         checkTestRetry("Motivation", document.getElementById("motivation-panel"));
+//     });
+// });
+
+
+
+
+
+
+
+//    function getLastAttemptKey() {
+//     const currentPage = window.location.pathname;
+//     if (currentPage.includes("cognitive_skills/")) return "lastAttemptMotivation";
+//     if (currentPage.includes("matrytsya_ravena.html")) return "lastAttemptRaven";
+//     if (currentPage.includes("upiznay_fihury.html")) return "lastAttemptFigures";
+//     return "lastAttemptDefault";
+// }
+
+function isAllowedToRetry(lastAttemptDate) {
+    const now = new Date();
+    const daysPassed = (now - lastAttemptDate) / (1000 * 60 * 60 * 24);
+    return daysPassed >= 21; // Через 3 тижні
+}
+
+function daysUntilRetry(lastAttemptDate) {
+    const now = new Date();
+    const daysPassed = (now - lastAttemptDate) / (1000 * 60 * 60 * 24);
+    return Math.ceil(21 - daysPassed);
+}
+
+
+
+
+
+
+
+
+    // if (lastAttempt && !isAllowedToRetry(new Date(lastAttempt))) {
+    //     resultEl.innerHTML = `❌ Ви вже проходили тест. Можна повторити через ${daysUntilRetry(new Date(lastAttempt))} днів.`;
+    //     sendResultsBtn.disabled = true;
+    //     return;
+    // }
+ 
+
+
+  
+  
+});//DOMContentLoaded
