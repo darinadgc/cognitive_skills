@@ -171,16 +171,14 @@ window.submitResults = function(finalScore, level, entryIDs, sendStudentName) {
         return;
     }
 
-    let selectedEntryIDs = entryIDs; // ✅ Правильне призначення
     sendStudentName = askStudentName();
-    console.log("✅ Ім'я студента:", sendStudentName);
-    finalScore = 0;
-    level = "";
-
     if (!sendStudentName) {
         console.error("❌ askStudentName() повернула `null`. Виконання зупинено.");
+        window.isSubmitting = false;
         return;
     }
+    console.log("✅ Ім'я студента:", sendStudentName);
+
     console.log("🔍 Викликаємо calculateScoreMotivation...");
     finalScore = calculateScoreMotivation();
     console.log("✅ finalScore після розрахунку:", finalScore);
