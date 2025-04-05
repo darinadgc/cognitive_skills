@@ -304,10 +304,7 @@ function submitResults(finalScore, level, entryIDs, sendStudentName) {
         return;
     }    console.log("✅ Ім'я студента:", sendStudentName);
 
-    if (!sendStudentName) {
-        console.error("❌ askStudentName() повернула `null`. Виконання зупинено.");
-        return;
-    }
+    
 
    // if (typeof timeTaken === "undefined") {
       //  console.error("❌ Час не визначено! Неможливо розрахувати бал.");
