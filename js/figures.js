@@ -274,7 +274,6 @@ window.getEntryIDs = function () {
 sendResultsBtn.addEventListener("click", () => {
     submitResults(score, level, getEntryIDs(), sendStudentName);
 });
- });// DOMContentLoaded
 //📨📨📨📨📨📨📨📨📨📨📨📨📨📨📨📨📨📨📨
 // Оголошення функції submitResults на глобальному рівні
  window.submitResults = function(finalScore, level, entryIDs, sendStudentName) {
@@ -355,5 +354,6 @@ sendResultsBtn.addEventListener("click", () => {
         window.isSubmitting = false;
     });
 }
+ });// DOMContentLoaded
 
 
