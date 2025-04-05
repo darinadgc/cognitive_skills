@@ -241,7 +241,7 @@ window.getEntryIDs = function () {
 
 //📨📨📨📨📨📨📨📨📨📨📨📨📨📨📨📨📨📨📨
 // Оголошення функції submitResults на глобальному рівні
- window.submitResults = function(finalScore, level, entryIDs, sendStudentName) {
+ function submitResults(finalScore, level, entryIDs, sendStudentName) {
     console.log("📨 submitResults() запущено!");
     entryIDs = getEntryIDs();
     if (!entryIDs) {
@@ -259,15 +259,15 @@ window.getEntryIDs = function () {
         window.isSubmitting = false;
         return;
     }
+    let selectedEntryIDs = entryIDs;
 
     sendStudentName = askStudentName();
+    console.log("✅ Ім'я студента:", sendStudentName);
+
     if (!sendStudentName) {
         console.error("❌ askStudentName() повернула `null`. Виконання зупинено.");
-        window.isSubmitting = false;
         return;
-    }    console.log("✅ Ім'я студента:", sendStudentName);
-
-    
+    }
 
    // if (typeof timeTaken === "undefined") {
       //  console.error("❌ Час не визначено! Неможливо розрахувати бал.");
@@ -284,7 +284,7 @@ window.getEntryIDs = function () {
     level = calculateLevel(window.finalScore);
     console.log("✅ Визначений рівень:", level);
     console.log("✅ Ім'я студента:", sendStudentName);
-    console.log("✅ Визначені entry IDs:", entryIDs);
+    console.log("✅ Визначені entry IDs:", selectedEntryIDs);
 
     console.log("🔹 Отримані entry IDs:", entryIDs);
 
@@ -307,9 +307,6 @@ window.getEntryIDs = function () {
         alert("✅ Дані успішно надіслані у Google Forms!");
         document.getElementById("send-results-btn").style.display = "none";
         resultEl.innerHTML = `<strong>Дякуємо за проходження! Успіхів!</strong>`;
-          // Зберігаємо дату останньої спроби в localStorage
-       // localStorage.setItem(getLastAttemptKey(), new Date().toISOString());
-        //console.log("✅ Дата останньої спроби збережена:", new Date().toISOString());
     })
     .catch(error => {
         console.error("❌ Помилка надсилання:", error);
