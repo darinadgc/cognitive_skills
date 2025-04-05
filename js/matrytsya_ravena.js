@@ -1,5 +1,4 @@
    // ❌❌❌❌❌❌❌❌❌❌❌❌❌ Функції обмеження повторного проходження тесту 
-
 // Визначення функції getLastAttemptKey
 function getLastAttemptKey() {
     return "lastAttemptRaven";
@@ -44,6 +43,7 @@ window.sendResultsBtn = document.getElementById("send-results-btn");
        console.log("❌ Ви вже проходили тест. Повідомлення відображено.");
        return; //  Зупиняємо подальше виконання, якщо тест вже був пройдений
     } // //// 
+const taskContent = document.getElementByClassName("task-content");
  const taskContainer = document.getElementById("task-container-raven");
   const timerEl = document.getElementById("timer");
   let currentTaskIndex = 0;
@@ -225,8 +225,7 @@ const tasks = [
 function loadTask() {
     const task = tasks[currentTaskIndex];
 
-    taskContainer.innerHTML = `
-        <div class="task-content">
+    taskContent.innerHTML = `
             <img src="${task.image}" class="main-image">
             <div class="answer-options">
                 <button id="next-btn" disabled>Далі</button>
@@ -236,7 +235,6 @@ function loadTask() {
                     `).join('')}
                 </div>
             </div>
-        </div>
     `;
     // Отримуємо всі варіанти відповідей
     const options = document.querySelectorAll(".option");
