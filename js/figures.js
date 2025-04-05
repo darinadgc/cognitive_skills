@@ -277,7 +277,7 @@ sendResultsBtn.addEventListener("click", () => {
  });// DOMContentLoaded
 //📨📨📨📨📨📨📨📨📨📨📨📨📨📨📨📨📨📨📨
 // Оголошення функції submitResults на глобальному рівні
-function submitResults(finalScore, level, entryIDs, sendStudentName) {
+ window.submitResults = function(finalScore, level, entryIDs, sendStudentName) {
     console.log("📨 submitResults() запущено!");
     entryIDs = getEntryIDs();
     if (!entryIDs) {
