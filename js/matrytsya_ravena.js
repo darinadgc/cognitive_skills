@@ -168,7 +168,7 @@ const tasks = [
     console.log("🔹 startTest() запущено!");
     currentTaskIndex = 0;
     score = 0;
-    taskContainer.style.display = "flex";
+    taskContent.style.display = "block";
     startBtn.style.display = "none";
     sendResultsBtn.style.display = "none";
     startTimer(600);
