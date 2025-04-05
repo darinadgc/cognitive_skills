@@ -32,7 +32,6 @@ function daysUntilRetry(lastAttemptDate) {
 document.addEventListener("DOMContentLoaded", () => {
     	 const main = document.querySelector("main");
 const resultEl = document.getElementById("result");    // const lastAttemptKey = getLastAttemptKey(); // ✅ Отримуємо ключ для LocalStorage
-    const lastAttemptDate = lastAttempt ? new Date(lastAttempt) : null;
    const header = document.querySelector("header");
     	// const bodyContent = document.querySelector("body");
     	 const footer = document.querySelector("footer");
