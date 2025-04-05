@@ -272,8 +272,9 @@ window.getEntryIDs = function () {
    
 // Додання обробника події до кнопки надсилання результатів
 sendResultsBtn.addEventListener("click", () => {
-    submitResults();
-});
+        level = calculateLevel(score);  // Use the global variable score
+        submitResults(score, level, getEntryIDs(), askStudentName());
+    }); 
 //📨📨📨📨📨📨📨📨📨📨📨📨📨📨📨📨📨📨📨
 // Оголошення функції submitResults на глобальному рівні
  window.submitResults = function(finalScore, level, entryIDs, sendStudentName) {
