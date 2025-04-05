@@ -349,11 +349,11 @@ window.submitResults = function(finalScore, level, entryIDs, sendStudentName) {
     console.log("🔹 Отримані entry IDs:", entryIDs);
     console.log("✅ Визначені entry IDs:", entryIDs);
     
-   //  level = calculateLevel(score);  Використовує глобальну змінну score
+   //  console.log("✅ Обчислений бал:", score); level = calculateLevel(score);  Використовує глобальну змінну score
     sendStudentName = askStudentName();
     console.log("✅ Ім'я студента:", sendStudentName);
     console.log("✅ Визначені entry IDs:", entryIDs);
-    console.log("✅ Обчислений бал:", score);
+   
     console.log("✅ Визначений рівень:", level);
 
     if (!sendStudentName) {
