@@ -8,10 +8,10 @@ document.addEventListener("DOMContentLoaded", () => {
     	 const main = document.querySelector("main");
     	 const footer = document.querySelector("footer");
     // Виклик функції перевірки обмежень
-    if (!checkTestRetry(main)) {
-        console.log("❌ Ви вже проходили тест. Повідомлення відображено.");
-        return; // Зупиняємо подальше виконання, якщо тест вже був пройдений
-    }
+   // if (!checkTestRetry(main)) {
+       // console.log("❌ Ви вже проходили тест. Повідомлення відображено.");
+        //  return;Зупиняємо подальше виконання, якщо тест вже був пройдений
+  //  }
 
    window.figureTask = document.getElementById("figure-task");
     window.resultEl = document.getElementById("result");
