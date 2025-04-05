@@ -1,4 +1,37 @@
+   // ❌❌❌❌❌❌❌❌❌❌❌❌❌ Функції обмеження повторного проходження тесту 
 
+// Визначення функції getLastAttemptKey
+function getLastAttemptKey() {
+    return "lastAttemptRaven";
+}
+// ✅ Функція перевірки обмежень 
+function checkTestRetry(retryElement) {
+    const lastAttemptKey = getLastAttemptKey();
+    const lastAttempt = localStorage.getItem(lastAttemptKey);
+    const lastAttemptDate = lastAttempt ? new Date(lastAttempt) : null;
+
+    console.log("lastAttempt:", lastAttempt); // Лог для перевірки збережених даних
+    console.log("lastAttemptDate:", lastAttemptDate); // Лог для перевірки дати
+
+    if (lastAttemptDate && !isAllowedToRetry(lastAttemptDate)) {
+        retryElement.innerHTML = `❌ Ви вже проходили тест. Можна повторити через ${daysUntilRetry(lastAttemptDate)} днів.`;
+        return false;
+    }
+
+    return true;
+}
+
+function isAllowedToRetry(lastAttemptDate) {
+    const now = new Date();
+    const daysPassed = (now - lastAttemptDate) / (1000 * 60 * 60 * 24);
+    return daysPassed >= 21; // Через 3 тижні
+}
+
+function daysUntilRetry(lastAttemptDate) {
+    const now = new Date();
+    const daysPassed = (now - lastAttemptDate) / (1000 * 60 * 60 * 24);
+    return Math.ceil(21 - daysPassed);
+}
 document.addEventListener("DOMContentLoaded", () => {
     	 const main = document.querySelector("main");
 const resultEl = document.getElementById("result");    // const lastAttemptKey = getLastAttemptKey(); // ✅ Отримуємо ключ для LocalStorage
@@ -8,10 +41,10 @@ const resultEl = document.getElementById("result");    // const lastAttemptKey =
  const startBtn = document.getElementById("start-btn");
 window.sendResultsBtn = document.getElementById("send-results-btn");
     // Виклик функції перевірки обмежень
- // if (!checkTestRetry(main)) {
-      //  console.log("❌ Ви вже проходили тест. Повідомлення відображено.");
-       // return;  Зупиняємо подальше виконання, якщо тест вже був пройдений
-    //  }
+ if (!checkTestRetry(main)) { // // 
+      console.log("❌ Ви вже проходили тест. Повідомлення відображено.");
+      return;  //  Зупиняємо подальше виконання, якщо тест вже був пройдений
+     }// 
 const taskContent = document.querySelector(".task-content");
  const taskContainer = document.getElementById("task-container-raven");
   const timerEl = document.getElementById("timer");
@@ -387,8 +420,8 @@ window.submitResults = function(finalScore, level, entryIDs, sendStudentName) {
         document.getElementById("send-results-btn").style.display = "none";
         resultEl.innerHTML = `<strong>Дякуємо за проходження!</strong>`;
          // Зберігаємо дату останньої спроби в localStorage
-        // localStorage.setItem(getLastAttemptKey(), new Date().toISOString());
-        //console.log("✅ Дата останньої спроби збережена:", new Date().toISOString());
+       localStorage.setItem(getLastAttemptKey(), new Date().toISOString());  //
+       console.log("✅ Дата останньої спроби збережена:", new Date().toISOString()); //
     })
     .catch(error => {
         console.error("❌ Помилка надсилання:", error);
