@@ -272,7 +272,7 @@ window.getEntryIDs = function () {
    
 // Додання обробника події до кнопки надсилання результатів
 sendResultsBtn.addEventListener("click", () => {
-    submitResults(score, level, getEntryIDs(), sendStudentName);
+    submitResults();
 });
 //📨📨📨📨📨📨📨📨📨📨📨📨📨📨📨📨📨📨📨
 // Оголошення функції submitResults на глобальному рівні
