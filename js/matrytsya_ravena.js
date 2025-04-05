@@ -395,10 +395,7 @@ window.submitResults = function(finalScore, level, entryIDs, sendStudentName) {
    
     console.log("✅ Визначений рівень:", level);
 
-    if (!sendStudentName) {
-        console.error("❌ askStudentName() повернула `null`. Виконання зупинено.");
-        return;
-    }
+    
    // if (isNaN(score) || !level) {
        // console.error("❌ finalScore або level не визначено!");
        // return;
