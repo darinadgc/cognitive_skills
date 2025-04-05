@@ -272,7 +272,7 @@ window.getEntryIDs = function () {
    
 // Додання обробника події до кнопки надсилання результатів
 sendResultsBtn.addEventListener("click", () => {
-    submitResults();
+    submitResults(score, level, getEntryIDs(), askStudentName);
 });
  });// DOMContentLoaded
 //📨📨📨📨📨📨📨📨📨📨📨📨📨📨📨📨📨📨📨
@@ -295,7 +295,6 @@ function submitResults(finalScore, level, entryIDs, sendStudentName) {
         window.isSubmitting = false;
         return;
     }
-    let selectedEntryIDs = entryIDs;
 
     sendStudentName = askStudentName();
     if (!sendStudentName) {
@@ -321,7 +320,7 @@ function submitResults(finalScore, level, entryIDs, sendStudentName) {
     level = calculateLevel(window.finalScore);
     console.log("✅ Визначений рівень:", level);
     console.log("✅ Ім'я студента:", sendStudentName);
-    console.log("✅ Визначені entry IDs:", selectedEntryIDs);
+    console.log("✅ Визначені entry IDs:", entryIDs);
 
     console.log("🔹 Отримані entry IDs:", entryIDs);
 
