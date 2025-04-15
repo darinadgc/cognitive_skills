@@ -291,7 +291,7 @@ button {
 img.option, label, #option, input[type='radio'] {
   cursor: pointer;
 }
-#game-container {
+#game-container.container-active {
     position: fixed;
 }
 .container-active {
