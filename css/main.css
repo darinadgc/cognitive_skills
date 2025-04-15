@@ -291,8 +291,11 @@ button {
 img.option, label, #option, input[type='radio'] {
   cursor: pointer;
 }
-.container-active {
+#game-container {
     position: fixed;
+}
+.container-active {
+    position: absolute;
     left: 50%;
     transform: translateX(-50%);
     top: 0;
@@ -300,7 +303,6 @@ img.option, label, #option, input[type='radio'] {
     background-color: #DCFF50 !important;
 	    z-index: 1000; /* Встановлює високий z-index, щоб елемент був над іншими */
     display: block; /* Початково приховує елемент */
-
 }
   #game-container-figures {
     width: 100%;
