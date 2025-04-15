@@ -292,7 +292,7 @@ img.option, label, #option, input[type='radio'] {
   cursor: pointer;
 }
 .container-active {
-    position: absolute;
+    position: fixed;
     left: 50%;
     transform: translateX(-50%);
     top: 0;
