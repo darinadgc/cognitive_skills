@@ -1,5 +1,4 @@
    // ❌❌❌❌❌❌❌❌❌❌❌❌❌ Функції обмеження повторного проходження тесту 
-
 // Визначення функції getLastAttemptKey
 function getLastAttemptKey() {
     return "lastAttemptRaven";
@@ -37,6 +36,8 @@ document.addEventListener("DOMContentLoaded", () => {
 const resultEl = document.getElementById("result");    // const lastAttemptKey = getLastAttemptKey(); // ✅ Отримуємо ключ для LocalStorage
    const header = document.querySelector("header");
     	// const bodyContent = document.querySelector("body");
+  let currentTask = document.getElementById("current-task");
+
     	 const footer = document.querySelector("footer");
  const startBtn = document.getElementById("start-btn");
 window.sendResultsBtn = document.getElementById("send-results-btn");
@@ -261,11 +262,11 @@ main.classList.add("container-color");
     // Додаємо подію для кнопки "Далі"
     document.getElementById("next-btn").addEventListener("click", () => {
         if (selectedOption !== null) {
-            checkAnswer(selectedOption);
+      taskContent.innerHTML = `Завдання "${currentTaskIndex+1}"`
+      checkAnswer(selectedOption);
         }
     });
 }
-
 
 //✅ checkAnswer
 function checkAnswer(selectedOption) {
@@ -433,6 +434,7 @@ window.submitResults = function(finalScore, level, entryIDs, sendStudentName) {
     });
 };// ✅ Головна функція для надсилання результатів у Google Forms
   });// DOMContentLoaded
+
 
 
 
