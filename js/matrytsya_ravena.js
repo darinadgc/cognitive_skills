@@ -262,7 +262,7 @@ main.classList.add("container-color");
     // Додаємо подію для кнопки "Далі"
     document.getElementById("next-btn").addEventListener("click", () => {
         if (selectedOption !== null) {
-      taskContent.innerHTML = `. Завдання "${currentTaskIndex+1}"`
+      currentTask.innerHTML = `. Завдання "${currentTaskIndex+1}"`
       checkAnswer(selectedOption);
         }
     });
@@ -434,6 +434,7 @@ window.submitResults = function(finalScore, level, entryIDs, sendStudentName) {
     });
 };// ✅ Головна функція для надсилання результатів у Google Forms
   });// DOMContentLoaded
+
 
 
 
