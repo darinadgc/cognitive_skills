@@ -215,7 +215,7 @@ const tasks = [
     timerInterval = setInterval(() => {
       const minutes = Math.floor(timeLeft / 60);
       const seconds = timeLeft % 60;
-      timerEl.textContent = `⏳ ${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+      timerEl.textContent = `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
       timeLeft--;
 
       if (timeLeft < 0) {
@@ -434,6 +434,7 @@ window.submitResults = function(finalScore, level, entryIDs, sendStudentName) {
     });
 };// ✅ Головна функція для надсилання результатів у Google Forms
   });// DOMContentLoaded
+
 
 
 
