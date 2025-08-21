@@ -239,6 +239,7 @@ function loadTask() {
                 </div>
             </div>
     `;
+      currentTask.innerHTML = `. Завдання ${currentTaskIndex+1}`;
     // Отримуємо всі варіанти відповідей
     const options = document.querySelectorAll(".option");
     let selectedOption = null;
@@ -262,7 +263,6 @@ main.classList.add("container-color");
     // Додаємо подію для кнопки "Далі"
     document.getElementById("next-btn").addEventListener("click", () => {
         if (selectedOption !== null) {
-      currentTask.innerHTML = `. Завдання ${currentTaskIndex+2}`
       checkAnswer(selectedOption);
         }
     });
@@ -434,6 +434,7 @@ window.submitResults = function(finalScore, level, entryIDs, sendStudentName) {
     });
 };// ✅ Головна функція для надсилання результатів у Google Forms
   });// DOMContentLoaded
+
 
 
 
